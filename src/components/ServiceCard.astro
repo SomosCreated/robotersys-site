@@ -1,0 +1,60 @@
+---
+/**
+ * ServiceCard — spotlight card for the services grid.
+ *
+ * Layout: FIG. tag (top-left) + Solar icon (top-right) + uppercase title + mono description.
+ * Body text uses text-zinc-400 (≥4.5:1 on #050505 background) at text-sm (14px) for WCAG AA.
+ * Spotlight border glow is driven by spotlight.ts which sets --mouse-x/--mouse-y on each card.
+ */
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  fig: string;
+  icon: string;
+  title: string;
+  desc: string;
+}
+
+const { fig, icon, title, desc } = Astro.props;
+---
+
+<div
+  class="group relative border-zinc-800 border-r border-b min-h-[280px] flex flex-col bg-ink/50 spotlight-card"
+  style="--mouse-x:0px;--mouse-y:0px;"
+>
+  <!-- Inner sheen (driven by spotlight.ts) -->
+  <div
+    class="inner-sheen absolute inset-0 pointer-events-none"
+    aria-hidden="true"
+  ></div>
+
+  <div class="p-8 h-full flex flex-col relative z-10">
+    <!-- Header row: FIG. tag + icon -->
+    <div class="flex justify-between items-start mb-6">
+      <span
+        class="text-[10px] font-mono text-zinc-500 border border-zinc-800 px-2 py-1 group-hover:border-accent/50 group-hover:text-accent transition-all bg-ink"
+      >
+        {fig}
+      </span>
+      <Icon
+        name={icon}
+        class="text-zinc-300 group-hover:text-white transition-colors"
+        width={24}
+        height={24}
+        aria-hidden="true"
+      />
+    </div>
+
+    <!-- Title -->
+    <h3
+      class="text-base font-medium text-white uppercase tracking-tight mb-3 group-hover:text-accent transition-colors"
+    >
+      {title}
+    </h3>
+
+    <!-- Description — zinc-400 at 14px ensures WCAG AA contrast -->
+    <p class="text-sm text-zinc-400 font-mono leading-relaxed">
+      {desc}
+    </p>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+---
+/**
+ * StatsBand — "Nosso trabalho em números"
+ *
+ * A full-width band with a responsive grid of stat items.
+ * Each stat: big white number + mono label in zinc-400.
+ * Background: surface (#080808), top/bottom borders zinc-800.
+ *
+ * Props:
+ *   stats — array of { label: string; value: string }
+ *
+ * PLACEHOLDER NOTE: stat values are provided by the parent and marked as
+ * placeholders in index.astro until the client confirms real numbers.
+ */
+interface Props {
+  stats: { label: string; value: string }[];
+}
+
+const { stats } = Astro.props;
+---
+
+<div class="border-t border-b border-zinc-800 bg-[#080808] py-16 px-6 md:px-12 sys-reveal">
+  <!-- Section heading -->
+  <div class="max-w-7xl mx-auto">
+    <div class="text-[10px] font-mono text-accent uppercase tracking-widest flex items-center gap-2 mb-10">
+      <span class="w-1.5 h-1.5 bg-accent animate-pulse" aria-hidden="true"></span>
+      // Nosso trabalho em números
+    </div>
+
+    <!-- Stats grid — 2 cols on mobile, auto-fill up to 5 on wide screens -->
+    <div
+      class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 divide-x divide-zinc-800"
+      role="list"
+      aria-label="Estatísticas de serviço"
+    >
+      {stats.map((stat) => (
+        <div
+          class="flex flex-col items-center justify-center py-8 px-4 text-center first:border-l border-zinc-800 sys-reveal"
+          role="listitem"
+        >
+          <span class="text-4xl md:text-5xl font-medium text-white tracking-tight mb-2">
+            {stat.value}
+          </span>
+          <span class="text-xs font-mono text-zinc-400 uppercase tracking-widest leading-tight">
+            {stat.label}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
