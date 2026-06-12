@@ -242,6 +242,77 @@ export default {
     diff4_desc: 'Atendimento de pós-venda durante todo o ciclo de vida do equipamento, com suporte técnico local pela RoboterSys.',
   },
 
+  // ── Sobre Nós page ────────────────────────────────────────────────────────────
+  sobre: {
+    page_title: 'Sobre Nós — RoboterSys',
+    meta_description: 'Conheça a RoboterSys: fundada em 2006, integradora KUKA desde o início. Nossa história, missão, visão e os valores que guiam cada atendimento.',
+    hero_kicker: 'Sobre Nós',
+    hero_title: 'Sobre Nós',
+    breadcrumb_home: 'Início',
+    breadcrumb_page: 'Sobre Nós',
+    // História section
+    historia_label: 'Nossa História',
+    historia_title: 'Conheça a nossa história',
+    historia_p1: 'A RoboterSys nasceu de uma experiência que mudou perspectivas. Durante um intercâmbio técnico em Berlim, na Technische Universität Berlin, nosso fundador teve o primeiro contato intenso com a tecnologia de robótica industrial da KUKA — e voltou ao Brasil determinado a trazer esse nível de especialização para cá.',
+    historia_p2: 'Em 2006, a empresa foi fundada com foco exclusivo em robôs KUKA. Ao longo dos anos, a equipe acumulou experiência em fundições, montadoras automotivas e indústrias de automação, construindo um repertório técnico que hoje nos torna a maior especializada independente em robôs KUKA do Brasil.',
+    historia_p3: 'Sediada em Joinville/SC, a RoboterSys atende clientes em todo o território nacional, oferecendo desde manutenção corretiva emergencial até a integração completa de células robotizadas. Somos integradores KUKA desde 2006.', // REVISAR com cliente
+    // Mission section
+    mvv_label: 'Missão · Visão · Valores',
+    mission_title: 'Nossa Missão',
+    mission_text: 'Ofertar produtos e prestar assistência técnica especializada em robôs KUKA com excelência, promovendo a continuidade e melhoria dos processos de nossos clientes.',
+    vision_title: 'Visão',
+    vision_text: 'Ser a número um em suporte de robôs KUKA no Brasil.',
+    values_title: 'Valores',
+    // Value cards
+    value1_title: 'Agilidade',
+    value1_desc: 'Respondemos com rapidez a cada chamado — porque sabemos que cada minuto de robô parado é prejuízo para o seu negócio.',
+    value2_title: 'Competitividade',
+    value2_desc: 'Entregamos soluções de alta qualidade com preços justos, mantendo nossos clientes competitivos no mercado.',
+    value3_title: 'Confiabilidade',
+    value3_desc: 'Cada serviço prestado e cada peça fornecida passa por rigoroso controle — você pode contar com o que prometemos.',
+    // GPTW section
+    gptw_label: 'Reconhecimento',
+    gptw_title: 'Great Place to Work',
+    gptw_text: 'A RoboterSys é certificada pelo Great Place to Work (GPTW) — um reconhecimento que reflete nosso compromisso com um ambiente de trabalho excelente, onde as pessoas crescem e entregam o melhor de si.', // REVISAR com cliente — confirmar anos de certificação
+    // CTA
+    cta_label: 'Contato',
+  },
+
+  // ── Trabalhe Conosco page ──────────────────────────────────────────────────────
+  carreiras: {
+    page_title: 'Trabalhe Conosco — RoboterSys',
+    meta_description: 'Faça parte do time RoboterSys. Empresa certificada GPTW quatro anos consecutivos (2022–2025). Cultura de inovação, crescimento e colaboração. Envie seu currículo.',
+    hero_kicker: 'Trabalhe Conosco',
+    hero_title: 'Trabalhe Conosco',
+    breadcrumb_home: 'Início',
+    breadcrumb_page: 'Trabalhe Conosco',
+    // Intro
+    intro_label: 'Faça parte do time',
+    intro_title: 'Junte-se ao time RoboterSys e faça a diferença!',
+    intro_text: 'Na RoboterSys, você fará parte de uma equipe dedicada a transformar a indústria com soluções tecnológicas de ponta. Valorizamos as pessoas e incentivamos o desenvolvimento contínuo de cada colaborador.',
+    // Culture cards
+    cultura_label: 'Nossa Cultura',
+    cultura_title: 'Como é trabalhar aqui',
+    cultura1_title: 'Inovação',
+    cultura1_desc: 'Somos movidos por inovação. Valorizamos e incentivamos nossos colaboradores a trazer novas ideias que transformam a indústria.',
+    cultura2_title: 'Crescimento',
+    cultura2_desc: 'Valorizamos o desenvolvimento profissional e oferecemos oportunidades contínuas de aprendizado e crescimento para toda a equipe.',
+    cultura3_title: 'Colaboração',
+    cultura3_desc: 'Acreditamos que o sucesso é construído em equipe. Nosso ambiente de trabalho é colaborativo, dinâmico e orientado a resultados.',
+    // GPTW section
+    gptw_label: 'Reconhecimento',
+    gptw_title: 'Excelência reconhecida: GPTW quatro anos consecutivos',
+    gptw_years: '2022, 2023, 2024 e 2025',
+    gptw_text: 'Somos reconhecidos pelo Great Place to Work (GPTW) há quatro anos consecutivos. Esse reconhecimento reflete o ambiente de respeito, desenvolvimento e alto desempenho que construímos juntos.',
+    // Form section
+    form_label: 'Candidatura',
+    form_title: 'Faça parte do nosso time',
+    form_intro: 'Envie seu currículo e uma carta de apresentação. Nossa equipe de RH entrará em contato com as oportunidades disponíveis.',
+    rh_email_label: 'E-mail de RH',
+    rh_email: 'rh@robotersys.com.br',
+    rh_email_desc: 'Você também pode enviar seu currículo diretamente para o e-mail do nosso RH.',
+  },
+
   contato: {
     page_title: 'Contato',
     hero_kicker: 'Contato',

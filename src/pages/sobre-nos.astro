@@ -1,0 +1,190 @@
+---
+/**
+ * /sobre-nos/ — Sobre Nós (About Us) page
+ *
+ * Content source: https://robotersys.com/sobre-nos/ (fetched 2026-06-12)
+ *
+ * Sections:
+ *  1. PageHero "Sobre Nós" with breadcrumbs
+ *  2. ProseSection — História (origem em intercâmbio técnico Berlim; KUKA desde 2006)
+ *  3. Missão / Visão / Valores via FeatureCard × 3
+ *  4. StatsBand "Nosso trabalho em números" (placeholder values)
+ *  5. GPTW recognition block
+ *  6. ContactForm variant="contato"
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import ProseSection from '@/components/ProseSection.astro';
+import SectionLabel from '@/components/SectionLabel.astro';
+import FeatureCard from '@/components/FeatureCard.astro';
+import StatsBand from '@/components/StatsBand.astro';
+import ContactForm from '@/components/ContactForm.astro';
+import { t } from '@/i18n';
+
+const locale = 'pt' as const;
+
+const crumbs = [
+  { label: t(locale, 'sobre.breadcrumb_home'), href: '/' },
+  { label: t(locale, 'sobre.breadcrumb_page'), href: '/sobre-nos/' },
+];
+
+const values = [
+  {
+    fig: 'VAL. 01',
+    icon: 'solar:lightning-linear',
+    title: t(locale, 'sobre.value1_title'),
+    desc: t(locale, 'sobre.value1_desc'),
+    accent: true,
+  },
+  {
+    fig: 'VAL. 02',
+    icon: 'solar:medal-ribbon-linear',
+    title: t(locale, 'sobre.value2_title'),
+    desc: t(locale, 'sobre.value2_desc'),
+  },
+  {
+    fig: 'VAL. 03',
+    icon: 'solar:shield-check-linear',
+    title: t(locale, 'sobre.value3_title'),
+    desc: t(locale, 'sobre.value3_desc'),
+  },
+];
+
+// PLACEHOLDER NOTE: stat values below are placeholders — confirm with client before go-live.
+const stats = [
+  { label: t(locale, 'stats.clients_label'),       value: t(locale, 'stats.clients_value') },
+  { label: t(locale, 'stats.robots_label'),         value: t(locale, 'stats.robots_value') },
+  { label: t(locale, 'stats.interventions_label'),  value: t(locale, 'stats.interventions_value') },
+  { label: t(locale, 'stats.support_calls_label'),  value: t(locale, 'stats.support_calls_value') },
+  { label: t(locale, 'stats.lines_label'),          value: t(locale, 'stats.lines_value') },
+];
+---
+
+<BaseLayout
+  title={t(locale, 'sobre.page_title')}
+  description={t(locale, 'sobre.meta_description')}
+  locale={locale}
+>
+
+  <!-- 1. Hero -->
+  <PageHero
+    kicker={t(locale, 'sobre.hero_kicker')}
+    title={t(locale, 'sobre.hero_title')}
+    crumbs={crumbs}
+  />
+
+  <!-- 2. História -->
+  <ProseSection
+    kicker={t(locale, 'sobre.historia_label')}
+    title={t(locale, 'sobre.historia_title')}
+  >
+    <p>{t(locale, 'sobre.historia_p1')}</p>
+    <p>{t(locale, 'sobre.historia_p2')}</p>
+    <p>{t(locale, 'sobre.historia_p3')}</p>
+  </ProseSection>
+
+  <!-- 3. Missão / Visão / Valores -->
+  <section
+    class="py-16 border-b border-zinc-800 bg-[#050505]"
+    aria-labelledby="mvv-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12">
+      <SectionLabel text={t(locale, 'sobre.mvv_label')} />
+
+      <!-- Missão + Visão (2-col) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 sys-reveal">
+
+        <!-- Missão -->
+        <div class="border border-zinc-800 border-l-2 border-l-accent bg-zinc-900/20 p-6">
+          <p class="text-[10px] font-mono text-accent uppercase tracking-widest mb-3">
+            // {t(locale, 'sobre.mission_title')}
+          </p>
+          <p class="text-zinc-300 font-mono text-sm leading-relaxed">
+            {t(locale, 'sobre.mission_text')}
+          </p>
+        </div>
+
+        <!-- Visão -->
+        <div class="border border-zinc-800 bg-zinc-900/20 p-6">
+          <p class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest mb-3">
+            // {t(locale, 'sobre.vision_title')}
+          </p>
+          <p class="text-zinc-300 font-mono text-sm leading-relaxed">
+            {t(locale, 'sobre.vision_text')}
+          </p>
+        </div>
+      </div>
+
+      <!-- Valores -->
+      <h2
+        id="mvv-heading"
+        class="text-2xl md:text-3xl font-medium text-white uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
+      >
+        {t(locale, 'sobre.values_title')}
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sys-reveal">
+        {values.map((v) => (
+          <FeatureCard
+            icon={v.icon}
+            title={v.title}
+            desc={v.desc}
+            fig={v.fig}
+            accent={v.accent}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Stats Band -->
+  <!-- PLACEHOLDER NOTE: stat values are placeholders — confirm with client before go-live. -->
+  <StatsBand stats={stats} />
+
+  <!-- 5. GPTW Recognition -->
+  <section
+    class="py-16 border-b border-zinc-800 bg-[#050505]"
+    aria-labelledby="gptw-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12 max-w-4xl">
+      <SectionLabel text={t(locale, 'sobre.gptw_label')} />
+
+      <div class="flex flex-col md:flex-row items-start md:items-center gap-8">
+
+        <!-- GPTW seal placeholder -->
+        <!-- REVISAR com cliente — substituir pelo arquivo SVG/PNG oficial do selo GPTW -->
+        <div
+          class="flex-shrink-0 h-24 w-24 border border-zinc-700 bg-zinc-900/40 flex items-center justify-center"
+          aria-label="Selo Great Place to Work"
+          role="img"
+        >
+          <div class="text-center">
+            <div class="text-[9px] font-mono text-accent uppercase tracking-widest leading-tight">GPTW</div>
+            <div class="text-[8px] font-mono text-zinc-400 uppercase tracking-widest mt-1">Certified</div>
+          </div>
+        </div>
+
+        <div class="flex-1">
+          <h2
+            id="gptw-heading"
+            class="text-2xl md:text-3xl font-medium text-white uppercase tracking-tight leading-tight mb-4 sys-reveal sys-rise"
+          >
+            {t(locale, 'sobre.gptw_title')}
+          </h2>
+          <p class="text-zinc-300 font-mono text-sm leading-relaxed max-w-2xl">
+            {t(locale, 'sobre.gptw_text')}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Contact Form -->
+  <ContactForm variant="contato" locale={locale} />
+
+</BaseLayout>
+
+<!-- Reveal island -->
+<script>
+  import '@/scripts/reveal';
+</script>
