@@ -1,0 +1,8 @@
+---
+interface Props { text: string; }
+const { text } = Astro.props;
+---
+<div class="text-[10px] font-mono text-accent uppercase tracking-widest flex items-center gap-2 mb-4">
+  <span class="w-1.5 h-1.5 bg-accent animate-pulse"></span>
+  // {text}
+</div>
