@@ -68,4 +68,45 @@ export default {
     online_label: 'Online agora',
     section_label: 'Emergência',
   },
+  contato: {
+    page_title: 'Contato',
+    hero_kicker: 'Contato',
+    hero_title: 'Fale com a gente',
+    // Channels block
+    channels_section_label: 'Canais de Atendimento',
+    channels_heading: 'Como prefere nos contatar?',
+    // WhatsApp
+    // PLACEHOLDER: replace with real WhatsApp number before go-live
+    whatsapp_label: 'WhatsApp 24h',
+    whatsapp_number: '+55 (47) XXXXX-XXXX', // PLACEHOLDER — confirmar com o cliente
+    whatsapp_desc: 'Suporte técnico e atendimento comercial disponíveis 24 horas por dia.',
+    whatsapp_cta: 'Abrir no WhatsApp',
+    // Phone
+    phone_label: 'Telefone',
+    phone_number: '(47) 4101 0987',
+    phone_desc: 'Atendimento comercial em horário de escritório.',
+    phone_cta: 'Ligar agora',
+    // Email
+    email_label: 'E-mail',
+    email_address: 'contato.site@robotersys.com.br',
+    email_desc: 'Para orçamentos e informações detalhadas.',
+    email_cta: 'Enviar e-mail',
+    // Address
+    address_label: 'Endereço',
+    address_street: 'R. Parati, 335C',
+    address_city: 'Joinville/SC',
+    address_country: 'Brasil',
+    address_desc: 'Sede principal em Joinville, Santa Catarina.',
+    // Hours
+    hours_label: 'Horário de Atendimento',
+    hours_weekdays: 'Segunda a Sexta: 08h – 18h',
+    hours_support: 'Suporte técnico emergencial: 24h/7 dias',
+    // Map
+    map_label: 'Mapa',
+    // PLACEHOLDER: replace with real embed URL from Google Maps for R. Parati 335C Joinville SC
+    map_placeholder: 'Localização: R. Parati, 335C — Joinville/SC',
+    // Breadcrumbs
+    breadcrumb_home: 'Início',
+    breadcrumb_contact: 'Contato',
+  },
 } satisfies import('./types').Dict;
