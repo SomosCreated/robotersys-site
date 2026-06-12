@@ -19,7 +19,7 @@ const { fig, icon, title, desc } = Astro.props;
 ---
 
 <div
-  class="group relative border-zinc-800 border-r border-b min-h-[280px] flex flex-col bg-ink/50 spotlight-card"
+  class="group relative border-line border-r border-b min-h-[280px] flex flex-col bg-bg/50 spotlight-card"
   style="--mouse-x:0px;--mouse-y:0px;"
 >
   <!-- Inner sheen (driven by spotlight.ts) -->
@@ -32,13 +32,13 @@ const { fig, icon, title, desc } = Astro.props;
     <!-- Header row: FIG. tag + icon -->
     <div class="flex justify-between items-start mb-6">
       <span
-        class="text-[10px] font-mono text-zinc-400 border border-zinc-800 px-2 py-1 group-hover:border-accent/50 group-hover:text-accent transition-all bg-ink"
+        class="text-[10px] font-mono text-muted border border-line px-2 py-1 group-hover:border-accent/50 group-hover:text-accent transition-all bg-bg"
       >
         {fig}
       </span>
       <Icon
         name={icon}
-        class="text-zinc-300 group-hover:text-white transition-colors"
+        class="text-base group-hover:text-strong transition-colors"
         width={24}
         height={24}
         aria-hidden="true"
@@ -47,13 +47,13 @@ const { fig, icon, title, desc } = Astro.props;
 
     <!-- Title -->
     <h3
-      class="text-base font-medium text-white uppercase tracking-tight mb-3 group-hover:text-accent transition-colors"
+      class="text-[1rem] font-medium text-strong uppercase tracking-tight mb-3 group-hover:text-accent transition-colors"
     >
       {title}
     </h3>
 
     <!-- Description — zinc-400 at 14px ensures WCAG AA contrast -->
-    <p class="text-sm text-zinc-400 font-mono leading-relaxed">
+    <p class="text-sm text-muted font-mono leading-relaxed">
       {desc}
     </p>
   </div>

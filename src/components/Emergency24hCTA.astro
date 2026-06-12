@@ -12,14 +12,14 @@ import { Icon } from 'astro-icon/components';
 ---
 
 <section
-  class="border-t border-b border-zinc-800 bg-ink py-20 px-6 md:px-12 sys-reveal"
+  class="border-t border-b border-line bg-bg py-20 px-6 md:px-12 sys-reveal"
   aria-label="Suporte de emergência 24 horas"
   role="region"
 >
   <div class="max-w-4xl mx-auto">
 
     <!-- HUD card -->
-    <div class="relative border border-zinc-800 bg-[#080808] p-8 md:p-12 overflow-hidden">
+    <div class="relative border border-line bg-surface p-8 md:p-12 overflow-hidden">
 
       <!-- Left accent bar -->
       <div class="absolute left-0 top-8 bottom-8 w-0.5 bg-accent" aria-hidden="true"></div>
@@ -30,10 +30,10 @@ import { Icon } from 'astro-icon/components';
         aria-label="Suporte ativo agora"
       >
         <span class="relative flex h-2.5 w-2.5" aria-hidden="true">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-ok opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-ok"></span>
         </span>
-        <span class="text-[9px] font-mono text-green-500 uppercase tracking-widest hidden sm:inline">
+        <span class="text-[9px] font-mono text-ok uppercase tracking-widest hidden sm:inline">
           Online agora
         </span>
       </div>
@@ -45,13 +45,13 @@ import { Icon } from 'astro-icon/components';
       </div>
 
       <!-- Headline -->
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-medium text-white uppercase tracking-tight leading-tight mb-4 sys-reveal sys-rise">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-medium text-strong uppercase tracking-tight leading-tight mb-4 sys-reveal sys-rise">
         Robô KUKA parado?<br />
         <span class="text-accent">Suporte de emergência 24h.</span>
       </h2>
 
       <!-- Sub-text -->
-      <p class="text-base text-zinc-400 font-mono leading-relaxed mb-8 max-w-lg border-l-2 border-zinc-700 pl-4">
+      <p class="text-[1rem] text-muted font-mono leading-relaxed mb-8 max-w-lg border-l-2 border-line pl-4">
         Fale agora com nossa equipe técnica.
       </p>
 
@@ -64,7 +64,7 @@ import { Icon } from 'astro-icon/components';
         href="https://wa.me/55XXXXXXXXXXX"
         target="_blank"
         rel="noopener noreferrer"
-        class="group inline-flex items-center gap-3 bg-green-600 hover:bg-green-500 text-white text-xs font-mono uppercase tracking-widest px-8 py-4 transition-all shadow-[0_0_20px_rgba(34,197,94,0.25)] hover:shadow-[0_0_40px_rgba(34,197,94,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+        class="group inline-flex items-center gap-3 bg-green-600 hover:bg-green-500 text-white text-xs font-mono uppercase tracking-widest px-8 py-4 transition-all shadow-[0_0_20px_rgba(34,197,94,0.25)] hover:shadow-[0_0_40px_rgba(34,197,94,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
         aria-label="Chamar no WhatsApp — suporte de emergência"
       >
         <Icon

@@ -35,18 +35,18 @@ const jsonLd = {
 <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
 <nav aria-label="Você está aqui">
-  <ol class="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-widest text-zinc-400 flex-wrap">
+  <ol class="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-widest text-muted flex-wrap">
     {items.map((item, index) => {
       const isLast = index === items.length - 1;
       return (
         <>
           <li>
             {isLast ? (
-              <span class="text-zinc-300" aria-current="page">{item.label}</span>
+              <span class="text-base" aria-current="page">{item.label}</span>
             ) : (
               <a
                 href={item.href}
-                class="hover:text-zinc-300 transition-colors focus-visible:outline-none focus-visible:text-zinc-300"
+                class="hover:text-base transition-colors focus-visible:outline-none focus-visible:text-base"
               >
                 {item.label}
               </a>
@@ -54,7 +54,7 @@ const jsonLd = {
           </li>
           {!isLast && (
             <li aria-hidden="true">
-              <Icon name="solar:alt-arrow-right-linear" width={10} class="text-zinc-400" />
+              <Icon name="solar:alt-arrow-right-linear" width={10} class="text-muted" />
             </li>
           )}
         </>
