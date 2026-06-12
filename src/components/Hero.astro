@@ -84,7 +84,7 @@ const { locale = 'pt' } = Astro.props;
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-ok opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-ok"></span>
         </span>
-        <span class="text-[10px] uppercase text-base tracking-widest font-mono">
+        <span class="text-[10px] uppercase text-fg tracking-widest font-mono">
           {t(locale, 'hero.kicker')}
         </span>
       </div>
@@ -98,7 +98,7 @@ const { locale = 'pt' } = Astro.props;
       </h1>
 
       <!-- Subtitle -->
-      <p class="text-[1rem] md:text-lg text-base font-mono leading-relaxed mb-10 max-w-md border-l-2 border-accent pl-4 sys-reveal sys-rise sys-delay-200">
+      <p class="text-[1rem] md:text-lg text-fg font-mono leading-relaxed mb-10 max-w-md border-l-2 border-accent pl-4 sys-reveal sys-rise sys-delay-200">
         {t(locale, 'hero.subtitle')}
       </p>
 
@@ -125,7 +125,7 @@ const { locale = 'pt' } = Astro.props;
         <!-- Secondary CTA -->
         <a
           href="/servicos/"
-          class="group bg-transparent border border-line hover:border-strong text-base hover:text-strong text-xs font-mono uppercase tracking-widest px-8 py-4 transition-all flex items-center justify-center gap-3 font-medium backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-strong focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+          class="group bg-transparent border border-line hover:border-strong text-fg hover:text-strong text-xs font-mono uppercase tracking-widest px-8 py-4 transition-all flex items-center justify-center gap-3 font-medium backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-strong focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
         >
           {t(locale, 'hero.cta_secondary')}
           <Icon

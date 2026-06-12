@@ -7,7 +7,7 @@
  *  - <slot> for rich prose content (paragraphs, inline markup)
  *
  * Typography:
- *  - Body text: text-zinc-300 at text-base/text-lg, font-mono (matches HUD theme),
+ *  - Body text: text-zinc-300 at text-fg/text-lg, font-mono (matches HUD theme),
  *    generous line-height (leading-relaxed) and max-w for good measure.
  *  - Headings inside slot should use prose-heading class (text-white uppercase).
  *
@@ -59,7 +59,7 @@ const headingId = title ? `prose-${title.toLowerCase().replace(/\s+/g, '-').repl
     font-family: var(--font-mono, ui-monospace, monospace);
     font-size: 0.875rem; /* text-sm */
     line-height: 1.75;   /* leading-relaxed */
-    color: rgb(var(--color-base));
+    color: rgb(var(--color-fg));
     max-width: 65ch;
   }
 
@@ -98,7 +98,7 @@ const headingId = title ? `prose-${title.toLowerCase().replace(/\s+/g, '-').repl
     font-family: var(--font-mono, ui-monospace, monospace);
     font-size: 0.875rem;
     line-height: 1.75;
-    color: rgb(var(--color-base));
+    color: rgb(var(--color-fg));
   }
 
   .prose-content ul li::before {

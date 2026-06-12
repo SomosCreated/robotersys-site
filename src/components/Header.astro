@@ -52,7 +52,7 @@ const navItems = [
     <div class="flex h-full items-center border-x border-line/50">
       {navItems.map(({ key, href }) => (
         <a
-          class="flex items-center px-5 h-full text-[10px] font-mono uppercase tracking-widest text-base hover:text-strong hover:bg-elevated/50 transition-colors border-r border-line/50 relative group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+          class="flex items-center px-5 h-full text-[10px] font-mono uppercase tracking-widest text-fg hover:text-strong hover:bg-elevated/50 transition-colors border-r border-line/50 relative group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
           href={href}
         >
           {t(locale, key)}
@@ -90,7 +90,7 @@ const navItems = [
     </div>
     <!-- Hamburger -->
     <button
-      class="p-0 w-16 h-full text-base hover:text-strong border-l border-line bg-bg flex items-center justify-center transition-colors hover:bg-elevated focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent"
+      class="p-0 w-16 h-full text-fg hover:text-strong border-l border-line bg-bg flex items-center justify-center transition-colors hover:bg-elevated focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent"
       id="mobile-menu-btn"
       aria-label="Abrir menu de navegação"
       aria-expanded="false"
@@ -121,7 +121,7 @@ const navItems = [
     <div class="flex flex-col border border-line bg-elevated/20">
       {navItems.map(({ key, href }) => (
         <a
-          class="flex items-center justify-between p-4 border-b border-line text-xs font-mono uppercase tracking-widest text-base hover:text-strong hover:bg-elevated transition-colors group last:border-b-0"
+          class="flex items-center justify-between p-4 border-b border-line text-xs font-mono uppercase tracking-widest text-fg hover:text-strong hover:bg-elevated transition-colors group last:border-b-0"
           href={href}
         >
           {t(locale, key)}

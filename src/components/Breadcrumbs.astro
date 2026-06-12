@@ -42,11 +42,11 @@ const jsonLd = {
         <>
           <li>
             {isLast ? (
-              <span class="text-base" aria-current="page">{item.label}</span>
+              <span class="text-fg" aria-current="page">{item.label}</span>
             ) : (
               <a
                 href={item.href}
-                class="hover:text-base transition-colors focus-visible:outline-none focus-visible:text-base"
+                class="hover:text-fg transition-colors focus-visible:outline-none focus-visible:text-fg"
               >
                 {item.label}
               </a>

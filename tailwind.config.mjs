@@ -16,7 +16,7 @@ export default {
         elevated: 'rgb(var(--color-elevated) / <alpha-value>)',
         line:     'rgb(var(--color-line) / <alpha-value>)',
         strong:   'rgb(var(--color-strong) / <alpha-value>)',
-        base:     'rgb(var(--color-base) / <alpha-value>)',
+        fg:       'rgb(var(--color-fg) / <alpha-value>)',
         muted:    'rgb(var(--color-muted) / <alpha-value>)',
         accent:   'rgb(var(--color-accent) / <alpha-value>)',
         ok:       'rgb(var(--color-ok) / <alpha-value>)',
