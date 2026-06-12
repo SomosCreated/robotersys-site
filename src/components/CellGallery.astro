@@ -1,0 +1,99 @@
+---
+/**
+ * CellGallery — grid of robotic cell cards for the Sistemas Robóticos page.
+ *
+ * Each cell card: image placeholder + title + description + "Saiba mais" CTA.
+ * Images are placeholders (// PLACEHOLDER — real photos to be provided by client).
+ *
+ * Props: cells — array of { title, desc, href, fig }
+ */
+interface CellItem {
+  fig: string;
+  title: string;
+  desc: string;
+  /** Link target for "Saiba mais" — defaults to /contato/ until individual pages exist */
+  href?: string;
+  /** Label for the "Saiba mais" button */
+  ctaLabel?: string;
+}
+
+interface Props {
+  cells: CellItem[];
+  ctaLabel?: string;
+}
+
+const { cells, ctaLabel = 'Saiba mais' } = Astro.props;
+---
+
+<div
+  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-zinc-800"
+  role="list"
+  aria-label="Galeria de células robotizadas"
+>
+  {cells.map((cell) => (
+    <article
+      class="border-b border-r border-zinc-800 flex flex-col group hover:bg-zinc-900/30 transition-colors"
+      role="listitem"
+    >
+      <!--
+        PLACEHOLDER: Image area — replace with <Image> from astro:assets once
+        real photographs are provided by the client.
+      -->
+      <div
+        class="aspect-video bg-zinc-900/60 border-b border-zinc-800 flex flex-col items-center justify-center gap-2 relative overflow-hidden"
+        aria-hidden="true"
+      >
+        <!-- Blueprint grid on placeholder -->
+        <div class="absolute inset-0 opacity-[0.04] bg-grid pointer-events-none"></div>
+        <!-- Placeholder label -->
+        <span class="text-[9px] font-mono text-zinc-600 uppercase tracking-widest z-10">
+          // PLACEHOLDER
+        </span>
+        <span class="text-[9px] font-mono text-zinc-700 uppercase tracking-widest z-10">
+          {cell.fig}
+        </span>
+      </div>
+
+      <!-- Content -->
+      <div class="p-6 flex flex-col gap-3 flex-1">
+        <!-- Fig tag -->
+        <span class="text-[9px] font-mono text-zinc-500 uppercase tracking-widest border border-zinc-800 px-2 py-0.5 self-start bg-ink">
+          {cell.fig}
+        </span>
+
+        <!-- Title -->
+        <h3 class="text-sm font-medium text-white uppercase tracking-tight leading-snug group-hover:text-accent transition-colors">
+          {cell.title}
+        </h3>
+
+        <!-- Description -->
+        <p class="text-sm text-zinc-400 font-mono leading-relaxed flex-1">
+          {cell.desc}
+        </p>
+
+        <!-- CTA -->
+        <a
+          href={cell.href ?? '/contato/'}
+          class="mt-auto text-[10px] font-mono uppercase tracking-widest text-accent hover:text-orange-400 transition-colors flex items-center gap-1.5 self-start focus-visible:outline-none focus-visible:underline"
+          aria-label={`${cell.ctaLabel ?? ctaLabel}: ${cell.title}`}
+        >
+          {cell.ctaLabel ?? ctaLabel}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="10"
+            height="10"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
+        </a>
+      </div>
+    </article>
+  ))}
+</div>
