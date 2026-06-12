@@ -19,7 +19,7 @@ interface Props {
 const { stats } = Astro.props;
 ---
 
-<section aria-label="Nosso trabalho em números" class="border-t border-b border-zinc-800 bg-[#080808] py-16 px-6 md:px-12 sys-reveal">
+<section aria-label="Nosso trabalho em números" class="border-t border-b border-line bg-surface py-16 px-6 md:px-12 sys-reveal">
   <!-- Section heading -->
   <div class="max-w-7xl mx-auto">
     <div class="text-[10px] font-mono text-accent uppercase tracking-widest flex items-center gap-2 mb-10">
@@ -29,19 +29,19 @@ const { stats } = Astro.props;
 
     <!-- Stats grid — 2 cols on mobile, auto-fill up to 5 on wide screens -->
     <div
-      class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 divide-x divide-zinc-800"
+      class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 divide-x divide-line"
       role="list"
       aria-label="Estatísticas de serviço"
     >
       {stats.map((stat) => (
         <div
-          class="flex flex-col items-center justify-center py-8 px-4 text-center first:border-l border-zinc-800 sys-reveal"
+          class="flex flex-col items-center justify-center py-8 px-4 text-center first:border-l border-line sys-reveal"
           role="listitem"
         >
-          <span class="text-4xl md:text-5xl font-medium text-white tracking-tight mb-2">
+          <span class="text-4xl md:text-5xl font-medium text-strong tracking-tight mb-2">
             {stat.value}
           </span>
-          <span class="text-xs font-mono text-zinc-400 uppercase tracking-widest leading-tight">
+          <span class="text-xs font-mono text-muted uppercase tracking-widest leading-tight">
             {stat.label}
           </span>
         </div>

@@ -68,18 +68,18 @@ const rhEmail   = t(locale, 'carreiras.rh_email');   // rh@robotersys.com.br
 
   <!-- 2. Intro -->
   <section
-    class="py-16 border-b border-zinc-800 bg-[#050505]"
+    class="py-16 border-b border-line bg-bg"
     aria-labelledby="tc-intro-heading"
   >
     <div class="container mx-auto px-6 lg:px-12 max-w-4xl">
       <SectionLabel text={t(locale, 'carreiras.intro_label')} />
       <h2
         id="tc-intro-heading"
-        class="text-2xl md:text-3xl font-medium text-white uppercase tracking-tight leading-tight mb-6 sys-reveal sys-rise"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-6 sys-reveal sys-rise"
       >
         {t(locale, 'carreiras.intro_title')}
       </h2>
-      <p class="text-zinc-300 font-mono text-sm leading-relaxed max-w-2xl">
+      <p class="text-fg font-mono text-sm leading-relaxed max-w-2xl">
         {t(locale, 'carreiras.intro_text')}
       </p>
     </div>
@@ -87,14 +87,14 @@ const rhEmail   = t(locale, 'carreiras.rh_email');   // rh@robotersys.com.br
 
   <!-- 3. Cultura: Inovação / Crescimento / Colaboração -->
   <section
-    class="py-16 border-b border-zinc-800 bg-[#050505]"
+    class="py-16 border-b border-line bg-bg"
     aria-labelledby="tc-cultura-heading"
   >
     <div class="container mx-auto px-6 lg:px-12">
       <SectionLabel text={t(locale, 'carreiras.cultura_label')} />
       <h2
         id="tc-cultura-heading"
-        class="text-2xl md:text-3xl font-medium text-white uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
       >
         {t(locale, 'carreiras.cultura_title')}
       </h2>
@@ -115,7 +115,7 @@ const rhEmail   = t(locale, 'carreiras.rh_email');   // rh@robotersys.com.br
 
   <!-- 4. GPTW — 4 anos consecutivos (2022–2025) -->
   <section
-    class="py-16 border-b border-zinc-800 bg-[#050505]"
+    class="py-16 border-b border-line bg-bg"
     aria-labelledby="tc-gptw-heading"
   >
     <div class="container mx-auto px-6 lg:px-12 max-w-4xl">
@@ -123,23 +123,21 @@ const rhEmail   = t(locale, 'carreiras.rh_email');   // rh@robotersys.com.br
 
       <div class="flex flex-col md:flex-row items-start md:items-center gap-8">
 
-        <!-- GPTW seal placeholder -->
-        <!-- REVISAR com cliente — substituir pelo arquivo SVG/PNG oficial do selo GPTW -->
-        <div
-          class="flex-shrink-0 h-24 w-24 border border-zinc-700 bg-zinc-900/40 flex items-center justify-center"
-          aria-label="Selo Great Place to Work"
-          role="img"
-        >
-          <div class="text-center">
-            <div class="text-[9px] font-mono text-accent uppercase tracking-widest leading-tight">GPTW</div>
-            <div class="text-[8px] font-mono text-zinc-400 uppercase tracking-widest mt-1">Certified</div>
-          </div>
-        </div>
+        <!-- GPTW seal — real image from current site (robotersys.com) — Phase 2.5 -->
+        <img
+          src="/robotersys/img/GPTW-Selos.webp"
+          alt="Selo Great Place to Work — RoboterSys certificada GPTW"
+          width="120"
+          height="120"
+          loading="lazy"
+          decoding="async"
+          class="flex-shrink-0 w-24 h-auto object-contain"
+        />
 
         <div class="flex-1">
           <h2
             id="tc-gptw-heading"
-            class="text-2xl md:text-3xl font-medium text-white uppercase tracking-tight leading-tight mb-3 sys-reveal sys-rise"
+            class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-3 sys-reveal sys-rise"
           >
             {t(locale, 'carreiras.gptw_title')}
           </h2>
@@ -153,7 +151,7 @@ const rhEmail   = t(locale, 'carreiras.rh_email');   // rh@robotersys.com.br
             ))}
           </div>
 
-          <p class="text-zinc-300 font-mono text-sm leading-relaxed max-w-2xl">
+          <p class="text-fg font-mono text-sm leading-relaxed max-w-2xl">
             {t(locale, 'carreiras.gptw_text')}
           </p>
         </div>
@@ -163,28 +161,28 @@ const rhEmail   = t(locale, 'carreiras.rh_email');   // rh@robotersys.com.br
 
   <!-- 5. Candidatura info + rh@robotersys.com.br link -->
   <section
-    class="py-12 border-b border-zinc-800 bg-[#050505]"
+    class="py-12 border-b border-line bg-bg"
     aria-labelledby="tc-form-heading"
   >
     <div class="container mx-auto px-6 lg:px-12 max-w-2xl">
       <SectionLabel text={t(locale, 'carreiras.form_label')} />
       <h2
         id="tc-form-heading"
-        class="text-2xl md:text-3xl font-medium text-white uppercase tracking-tight leading-tight mb-4 sys-reveal sys-rise"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-4 sys-reveal sys-rise"
       >
         {t(locale, 'carreiras.form_title')}
       </h2>
-      <p class="text-zinc-300 font-mono text-sm leading-relaxed mb-6">
+      <p class="text-fg font-mono text-sm leading-relaxed mb-6">
         {t(locale, 'carreiras.form_intro')}
       </p>
 
       <!-- RH email channel -->
-      <div class="flex items-start gap-3 border border-zinc-800 bg-zinc-900/20 p-4 mb-2">
-        <div class="mt-0.5 h-8 w-8 flex-shrink-0 border border-zinc-700 bg-zinc-800/50 flex items-center justify-center" aria-hidden="true">
-          <Icon name="solar:letter-linear" class="text-zinc-400" width={16} />
+      <div class="flex items-start gap-3 border border-line bg-elevated/20 p-4 mb-2">
+        <div class="mt-0.5 h-8 w-8 flex-shrink-0 border border-line bg-elevated/50 flex items-center justify-center" aria-hidden="true">
+          <Icon name="solar:letter-linear" class="text-muted" width={16} />
         </div>
         <div class="flex-1 min-w-0">
-          <p class="text-[9px] font-mono text-zinc-400 uppercase tracking-widest mb-1">
+          <p class="text-[9px] font-mono text-muted uppercase tracking-widest mb-1">
             {t(locale, 'carreiras.rh_email_label')}
           </p>
           <a
@@ -194,7 +192,7 @@ const rhEmail   = t(locale, 'carreiras.rh_email');   // rh@robotersys.com.br
           >
             {rhEmail}
           </a>
-          <p class="text-zinc-400 text-xs font-mono mt-1 leading-relaxed">
+          <p class="text-muted text-xs font-mono mt-1 leading-relaxed">
             {t(locale, 'carreiras.rh_email_desc')}
           </p>
         </div>

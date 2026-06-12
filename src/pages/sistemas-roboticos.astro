@@ -20,6 +20,12 @@ import CellGallery from '@/components/CellGallery.astro';
 import ContactForm from '@/components/ContactForm.astro';
 import { t } from '@/i18n';
 
+// Real cell photos from the current site (robotersys.com) — harvested in Phase 2.5
+import cell01Img from '@/assets/robotersys/cell-01-paletizacao.webp';
+import cell02Img from '@/assets/robotersys/cell-02-handling.webp';
+import cell03Img from '@/assets/robotersys/cell-03-paletizacao2.webp';
+import cell04Img from '@/assets/robotersys/cell-04-rebarbacao.webp';
+
 const locale = 'pt' as const;
 
 const crumbs = [
@@ -62,6 +68,8 @@ const cells = [
     desc: t(locale, 'sistemas.cell1_desc'),
     href: '/contato/',
     ctaLabel: t(locale, 'sistemas.gallery_saiba_mais'),
+    imgSrc: cell01Img,
+    imgAlt: 'Célula robotizada de paletização KUKA — RoboterSys',
   },
   {
     fig: 'CEL. 02',
@@ -69,6 +77,8 @@ const cells = [
     desc: t(locale, 'sistemas.cell2_desc'),
     href: '/contato/',
     ctaLabel: t(locale, 'sistemas.gallery_saiba_mais'),
+    imgSrc: cell02Img,
+    imgAlt: 'Célula robotizada de handling KUKA — RoboterSys',
   },
   {
     fig: 'CEL. 03',
@@ -76,6 +86,8 @@ const cells = [
     desc: t(locale, 'sistemas.cell3_desc'),
     href: '/contato/',
     ctaLabel: t(locale, 'sistemas.gallery_saiba_mais'),
+    imgSrc: cell03Img,
+    imgAlt: 'Segunda célula robotizada de paletização KUKA — RoboterSys',
   },
   {
     fig: 'CEL. 04',
@@ -83,11 +95,21 @@ const cells = [
     desc: t(locale, 'sistemas.cell4_desc'),
     href: '/contato/',
     ctaLabel: t(locale, 'sistemas.gallery_saiba_mais'),
+    imgSrc: cell04Img,
+    imgAlt: 'Célula robotizada de rebarbação e acabamento KUKA — RoboterSys',
   },
 ];
 
-// PLACEHOLDER: 6 client logo slots — replace with real client logos
-const clientSlots = Array.from({ length: 6 }, (_, i) => i + 1);
+// Real client logos from the current site (robotersys.com) — harvested in Phase 2.5
+// Logos are served from public/robotersys/logos/ (plain <img>, explicit dimensions)
+const clientLogos = [
+  { file: 'Volkswagen.webp', name: 'Volkswagen' },
+  { file: 'Mercedes.webp',   name: 'Mercedes-Benz' },
+  { file: 'Renault.webp',    name: 'Renault' },
+  { file: 'Volvo.webp',      name: 'Volvo' },
+  { file: 'Ambev.webp',      name: 'Ambev' },
+  { file: 'Coca-Cola.webp',  name: 'Coca-Cola' },
+];
 ---
 
 <BaseLayout
@@ -105,18 +127,18 @@ const clientSlots = Array.from({ length: 6 }, (_, i) => i + 1);
 
   <!-- 2. Positioning block -->
   <section
-    class="py-16 border-b border-zinc-800 bg-[#050505]"
+    class="py-16 border-b border-line bg-bg"
     aria-labelledby="sistemas-pos-heading"
   >
     <div class="container mx-auto px-6 lg:px-12 max-w-4xl">
       <SectionLabel text={t(locale, 'sistemas.pos_label')} />
       <h2
         id="sistemas-pos-heading"
-        class="text-2xl md:text-4xl font-medium text-white uppercase tracking-tight leading-tight mb-6 sys-reveal sys-rise"
+        class="text-2xl md:text-4xl font-medium text-strong uppercase tracking-tight leading-tight mb-6 sys-reveal sys-rise"
       >
         {t(locale, 'sistemas.pos_heading')}
       </h2>
-      <p class="text-zinc-400 font-mono text-sm leading-relaxed max-w-2xl">
+      <p class="text-muted font-mono text-sm leading-relaxed max-w-2xl">
         {t(locale, 'sistemas.pos_body')}
       </p>
     </div>
@@ -124,14 +146,14 @@ const clientSlots = Array.from({ length: 6 }, (_, i) => i + 1);
 
   <!-- 3. Applications -->
   <section
-    class="py-16 border-b border-zinc-800 bg-[#050505]"
+    class="py-16 border-b border-line bg-bg"
     aria-labelledby="sistemas-apps-heading"
   >
     <div class="container mx-auto px-6 lg:px-12">
       <SectionLabel text={t(locale, 'sistemas.apps_label')} />
       <h2
         id="sistemas-apps-heading"
-        class="text-2xl md:text-3xl font-medium text-white uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
       >
         {t(locale, 'sistemas.apps_heading')}
       </h2>
@@ -152,14 +174,14 @@ const clientSlots = Array.from({ length: 6 }, (_, i) => i + 1);
 
   <!-- 4. Cell Gallery -->
   <section
-    class="py-16 border-b border-zinc-800 bg-[#050505]"
+    class="py-16 border-b border-line bg-bg"
     aria-labelledby="gallery-heading"
   >
     <div class="container mx-auto px-6 lg:px-12">
       <SectionLabel text={t(locale, 'sistemas.gallery_label')} />
       <h2
         id="gallery-heading"
-        class="text-2xl md:text-3xl font-medium text-white uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
       >
         {t(locale, 'sistemas.gallery_heading')}
       </h2>
@@ -176,37 +198,41 @@ const clientSlots = Array.from({ length: 6 }, (_, i) => i + 1);
     once provided by the client. Use <Image> from astro:assets for optimization.
   -->
   <section
-    class="py-16 border-b border-zinc-800 bg-[#080808]"
+    class="py-16 border-b border-line bg-surface"
     aria-labelledby="clients-heading"
   >
     <div class="container mx-auto px-6 lg:px-12">
       <SectionLabel text={t(locale, 'sistemas.clients_label')} />
       <h2
         id="clients-heading"
-        class="text-2xl md:text-3xl font-medium text-white uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
       >
         {t(locale, 'sistemas.clients_heading')}
       </h2>
-      <p class="text-zinc-400 font-mono text-xs mb-8 sys-reveal">
+      <p class="text-muted font-mono text-xs mb-8 sys-reveal">
         {t(locale, 'sistemas.clients_body')}
       </p>
 
-      <!-- Logo grid — PLACEHOLDER -->
+      <!-- Logo grid — real logos from current site (robotersys.com) -->
       <div
-        class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-zinc-800 sys-reveal"
+        class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-line sys-reveal"
         role="list"
         aria-label="Logos de clientes"
       >
-        {clientSlots.map((n) => (
+        {clientLogos.map((logo) => (
           <div
-            class="bg-[#080808] h-20 flex items-center justify-center"
+            class="bg-surface h-20 flex items-center justify-center px-4"
             role="listitem"
-            aria-label={`Cliente ${n} — logo a confirmar com o cliente`}
           >
-            <!-- PLACEHOLDER — logo do cliente -->
-            <span class="text-[8px] font-mono text-zinc-400 uppercase tracking-widest">
-              // LOGO {n}
-            </span>
+            <img
+              src={`/robotersys/logos/${logo.file}`}
+              alt={logo.name}
+              width="120"
+              height="48"
+              loading="lazy"
+              decoding="async"
+              class="max-h-10 w-auto object-contain filter dark:invert dark:brightness-90 transition-all"
+            />
           </div>
         ))}
       </div>

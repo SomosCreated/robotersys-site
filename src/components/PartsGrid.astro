@@ -136,23 +136,23 @@ const categories = [
 ---
 
 <div
-  class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-px bg-zinc-800"
+  class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-px bg-line"
   role="list"
   aria-label="Categorias de peças de reposição KUKA"
 >
   {categories.map((cat) => (
     <div
-      class="bg-[#050505] flex flex-col items-center justify-center gap-3 p-5 text-center hover:bg-zinc-900/60 transition-colors group"
+      class="bg-bg flex flex-col items-center justify-center gap-3 p-5 text-center hover:bg-elevated/60 transition-colors group"
       role="listitem"
     >
       <!-- Icon -->
       <div
-        class="h-10 w-10 flex items-center justify-center border border-zinc-800 group-hover:border-accent/40 transition-colors"
+        class="h-10 w-10 flex items-center justify-center border border-line group-hover:border-accent/40 transition-colors"
         aria-hidden="true"
       >
         <Icon
           name={cat.icon}
-          class="text-zinc-400 group-hover:text-accent transition-colors"
+          class="text-muted group-hover:text-accent transition-colors"
           width={20}
           height={20}
           aria-hidden="true"
@@ -161,10 +161,10 @@ const categories = [
 
       <!-- Label -->
       <div class="flex flex-col gap-0.5">
-        <span class="text-[11px] font-medium text-white uppercase tracking-tight leading-tight">
+        <span class="text-[11px] font-medium text-strong uppercase tracking-tight leading-tight">
           {cat.label}
         </span>
-        <span class="text-[9px] font-mono text-zinc-400 leading-tight hidden sm:block">
+        <span class="text-[9px] font-mono text-muted leading-tight hidden sm:block">
           {cat.sublabel}
         </span>
       </div>

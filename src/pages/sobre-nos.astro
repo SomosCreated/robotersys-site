@@ -85,7 +85,7 @@ const stats = [
 
   <!-- 3. Missão / Visão / Valores -->
   <section
-    class="py-16 border-b border-zinc-800 bg-[#050505]"
+    class="py-16 border-b border-line bg-bg"
     aria-labelledby="mvv-heading"
   >
     <div class="container mx-auto px-6 lg:px-12">
@@ -95,21 +95,21 @@ const stats = [
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 sys-reveal">
 
         <!-- Missão -->
-        <div class="border border-zinc-800 border-l-2 border-l-accent bg-zinc-900/20 p-6">
+        <div class="border border-line border-l-2 border-l-accent bg-elevated/20 p-6">
           <p class="text-[10px] font-mono text-accent uppercase tracking-widest mb-3">
             // {t(locale, 'sobre.mission_title')}
           </p>
-          <p class="text-zinc-300 font-mono text-sm leading-relaxed">
+          <p class="text-fg font-mono text-sm leading-relaxed">
             {t(locale, 'sobre.mission_text')}
           </p>
         </div>
 
         <!-- Visão -->
-        <div class="border border-zinc-800 bg-zinc-900/20 p-6">
-          <p class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest mb-3">
+        <div class="border border-line bg-elevated/20 p-6">
+          <p class="text-[10px] font-mono text-muted uppercase tracking-widest mb-3">
             // {t(locale, 'sobre.vision_title')}
           </p>
-          <p class="text-zinc-300 font-mono text-sm leading-relaxed">
+          <p class="text-fg font-mono text-sm leading-relaxed">
             {t(locale, 'sobre.vision_text')}
           </p>
         </div>
@@ -118,7 +118,7 @@ const stats = [
       <!-- Valores -->
       <h2
         id="mvv-heading"
-        class="text-2xl md:text-3xl font-medium text-white uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
       >
         {t(locale, 'sobre.values_title')}
       </h2>
@@ -143,7 +143,7 @@ const stats = [
 
   <!-- 5. GPTW Recognition -->
   <section
-    class="py-16 border-b border-zinc-800 bg-[#050505]"
+    class="py-16 border-b border-line bg-bg"
     aria-labelledby="gptw-heading"
   >
     <div class="container mx-auto px-6 lg:px-12 max-w-4xl">
@@ -151,27 +151,25 @@ const stats = [
 
       <div class="flex flex-col md:flex-row items-start md:items-center gap-8">
 
-        <!-- GPTW seal placeholder -->
-        <!-- REVISAR com cliente — substituir pelo arquivo SVG/PNG oficial do selo GPTW -->
-        <div
-          class="flex-shrink-0 h-24 w-24 border border-zinc-700 bg-zinc-900/40 flex items-center justify-center"
-          aria-label="Selo Great Place to Work"
-          role="img"
-        >
-          <div class="text-center">
-            <div class="text-[9px] font-mono text-accent uppercase tracking-widest leading-tight">GPTW</div>
-            <div class="text-[8px] font-mono text-zinc-400 uppercase tracking-widest mt-1">Certified</div>
-          </div>
-        </div>
+        <!-- GPTW seal — real image from current site (robotersys.com) — Phase 2.5 -->
+        <img
+          src="/robotersys/img/GPTW-Selos.webp"
+          alt="Selo Great Place to Work — RoboterSys certificada GPTW"
+          width="120"
+          height="120"
+          loading="lazy"
+          decoding="async"
+          class="flex-shrink-0 w-24 h-auto object-contain"
+        />
 
         <div class="flex-1">
           <h2
             id="gptw-heading"
-            class="text-2xl md:text-3xl font-medium text-white uppercase tracking-tight leading-tight mb-4 sys-reveal sys-rise"
+            class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-4 sys-reveal sys-rise"
           >
             {t(locale, 'sobre.gptw_title')}
           </h2>
-          <p class="text-zinc-300 font-mono text-sm leading-relaxed max-w-2xl">
+          <p class="text-fg font-mono text-sm leading-relaxed max-w-2xl">
             {t(locale, 'sobre.gptw_text')}
           </p>
         </div>

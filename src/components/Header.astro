@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import type { Locale } from '@/i18n/types';
 import { t } from '@/i18n';
+import ThemeToggle from '@/components/ThemeToggle.astro';
 
 interface Props { locale?: Locale; }
 const { locale = 'pt' } = Astro.props;
@@ -18,53 +19,57 @@ const navItems = [
 ---
 
 <!-- header -->
-<header class="relative z-50 h-16 border-b border-zinc-800 bg-[#050505]/95 backdrop-blur-sm flex items-center justify-between sticky top-0">
+<header class="relative z-50 h-16 border-b border-line bg-bg/95 backdrop-blur-sm flex items-center justify-between sticky top-0">
 
   <!-- logo + status chip -->
-  <div class="flex items-center h-full pl-6 pr-8 border-r border-zinc-800 bg-[#050505] gap-4">
+  <div class="flex items-center h-full pl-6 pr-8 border-r border-line bg-bg gap-4">
     <a class="flex items-center group gap-2" href="/">
       <Icon
         name="solar:streets-navigation-linear"
-        class="text-white text-2xl group-hover:text-orange-600 transition-colors"
+        class="text-strong text-2xl group-hover:text-accent transition-colors"
         width={24}
         aria-hidden="true"
       />
-      <span class="text-sm font-medium text-white tracking-widest uppercase">
-        ROBOTER<span class="text-zinc-600" aria-hidden="true">SYS</span>
+      <span class="text-sm font-medium text-strong tracking-widest uppercase">
+        ROBOTER<span class="text-muted" aria-hidden="true">SYS</span>
       </span>
     </a>
 
     <!-- status chip — hidden on mobile, shown on desktop -->
-    <div class="hidden lg:flex items-center px-3 py-1 border border-zinc-800 bg-zinc-900/30 backdrop-blur-sm gap-2">
-      <span class="text-[10px] font-mono text-zinc-600 leading-none" aria-hidden="true">[</span>
+    <div class="hidden lg:flex items-center px-3 py-1 border border-line bg-elevated/30 backdrop-blur-sm gap-2">
+      <span class="text-[10px] font-mono text-muted leading-none" aria-hidden="true">[</span>
       <span class="relative flex h-1.5 w-1.5" aria-hidden="true">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-ok opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-ok"></span>
       </span>
-      <span class="text-[9px] font-mono text-zinc-400 uppercase tracking-widest">{t(locale, 'header.status')}</span>
-      <span class="text-[10px] font-mono text-zinc-600 leading-none" aria-hidden="true">]</span>
+      <span class="text-[9px] font-mono text-muted uppercase tracking-widest">{t(locale, 'header.status')}</span>
+      <span class="text-[10px] font-mono text-muted leading-none" aria-hidden="true">]</span>
     </div>
   </div>
 
   <!-- desktop nav -->
   <nav class="hidden lg:flex flex-1 h-full items-center justify-center" aria-label="Navegação principal">
-    <div class="flex h-full items-center border-x border-zinc-800/50">
+    <div class="flex h-full items-center border-x border-line/50">
       {navItems.map(({ key, href }) => (
         <a
-          class="flex items-center px-5 h-full text-[10px] font-mono uppercase tracking-widest text-zinc-300 hover:text-white hover:bg-zinc-900/50 transition-colors border-r border-zinc-800/50 relative group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-orange-600"
+          class="flex items-center px-5 h-full text-[10px] font-mono uppercase tracking-widest text-fg hover:text-strong hover:bg-elevated/50 transition-colors border-r border-line/50 relative group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
           href={href}
         >
           {t(locale, key)}
-          <div class="absolute bottom-0 left-0 w-full h-[2px] bg-orange-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" aria-hidden="true"></div>
+          <div class="absolute bottom-0 left-0 w-full h-[2px] bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left" aria-hidden="true"></div>
         </a>
       ))}
     </div>
   </nav>
 
-  <!-- desktop CTA -->
-  <div class="hidden md:flex items-center h-full border-l border-zinc-800 bg-[#050505]">
+  <!-- desktop CTA + theme toggle -->
+  <div class="hidden md:flex items-center h-full border-l border-line bg-bg">
+    <!-- Theme toggle button -->
+    <div class="border-r border-line h-full flex items-center">
+      <ThemeToggle />
+    </div>
     <a
-      class="h-full px-8 bg-orange-600 text-white text-[10px] font-mono uppercase tracking-widest hover:bg-orange-500 transition-all flex items-center gap-2 group shadow-[inset_0_0_20px_rgba(0,0,0,0.2)] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-inset"
+      class="h-full px-8 bg-accent text-white text-[10px] font-mono uppercase tracking-widest hover:bg-orange-500 transition-all flex items-center gap-2 group shadow-[inset_0_0_20px_rgba(0,0,0,0.2)] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-inset"
       href="/contato/"
     >
       {t(locale, 'header.cta')}
@@ -77,28 +82,35 @@ const navItems = [
     </a>
   </div>
 
-  <!-- mobile hamburger button -->
-  <button
-    class="md:hidden p-0 w-16 h-full text-zinc-300 hover:text-white border-l border-zinc-800 bg-[#050505] flex items-center justify-center transition-colors hover:bg-zinc-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-orange-600"
-    id="mobile-menu-btn"
-    aria-label="Abrir menu de navegação"
-    aria-expanded="false"
-    aria-controls="mobile-menu"
-  >
-    <Icon name="solar:hamburger-menu-linear" width={24} aria-hidden="true" />
-  </button>
+  <!-- mobile right side: theme toggle + hamburger -->
+  <div class="md:hidden flex items-center h-full">
+    <!-- Theme toggle (mobile) -->
+    <div class="border-l border-line h-full flex items-center">
+      <ThemeToggle />
+    </div>
+    <!-- Hamburger -->
+    <button
+      class="p-0 w-16 h-full text-fg hover:text-strong border-l border-line bg-bg flex items-center justify-center transition-colors hover:bg-elevated focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent"
+      id="mobile-menu-btn"
+      aria-label="Abrir menu de navegação"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <Icon name="solar:hamburger-menu-linear" width={24} aria-hidden="true" />
+    </button>
+  </div>
 </header>
 
 <!-- mobile menu panel -->
 <div
-  class="fixed inset-x-0 top-16 bottom-0 z-40 bg-[#050505] transform translate-x-full transition-transform duration-300 md:hidden flex flex-col border-t border-zinc-800 overflow-y-auto"
+  class="fixed inset-x-0 top-16 bottom-0 z-40 bg-bg transform translate-x-full transition-transform duration-300 md:hidden flex flex-col border-t border-line overflow-y-auto"
   id="mobile-menu"
   aria-hidden="true"
 >
   <div class="flex flex-col p-6 space-y-4">
     <!-- mobile CTA -->
     <a
-      class="w-full py-4 bg-orange-600 text-white text-xs font-mono uppercase tracking-widest hover:bg-orange-500 flex items-center justify-center gap-2 transition-all shadow-lg shadow-orange-900/20 font-medium"
+      class="w-full py-4 bg-accent text-white text-xs font-mono uppercase tracking-widest hover:bg-orange-500 flex items-center justify-center gap-2 transition-all shadow-lg shadow-orange-900/20 font-medium"
       href="/contato/"
     >
       {t(locale, 'header.cta')}
@@ -106,16 +118,16 @@ const navItems = [
     </a>
 
     <!-- mobile nav links -->
-    <div class="flex flex-col border border-zinc-800 bg-zinc-900/20">
+    <div class="flex flex-col border border-line bg-elevated/20">
       {navItems.map(({ key, href }) => (
         <a
-          class="flex items-center justify-between p-4 border-b border-zinc-800 text-xs font-mono uppercase tracking-widest text-zinc-300 hover:text-white hover:bg-zinc-900 transition-colors group last:border-b-0"
+          class="flex items-center justify-between p-4 border-b border-line text-xs font-mono uppercase tracking-widest text-fg hover:text-strong hover:bg-elevated transition-colors group last:border-b-0"
           href={href}
         >
           {t(locale, key)}
           <Icon
             name="solar:alt-arrow-right-linear"
-            class="opacity-0 group-hover:opacity-100 transition-opacity text-orange-600"
+            class="opacity-0 group-hover:opacity-100 transition-opacity text-accent"
             width={14}
             aria-hidden="true"
           />

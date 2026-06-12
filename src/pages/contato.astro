@@ -58,7 +58,7 @@ const mapSrc =
 
   <!-- 3. Channels block -->
   <section
-    class="py-20 bg-[#050505] border-t border-zinc-800"
+    class="py-20 bg-bg border-t border-line"
     aria-labelledby="channels-heading"
   >
     <div class="container mx-auto px-6 lg:px-12">
@@ -71,7 +71,7 @@ const mapSrc =
 
       <h2
         id="channels-heading"
-        class="text-3xl md:text-4xl font-medium text-white uppercase tracking-tight leading-tight mb-12"
+        class="text-3xl md:text-4xl font-medium text-strong uppercase tracking-tight leading-tight mb-12"
       >
         {t(locale, 'contato.channels_heading')}
       </h2>
@@ -80,21 +80,21 @@ const mapSrc =
 
         <!-- WhatsApp 24h -->
         <!-- PLACEHOLDER: whatsapp_number and whatsappHref must be updated with real number -->
-        <article class="bg-zinc-900/30 border border-zinc-800 border-l-2 border-l-accent p-6 flex flex-col gap-4 group hover:border-accent/50 transition-colors">
+        <article class="bg-elevated/30 border border-line border-l-2 border-l-accent p-6 flex flex-col gap-4 group hover:border-accent/50 transition-colors">
           <div class="flex items-start gap-4">
             <div class="mt-0.5 h-8 w-8 rounded-sm bg-accent/10 border border-accent/20 flex items-center justify-center flex-shrink-0" aria-hidden="true">
               <Icon name="solar:phone-calling-rounded-linear" class="text-accent" width={18} />
             </div>
             <div class="flex-1 min-w-0">
-              <p class="text-[9px] font-mono text-zinc-400 uppercase tracking-widest mb-1">
+              <p class="text-[9px] font-mono text-muted uppercase tracking-widest mb-1">
                 {t(locale, 'contato.whatsapp_label')}
               </p>
-              <p class="text-white font-medium text-lg leading-tight">
+              <p class="text-strong font-medium text-lg leading-tight">
                 {t(locale, 'contato.whatsapp_number')}
               </p>
             </div>
           </div>
-          <p class="text-zinc-400 text-sm leading-relaxed">
+          <p class="text-muted text-sm leading-relaxed">
             {t(locale, 'contato.whatsapp_desc')}
           </p>
           <a
@@ -110,26 +110,26 @@ const mapSrc =
         </article>
 
         <!-- Phone -->
-        <article class="bg-zinc-900/30 border border-zinc-800 p-6 flex flex-col gap-4 hover:border-zinc-700 transition-colors">
+        <article class="bg-elevated/30 border border-line p-6 flex flex-col gap-4 hover:border-line transition-colors">
           <div class="flex items-start gap-4">
-            <div class="mt-0.5 h-8 w-8 rounded-sm bg-zinc-800/60 border border-zinc-700 flex items-center justify-center flex-shrink-0" aria-hidden="true">
-              <Icon name="solar:phone-linear" class="text-zinc-400" width={18} />
+            <div class="mt-0.5 h-8 w-8 rounded-sm bg-elevated/60 border border-line flex items-center justify-center flex-shrink-0" aria-hidden="true">
+              <Icon name="solar:phone-linear" class="text-muted" width={18} />
             </div>
             <div class="flex-1 min-w-0">
-              <p class="text-[9px] font-mono text-zinc-400 uppercase tracking-widest mb-1">
+              <p class="text-[9px] font-mono text-muted uppercase tracking-widest mb-1">
                 {t(locale, 'contato.phone_label')}
               </p>
-              <p class="text-white font-medium text-lg leading-tight">
+              <p class="text-strong font-medium text-lg leading-tight">
                 {t(locale, 'contato.phone_number')}
               </p>
             </div>
           </div>
-          <p class="text-zinc-400 text-sm leading-relaxed">
+          <p class="text-muted text-sm leading-relaxed">
             {t(locale, 'contato.phone_desc')}
           </p>
           <a
             href={phoneHref}
-            class="mt-auto text-[10px] font-mono uppercase tracking-widest text-zinc-400 hover:text-white transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:underline"
+            class="mt-auto text-[10px] font-mono uppercase tracking-widest text-muted hover:text-strong transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:underline"
           >
             {t(locale, 'contato.phone_cta')}
             <Icon name="solar:arrow-right-linear" width={12} aria-hidden="true" />
@@ -137,26 +137,26 @@ const mapSrc =
         </article>
 
         <!-- Email -->
-        <article class="bg-zinc-900/30 border border-zinc-800 p-6 flex flex-col gap-4 hover:border-zinc-700 transition-colors">
+        <article class="bg-elevated/30 border border-line p-6 flex flex-col gap-4 hover:border-line transition-colors">
           <div class="flex items-start gap-4">
-            <div class="mt-0.5 h-8 w-8 rounded-sm bg-zinc-800/60 border border-zinc-700 flex items-center justify-center flex-shrink-0" aria-hidden="true">
-              <Icon name="solar:letter-linear" class="text-zinc-400" width={18} />
+            <div class="mt-0.5 h-8 w-8 rounded-sm bg-elevated/60 border border-line flex items-center justify-center flex-shrink-0" aria-hidden="true">
+              <Icon name="solar:letter-linear" class="text-muted" width={18} />
             </div>
             <div class="flex-1 min-w-0">
-              <p class="text-[9px] font-mono text-zinc-400 uppercase tracking-widest mb-1">
+              <p class="text-[9px] font-mono text-muted uppercase tracking-widest mb-1">
                 {t(locale, 'contato.email_label')}
               </p>
-              <p class="text-white font-medium text-base leading-tight break-all">
+              <p class="text-strong font-medium leading-tight break-all">
                 {t(locale, 'contato.email_address')}
               </p>
             </div>
           </div>
-          <p class="text-zinc-400 text-sm leading-relaxed">
+          <p class="text-muted text-sm leading-relaxed">
             {t(locale, 'contato.email_desc')}
           </p>
           <a
             href={emailHref}
-            class="mt-auto text-[10px] font-mono uppercase tracking-widest text-zinc-400 hover:text-white transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:underline"
+            class="mt-auto text-[10px] font-mono uppercase tracking-widest text-muted hover:text-strong transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:underline"
           >
             {t(locale, 'contato.email_cta')}
             <Icon name="solar:arrow-right-linear" width={12} aria-hidden="true" />
@@ -164,45 +164,45 @@ const mapSrc =
         </article>
 
         <!-- Address -->
-        <article class="bg-zinc-900/30 border border-zinc-800 p-6 flex flex-col gap-4 hover:border-zinc-700 transition-colors">
+        <article class="bg-elevated/30 border border-line p-6 flex flex-col gap-4 hover:border-line transition-colors">
           <div class="flex items-start gap-4">
-            <div class="mt-0.5 h-8 w-8 rounded-sm bg-zinc-800/60 border border-zinc-700 flex items-center justify-center flex-shrink-0" aria-hidden="true">
-              <Icon name="solar:map-point-linear" class="text-zinc-400" width={18} />
+            <div class="mt-0.5 h-8 w-8 rounded-sm bg-elevated/60 border border-line flex items-center justify-center flex-shrink-0" aria-hidden="true">
+              <Icon name="solar:map-point-linear" class="text-muted" width={18} />
             </div>
             <div class="flex-1 min-w-0">
-              <p class="text-[9px] font-mono text-zinc-400 uppercase tracking-widest mb-1">
+              <p class="text-[9px] font-mono text-muted uppercase tracking-widest mb-1">
                 {t(locale, 'contato.address_label')}
               </p>
-              <address class="not-italic text-white font-medium text-base leading-snug">
+              <address class="not-italic text-strong font-medium leading-snug">
                 {t(locale, 'contato.address_street')}<br />
                 {t(locale, 'contato.address_city')}<br />
                 {t(locale, 'contato.address_country')}
               </address>
             </div>
           </div>
-          <p class="text-zinc-400 text-sm leading-relaxed">
+          <p class="text-muted text-sm leading-relaxed">
             {t(locale, 'contato.address_desc')}
           </p>
         </article>
 
         <!-- Hours -->
-        <article class="bg-zinc-900/30 border border-zinc-800 p-6 flex flex-col gap-4 hover:border-zinc-700 transition-colors sm:col-span-2 lg:col-span-2">
+        <article class="bg-elevated/30 border border-line p-6 flex flex-col gap-4 hover:border-line transition-colors sm:col-span-2 lg:col-span-2">
           <div class="flex items-start gap-4">
-            <div class="mt-0.5 h-8 w-8 rounded-sm bg-zinc-800/60 border border-zinc-700 flex items-center justify-center flex-shrink-0" aria-hidden="true">
-              <Icon name="solar:clock-circle-linear" class="text-zinc-400" width={18} />
+            <div class="mt-0.5 h-8 w-8 rounded-sm bg-elevated/60 border border-line flex items-center justify-center flex-shrink-0" aria-hidden="true">
+              <Icon name="solar:clock-circle-linear" class="text-muted" width={18} />
             </div>
             <div class="flex-1 min-w-0">
-              <p class="text-[9px] font-mono text-zinc-400 uppercase tracking-widest mb-2">
+              <p class="text-[9px] font-mono text-muted uppercase tracking-widest mb-2">
                 {t(locale, 'contato.hours_label')}
               </p>
-              <ul class="text-zinc-300 text-sm space-y-1.5">
+              <ul class="text-fg text-sm space-y-1.5">
                 <li class="flex items-center gap-2">
-                  <span class="w-1 h-1 bg-zinc-600 rounded-full flex-shrink-0" aria-hidden="true"></span>
+                  <span class="w-1 h-1 bg-line rounded-full flex-shrink-0" aria-hidden="true"></span>
                   {t(locale, 'contato.hours_weekdays')}
                 </li>
                 <li class="flex items-center gap-2">
-                  <span class="w-1 h-1 bg-green-500 rounded-full flex-shrink-0" aria-hidden="true"></span>
-                  <span class="text-green-400">{t(locale, 'contato.hours_support')}</span>
+                  <span class="w-1 h-1 bg-ok rounded-full flex-shrink-0" aria-hidden="true"></span>
+                  <span class="text-ok">{t(locale, 'contato.hours_support')}</span>
                 </li>
               </ul>
             </div>
@@ -217,7 +217,7 @@ const mapSrc =
   <!-- PLACEHOLDER: mapSrc above uses placeholder coordinates.
        Replace with the real embed URL from Google Maps for R. Parati 335C Joinville SC. -->
   <section
-    class="border-t border-zinc-800"
+    class="border-t border-line"
     aria-label={t(locale, 'contato.map_label')}
   >
     <iframe

@@ -2,17 +2,18 @@
 /**
  * Hero — poster-first (no autoplay video) for best LCP performance.
  *
- * PLACEHOLDER NOTE: The background image at /robotersys/hero-poster.svg is a
- * lightweight SVG placeholder (dark scene + orange radial glow + grid). Replace it
- * with the real brand photography or video freeze-frame once visual assets are
- * available from the client.
+ * Hero background: real factory/robot photo from current site (robotersys.com),
+ * harvested in Phase 2.5. Gradient overlays ensure text readability in both
+ * light and dark themes.
  *
  * PLACEHOLDER NOTE: Stat values (+1.200, +8.000, 24/7) are placeholder numbers.
  * Confirm with the client before going live.
  */
 import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
 import type { Locale } from '@/i18n/types';
 import { t } from '@/i18n';
+import heroPosterImg from '@/assets/robotersys/hero-robot.webp';
 
 interface Props {
   locale?: Locale;
@@ -22,36 +23,34 @@ const { locale = 'pt' } = Astro.props;
 
 <section
   id="hero"
-  class="min-h-[750px] flex overflow-hidden bg-ink w-full border-zinc-800 border-b relative items-center perspective-1000"
+  class="min-h-[750px] flex overflow-hidden bg-bg w-full border-line border-b relative items-center perspective-1000"
   aria-label="Introdução"
 >
   <!-- ── Background layer: poster image (LCP) ── -->
   <div class="z-0 absolute inset-0 overflow-hidden">
-    <!--
-      PLACEHOLDER: hero-poster.svg is a dark SVG placeholder.
-      Replace with a real brand image (or video freeze-frame) once assets are available.
-    -->
-    <img
+    <!-- Real hero photo from current site (robotersys.com) — Phase 2.5 -->
+    <Image
       id="hero-poster"
-      src="/robotersys/hero-poster.svg"
+      src={heroPosterImg}
       alt=""
       aria-hidden="true"
-      width="1600"
-      height="900"
+      width={1600}
+      height={900}
       class="pointer-events-none w-full h-full object-cover absolute inset-0 scale-105 transition-transform duration-75"
       fetchpriority="high"
+      loading="eager"
       decoding="async"
     />
 
     <!-- Horizontal dark-left gradient (readability for left-column content) -->
     <div
-      class="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/60 to-[#050505]/40 z-10 pointer-events-none"
+      class="absolute inset-0 bg-gradient-to-r from-bg via-bg/60 to-bg/40 z-10 pointer-events-none"
       aria-hidden="true"
     ></div>
 
     <!-- Vertical bottom-vignette (grounds the section) -->
     <div
-      class="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/20 to-[#050505] z-10 pointer-events-none"
+      class="absolute inset-0 bg-gradient-to-b from-transparent via-bg/20 to-bg z-10 pointer-events-none"
       aria-hidden="true"
     ></div>
 
@@ -81,24 +80,24 @@ const { locale = 'pt' } = Astro.props;
       <!-- Kicker row: pulsing status dot + label -->
       <div class="flex items-center gap-3 mb-8 sys-reveal sys-rise" aria-label={t(locale, 'hero.kicker')}>
         <span class="relative flex h-2 w-2" aria-hidden="true">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-ok opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-ok"></span>
         </span>
-        <span class="text-[10px] uppercase text-zinc-300 tracking-widest font-mono">
+        <span class="text-[10px] uppercase text-fg tracking-widest font-mono">
           {t(locale, 'hero.kicker')}
         </span>
       </div>
 
       <!-- H1 -->
       <h1
-        class="text-5xl md:text-7xl lg:text-8xl font-medium text-white uppercase tracking-tight leading-[0.9] mb-8 sys-reveal sys-rise sys-delay-100"
+        class="text-5xl md:text-7xl lg:text-8xl font-medium text-strong uppercase tracking-tight leading-[0.9] mb-8 sys-reveal sys-rise sys-delay-100"
         id="hero-title"
       >
         {t(locale, 'hero.title')}
       </h1>
 
       <!-- Subtitle -->
-      <p class="text-base md:text-lg text-zinc-300 font-mono leading-relaxed mb-10 max-w-md border-l-2 border-accent pl-4 sys-reveal sys-rise sys-delay-200">
+      <p class="text-[1rem] md:text-lg text-fg font-mono leading-relaxed mb-10 max-w-md border-l-2 border-accent pl-4 sys-reveal sys-rise sys-delay-200">
         {t(locale, 'hero.subtitle')}
       </p>
 
@@ -107,7 +106,7 @@ const { locale = 'pt' } = Astro.props;
         <!-- Primary CTA -->
         <a
           href="/contato/"
-          class="group bg-orange-600 hover:bg-orange-500 text-white text-xs font-mono uppercase tracking-widest px-8 py-4 transition-all flex items-center justify-center gap-3 font-medium shadow-[0_0_20px_rgba(234,88,12,0.3)] hover:shadow-[0_0_40px_rgba(234,88,12,0.6)] relative overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+          class="group bg-accent hover:bg-orange-500 text-white text-xs font-mono uppercase tracking-widest px-8 py-4 transition-all flex items-center justify-center gap-3 font-medium shadow-[0_0_20px_rgba(234,88,12,0.3)] hover:shadow-[0_0_40px_rgba(234,88,12,0.6)] relative overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
         >
           <div
             class="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"
@@ -125,7 +124,7 @@ const { locale = 'pt' } = Astro.props;
         <!-- Secondary CTA -->
         <a
           href="/servicos/"
-          class="group bg-transparent border border-zinc-700 hover:border-white text-zinc-300 hover:text-white text-xs font-mono uppercase tracking-widest px-8 py-4 transition-all flex items-center justify-center gap-3 font-medium backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+          class="group bg-transparent border border-line hover:border-strong text-fg hover:text-strong text-xs font-mono uppercase tracking-widest px-8 py-4 transition-all flex items-center justify-center gap-3 font-medium backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-strong focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
         >
           {t(locale, 'hero.cta_secondary')}
           <Icon
@@ -152,11 +151,11 @@ const { locale = 'pt' } = Astro.props;
 
         <!-- Card 1: Robôs atendidos (top-left offset) -->
         <div
-          class="telemetry-card absolute -top-32 right-0 w-64 bg-[#050505]/90 backdrop-blur-sm border border-zinc-800 border-l-2 border-l-accent p-5 z-10 sys-reveal sys-slide-l sys-delay-300"
+          class="telemetry-card absolute -top-32 right-0 w-64 bg-bg/90 backdrop-blur-sm border border-line border-l-2 border-l-accent p-5 z-10 sys-reveal sys-slide-l sys-delay-300"
           data-depth="0.1"
         >
-          <div class="flex justify-between items-center mb-3 border-b border-zinc-800 pb-2">
-            <span class="text-[9px] font-mono text-zinc-400 uppercase tracking-widest">
+          <div class="flex justify-between items-center mb-3 border-b border-line pb-2">
+            <span class="text-[9px] font-mono text-muted uppercase tracking-widest">
               {t(locale, 'hero.stat_robots_label')}
             </span>
             <Icon
@@ -166,14 +165,14 @@ const { locale = 'pt' } = Astro.props;
               aria-hidden="true"
             />
           </div>
-          <div class="text-3xl font-medium text-white tracking-tight">
+          <div class="text-3xl font-medium text-strong tracking-tight">
             {t(locale, 'hero.stat_robots_value')}
           </div>
         </div>
 
         <!-- Card 2: Intervenções realizadas (main / centre) -->
         <div
-          class="telemetry-card relative w-80 bg-[#080808]/95 backdrop-blur-sm border border-zinc-800 p-6 z-20 shadow-2xl hover:border-accent/50 transition-colors pointer-events-auto hover:shadow-[0_0_30px_rgba(234,88,12,0.15)] sys-reveal sys-rise sys-delay-200"
+          class="telemetry-card relative w-80 bg-surface/95 backdrop-blur-sm border border-line p-6 z-20 shadow-2xl hover:border-accent/50 transition-colors pointer-events-auto hover:shadow-[0_0_30px_rgba(234,88,12,0.15)] sys-reveal sys-rise sys-delay-200"
           data-depth="0.2"
         >
           <!-- Left accent bar -->
@@ -181,10 +180,10 @@ const { locale = 'pt' } = Astro.props;
 
           <div class="flex justify-between items-start mb-6">
             <div>
-              <div class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest mb-1">
+              <div class="text-[10px] font-mono text-muted uppercase tracking-widest mb-1">
                 {t(locale, 'hero.stat_interventions_label')}
               </div>
-              <div class="text-3xl font-medium text-white tracking-tight">
+              <div class="text-3xl font-medium text-strong tracking-tight">
                 {t(locale, 'hero.stat_interventions_value')}
               </div>
             </div>
@@ -195,8 +194,8 @@ const { locale = 'pt' } = Astro.props;
 
           <div class="space-y-3">
             <div>
-              <div class="text-[9px] font-mono text-zinc-400 uppercase mb-1">Taxa de sucesso</div>
-              <div class="w-full bg-zinc-900 h-1">
+              <div class="text-[9px] font-mono text-muted uppercase mb-1">Taxa de sucesso</div>
+              <div class="w-full bg-elevated h-1">
                 <div class="bg-accent h-full w-[97%] relative">
                   <div class="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-2 bg-white animate-pulse" aria-hidden="true"></div>
                 </div>
@@ -207,11 +206,11 @@ const { locale = 'pt' } = Astro.props;
 
         <!-- Card 3: Suporte 24/7 (bottom-right offset) -->
         <div
-          class="telemetry-card absolute -bottom-24 right-8 w-64 bg-[#050505]/90 backdrop-blur-sm border border-zinc-800 p-4 z-10 sys-reveal sys-slide-l sys-delay-400"
+          class="telemetry-card absolute -bottom-24 right-8 w-64 bg-bg/90 backdrop-blur-sm border border-line p-4 z-10 sys-reveal sys-slide-l sys-delay-400"
           data-depth="0.15"
         >
           <div class="flex justify-between items-center mb-3">
-            <span class="text-[9px] font-mono text-zinc-400 uppercase tracking-widest">
+            <span class="text-[9px] font-mono text-muted uppercase tracking-widest">
               {t(locale, 'hero.stat_support_label')}
             </span>
             <Icon
@@ -221,15 +220,15 @@ const { locale = 'pt' } = Astro.props;
               aria-hidden="true"
             />
           </div>
-          <div class="text-3xl font-medium text-white tracking-tight">
+          <div class="text-3xl font-medium text-strong tracking-tight">
             {t(locale, 'hero.stat_support_value')}
           </div>
           <div class="mt-2 flex items-center gap-2">
             <span class="relative flex h-1.5 w-1.5" aria-hidden="true">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-ok opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-ok"></span>
             </span>
-            <span class="text-[9px] font-mono text-green-500 uppercase tracking-widest">Ativo agora</span>
+            <span class="text-[9px] font-mono text-ok uppercase tracking-widest">Ativo agora</span>
           </div>
         </div>
 

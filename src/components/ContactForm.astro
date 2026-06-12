@@ -52,7 +52,7 @@ const messagePlaceholder = isCarreiras
 ---
 
 <section
-  class="py-20 border-t border-zinc-800 bg-[#050505]"
+  class="py-20 border-t border-line bg-bg"
   id={`section-${formId}`}
   aria-labelledby={`heading-${formId}`}
 >
@@ -66,7 +66,7 @@ const messagePlaceholder = isCarreiras
 
     <h2
       id={`heading-${formId}`}
-      class="text-3xl md:text-4xl font-medium text-white uppercase tracking-tight leading-tight mb-10"
+      class="text-3xl md:text-4xl font-medium text-strong uppercase tracking-tight leading-tight mb-10"
     >
       {headingText}
     </h2>
@@ -109,7 +109,7 @@ const messagePlaceholder = isCarreiras
       <div class="space-y-2">
         <label
           for={`name-${formId}`}
-          class="block text-[10px] font-mono uppercase tracking-widest text-zinc-400"
+          class="block text-[10px] font-mono uppercase tracking-widest text-muted"
         >
           Nome completo <span class="text-accent" aria-hidden="true">*</span>
         </label>
@@ -124,7 +124,7 @@ const messagePlaceholder = isCarreiras
           placeholder="Seu nome"
           aria-required="true"
           aria-describedby={`name-error-${formId}`}
-          class="w-full bg-zinc-900/50 border border-zinc-800 text-zinc-300 placeholder:text-zinc-500 text-sm px-4 py-3 font-mono focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+          class="w-full bg-elevated/50 border border-line text-fg placeholder:text-muted text-sm px-4 py-3 font-mono focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
         />
         <p
           id={`name-error-${formId}`}
@@ -138,7 +138,7 @@ const messagePlaceholder = isCarreiras
       <div class="space-y-2">
         <label
           for={`email-${formId}`}
-          class="block text-[10px] font-mono uppercase tracking-widest text-zinc-400"
+          class="block text-[10px] font-mono uppercase tracking-widest text-muted"
         >
           E-mail <span class="text-accent" aria-hidden="true">*</span>
         </label>
@@ -151,7 +151,7 @@ const messagePlaceholder = isCarreiras
           placeholder="seu@email.com"
           aria-required="true"
           aria-describedby={`email-error-${formId}`}
-          class="w-full bg-zinc-900/50 border border-zinc-800 text-zinc-300 placeholder:text-zinc-500 text-sm px-4 py-3 font-mono focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+          class="w-full bg-elevated/50 border border-line text-fg placeholder:text-muted text-sm px-4 py-3 font-mono focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
         />
         <p
           id={`email-error-${formId}`}
@@ -165,7 +165,7 @@ const messagePlaceholder = isCarreiras
       <div class="space-y-2">
         <label
           for={`whatsapp-${formId}`}
-          class="block text-[10px] font-mono uppercase tracking-widest text-zinc-400"
+          class="block text-[10px] font-mono uppercase tracking-widest text-muted"
         >
           WhatsApp <span class="text-accent" aria-hidden="true">*</span>
         </label>
@@ -180,7 +180,7 @@ const messagePlaceholder = isCarreiras
           placeholder="(47) 99999-9999"
           aria-required="true"
           aria-describedby={`whatsapp-error-${formId}`}
-          class="w-full bg-zinc-900/50 border border-zinc-800 text-zinc-300 placeholder:text-zinc-500 text-sm px-4 py-3 font-mono focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+          class="w-full bg-elevated/50 border border-line text-fg placeholder:text-muted text-sm px-4 py-3 font-mono focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
         />
         <p
           id={`whatsapp-error-${formId}`}
@@ -195,7 +195,7 @@ const messagePlaceholder = isCarreiras
         <div class="space-y-2">
           <label
             for={`company-${formId}`}
-            class="block text-[10px] font-mono uppercase tracking-widest text-zinc-400"
+            class="block text-[10px] font-mono uppercase tracking-widest text-muted"
           >
             Empresa
           </label>
@@ -207,7 +207,7 @@ const messagePlaceholder = isCarreiras
             autocomplete="organization"
             placeholder="Nome da empresa"
             aria-describedby={`company-error-${formId}`}
-            class="w-full bg-zinc-900/50 border border-zinc-800 text-zinc-300 placeholder:text-zinc-500 text-sm px-4 py-3 font-mono focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+            class="w-full bg-elevated/50 border border-line text-fg placeholder:text-muted text-sm px-4 py-3 font-mono focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
           />
           <p
             id={`company-error-${formId}`}
@@ -222,7 +222,7 @@ const messagePlaceholder = isCarreiras
       <div class="space-y-2">
         <label
           for={`message-${formId}`}
-          class="block text-[10px] font-mono uppercase tracking-widest text-zinc-400"
+          class="block text-[10px] font-mono uppercase tracking-widest text-muted"
         >
           Mensagem
         </label>
@@ -233,7 +233,7 @@ const messagePlaceholder = isCarreiras
           maxlength="2000"
           placeholder={messagePlaceholder}
           aria-describedby={`message-error-${formId}`}
-          class="w-full bg-zinc-900/50 border border-zinc-800 text-zinc-300 placeholder:text-zinc-500 text-sm px-4 py-3 font-mono focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-y"
+          class="w-full bg-elevated/50 border border-line text-fg placeholder:text-muted text-sm px-4 py-3 font-mono focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-y"
         ></textarea>
         <p
           id={`message-error-${formId}`}
@@ -247,7 +247,7 @@ const messagePlaceholder = isCarreiras
       <button
         type="submit"
         id={`submit-${formId}`}
-        class="group w-full sm:w-auto bg-orange-600 hover:bg-orange-500 text-white text-xs font-mono uppercase tracking-widest px-10 py-4 transition-all flex items-center justify-center gap-3 font-medium shadow-[0_0_20px_rgba(234,88,12,0.3)] hover:shadow-[0_0_40px_rgba(234,88,12,0.6)] relative overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#050505] disabled:opacity-60 disabled:cursor-not-allowed"
+        class="group w-full sm:w-auto bg-accent hover:bg-orange-500 text-white text-xs font-mono uppercase tracking-widest px-10 py-4 transition-all flex items-center justify-center gap-3 font-medium shadow-[0_0_20px_rgba(234,88,12,0.3)] hover:shadow-[0_0_40px_rgba(234,88,12,0.6)] relative overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:opacity-60 disabled:cursor-not-allowed"
         aria-describedby={`form-status-${formId}`}
       >
         <!-- Shimmer effect -->
