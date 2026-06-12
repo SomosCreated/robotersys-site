@@ -1,17 +1,42 @@
 /* Fontes self-hosted (variable) — @import precisa vir antes de @tailwind */
-@import '@fontsource-variable/inter';
-@import '@fontsource-variable/jetbrains-mono';
+@import '@fontsource-variable/roboto';
+@import '@fontsource-variable/roboto-mono';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root { --grid-line: #27272a; } /* zinc-800 */
+/* ─── Theme tokens (RGB channels — supports /<alpha> via Tailwind) ─── */
+:root, .dark {            /* DARK — padrão/identidade */
+  --color-bg: 5 5 5;            /* #050505 */
+  --color-surface: 8 8 8;       /* #080808 */
+  --color-elevated: 24 24 27;   /* zinc-900 */
+  --color-line: 39 39 42;       /* zinc-800 */
+  --color-strong: 255 255 255;  /* títulos/foreground */
+  --color-base: 212 212 216;    /* corpo (zinc-300) */
+  --color-muted: 161 161 170;   /* secundário (zinc-400) */
+  --color-accent: 234 88 12;    /* orange-600 */
+  --color-ok: 34 197 94;        /* green-500 */
+  color-scheme: dark;
+}
+.light {                  /* LIGHT */
+  --color-bg: 250 250 250;      /* #fafafa */
+  --color-surface: 244 244 245; /* zinc-100 */
+  --color-elevated: 228 228 231;/* zinc-200 */
+  --color-line: 212 212 216;    /* zinc-300 */
+  --color-strong: 24 24 27;     /* zinc-900 */
+  --color-base: 39 39 42;       /* zinc-800 */
+  --color-muted: 82 82 91;      /* zinc-600 (≥4.5:1 no claro) */
+  --color-accent: 234 88 12;    /* mantém laranja */
+  --color-ok: 22 163 74;        /* green-600 (contraste no claro) */
+  color-scheme: light;
+}
 
-html { background: #050505; scroll-behavior: smooth; }
+html { background: rgb(var(--color-bg)); scroll-behavior: smooth; }
 body {
+  background: rgb(var(--color-bg));
+  color: rgb(var(--color-base));
   font-family: theme('fontFamily.sans');
-  color: #d4d4d8; /* zinc-300 — ajuste de contraste WCAG AA (era zinc-400/500) */
   -webkit-font-smoothing: antialiased;
 }
 .font-mono { font-family: theme('fontFamily.mono'); }
@@ -20,8 +45,8 @@ body {
 .bg-grid {
   background-size: 40px 40px;
   background-image:
-    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    linear-gradient(to right, rgb(var(--color-line)) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--color-line)) 1px, transparent 1px);
 }
 
 @media (prefers-reduced-motion: reduce) {

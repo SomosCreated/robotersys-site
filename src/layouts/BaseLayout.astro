@@ -19,17 +19,22 @@ const htmlLang = { pt: 'pt-BR', en: 'en', es: 'es', de: 'de' }[locale];
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Preload Inter variable font (copied to public/fonts/ for reliable path) -->
+    <!-- Pre-paint theme: apply before first render to avoid flash-of-wrong-theme -->
+    <script is:inline>
+      const t = localStorage.getItem('theme') ?? (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.classList.add(t);
+    </script>
+    <!-- Preload Roboto variable font (Latin, normal axis) -->
     <link
       rel="preload"
       as="font"
       type="font/woff2"
-      href="/fonts/inter-latin-wght-normal.woff2"
+      href="/fonts/roboto-latin-wght-normal.woff2"
       crossorigin
     />
     <SEOHead title={title} description={description} locale={htmlLang} />
   </head>
-  <body class="min-h-screen flex flex-col bg-ink text-zinc-300 selection:bg-accent selection:text-white">
+  <body class="min-h-screen flex flex-col bg-bg text-base selection:bg-accent selection:text-white">
     <div class="fixed inset-0 pointer-events-none z-0 opacity-[0.04] bg-grid" aria-hidden="true"></div>
     <Header locale={locale} />
     <main class="relative z-10 flex-1">

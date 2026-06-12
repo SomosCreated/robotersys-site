@@ -1,0 +1,50 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+<button
+  id="theme-toggle"
+  class="w-10 h-full flex items-center justify-center text-muted hover:text-strong transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent"
+  aria-label="Alternar tema claro/escuro"
+  title="Alternar tema"
+>
+  <!-- Sun icon: shown in dark mode (click to go light) -->
+  <Icon
+    name="solar:sun-2-linear"
+    width={18}
+    aria-hidden="true"
+    class="theme-icon-sun"
+  />
+  <!-- Moon icon: shown in light mode (click to go dark) -->
+  <Icon
+    name="solar:moon-linear"
+    width={18}
+    aria-hidden="true"
+    class="theme-icon-moon"
+  />
+</button>
+
+<style>
+  /* Show sun in dark, moon in light */
+  :global(.dark) #theme-toggle .theme-icon-moon { display: none; }
+  :global(.light) #theme-toggle .theme-icon-sun { display: none; }
+  /* Default (before class applied) — show sun */
+  #theme-toggle .theme-icon-moon { display: none; }
+</style>
+
+<script>
+  import { toggleTheme } from '@/scripts/theme';
+
+  const btn = document.getElementById('theme-toggle');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      toggleTheme();
+      // Update icon visibility immediately after toggle
+      const html = document.documentElement;
+      const isLight = html.classList.contains('light');
+      const sun = btn.querySelector('.theme-icon-sun') as HTMLElement | null;
+      const moon = btn.querySelector('.theme-icon-moon') as HTMLElement | null;
+      if (sun) sun.style.display = isLight ? 'none' : '';
+      if (moon) moon.style.display = isLight ? '' : 'none';
+    });
+  }
+</script>

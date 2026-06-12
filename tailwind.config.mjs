@@ -6,14 +6,20 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Inter Variable"', 'Inter', 'sans-serif'],
-        mono: ['"JetBrains Mono Variable"', '"JetBrains Mono"', 'monospace'],
+        sans: ['"Roboto Variable"', 'Roboto', 'sans-serif'],
+        mono: ['"Roboto Mono Variable"', '"Roboto Mono"', 'monospace'],
       },
       colors: {
-        // aliases semânticos (apontam para o Tailwind padrão da referência)
-        ink: '#050505',      // fundo base
-        surface: '#080808',  // superfície
-        accent: '#ea580c',   // orange-600 (≈ laranja KUKA)
+        // Semantic tokens — RGB channels, support /<alpha-value>
+        bg:       'rgb(var(--color-bg) / <alpha-value>)',
+        surface:  'rgb(var(--color-surface) / <alpha-value>)',
+        elevated: 'rgb(var(--color-elevated) / <alpha-value>)',
+        line:     'rgb(var(--color-line) / <alpha-value>)',
+        strong:   'rgb(var(--color-strong) / <alpha-value>)',
+        base:     'rgb(var(--color-base) / <alpha-value>)',
+        muted:    'rgb(var(--color-muted) / <alpha-value>)',
+        accent:   'rgb(var(--color-accent) / <alpha-value>)',
+        ok:       'rgb(var(--color-ok) / <alpha-value>)',
       },
     },
   },
