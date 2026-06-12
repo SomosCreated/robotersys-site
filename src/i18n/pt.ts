@@ -354,4 +354,58 @@ export default {
     breadcrumb_home: 'Início',
     breadcrumb_contact: 'Contato',
   },
+
+  // ── Legal pages ───────────────────────────────────────────────────────────────
+  // MINUTA — revisão jurídica necessária
+  legal: {
+    // Política de Privacidade
+    privacy_page_title: 'Política de Privacidade — RoboterSys',
+    privacy_meta_description: 'Política de Privacidade da RoboterSys conforme a LGPD (Lei nº 13.709/2018) e o GDPR.',
+    privacy_hero_kicker: 'Legal',
+    privacy_hero_title: 'Política de Privacidade',
+    privacy_breadcrumb_home: 'Início',
+    privacy_breadcrumb_page: 'Política de Privacidade',
+    // Política de Cookies
+    cookies_page_title: 'Política de Cookies — RoboterSys',
+    cookies_meta_description: 'Política de Cookies da RoboterSys. Entenda como utilizamos cookies essenciais e analíticos.',
+    cookies_hero_kicker: 'Legal',
+    cookies_hero_title: 'Política de Cookies',
+    cookies_breadcrumb_home: 'Início',
+    cookies_breadcrumb_page: 'Política de Cookies',
+    // Footer links
+    footer_privacy: 'Política de Privacidade',
+    footer_cookies: 'Política de Cookies',
+  },
+
+  // ── Home — additional sections ────────────────────────────────────────────────
+  home: {
+    // Clients section
+    clients_section_label: 'Clientes',
+    clients_heading: 'Empresas que confiam no nosso trabalho',
+    clients_body: 'Atendemos indústrias de todos os segmentos no sul do Brasil e em todo o território nacional.', // PLACEHOLDER — confirmar com o cliente
+    // GPTW band
+    gptw_section_label: 'Reconhecimento',
+    gptw_heading: 'Excelência Reconhecida: GPTW Quatro Anos Consecutivos',
+    gptw_years: '2022 · 2023 · 2024 · 2025',
+    gptw_body: 'A RoboterSys é reconhecida pelo Great Place to Work há quatro anos consecutivos — um reflexo do ambiente de respeito e alto desempenho que construímos juntos.',
+    // Sobre/empresa section
+    about_section_label: 'Sobre',
+    about_heading: 'Quem somos',
+    about_p1: 'A RoboterSys é a maior especializada independente em robôs KUKA do Brasil. Fundada em 2006 a partir de experiências técnicas em Berlim, nossa empresa acumula mais de 18 anos de expertise em manutenção corretiva e preventiva, peças de reposição, reparo de componentes e integração de células robotizadas.',
+    about_p2: 'Sediada em Joinville/SC, atendemos clientes em todo o território nacional, mantendo o maior estoque de peças KUKA do sul do Brasil e oferecendo suporte técnico de emergência disponível 24 horas por dia.',
+    about_cta: 'Conheça nossa história',
+    // Blog teaser
+    blog_section_label: 'Conteúdo',
+    blog_heading: 'Últimos conteúdos',
+    blog_cta: 'Ver todos os artigos',
+    // Blog placeholder posts
+    // PLACEHOLDER até a Fase 4 (blog)
+    blog_post1_title: 'Manutenção preventiva em robôs KUKA: guia completo',
+    blog_post1_excerpt: 'Entenda como a manutenção preventiva reduz paradas não planejadas e prolonga a vida útil dos seus robôs KUKA.',
+    blog_post2_title: 'Como escolher peças de reposição originais para KUKA',
+    blog_post2_excerpt: 'A escolha errada de componentes pode comprometer a segurança e o desempenho da sua célula. Saiba como identificar peças certificadas.',
+    blog_post3_title: 'GPTW 2025: o que faz da RoboterSys um excelente lugar para trabalhar',
+    blog_post3_excerpt: 'Pela quarta vez consecutiva, a RoboterSys é reconhecida como um dos melhores lugares para trabalhar no Brasil.',
+    blog_read_more: 'Saiba mais',
+  },
 } satisfies import('./types').Dict;
