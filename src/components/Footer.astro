@@ -38,7 +38,7 @@ const socialLinks = [
           aria-hidden="true"
         />
         <span class="text-sm font-medium text-white tracking-widest uppercase">
-          ROBOTER<span class="text-zinc-600">SYS</span>
+          ROBOTER<span class="text-zinc-600" aria-hidden="true">SYS</span>
         </span>
       </a>
       <p class="text-[11px] text-zinc-400 leading-relaxed max-w-xs">
@@ -74,7 +74,7 @@ const socialLinks = [
 
     <!-- nav links -->
     <div class="space-y-4">
-      <div class="text-[9px] font-mono text-zinc-500 uppercase tracking-widest mb-4">// Navegação</div>
+      <div class="text-[9px] font-mono text-zinc-400 uppercase tracking-widest mb-4">// Navegação</div>
       <nav aria-label="Links de rodapé">
         <ul class="space-y-2">
           {navItems.map(({ key, href }) => (
@@ -104,7 +104,7 @@ const socialLinks = [
     <!-- social + certifications -->
     <div class="space-y-6">
       <div>
-        <div class="text-[9px] font-mono text-zinc-500 uppercase tracking-widest mb-4">// Redes Sociais</div>
+        <div class="text-[9px] font-mono text-zinc-400 uppercase tracking-widest mb-4">// Redes Sociais</div>
         <div class="flex items-center gap-3">
           {socialLinks.map(({ label, href, icon }) => (
             <a
@@ -122,7 +122,7 @@ const socialLinks = [
 
       <!-- GPTW seal -->
       <div class="border border-zinc-800 bg-zinc-900/20 p-3 inline-flex flex-col gap-1">
-        <div class="text-[8px] font-mono text-zinc-600 uppercase tracking-widest">Certificação</div>
+        <div class="text-[8px] font-mono text-zinc-400 uppercase tracking-widest">Certificação</div>
         <div class="text-[10px] font-mono text-green-500 uppercase tracking-widest flex items-center gap-2">
           <Icon name="solar:shield-check-linear" width={12} aria-hidden="true" />
           GPTW — Great Place to Work
@@ -145,7 +145,7 @@ const socialLinks = [
     <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
       <span>© 2026 RoboterSys Serviços do Brasil Ltda</span>
     </div>
-    <div class="text-center text-[10px] text-zinc-500 max-w-md leading-relaxed">
+    <div class="text-center text-[10px] text-zinc-400 max-w-md leading-relaxed">
       Independente da KUKA Roboter do Brasil; a marca KUKA pertence à KUKA Roboter do Brasil.
     </div>
   </div>
