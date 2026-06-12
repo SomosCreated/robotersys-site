@@ -46,5 +46,6 @@ export async function sendLeadEmail(
     text: renderLeadText(input),
   });
 
+  if (error) console.error('[resend] send failed:', error);
   return { ok: !error, error };
 }

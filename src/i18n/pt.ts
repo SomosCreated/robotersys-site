@@ -3,6 +3,7 @@ export default {
     services: 'Serviços',
     parts: 'Peças de Reposição',
     systems: 'Sistemas Robóticos',
+    pushcorp: 'PushCorp',
     about: 'Sobre Nós',
     careers: 'Trabalhe Conosco',
     blog: 'Blog',

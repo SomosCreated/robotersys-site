@@ -36,6 +36,9 @@ export const POST: APIRoute = async ({ request }) => {
       ? (import.meta.env.CONTACT_TO_RH ?? '')
       : (import.meta.env.CONTACT_TO_COMMERCIAL ?? '');
 
+  if (!to) return json({ ok: true }, 200);
+
+  // TODO (Fase 5): IP rate-limit + Turnstile/BotID — tráfego pago
   const ploomes = await createPloomesLead(input);
   const email = await sendLeadEmail({ ...input, _ploomesFailed: !ploomes.ok }, { to });
 

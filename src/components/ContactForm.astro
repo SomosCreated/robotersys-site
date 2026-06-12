@@ -75,7 +75,7 @@ const messagePlaceholder = isCarreiras
     <form
       id={formId}
       method="POST"
-      action="/api/contact"
+      action="/api/contact/"
       novalidate
       class="space-y-6"
       aria-label={headingText}
@@ -284,7 +284,7 @@ const messagePlaceholder = isCarreiras
   </div>
 </section>
 
-<script define:vars={{ formId }}>
+<script is:inline define:vars={{ formId }}>
   // --- Timing: record page load timestamp ---
   const loadedAt = Date.now();
   const elapsedField = document.getElementById(`elapsed-${formId}`);
@@ -347,7 +347,7 @@ const messagePlaceholder = isCarreiras
 
       try {
         const fd = new FormData(form);
-        const res = await fetch('/api/contact', { method: 'POST', body: fd });
+        const res = await fetch('/api/contact/', { method: 'POST', body: fd });
         const data = await res.json().catch(() => ({}));
 
         if (res.ok && data.ok) {

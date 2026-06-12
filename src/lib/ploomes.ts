@@ -69,10 +69,12 @@ export async function createPloomesLead(
     });
     if (!res.ok) {
       const body = await res.text().catch(() => '');
+      console.error('[ploomes] lead failed:', `HTTP ${res.status}: ${body}`);
       return { ok: false, error: `HTTP ${res.status}: ${body}` };
     }
     return { ok: true };
   } catch (err) {
+    console.error('[ploomes] lead failed:', err);
     return { ok: false, error: err };
   }
 }

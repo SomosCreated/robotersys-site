@@ -39,6 +39,9 @@ describe('POST /api/contact', () => {
     // Default mocks return ok
     vi.mocked(sendLeadEmail).mockResolvedValue({ ok: true });
     vi.mocked(createPloomesLead).mockResolvedValue({ ok: true });
+    // Ensure recipient env vars are set so the !to guard doesn't short-circuit
+    vi.stubEnv('CONTACT_TO_COMMERCIAL', 'comercial@robotersys.com.br');
+    vi.stubEnv('CONTACT_TO_RH', 'rh@robotersys.com.br');
   });
 
   it('input válido → 200 {ok:true} e chama sendLeadEmail', async () => {

@@ -5,6 +5,7 @@ import SectionLabel from '@/components/SectionLabel.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
 import StatsBand from '@/components/StatsBand.astro';
 import Emergency24hCTA from '@/components/Emergency24hCTA.astro';
+import ContactForm from '@/components/ContactForm.astro';
 import ProseSection from '@/components/ProseSection.astro';
 import { Icon } from 'astro-icon/components';
 import { t } from '@/i18n';
@@ -372,6 +373,9 @@ const blogPosts = [
       </div>
     </div>
   </section>
+
+  <!-- ── Contato ── -->
+  <ContactForm variant="contato" locale={locale} />
 
   <!-- ── Emergência 24h ── -->
   <Emergency24hCTA />
