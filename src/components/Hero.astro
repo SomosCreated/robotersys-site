@@ -2,17 +2,18 @@
 /**
  * Hero — poster-first (no autoplay video) for best LCP performance.
  *
- * PLACEHOLDER NOTE: The background image at /robotersys/hero-poster.svg is a
- * lightweight SVG placeholder (dark scene + orange radial glow + grid). Replace it
- * with the real brand photography or video freeze-frame once visual assets are
- * available from the client.
+ * Hero background: real factory/robot photo from current site (robotersys.com),
+ * harvested in Phase 2.5. Gradient overlays ensure text readability in both
+ * light and dark themes.
  *
  * PLACEHOLDER NOTE: Stat values (+1.200, +8.000, 24/7) are placeholder numbers.
  * Confirm with the client before going live.
  */
 import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
 import type { Locale } from '@/i18n/types';
 import { t } from '@/i18n';
+import heroPosterImg from '@/assets/robotersys/hero-robot.webp';
 
 interface Props {
   locale?: Locale;
@@ -27,19 +28,17 @@ const { locale = 'pt' } = Astro.props;
 >
   <!-- ── Background layer: poster image (LCP) ── -->
   <div class="z-0 absolute inset-0 overflow-hidden">
-    <!--
-      PLACEHOLDER: hero-poster.svg is a dark SVG placeholder.
-      Replace with a real brand image (or video freeze-frame) once assets are available.
-    -->
-    <img
+    <!-- Real hero photo from current site (robotersys.com) — Phase 2.5 -->
+    <Image
       id="hero-poster"
-      src="/robotersys/hero-poster.svg"
+      src={heroPosterImg}
       alt=""
       aria-hidden="true"
-      width="1600"
-      height="900"
+      width={1600}
+      height={900}
       class="pointer-events-none w-full h-full object-cover absolute inset-0 scale-105 transition-transform duration-75"
       fetchpriority="high"
+      loading="eager"
       decoding="async"
     />
 

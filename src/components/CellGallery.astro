@@ -2,11 +2,14 @@
 /**
  * CellGallery — grid of robotic cell cards for the Sistemas Robóticos page.
  *
- * Each cell card: image placeholder + title + description + "Saiba mais" CTA.
- * Images are placeholders (// PLACEHOLDER — real photos to be provided by client).
+ * Each cell card: photo + title + description + "Saiba mais" CTA.
+ * Real photos from the current site (robotersys.com) are loaded via astro:assets.
  *
- * Props: cells — array of { title, desc, href, fig }
+ * Props: cells — array of { title, desc, href, fig, imgSrc?, imgAlt? }
  */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
 interface CellItem {
   fig: string;
   title: string;
@@ -15,6 +18,10 @@ interface CellItem {
   href?: string;
   /** Label for the "Saiba mais" button */
   ctaLabel?: string;
+  /** Real photo for this cell (imported via astro:assets). If absent, falls back to placeholder. */
+  imgSrc?: ImageMetadata;
+  /** Alt text for the image */
+  imgAlt?: string;
 }
 
 interface Props {
@@ -35,23 +42,32 @@ const { cells, ctaLabel = 'Saiba mais' } = Astro.props;
       class="border-b border-r border-line flex flex-col group hover:bg-elevated/30 transition-colors"
       role="listitem"
     >
-      <!--
-        PLACEHOLDER: Image area — replace with <Image> from astro:assets once
-        real photographs are provided by the client.
-      -->
+      <!-- Image area -->
       <div
-        class="aspect-video bg-elevated/60 border-b border-line flex flex-col items-center justify-center gap-2 relative overflow-hidden"
-        aria-hidden="true"
+        class="aspect-video bg-elevated/60 border-b border-line relative overflow-hidden"
       >
-        <!-- Blueprint grid on placeholder -->
-        <div class="absolute inset-0 opacity-[0.04] bg-grid pointer-events-none"></div>
-        <!-- Placeholder label -->
-        <span class="text-[9px] font-mono text-muted uppercase tracking-widest z-10">
-          // PLACEHOLDER
-        </span>
-        <span class="text-[9px] font-mono text-muted uppercase tracking-widest z-10">
-          {cell.fig}
-        </span>
+        {cell.imgSrc ? (
+          <Image
+            src={cell.imgSrc}
+            alt={cell.imgAlt ?? cell.title}
+            width={480}
+            height={270}
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+            decoding="async"
+          />
+        ) : (
+          /* // PLACEHOLDER (não encontrado no site atual) */
+          <div class="w-full h-full flex flex-col items-center justify-center gap-2" aria-hidden="true">
+            <div class="absolute inset-0 opacity-[0.04] bg-grid pointer-events-none"></div>
+            <span class="text-[9px] font-mono text-muted uppercase tracking-widest z-10">
+              // PLACEHOLDER
+            </span>
+            <span class="text-[9px] font-mono text-muted uppercase tracking-widest z-10">
+              {cell.fig}
+            </span>
+          </div>
+        )}
       </div>
 
       <!-- Content -->

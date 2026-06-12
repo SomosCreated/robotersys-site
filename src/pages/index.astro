@@ -61,19 +61,19 @@ const stats = [
   { label: t(locale, 'stats.lines_label'),          value: t(locale, 'stats.lines_value') },
 ];
 
-// PLACEHOLDER NOTE: client logos — replace with real logo images before going live.
-// Each entry represents a client logo slot.
-const clientSlots = [
-  { id: 'C01' },
-  { id: 'C02' },
-  { id: 'C03' },
-  { id: 'C04' },
-  { id: 'C05' },
-  { id: 'C06' },
-  { id: 'C07' },
-  { id: 'C08' },
-  { id: 'C09' },
-  { id: 'C10' },
+// Real client logos from the current site (robotersys.com) — harvested in Phase 2.5
+// Served from public/robotersys/logos/ — plain <img> with explicit dimensions for performance
+const clientLogos = [
+  { file: 'Volkswagen.webp',   name: 'Volkswagen' },
+  { file: 'Mercedes.webp',     name: 'Mercedes-Benz' },
+  { file: 'Renault.webp',      name: 'Renault' },
+  { file: 'Volvo.webp',        name: 'Volvo' },
+  { file: 'Ambev.webp',        name: 'Ambev' },
+  { file: 'Coca-Cola.webp',    name: 'Coca-Cola' },
+  { file: 'Heineken.webp',     name: 'Heineken' },
+  { file: 'Danone.webp',       name: 'Danone' },
+  { file: 'Nestle.webp',       name: 'Nestlé' },
+  { file: 'Pirelli.webp',      name: 'Pirelli' },
 ];
 
 // PLACEHOLDER NOTE: blog posts — replace with real CMS data in Phase 4.
@@ -162,28 +162,26 @@ const blogPosts = [
         {t(locale, 'home.clients_body')}
       </p>
 
-      <!-- Logo grid: 2 cols mobile → 5 cols desktop -->
+      <!-- Logo grid: 2 cols mobile → 5 cols desktop — real logos from current site -->
       <div
         class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-px border border-line bg-line"
         role="list"
         aria-label="Logos de clientes"
       >
-        {clientSlots.map((slot) => (
+        {clientLogos.map((logo) => (
           <div
             class="bg-bg border-0 flex items-center justify-center p-6 min-h-[100px] sys-reveal"
             role="listitem"
-            aria-label={`Slot de logo de cliente ${slot.id}`}
           >
-            {/* // LOGO PLACEHOLDER — substituir por <img src="..." alt="Nome do cliente" /> */}
-            <div class="flex flex-col items-center gap-1.5">
-              <div
-                class="w-16 h-8 border border-dashed border-line bg-elevated/30"
-                aria-hidden="true"
-              ></div>
-              <span class="text-[8px] font-mono text-muted uppercase tracking-widest">
-                {slot.id}
-              </span>
-            </div>
+            <img
+              src={`/robotersys/logos/${logo.file}`}
+              alt={logo.name}
+              width="140"
+              height="56"
+              loading="lazy"
+              decoding="async"
+              class="max-h-12 w-auto object-contain filter dark:invert dark:brightness-90 transition-all hover:opacity-80"
+            />
           </div>
         ))}
       </div>
@@ -204,24 +202,17 @@ const blogPosts = [
   >
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-16">
 
-      <!-- GPTW seal placeholder -->
+      <!-- GPTW seal — real image from current site (robotersys.com) -->
       <div class="flex-shrink-0">
-        {/* // LOGO PLACEHOLDER — substituir pelo selo GPTW oficial */}
-        <div
-          class="w-24 h-24 border border-dashed border-green-800/50 bg-green-950/20 flex flex-col items-center justify-center gap-1"
-          aria-label="Selo GPTW — Great Place to Work (placeholder)"
-        >
-          <Icon
-            name="solar:shield-check-linear"
-            class="text-ok"
-            width={28}
-            height={28}
-            aria-hidden="true"
-          />
-          <span class="text-[7px] font-mono text-ok/70 uppercase tracking-widest text-center leading-tight">
-            GPTW<br />SEAL
-          </span>
-        </div>
+        <img
+          src="/robotersys/img/GPTW-Selos.webp"
+          alt="Selo Great Place to Work — RoboterSys certificada GPTW"
+          width="120"
+          height="120"
+          loading="lazy"
+          decoding="async"
+          class="w-24 h-auto object-contain"
+        />
       </div>
 
       <!-- GPTW copy -->

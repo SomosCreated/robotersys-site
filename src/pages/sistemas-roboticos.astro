@@ -20,6 +20,12 @@ import CellGallery from '@/components/CellGallery.astro';
 import ContactForm from '@/components/ContactForm.astro';
 import { t } from '@/i18n';
 
+// Real cell photos from the current site (robotersys.com) — harvested in Phase 2.5
+import cell01Img from '@/assets/robotersys/cell-01-paletizacao.webp';
+import cell02Img from '@/assets/robotersys/cell-02-handling.webp';
+import cell03Img from '@/assets/robotersys/cell-03-paletizacao2.webp';
+import cell04Img from '@/assets/robotersys/cell-04-rebarbacao.webp';
+
 const locale = 'pt' as const;
 
 const crumbs = [
@@ -62,6 +68,8 @@ const cells = [
     desc: t(locale, 'sistemas.cell1_desc'),
     href: '/contato/',
     ctaLabel: t(locale, 'sistemas.gallery_saiba_mais'),
+    imgSrc: cell01Img,
+    imgAlt: 'Célula robotizada de paletização KUKA — RoboterSys',
   },
   {
     fig: 'CEL. 02',
@@ -69,6 +77,8 @@ const cells = [
     desc: t(locale, 'sistemas.cell2_desc'),
     href: '/contato/',
     ctaLabel: t(locale, 'sistemas.gallery_saiba_mais'),
+    imgSrc: cell02Img,
+    imgAlt: 'Célula robotizada de handling KUKA — RoboterSys',
   },
   {
     fig: 'CEL. 03',
@@ -76,6 +86,8 @@ const cells = [
     desc: t(locale, 'sistemas.cell3_desc'),
     href: '/contato/',
     ctaLabel: t(locale, 'sistemas.gallery_saiba_mais'),
+    imgSrc: cell03Img,
+    imgAlt: 'Segunda célula robotizada de paletização KUKA — RoboterSys',
   },
   {
     fig: 'CEL. 04',
@@ -83,11 +95,21 @@ const cells = [
     desc: t(locale, 'sistemas.cell4_desc'),
     href: '/contato/',
     ctaLabel: t(locale, 'sistemas.gallery_saiba_mais'),
+    imgSrc: cell04Img,
+    imgAlt: 'Célula robotizada de rebarbação e acabamento KUKA — RoboterSys',
   },
 ];
 
-// PLACEHOLDER: 6 client logo slots — replace with real client logos
-const clientSlots = Array.from({ length: 6 }, (_, i) => i + 1);
+// Real client logos from the current site (robotersys.com) — harvested in Phase 2.5
+// Logos are served from public/robotersys/logos/ (plain <img>, explicit dimensions)
+const clientLogos = [
+  { file: 'Volkswagen.webp', name: 'Volkswagen' },
+  { file: 'Mercedes.webp',   name: 'Mercedes-Benz' },
+  { file: 'Renault.webp',    name: 'Renault' },
+  { file: 'Volvo.webp',      name: 'Volvo' },
+  { file: 'Ambev.webp',      name: 'Ambev' },
+  { file: 'Coca-Cola.webp',  name: 'Coca-Cola' },
+];
 ---
 
 <BaseLayout
@@ -191,22 +213,26 @@ const clientSlots = Array.from({ length: 6 }, (_, i) => i + 1);
         {t(locale, 'sistemas.clients_body')}
       </p>
 
-      <!-- Logo grid — PLACEHOLDER -->
+      <!-- Logo grid — real logos from current site (robotersys.com) -->
       <div
         class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-line sys-reveal"
         role="list"
         aria-label="Logos de clientes"
       >
-        {clientSlots.map((n) => (
+        {clientLogos.map((logo) => (
           <div
-            class="bg-surface h-20 flex items-center justify-center"
+            class="bg-surface h-20 flex items-center justify-center px-4"
             role="listitem"
-            aria-label={`Cliente ${n} — logo a confirmar com o cliente`}
           >
-            <!-- PLACEHOLDER — logo do cliente -->
-            <span class="text-[8px] font-mono text-muted uppercase tracking-widest">
-              // LOGO {n}
-            </span>
+            <img
+              src={`/robotersys/logos/${logo.file}`}
+              alt={logo.name}
+              width="120"
+              height="48"
+              loading="lazy"
+              decoding="async"
+              class="max-h-10 w-auto object-contain filter dark:invert dark:brightness-90 transition-all"
+            />
           </div>
         ))}
       </div>

@@ -151,18 +151,16 @@ const stats = [
 
       <div class="flex flex-col md:flex-row items-start md:items-center gap-8">
 
-        <!-- GPTW seal placeholder -->
-        <!-- REVISAR com cliente — substituir pelo arquivo SVG/PNG oficial do selo GPTW -->
-        <div
-          class="flex-shrink-0 h-24 w-24 border border-line bg-elevated/40 flex items-center justify-center"
-          aria-label="Selo Great Place to Work"
-          role="img"
-        >
-          <div class="text-center">
-            <div class="text-[9px] font-mono text-accent uppercase tracking-widest leading-tight">GPTW</div>
-            <div class="text-[8px] font-mono text-muted uppercase tracking-widest mt-1">Certified</div>
-          </div>
-        </div>
+        <!-- GPTW seal — real image from current site (robotersys.com) — Phase 2.5 -->
+        <img
+          src="/robotersys/img/GPTW-Selos.webp"
+          alt="Selo Great Place to Work — RoboterSys certificada GPTW"
+          width="120"
+          height="120"
+          loading="lazy"
+          decoding="async"
+          class="flex-shrink-0 w-24 h-auto object-contain"
+        />
 
         <div class="flex-1">
           <h2
