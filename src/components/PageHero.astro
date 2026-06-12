@@ -1,0 +1,61 @@
+---
+/**
+ * PageHero — inner-page header: kicker (SectionLabel) + title + optional breadcrumbs.
+ * Smaller than the main Hero; no background image. Consistent HUD styling.
+ */
+import SectionLabel from '@/components/SectionLabel.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+
+interface CrumbItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  /** Small mono label above the title (e.g. 'Contato') */
+  kicker: string;
+  /** H1 text */
+  title: string;
+  /** Breadcrumb trail (the page itself is the last item; parent items link back). */
+  crumbs?: CrumbItem[];
+}
+
+const { kicker, title, crumbs } = Astro.props;
+---
+
+<section
+  class="border-b border-zinc-800 bg-[#050505] relative overflow-hidden"
+  aria-labelledby="page-hero-title"
+>
+  <!-- Blueprint grid overlay -->
+  <div
+    class="pointer-events-none absolute inset-0 opacity-[0.03] bg-grid"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Left orange accent bar -->
+  <div
+    class="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-accent via-accent/50 to-transparent"
+    aria-hidden="true"
+  ></div>
+
+  <div class="container mx-auto px-6 lg:px-12 py-16 md:py-20 relative z-10">
+    <!-- Breadcrumbs (above kicker) -->
+    {crumbs && crumbs.length > 0 && (
+      <div class="mb-6">
+        <Breadcrumbs items={crumbs} />
+      </div>
+    )}
+
+    <!-- Kicker label -->
+    <SectionLabel text={kicker} />
+
+    <!-- Page title -->
+    <h1
+      id="page-hero-title"
+      class="text-4xl md:text-6xl lg:text-7xl font-medium text-white uppercase tracking-tight leading-[0.9] mt-2 sys-reveal sys-rise"
+    >
+      {title}
+    </h1>
+  </div>
+</section>
