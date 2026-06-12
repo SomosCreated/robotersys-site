@@ -1,0 +1,9 @@
+- **Tailwind CSS v3.4.17 (Play CDN)** — utility-first CSS framework that powers all layout, color, spacing, and responsive classes; loaded via the local `assets/176e894661aa9cdc_3.4.17` runtime
+- **Tailwind custom plugin** — inline plugin extending `rotate-x/y/z`, `perspective-*`, and `transform-style-*` utilities for the 3D card flips and hero parallax
+- **Iconify Icon (web component)** — `<iconify-icon>` runtime served from `assets/851bed7af266f96a_iconify-icon.min.js`, used for every icon in the page
+- **Solar icon set (Iconify)** — icon family used by every `<iconify-icon>` (drone, gps, battery, radar, shield, etc.)
+- **Google Fonts (Inter + JetBrains Mono)** — typography served via the local CSS at `assets/df36dc074dcf1311_css2.css`, mapping Inter to body text and JetBrains Mono to `.font-mono`
+- **HTML5 video** — autoplay/loop/muted background clips in the hero and missions sections (`.mp4` and `.webm` sources)
+- **Vanilla JavaScript** — hand-written interactions (hero spotlight + parallax telemetry cards, specs flashlight border, 3D flip cards with holographic sheen, decode-on-load glitch text, mission tab switcher, IntersectionObserver reveal animations, configurator recommendation logic, neural grid generator)
+- **CSS keyframe animations** — `shimmer`, `scan-vertical`, `border-glow`, `spinSlow` driving the hero scan line, specs shimmer beam, vision crosshair scanner, and neon hover glows
+- **CSS radial-gradient masks** — spotlight border effect on `.spotlight-card` using `-webkit-mask-composite: xor`

@@ -1,0 +1,117 @@
+@import url("../df36dc074dcf1311_css2.css");
+
+body { font-family: 'Inter', sans-serif; }
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+
+/* Hard edges, no smoothing on scroll */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Grid overlay pattern */
+.bg-grid {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, #27272a 1px, transparent 1px),
+                    linear-gradient(to bottom, #27272a 1px, transparent 1px);
+}
+
+/* Smooth/slow animation helpers */
+@keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.animate-spin-slow { animation: spinSlow 6s linear infinite; }
+
+/* 3D Card Styles */
+.preserve-3d { transform-style: preserve-3d; }
+.backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.rotate-y-180 { transform: rotateY(180deg); }
+.perspective-1000 { perspective: 1000px; }
+
+/* Flip Animation Class */
+.is-flipped { transform: rotateY(180deg); }
+
+/* Spotlight Border Effect */
+.spotlight-card {
+  position: relative;
+  background: rgba(20, 20, 20, 0.4);
+  overflow: hidden;
+}
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.6),
+    transparent 40%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.spotlight-grid:hover .spotlight-card::before { opacity: 1; }
+
+/* Inner Glow on Hover */
+.inner-sheen {
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.06),
+    transparent 40%
+  );
+  z-index: 2;
+}
+
+/* Neon Glow Animation */
+@keyframes border-glow {
+  0%, 100% { border-color: rgba(39, 39, 42, 1); box-shadow: 0 0 0 rgba(234, 88, 12, 0); }
+  50% { border-color: rgba(234, 88, 12, 0.5); box-shadow: 0 0 25px rgba(234, 88, 12, 0.2); }
+}
+.hover-glow:hover { animation: border-glow 2s infinite; }
+
+/* Reveal Animations */
+@media (prefers-reduced-motion: no-preference) {
+  .sys-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(4px);
+    transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.8s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 1.8s ease-out;
+    will-change: opacity, transform;
+  }
+  .sys-rise { transform: translateY(34px); }
+  .sys-slide-l { transform: translateX(-34px); }
+  .sys-active { opacity: 1; transform: translate(0) scale(1); filter: blur(0); }
+  .sys-delay-100 { transition-delay: 160ms; }
+  .sys-delay-200 { transition-delay: 320ms; }
+  .sys-delay-300 { transition-delay: 480ms; }
+}
+
+/* Hero Interaction Styles */
+#hero { perspective: 2000px; }
+.telemetry-card { transition: transform 0.1s ease-out; box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.5); }
+.glitch-text span { position: relative; display: inline-block; }
+
+/* Neural Grid Cell Animation */
+.neural-cell { transition: background-color 1s ease-out, transform 0.5s ease-out; }
+.neural-cell.active { background-color: rgba(234, 88, 12, 0.8); transition: background-color 0s; transform: scale(0.95); }
+.neural-cell:hover { background-color: rgba(234, 88, 12, 1); transition: background-color 0s; }
+
+/* Specs Spotlight Shimmer */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Vision Vertical Scan Line */
+@keyframes scan-vertical {
+  0% { top: 0%; opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+.animate-scan { animation: scan-vertical 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite; }

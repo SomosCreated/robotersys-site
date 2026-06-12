@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html class="bg-[#050505] scroll-smooth scroll-pt-24" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AERO_SYSTEMS // Infraestrutura Aérea Autônoma</title>
+
+<!-- fonts: Inter + JetBrains Mono via Google Fonts CSS -->
+<link rel="stylesheet" href="assets/df36dc074dcf1311_css2.css"/>
+
+<!-- css: pre-generated Tailwind utility set captured from the original build -->
+<link rel="stylesheet" href="assets/css/tailwind-generated.css"/>
+
+<!-- css: design system custom styles, animations, hero & cards effects -->
+<link rel="stylesheet" href="assets/css/components.css"/>
+
+<!-- head js: Tailwind Play CDN runtime (must stay in head to JIT classes before paint) -->
+<script src="assets/176e894661aa9cdc_3.4.17"></script>
+
+<!-- head js: Iconify Icon web component runtime, used by every <iconify-icon> in the page -->
+<script src="assets/851bed7af266f96a_iconify-icon.min.js"></script>
+
+<!-- head js: Tailwind config extending 3D transform / perspective utilities (must run before runtime processes DOM) -->
+<script src="assets/js/tailwind-config.js"></script>
+</head>
+<body class="text-zinc-400 min-h-screen flex flex-col selection:bg-orange-600 selection:text-white">
+
+<!-- background-grid -->
+<div class="fixed inset-0 pointer-events-none z-0 opacity-[0.03] bg-grid"></div>
+
+<!-- header -->
+<header class="relative z-50 h-16 border-b border-zinc-800 bg-[#050505]/95 backdrop-blur-sm flex items-center justify-between sticky top-0">
+<div class="flex items-center h-full pl-6 pr-8 border-r border-zinc-800 bg-[#050505]">
+<a class="flex items-center group gap-3" href="#">
+<iconify-icon class="text-white text-2xl group-hover:text-orange-600 transition-colors" icon="solar:drone-charge-linear"></iconify-icon>
+<span class="text-sm font-medium text-white tracking-widest uppercase">AERO<span class="text-zinc-600">_SYS</span></span>
+</a>
+<button aria-label="Alternar Navegação Tablet" class="hidden md:flex lg:hidden ml-6 w-10 h-10 border border-zinc-800 bg-zinc-900/30 items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors focus:outline-none focus:ring-1 focus:ring-orange-600" id="tablet-menu-btn">
+<iconify-icon icon="solar:hamburger-menu-linear" width="20"></iconify-icon>
+</button>
+<div class="hidden lg:flex items-center ml-6 px-3 py-1 border border-zinc-800 bg-zinc-900/30 backdrop-blur-sm rounded-sm gap-2">
+<span class="text-[10px] font-mono text-zinc-600 leading-none">[</span>
+<span class="relative flex h-1.5 w-1.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
+</span>
+<span class="text-[9px] font-mono text-zinc-500 uppercase tracking-widest">ESPAÇO AÉREO: LIVRE</span>
+<span class="text-[10px] font-mono text-zinc-600 leading-none">]</span>
+</div>
+</div>
+<nav class="hidden lg:flex flex-1 h-full items-center justify-center">
+<div class="flex h-full items-center border-x border-zinc-800/50">
+<a class="flex items-center px-6 h-full text-[10px] font-mono uppercase tracking-widest text-zinc-400 hover:text-white hover:bg-zinc-900/50 transition-colors border-r border-zinc-800/50 relative group" href="#specs">Especificações<div class="absolute bottom-0 left-0 w-full h-[2px] bg-orange-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div></a>
+<a class="flex items-center px-6 h-full text-[10px] font-mono uppercase tracking-widest text-zinc-400 hover:text-white hover:bg-zinc-900/50 transition-colors border-r border-zinc-800/50 relative group" href="#selector">Configurador<div class="absolute bottom-0 left-0 w-full h-[2px] bg-orange-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div></a>
+<a class="flex items-center px-6 h-full text-[10px] font-mono uppercase tracking-widest text-zinc-400 hover:text-white hover:bg-zinc-900/50 transition-colors border-r border-zinc-800/50 relative group" href="#missions">Missões<div class="absolute bottom-0 left-0 w-full h-[2px] bg-orange-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div></a>
+<a class="flex items-center px-6 h-full text-[10px] font-mono uppercase tracking-widest text-zinc-400 hover:text-white hover:bg-zinc-900/50 transition-colors border-r border-zinc-800/50 relative group" href="#architecture">Telemetria<div class="absolute bottom-0 left-0 w-full h-[2px] bg-orange-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div></a>
+</div>
+</nav>
+<div class="hidden md:flex items-center h-full border-l border-zinc-800 bg-[#050505]">
+<a class="flex items-center px-8 h-full text-[10px] font-mono uppercase tracking-widest text-zinc-400 hover:text-white transition-colors border-r border-zinc-800 hover:bg-zinc-900/30" href="#">Login do Piloto</a>
+<button class="h-full px-8 bg-orange-600 text-white text-[10px] font-mono uppercase tracking-widest hover:bg-orange-500 transition-all flex items-center gap-2 group shadow-[inset_0_0_20px_rgba(0,0,0,0.2)] font-medium">Solicitar Unidade<iconify-icon class="group-hover:translate-x-1 transition-transform" icon="solar:arrow-right-linear" width="14"></iconify-icon></button>
+</div>
+<button class="md:hidden p-0 w-16 h-full text-zinc-400 hover:text-white border-l border-zinc-800 bg-[#050505] flex items-center justify-center transition-colors hover:bg-zinc-900" id="mobile-menu-btn">
+<iconify-icon icon="solar:hamburger-menu-linear" width="24"></iconify-icon>
+</button>
+</header>
+
+<!-- mobile-menu -->
+<div class="fixed inset-x-0 top-16 bottom-0 z-40 bg-[#050505] transform translate-x-full transition-transform duration-300 md:hidden flex flex-col border-t border-zinc-800 overflow-y-auto" id="mobile-menu">
+<div class="flex flex-col p-6 space-y-4">
+<button class="w-full py-4 bg-orange-600 text-white text-xs font-mono uppercase tracking-widest hover:bg-orange-500 flex items-center justify-center gap-2 transition-all shadow-lg shadow-orange-900/20 font-medium">Solicitar Unidade<iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon></button>
+<div class="flex flex-col border border-zinc-800 bg-zinc-900/20">
+<a class="flex items-center justify-between p-4 border-b border-zinc-800 text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors group" href="#specs">Especificações<iconify-icon class="opacity-0 group-hover:opacity-100 transition-opacity text-orange-600" icon="solar:arrow-right-linear" width="14"></iconify-icon></a>
+<a class="flex items-center justify-between p-4 border-b border-zinc-800 text-xs font-mono uppercase tracking-widest text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors group" href="#selector">Configuração<iconify-icon class="opacity-0 group-hover:opacity-100 transition-opacity text-orange-600" icon="solar:arrow-right-linear" width="14"></iconify-icon></a>
+</div>
+</div>
+</div>
+
+<!-- main -->
+<main class="relative z-10 flex-1 flex flex-col md:flex-row">
+
+<!-- sidebar -->
+<aside class="hidden md:flex flex-col w-16 border-r border-zinc-800 bg-[#050505] shrink-0 relative z-40">
+<div class="sticky top-16 h-[calc(100vh-4rem)] flex flex-col items-center py-12 w-full">
+<div class="absolute top-0 bottom-0 left-1/2 w-px bg-zinc-900 -translate-x-1/2 z-0"></div>
+<nav class="flex flex-col gap-8 relative z-10 w-full items-center">
+<a class="nav-link group relative flex items-center justify-center w-6 h-6 bg-[#050505] border text-[9px] font-mono hover:text-white hover:border-orange-600 transition-all duration-300" href="#hero">01</a>
+<a class="nav-link group relative flex items-center justify-center w-6 h-6 bg-[#050505] border text-[9px] font-mono hover:text-white hover:border-orange-600 transition-all duration-300" href="#specs">02</a>
+<a class="nav-link group relative flex items-center justify-center w-6 h-6 bg-[#050505] border text-[9px] font-mono hover:text-white hover:border-orange-600 transition-all duration-300 text-zinc-600 border-zinc-800" href="#selector">03</a>
+<a class="nav-link group relative flex items-center justify-center w-6 h-6 bg-[#050505] border text-[9px] font-mono hover:text-white hover:border-orange-600 transition-all duration-300 text-zinc-600 border-zinc-800" href="#vision">04</a>
+<a class="nav-link group relative flex items-center justify-center w-6 h-6 bg-[#050505] border text-[9px] font-mono hover:text-white hover:border-orange-600 transition-all duration-300 text-zinc-600 border-zinc-800" href="#neural">05</a>
+<a class="nav-link group relative flex items-center justify-center w-6 h-6 bg-[#050505] border text-[9px] font-mono hover:text-white hover:border-orange-600 transition-all duration-300 text-zinc-600 border-zinc-800" href="#missions">06</a>
+</nav>
+<div class="mt-auto mb-12 flex flex-col items-center gap-4">
+<div class="w-px h-12 bg-gradient-to-b from-zinc-800 to-transparent"></div>
+<div class="text-[8px] font-mono text-zinc-700 -rotate-90 whitespace-nowrap tracking-widest uppercase">Flight_Sys_v4</div>
+</div>
+</div>
+</aside>
+
+<div class="flex-1 flex flex-col min-w-0 z-0 relative gap-x-12 gap-y-12">
+
+<!-- hero -->
+<div class="min-h-[750px] flex overflow-hidden bg-[#050505] w-full border-zinc-800 border-b relative gap-x-12 gap-y-12 items-center perspective-1000" id="hero">
+<div class="z-0 absolute top-0 right-0 bottom-0 left-0 gap-x-12 gap-y-12 overflow-hidden">
+<video autoplay class="pointer-events-none opacity-100 mix-blend-screen w-full h-full object-cover absolute top-0 right-0 bottom-0 left-0 transform scale-105 transition-transform duration-75" id="hero-bg-video" loop muted playsinline>
+<source src="assets/4afce2e623e7b170_fdaa1941-2093-48eb-836a-913613.mp4" type="video/mp4"/>
+</video>
+<div class="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/60 to-[#050505]/40 z-10 pointer-events-none"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/20 to-[#050505] z-10 pointer-events-none"></div>
+<div class="absolute inset-0 z-10 opacity-0 transition-opacity duration-300 mix-blend-screen pointer-events-none" id="hero-spotlight" style="background: radial-gradient(1000px at 336px 633px, rgba(234, 88, 12, 0.25), transparent 60%);"></div>
+<div class="absolute inset-0 z-10 opacity-0 transition-opacity duration-300 mix-blend-overlay pointer-events-none" id="hero-spotlight-core" style="background: radial-gradient(400px at 336px 633px, rgba(255, 255, 255, 0.08), transparent 60%);"></div>
+</div>
+<div class="container lg:px-12 grid grid-cols-1 lg:grid-cols-2 md:pt-32 md:pb-44 z-20 h-full mr-auto ml-auto pt-24 pr-6 pb-32 pl-6 relative gap-x-12 gap-y-12 items-center">
+<div class="flex flex-col justify-center max-w-2xl relative z-30">
+<div class="flex items-center gap-3 mb-8 sys-reveal sys-rise sys-active">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+</span>
+<span class="text-[10px] uppercase text-zinc-400 tracking-widest font-mono group cursor-crosshair hover:text-orange-600 transition-colors">
+<span id="hero-status-text">LINK: ESTABELECIDO</span> <span class="text-zinc-600 mx-2">//</span> PRONTO PARA DECOLAR
+</span>
+</div>
+<h1 class="text-5xl md:text-7xl lg:text-8xl font-medium text-white uppercase tracking-tight leading-[0.9] mb-8 sys-reveal sys-rise sys-delay-100 sys-active cursor-default" id="hero-title">
+<span class="block hover:text-zinc-200 transition-colors duration-300">Autonomia</span>
+<span class="text-zinc-600 block glitch-text" data-text="Aerea">Aerea</span>
+</h1>
+<p class="text-base md:text-lg text-zinc-400 font-mono leading-relaxed mb-10 max-w-md border-l-2 border-orange-600 pl-4 sys-reveal sys-rise sys-delay-200 sys-active">
+Frotas de drones autônomos de nova geração para vigilância industrial, logística e mapeamento. Engenharia de precisão encontra inteligência de enxame.
+</p>
+<div class="flex flex-col sm:flex-row gap-4 mb-8 sys-reveal sys-rise sys-delay-400 sys-active">
+<a class="group bg-orange-600 hover:bg-orange-500 text-white text-xs font-mono uppercase tracking-widest px-8 py-4 transition-all flex items-center justify-center gap-3 font-medium shadow-[0_0_20px_rgba(234,88,12,0.3)] hover:shadow-[0_0_40px_rgba(234,88,12,0.6)] relative overflow-hidden" href="#selector">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+Configurar
+<iconify-icon class="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" icon="solar:plain-2-linear" width="16"></iconify-icon>
+</a>
+<button class="group bg-transparent border border-zinc-700 hover:border-white text-zinc-400 hover:text-white text-xs font-mono uppercase tracking-widest px-8 py-4 transition-all flex items-center justify-center gap-3 font-medium backdrop-blur-sm">
+Ver Especificações Técnicas
+<iconify-icon icon="solar:file-check-linear" width="16"></iconify-icon>
+</button>
+</div>
+</div>
+<div class="hidden lg:flex flex-col items-end justify-center relative h-full select-none" id="telemetry-container">
+<div class="relative w-full max-w-sm perspective-1000 mt-12 mr-8">
+<div class="telemetry-card absolute -top-32 right-0 w-64 bg-[#050505]/90 backdrop-blur-sm border border-zinc-800 p-5 z-10 sys-reveal sys-slide-l sys-delay-300 border-l-2 border-l-orange-600 sys-active" data-depth="0.1">
+<div class="flex justify-between items-center mb-3 border-b border-zinc-800 pb-2">
+<span class="text-[9px] font-mono text-zinc-500 uppercase tracking-widest">Unidade_Ativa_04</span>
+<iconify-icon class="text-orange-600 animate-pulse" icon="solar:gps-linear"></iconify-icon>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-[10px] font-mono text-zinc-400"><span>LAT: <span class="telemetry-lat text-zinc-300">34.0522 N</span></span><span class="text-green-500">TRAVADO</span></div>
+<div class="flex justify-between text-[10px] font-mono text-zinc-400"><span>LNG: <span class="telemetry-lng text-zinc-300">118.2437 W</span></span><span class="text-green-500">TRAVADO</span></div>
+</div>
+</div>
+<div class="telemetry-card relative w-80 bg-[#080808]/95 backdrop-blur-sm border border-zinc-800 p-6 z-20 shadow-2xl sys-reveal sys-scale sys-delay-200 group hover:border-orange-600/50 transition-colors pointer-events-auto sys-active hover:shadow-[0_0_30px_rgba(234,88,12,0.15)]" data-depth="0.2">
+<div class="absolute -left-px top-6 bottom-6 w-0.5 bg-orange-600"></div>
+<div class="flex justify-between items-start mb-6">
+<div>
+<div class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest mb-1">Célula_Bateria_A</div>
+<div class="text-3xl font-medium text-white tracking-tight">94%</div>
+</div>
+<div class="h-8 w-8 rounded-sm bg-orange-600/10 border border-orange-600/20 flex items-center justify-center">
+<iconify-icon class="text-orange-600 text-lg" icon="solar:battery-charge-minimalistic-linear"></iconify-icon>
+</div>
+</div>
+<div class="space-y-3">
+<div>
+<div class="flex justify-between text-[9px] font-mono text-zinc-600 uppercase mb-1">Alcance Restante</div>
+<div class="w-full bg-zinc-900 h-1"><div class="bg-orange-600 h-full w-[94%] relative"><div class="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-2 bg-white animate-pulse"></div></div></div>
+</div>
+</div>
+</div>
+<div class="telemetry-card absolute -bottom-24 right-8 w-64 bg-[#050505]/90 backdrop-blur-sm border border-zinc-800 p-4 z-10 sys-reveal sys-slide-l sys-delay-400 sys-active" data-depth="0.15">
+<div class="flex justify-between items-center mb-3">
+<span class="text-[9px] font-mono text-zinc-500 uppercase tracking-widest">Força_Sinal</span>
+<span class="text-[9px] font-mono text-orange-600">-42dBm</span>
+</div>
+<div class="flex items-center gap-1 h-4 telemetry-signal-bars">
+<div class="w-1 h-1 bg-green-500"></div><div class="w-1 h-2 bg-green-500"></div><div class="w-1 h-3 bg-green-500"></div><div class="w-1 h-4 bg-green-500"></div><div class="w-1 h-4 bg-zinc-800 border border-zinc-700"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- specs -->
+<section class="flex flex-col bg-[#050505] border-b border-zinc-800 relative group/section" id="specs">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(234,88,12,0.05),transparent_70%)] pointer-events-none"></div>
+<div class="flex flex-col md:px-12 md:flex-row md:items-end md:pt-36 md:pb-28 overflow-hidden border-zinc-800 border-b pt-36 pr-8 pb-28 pl-8 relative justify-between z-10">
+<div class="bg-center opacity-40 mix-blend-screen bg-[url('https://www-cdn.djiits.com/dps/60cbc17ddfe6f8857365dc1b5d2677da.jpg')] bg-cover absolute top-0 right-0 bottom-0 left-0 animate-[pulse_8s_ease-in-out_infinite]"></div>
+<div class="opacity-80 mix-blend-multiply bg-gradient-to-b from-[#050505] via-transparent to-[#050505] absolute top-0 right-0 bottom-0 left-0 pointer-events-none"></div>
+<div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-orange-600/80 to-transparent -translate-x-full animate-[shimmer_4s_infinite]"></div>
+<div class="z-10 max-w-2xl relative">
+<div class="text-[10px] font-mono text-orange-600 uppercase tracking-widest flex items-center gap-2 mb-4">
+<span class="w-1.5 h-1.5 bg-orange-600 shadow-[0_0_10px_rgba(234,88,12,0.8)] animate-pulse"></span>
+// Configuração_Hardware
+</div>
+<h2 class="text-3xl md:text-4xl font-medium text-white uppercase tracking-tight leading-none mb-4 relative inline-block group cursor-default">
+<span class="relative z-10 transition-colors duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-zinc-400">Dinâmica</span>
+<span class="text-zinc-600 transition-colors duration-300 group-hover:text-orange-600/80">de Voo</span>
+<div class="absolute -inset-4 bg-orange-600/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full pointer-events-none"></div>
+</h2>
+<p class="text-sm text-zinc-500 font-mono leading-relaxed max-w-lg">
+Engenheirado para resistência e estabilidade em ambientes hostis.
+</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 relative spotlight-grid" id="specs-grid">
+<div class="group relative border-zinc-800 border-r border-b lg:border-b-0 min-h-[320px] flex flex-col transition-colors z-10 bg-[#050505]/50 card-item spotlight-card" style="--mouse-x: 227px; --mouse-y: 30.25px;">
+<div class="pt-8 pr-8 pb-8 pl-8 h-full flex flex-col justify-between relative z-10">
+<div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+<div>
+<div class="flex justify-between items-start mb-6">
+<span class="text-[10px] font-mono text-zinc-600 border border-zinc-800 px-2 py-1 group-hover:border-orange-600/50 group-hover:text-orange-600 group-hover:shadow-[0_0_15px_rgba(234,88,12,0.4)] transition-all duration-300 bg-[#050505]">FIG. 01</span>
+<div class="relative">
+<div class="absolute inset-0 bg-white/40 blur-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<iconify-icon class="text-zinc-400 group-hover:text-white transition-colors relative z-10" icon="solar:wind-linear" width="24"></iconify-icon>
+</div>
+</div>
+<h3 class="text-lg font-medium text-white uppercase tracking-tight mb-3 group-hover:text-orange-500 transition-colors">Aerodinâmica</h3>
+<p class="leading-relaxed text-xs text-zinc-500 font-mono group-hover:text-zinc-400 transition-colors">Chassi reforçado em fibra de carbono testado em ventos cruzados de 80 km/h.</p>
+</div>
+</div>
+</div>
+<div class="group relative border-r border-b lg:border-b-0 border-zinc-800 min-h-[320px] flex flex-col transition-colors z-10 bg-[#050505]/50 card-item spotlight-card" style="--mouse-x: -273.25px; --mouse-y: 30.25px;">
+<div class="pt-8 pr-8 pb-8 pl-8 h-full flex flex-col justify-between relative z-10">
+<div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+<div>
+<div class="flex justify-between items-start mb-6">
+<span class="text-[10px] font-mono text-zinc-600 border border-zinc-800 px-2 py-1 group-hover:border-orange-600/50 group-hover:text-orange-600 group-hover:shadow-[0_0_15px_rgba(234,88,12,0.4)] transition-all duration-300 bg-[#050505]">FIG. 02</span>
+<div class="relative">
+<div class="absolute inset-0 bg-white/40 blur-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<iconify-icon class="text-zinc-400 group-hover:text-white transition-colors relative z-10" icon="solar:bolt-circle-linear" width="24"></iconify-icon>
+</div>
+</div>
+<h3 class="text-lg font-medium text-white uppercase tracking-tight mb-3 group-hover:text-orange-500 transition-colors">Propulsão</h3>
+<p class="leading-relaxed text-xs text-zinc-500 font-mono group-hover:text-zinc-400 transition-colors">Motores brushless de alto torque com resposta de empuxo em menos de um segundo.</p>
+</div>
+</div>
+</div>
+<div class="group relative border-r border-b md:border-b-0 border-zinc-800 min-h-[320px] flex flex-col transition-colors z-10 bg-[#050505]/50 card-item spotlight-card" style="--mouse-x: -773.5px; --mouse-y: 30.25px;">
+<div class="pt-8 pr-8 pb-8 pl-8 h-full flex flex-col justify-between relative z-10">
+<div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+<div>
+<div class="flex justify-between items-start mb-6">
+<span class="text-[10px] font-mono text-zinc-600 border border-zinc-800 px-2 py-1 group-hover:border-orange-600/50 group-hover:text-orange-600 group-hover:shadow-[0_0_15px_rgba(234,88,12,0.4)] transition-all duration-300 bg-[#050505]">FIG. 03</span>
+<div class="relative">
+<div class="absolute inset-0 bg-white/40 blur-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<iconify-icon class="text-zinc-400 group-hover:text-white transition-colors relative z-10" icon="solar:radar-2-linear" width="24"></iconify-icon>
+</div>
+</div>
+<h3 class="text-lg font-medium text-white uppercase tracking-tight mb-3 group-hover:text-orange-500 transition-colors">Mapeamento Lidar</h3>
+<p class="leading-relaxed text-xs text-zinc-500 font-mono group-hover:text-zinc-400 transition-colors">Desvio de obstáculos a 360° e mapeamento de terreno em tempo real.</p>
+</div>
+</div>
+</div>
+<div class="group relative border-b md:border-b-0 border-zinc-800 min-h-[320px] flex flex-col transition-colors z-10 bg-[#050505]/50 card-item spotlight-card" style="--mouse-x: -1273.75px; --mouse-y: 30.25px;">
+<div class="pt-8 pr-8 pb-8 pl-8 h-full flex flex-col justify-between relative z-10">
+<div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+<div>
+<div class="flex justify-between items-start mb-6">
+<span class="text-[10px] font-mono text-zinc-600 border border-zinc-800 px-2 py-1 group-hover:border-orange-600/50 group-hover:text-orange-600 group-hover:shadow-[0_0_15px_rgba(234,88,12,0.4)] transition-all duration-300 bg-[#050505]">FIG. 04</span>
+<div class="relative">
+<div class="absolute inset-0 bg-white/40 blur-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<iconify-icon class="text-zinc-400 group-hover:text-white transition-colors relative z-10" icon="solar:wifi-router-linear" width="24"></iconify-icon>
+</div>
+</div>
+<h3 class="text-lg font-medium text-white uppercase tracking-tight mb-3 group-hover:text-orange-500 transition-colors">Link Criptografado</h3>
+<p class="leading-relaxed text-xs text-zinc-500 font-mono group-hover:text-zinc-400 transition-colors">Link de comando criptografado AES-256 com salto de frequência.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- selector -->
+<section class="flex flex-col bg-[#050505] border-b border-zinc-800 py-24 relative overflow-hidden" id="selector">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-orange-600/10 blur-[120px] rounded-full pointer-events-none z-0"></div>
+<div class="container mx-auto px-6 relative z-10">
+<div class="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8">
+<div class="max-w-xl">
+<div class="text-[10px] font-mono text-orange-600 uppercase tracking-widest flex items-center gap-2 mb-4">
+<span class="w-1.5 h-1.5 bg-orange-600 animate-pulse"></span>
+// Configurador
+</div>
+<h2 class="text-4xl font-medium text-white uppercase tracking-tight mb-4">Selecionar Configuração</h2>
+<p class="text-sm text-zinc-500 font-mono leading-relaxed">Mecanismo de recomendação baseado em IA conforme seu perfil operacional.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-6">
+<div class="flex flex-col gap-2">
+<span class="text-[9px] font-mono text-zinc-500 uppercase tracking-widest">Raio de Cobertura</span>
+<div class="flex p-1 bg-zinc-900 border border-zinc-800 rounded-lg">
+<button class="flex-1 px-4 py-2 text-[10px] font-mono uppercase tracking-wider rounded transition-all bg-zinc-800 text-white shadow-sm filter-btn-radius" data-value="small">3 km</button>
+<button class="flex-1 px-4 py-2 text-[10px] font-mono uppercase tracking-wider rounded transition-all text-zinc-500 hover:text-zinc-300 filter-btn-radius" data-value="medium">8 km</button>
+<button class="flex-1 px-4 py-2 text-[10px] font-mono uppercase tracking-wider rounded transition-all text-zinc-500 hover:text-zinc-300 filter-btn-radius" data-value="large">16 km+</button>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<span class="text-[9px] font-mono text-zinc-500 uppercase tracking-widest">Tipo de Terreno</span>
+<div class="flex p-1 bg-zinc-900 border border-zinc-800 rounded-lg">
+<button class="flex-1 px-4 py-2 text-[10px] font-mono uppercase tracking-wider rounded transition-all bg-zinc-800 text-white shadow-sm filter-btn-terrain" data-value="flat">Plano</button>
+<button class="flex-1 px-4 py-2 text-[10px] font-mono uppercase tracking-wider rounded transition-all text-zinc-500 hover:text-zinc-300 filter-btn-terrain" data-value="complex">Complexo</button>
+</div>
+</div>
+</div>
+</div>
+<div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-12 lg:pb-4 no-scrollbar lg:grid lg:grid-cols-3 perspective-1000" id="card-container">
+
+<!-- card-vanguard -->
+<div class="min-w-[85vw] md:min-w-[45vw] lg:min-w-0 snap-center group perspective-1000 relative h-[500px] select-card" data-model="vanguard" style="--mouse-x: 391.5px; --mouse-y: 363.5px;">
+<div class="relative w-full h-full duration-500 preserve-3d transition-transform card-inner cursor-pointer rounded-2xl">
+<div class="absolute inset-0 backface-hidden bg-[#080808] border border-zinc-800 rounded-2xl p-8 flex flex-col shadow-2xl overflow-hidden group-hover:border-zinc-500 group-hover:shadow-[0_0_50px_rgba(234,88,12,0.15)] transition-all ease-out">
+<div class="inner-sheen absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="absolute top-4 right-4 bg-orange-600/10 border border-orange-600/20 text-orange-600 text-[9px] font-mono uppercase tracking-widest px-3 py-1 rounded-full opacity-0 transition-opacity duration-300 recommend-badge">Recomendado</div>
+<div class="h-40 flex items-center justify-center relative mb-6 z-10 transform transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-2">
+<div class="absolute inset-0 z-10 flex items-center justify-center p-2"><img alt="Vanguard S1" class="w-full h-full object-contain drop-shadow-2xl" src="assets/59aa4679bd568a7f_7a47e78d9544ac4d7f83a9f840c50b.png"/></div>
+<iconify-icon class="text-6xl text-zinc-300" icon="solar:drone-linear"></iconify-icon>
+</div>
+<div class="flex flex-col flex-1 z-10">
+<div class="flex gap-2 mb-3">
+<span class="px-2 py-0.5 border border-zinc-800 bg-zinc-900/50 rounded text-[9px] font-mono text-zinc-400 uppercase">Urbano</span>
+<span class="px-2 py-0.5 border border-zinc-800 bg-zinc-900/50 rounded text-[9px] font-mono text-zinc-400 uppercase">Interno</span>
+</div>
+<h3 class="text-2xl font-medium text-white uppercase tracking-tight mb-1 group-hover:text-orange-500 transition-colors">Vanguard <span class="text-zinc-600 group-hover:text-orange-600/50">S1</span></h3>
+<p class="text-xs font-mono text-zinc-500 mb-6">Unidade de implantação rápida para espaços apertados.</p>
+<div class="space-y-3 mb-6 flex-1">
+<div class="flex items-center justify-between pb-2 border-b border-zinc-800/50">
+<div class="flex items-center gap-2"><iconify-icon class="text-zinc-600" icon="solar:battery-charge-linear"></iconify-icon><span class="text-xs text-zinc-400 font-mono">Tempo de Voo</span></div>
+<span class="text-xs text-white font-mono spec-time">28 min</span>
+</div>
+<div class="flex items-center justify-between pb-2 border-b border-zinc-800/50">
+<div class="flex items-center gap-2"><iconify-icon class="text-zinc-600" icon="solar:map-arrow-linear"></iconify-icon><span class="text-xs text-zinc-400 font-mono">Alcance</span></div>
+<span class="text-xs text-white font-mono spec-range">5 km</span>
+</div>
+</div>
+<div class="flex items-end justify-between">
+<div><div class="text-[9px] font-mono text-zinc-500 uppercase mb-1">A partir de</div><div class="text-xl text-white font-medium">R$ 12.499</div></div>
+<button class="flip-btn bg-zinc-100 hover:bg-white text-black text-[10px] font-mono uppercase tracking-widest px-4 py-2 rounded-sm transition-all font-medium flex items-center gap-2">Detalhes <iconify-icon icon="solar:info-circle-linear"></iconify-icon></button>
+</div>
+</div>
+</div>
+<div class="absolute inset-0 backface-hidden rotate-y-180 bg-zinc-900 border border-zinc-700 rounded-2xl p-8 flex flex-col shadow-2xl">
+<div class="flex justify-between items-start mb-6">
+<h4 class="text-sm font-medium text-white uppercase tracking-wider">Por que Vanguard?</h4>
+<button class="unflip-btn text-zinc-500 hover:text-white transition-colors"><iconify-icon icon="solar:close-circle-linear" width="20"></iconify-icon></button>
+</div>
+<ul class="space-y-4 mb-6 flex-1">
+<li class="flex gap-3"><iconify-icon class="text-orange-600 min-w-[16px] mt-0.5" icon="solar:check-circle-bold"></iconify-icon><span class="text-xs text-zinc-300 font-mono leading-relaxed">Desvio de obstáculos líder de mercado para ambientes internos complexos.</span></li>
+<li class="flex gap-3"><iconify-icon class="text-orange-600 min-w-[16px] mt-0.5" icon="solar:check-circle-bold"></iconify-icon><span class="text-xs text-zinc-300 font-mono leading-relaxed">Sistema de propulsão silencioso (&lt;45dB).</span></li>
+</ul>
+<button class="w-full bg-orange-600 hover:bg-orange-500 text-white py-3 rounded-sm text-[10px] font-mono uppercase tracking-widest shadow-lg shadow-orange-900/20 active:scale-95 transition-all">Configurar Vanguard</button>
+</div>
+</div>
+</div>
+
+<!-- card-sentinel -->
+<div class="min-w-[85vw] md:min-w-[45vw] lg:min-w-0 snap-center group perspective-1000 relative h-[500px] select-card" data-model="sentinel" style="--mouse-x: 103.5px; --mouse-y: 316.5px;">
+<div class="relative w-full h-full duration-500 preserve-3d transition-transform card-inner cursor-pointer rounded-2xl">
+<div class="absolute inset-0 backface-hidden bg-[#080808] border border-zinc-800 rounded-2xl p-8 flex flex-col shadow-2xl overflow-hidden group-hover:border-zinc-500 group-hover:shadow-[0_0_50px_rgba(234,88,12,0.15)] transition-all ease-out">
+<div class="inner-sheen absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="absolute top-4 right-4 bg-orange-600/10 border border-orange-600/20 text-orange-600 text-[9px] font-mono uppercase tracking-widest px-3 py-1 rounded-full opacity-0 transition-opacity duration-300 recommend-badge">Recomendado</div>
+<div class="h-40 flex items-center justify-center relative mb-6 z-10 transform transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-2">
+<div class="absolute inset-0 z-10 flex items-center justify-center p-2"><img alt="Sentinel X2" class="w-full h-full object-contain drop-shadow-2xl" src="assets/59aa4679bd568a7f_7a47e78d9544ac4d7f83a9f840c50b.png"/></div>
+<iconify-icon class="text-6xl text-zinc-300" icon="solar:drone-charge-minimalistic-linear"></iconify-icon>
+</div>
+<div class="flex flex-col flex-1 z-10">
+<div class="flex gap-2 mb-3">
+<span class="px-2 py-0.5 border border-zinc-800 bg-zinc-900/50 rounded text-[9px] font-mono text-zinc-400 uppercase">Patrulha</span>
+<span class="px-2 py-0.5 border border-zinc-800 bg-zinc-900/50 rounded text-[9px] font-mono text-zinc-400 uppercase">Térmico</span>
+</div>
+<h3 class="text-2xl font-medium text-white uppercase tracking-tight mb-1 group-hover:text-orange-500 transition-colors">Sentinel <span class="text-zinc-600 group-hover:text-orange-600/50">X2</span></h3>
+<p class="text-xs font-mono text-zinc-500 mb-6">Desempenho equilibrado para segurança de perímetro.</p>
+<div class="space-y-3 mb-6 flex-1">
+<div class="flex items-center justify-between pb-2 border-b border-zinc-800/50">
+<div class="flex items-center gap-2"><iconify-icon class="text-zinc-600" icon="solar:battery-charge-linear"></iconify-icon><span class="text-xs text-zinc-400 font-mono">Tempo de Voo</span></div>
+<span class="text-xs text-white font-mono spec-time">45 min</span>
+</div>
+<div class="flex items-center justify-between pb-2 border-b border-zinc-800/50">
+<div class="flex items-center gap-2"><iconify-icon class="text-zinc-600" icon="solar:map-arrow-linear"></iconify-icon><span class="text-xs text-zinc-400 font-mono">Alcance</span></div>
+<span class="text-xs text-white font-mono spec-range">13 km</span>
+</div>
+</div>
+<div class="flex items-end justify-between">
+<div><div class="text-[9px] font-mono text-zinc-500 uppercase mb-1">A partir de</div><div class="text-xl text-white font-medium">R$ 29.999</div></div>
+<button class="flip-btn bg-zinc-100 hover:bg-white text-black text-[10px] font-mono uppercase tracking-widest px-4 py-2 rounded-sm transition-all font-medium flex items-center gap-2">Detalhes <iconify-icon icon="solar:info-circle-linear"></iconify-icon></button>
+</div>
+</div>
+</div>
+<div class="absolute inset-0 backface-hidden rotate-y-180 bg-zinc-900 border border-zinc-700 rounded-2xl p-8 flex flex-col shadow-2xl">
+<div class="flex justify-between items-start mb-6">
+<h4 class="text-sm font-medium text-white uppercase tracking-wider">Por que Sentinel?</h4>
+<button class="unflip-btn text-zinc-500 hover:text-white transition-colors"><iconify-icon icon="solar:close-circle-linear" width="20"></iconify-icon></button>
+</div>
+<ul class="space-y-4 mb-6 flex-1">
+<li class="flex gap-3"><iconify-icon class="text-orange-600 min-w-[16px] mt-0.5" icon="solar:check-circle-bold"></iconify-icon><span class="text-xs text-zinc-300 font-mono leading-relaxed">Imagem térmica integrada para operações noturnas.</span></li>
+<li class="flex gap-3"><iconify-icon class="text-orange-600 min-w-[16px] mt-0.5" icon="solar:check-circle-bold"></iconify-icon><span class="text-xs text-zinc-300 font-mono leading-relaxed">Classificação IP54 contra intempéries.</span></li>
+</ul>
+<button class="w-full bg-orange-600 hover:bg-orange-500 text-white py-3 rounded-sm text-[10px] font-mono uppercase tracking-widest shadow-lg shadow-orange-900/20 active:scale-95 transition-all">Configurar Sentinel</button>
+</div>
+</div>
+</div>
+
+<!-- card-goliath -->
+<div class="min-w-[85vw] md:min-w-[45vw] lg:min-w-0 snap-center group perspective-1000 relative h-[500px] select-card" data-model="goliath" style="--mouse-x: 70.5px; --mouse-y: 494.5px;">
+<div class="relative w-full h-full duration-500 preserve-3d transition-transform card-inner cursor-pointer rounded-2xl">
+<div class="absolute inset-0 backface-hidden bg-[#080808] border border-zinc-800 rounded-2xl p-8 flex flex-col shadow-2xl overflow-hidden group-hover:border-zinc-500 group-hover:shadow-[0_0_50px_rgba(234,88,12,0.15)] transition-all ease-out">
+<div class="inner-sheen absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="absolute top-4 right-4 bg-orange-600/10 border border-orange-600/20 text-orange-600 text-[9px] font-mono uppercase tracking-widest px-3 py-1 rounded-full opacity-0 transition-opacity duration-300 recommend-badge">Recomendado</div>
+<div class="h-40 flex items-center justify-center relative mb-6 z-10 transform transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-2">
+<div class="absolute inset-0 z-10 flex items-center justify-center p-2"><img alt="Goliath Pro" class="w-full h-full object-contain drop-shadow-2xl" src="assets/59aa4679bd568a7f_7a47e78d9544ac4d7f83a9f840c50b.png"/></div>
+<iconify-icon class="text-6xl text-zinc-300" icon="solar:ufo-3-linear"></iconify-icon>
+</div>
+<div class="flex flex-col flex-1 z-10">
+<div class="flex gap-2 mb-3">
+<span class="px-2 py-0.5 border border-zinc-800 bg-zinc-900/50 rounded text-[9px] font-mono text-zinc-400 uppercase">Longo Alcance</span>
+<span class="px-2 py-0.5 border border-zinc-800 bg-zinc-900/50 rounded text-[9px] font-mono text-zinc-400 uppercase">Carga Pesada</span>
+</div>
+<h3 class="text-2xl font-medium text-white uppercase tracking-tight mb-1 group-hover:text-orange-500 transition-colors">Goliath <span class="text-zinc-600 group-hover:text-orange-600/50">Pro</span></h3>
+<p class="text-xs font-mono text-zinc-500 mb-6">Plataforma de uso intenso para mapeamento extenso.</p>
+<div class="space-y-3 mb-6 flex-1">
+<div class="flex items-center justify-between pb-2 border-b border-zinc-800/50">
+<div class="flex items-center gap-2"><iconify-icon class="text-zinc-600" icon="solar:battery-charge-linear"></iconify-icon><span class="text-xs text-zinc-400 font-mono">Tempo de Voo</span></div>
+<span class="text-xs text-white font-mono spec-time">65 min</span>
+</div>
+<div class="flex items-center justify-between pb-2 border-b border-zinc-800/50">
+<div class="flex items-center gap-2"><iconify-icon class="text-zinc-600" icon="solar:map-arrow-linear"></iconify-icon><span class="text-xs text-zinc-400 font-mono">Alcance</span></div>
+<span class="text-xs text-white font-mono spec-range">24 km</span>
+</div>
+</div>
+<div class="flex items-end justify-between">
+<div><div class="text-[9px] font-mono text-zinc-500 uppercase mb-1">A partir de</div><div class="text-xl text-white font-medium">R$ 62.500</div></div>
+<button class="flip-btn bg-zinc-100 hover:bg-white text-black text-[10px] font-mono uppercase tracking-widest px-4 py-2 rounded-sm transition-all font-medium flex items-center gap-2">Detalhes <iconify-icon icon="solar:info-circle-linear"></iconify-icon></button>
+</div>
+</div>
+</div>
+<div class="absolute inset-0 backface-hidden rotate-y-180 bg-zinc-900 border border-zinc-700 rounded-2xl p-8 flex flex-col shadow-2xl">
+<div class="flex justify-between items-start mb-6">
+<h4 class="text-sm font-medium text-white uppercase tracking-wider">Por que Goliath?</h4>
+<button class="unflip-btn text-zinc-500 hover:text-white transition-colors"><iconify-icon icon="solar:close-circle-linear" width="20"></iconify-icon></button>
+</div>
+<ul class="space-y-4 mb-6 flex-1">
+<li class="flex gap-3"><iconify-icon class="text-orange-600 min-w-[16px] mt-0.5" icon="solar:check-circle-bold"></iconify-icon><span class="text-xs text-zinc-300 font-mono leading-relaxed">Sistema redundante de bateria dupla.</span></li>
+<li class="flex gap-3"><iconify-icon class="text-orange-600 min-w-[16px] mt-0.5" icon="solar:check-circle-bold"></iconify-icon><span class="text-xs text-zinc-300 font-mono leading-relaxed">Módulo RTK incluído para precisão centimétrica.</span></li>
+</ul>
+<button class="w-full bg-orange-600 hover:bg-orange-500 text-white py-3 rounded-sm text-[10px] font-mono uppercase tracking-widest shadow-lg shadow-orange-900/20 active:scale-95 transition-all">Configurar Goliath</button>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- vision -->
+<section class="flex flex-col bg-[#050505] border-b border-zinc-800" id="vision">
+<div class="grid grid-cols-1 md:grid-cols-2 min-h-[500px] group/section border-b border-zinc-800 bg-[#050505]">
+<div class="overflow-hidden group/visual bg-zinc-900 border-zinc-800 md:border-r border-b md:border-b-0 relative cursor-crosshair select-none">
+<div class="bg-center transition-all duration-1000 ease-out group-hover/visual:scale-105 group-hover/visual:opacity-50 opacity-30 mix-blend-luminosity bg-[url('https://images.unsplash.com/photo-1724525647065-f948fc102e68?w=2160&amp;q=80')] bg-cover absolute top-0 right-0 bottom-0 left-0"></div>
+<div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(5,5,5,0.8)_120%)] pointer-events-none"></div>
+<div class="absolute top-0 left-0 w-full h-[1px] bg-orange-500 shadow-[0_0_20px_rgba(234,88,12,1)] opacity-0 group-hover/visual:opacity-100 animate-scan pointer-events-none z-20"></div>
+<div class="absolute top-6 right-6 bottom-6 left-6 pointer-events-none z-10 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="w-8 h-8 border-l border-t border-zinc-500/50 group-hover/visual:border-orange-500 transition-colors duration-300 relative">
+<div class="absolute top-0 left-0 w-1 h-1 bg-white"></div>
+</div>
+<div class="flex flex-col items-end gap-1 opacity-60 group-hover/visual:opacity-100 transition-opacity duration-300 transform group-hover/visual:translate-x-0 translate-x-2 transition-transform">
+<div class="flex items-center gap-2">
+<span class="text-[9px] font-mono text-zinc-400">REC</span>
+<div class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></div>
+</div>
+<span class="text-[9px] font-mono text-orange-500">ISO 1200</span>
+</div>
+</div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 flex items-center justify-center transition-all duration-500 group-hover/visual:scale-90">
+<div class="absolute inset-0 border border-zinc-500/30 rounded-full group-hover/visual:border-orange-500/40 transition-colors"></div>
+<div class="absolute inset-2 border-l border-r border-white/20 rounded-full animate-[spin_4s_linear_infinite] group-hover/visual:border-orange-500/60 opacity-0 group-hover/visual:opacity-100 transition-opacity"></div>
+<div class="w-1 h-1 bg-white/80 rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
+<div class="absolute top-1/2 left-0 w-2 h-px bg-white/50 -translate-y-1/2"></div>
+<div class="absolute top-1/2 right-0 w-2 h-px bg-white/50 -translate-y-1/2"></div>
+<div class="absolute top-0 left-1/2 w-px h-2 bg-white/50 -translate-x-1/2"></div>
+<div class="absolute bottom-0 left-1/2 w-px h-2 bg-white/50 -translate-x-1/2"></div>
+</div>
+<div class="flex justify-between items-end">
+<div class="text-[10px] font-mono text-white bg-black/60 border border-zinc-800 px-3 py-1.5 backdrop-blur-md flex items-center gap-3 group-hover/visual:border-orange-600/50 transition-colors shadow-lg">
+<span>CAM_01</span>
+<span class="text-zinc-500">|</span>
+<span class="text-orange-500 tracking-wider">TÉRMICO_ATIVO</span>
+</div>
+<div class="w-8 h-8 border-r border-b border-zinc-500/50 group-hover/visual:border-orange-500 transition-colors duration-300 relative">
+<div class="absolute bottom-0 right-0 w-1 h-1 bg-white"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="md:p-16 flex flex-col pt-12 pr-12 pb-12 pl-12 justify-center relative z-10">
+<div class="absolute top-1/2 right-0 -translate-y-1/2 w-96 h-96 bg-orange-600/5 blur-[100px] rounded-full pointer-events-none opacity-0 group-hover/section:opacity-100 transition-opacity duration-700"></div>
+<div class="relative">
+<div class="text-[10px] font-mono text-orange-600 uppercase tracking-widest mb-6 flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-orange-600 rounded-full animate-pulse"></span>
+// Sistemas_Ópticos
+</div>
+<h2 class="text-4xl font-medium text-white uppercase tracking-tight mb-6">
+Veja o
+<span class="text-zinc-600 group-hover/section:text-zinc-200 transition-colors duration-500 delay-75">Invisível</span>
+</h2>
+<p class="text-sm text-zinc-500 font-mono leading-relaxed mb-8 max-w-md group-hover/section:text-zinc-400 transition-colors duration-500 delay-100">
+Equipado com cargas úteis de sensor duplo. Capture imagens 4K em luz visível simultaneamente com dados térmicos radiométricos.
+</p>
+<ul class="space-y-3">
+<li class="group/item relative p-4 rounded-lg bg-zinc-900/0 hover:bg-zinc-900/50 border border-transparent hover:border-zinc-800/80 transition-all duration-300 cursor-default overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-orange-600 scale-y-0 group-hover/item:scale-y-100 transition-transform duration-300 origin-center"></div>
+<div class="flex items-center gap-4 relative z-10">
+<div class="w-8 h-8 rounded-md bg-zinc-900 border border-zinc-800 flex items-center justify-center group-hover/item:text-orange-500 group-hover/item:border-orange-500/30 transition-all">
+<iconify-icon class="text-zinc-400 group-hover/item:text-orange-500 transition-colors" icon="solar:camera-linear"></iconify-icon>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-mono text-zinc-300 group-hover/item:text-white transition-colors">Sensor Principal 64MP</span>
+<span class="text-[10px] text-zinc-600 group-hover/item:text-zinc-500">CMOS 1 polegada / f2.8</span>
+</div>
+</div>
+</li>
+<li class="group/item relative p-4 rounded-lg bg-zinc-900/0 hover:bg-zinc-900/50 border border-transparent hover:border-zinc-800/80 transition-all duration-300 cursor-default overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-orange-600 scale-y-0 group-hover/item:scale-y-100 transition-transform duration-300 origin-center"></div>
+<div class="flex items-center gap-4 relative z-10">
+<div class="w-8 h-8 rounded-md bg-zinc-900 border border-zinc-800 flex items-center justify-center group-hover/item:text-orange-500 group-hover/item:border-orange-500/30 transition-all">
+<iconify-icon class="text-zinc-400 group-hover/item:text-orange-500 transition-colors" icon="solar:fire-linear"></iconify-icon>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-mono text-zinc-300 group-hover/item:text-white transition-colors">Térmico Radiométrico</span>
+<span class="text-[10px] text-zinc-600 group-hover/item:text-zinc-500">640x512 @ 30Hz</span>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- missions -->
+<section class="flex flex-col scroll-mt-16 group bg-[#050505] border-zinc-800 relative" id="missions">
+<div class="flex flex-col md:px-12 md:flex-row md:items-end md:pt-36 md:pb-28 bg-zinc-900/5 border-zinc-800 border-b pt-24 pr-8 pb-20 pl-8 gap-x-6 gap-y-6 justify-between">
+<div class="max-w-2xl">
+<div class="text-[10px] uppercase flex gap-2 text-orange-600 tracking-widest font-mono mb-6 items-center">
+<span class="w-1.5 h-1.5 bg-orange-600"></span>
+// Casos_de_Uso
+</div>
+<h2 class="text-3xl md:text-4xl font-medium text-white uppercase tracking-tight mb-4 leading-none">
+Perfis de
+<span class="text-zinc-600">Missão</span>
+</h2>
+</div>
+</div>
+<div class="hidden lg:grid grid-cols-12 min-h-[550px] border-zinc-800 border-b">
+<div class="col-span-4 flex flex-col bg-[#050505] border-zinc-800 border-r">
+<button class="scenario-tab group hover:bg-zinc-900/20 transition-all text-left bg-zinc-900/30 w-full border-zinc-800 border-b border-l-2 pt-8 pr-8 pb-8 pl-8" data-index="0" onclick="window.switchTab(0)">
+<div class="flex justify-between items-start mb-3">
+<span class="text-[10px] font-mono text-zinc-500 group-hover:text-orange-600 transition-colors uppercase tracking-wider">SEC_OPS</span>
+<iconify-icon class="text-zinc-600 group-hover:text-white transition-colors" icon="solar:shield-warning-linear" width="20"></iconify-icon>
+</div>
+<div class="text-base font-medium text-white uppercase tracking-tight mb-3">Vigilância</div>
+<div class="inline-flex items-center px-2 py-1 bg-zinc-900 border border-zinc-800 rounded-sm text-[10px] font-mono text-green-500">PATRULHA AUTÔNOMA</div>
+</button>
+<button class="scenario-tab group hover:bg-zinc-900/20 transition-all text-left w-full border-zinc-800 border-b border-l-2 pt-8 pr-8 pb-8 pl-8" data-index="1" onclick="window.switchTab(1)">
+<div class="flex justify-between items-start mb-3">
+<span class="text-[10px] font-mono text-zinc-500 group-hover:text-orange-600 transition-colors uppercase tracking-wider">ENERGIA</span>
+<iconify-icon class="text-zinc-600 group-hover:text-white transition-colors" icon="solar:bolt-linear" width="20"></iconify-icon>
+</div>
+<div class="group-hover:text-white uppercase transition-colors text-base font-medium text-zinc-400 tracking-tight mb-3">Inspeção de Infraestrutura</div>
+<div class="inline-flex items-center px-2 py-1 bg-zinc-900 border border-zinc-800 rounded-sm text-[10px] font-mono text-zinc-500 group-hover:text-green-500 transition-colors">ANÁLISE TÉRMICA</div>
+</button>
+<button class="scenario-tab group hover:bg-zinc-900/20 transition-all text-left w-full border-zinc-800 border-b border-l-2 pt-8 pr-8 pb-8 pl-8" data-index="2" onclick="window.switchTab(2)">
+<div class="flex justify-between items-start mb-3">
+<span class="text-[10px] font-mono text-zinc-500 group-hover:text-orange-600 transition-colors uppercase tracking-wider">MAPEAMENTO</span>
+<iconify-icon class="text-zinc-600 group-hover:text-white transition-colors" icon="solar:map-point-linear" width="20"></iconify-icon>
+</div>
+<div class="group-hover:text-white uppercase transition-colors text-base font-medium text-zinc-400 tracking-tight mb-3">Levantamento de Terreno</div>
+<div class="inline-flex items-center px-2 py-1 bg-zinc-900 border border-zinc-800 rounded-sm text-[10px] font-mono text-zinc-500 group-hover:text-green-500 transition-colors">ESCANEAMENTO LIDAR</div>
+</button>
+</div>
+<div class="col-span-8 bg-[#080808] relative overflow-hidden">
+<div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none z-10"></div>
+<div class="scenario-panel absolute inset-0 opacity-100 z-10 transition-all duration-300" data-index="0">
+<video autoplay class="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-screen pointer-events-none" loop muted playsinline>
+<source src="assets/ecbced7e9c1bad06_43bec569-e244-4c89-adaf-2c0415.webm" type="video/webm"/>
+</video>
+<div class="flex flex-col h-full z-20 pt-16 pr-16 pb-16 pl-16 relative justify-between">
+<div>
+<h3 class="text-3xl text-white font-medium uppercase tracking-tight mb-6">Segurança de Perímetro Automatizada</h3>
+<p class="text-sm text-zinc-500 font-mono leading-relaxed mb-10">Implante soluções drone-em-caixa que decolam automaticamente quando sensores são acionados, fornecendo visualização aérea imediata.</p>
+</div>
+</div>
+</div>
+<div class="scenario-panel absolute inset-0 flex flex-col justify-between opacity-0 pointer-events-none z-0 transition-all duration-300 transform translate-x-4" data-index="1">
+<video autoplay class="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-screen pointer-events-none" loop muted playsinline>
+<source src="assets/4afce2e623e7b170_fdaa1941-2093-48eb-836a-913613.mp4" type="video/mp4"/>
+</video>
+<div class="flex flex-col h-full z-20 pt-16 pr-16 pb-16 pl-16 relative justify-between">
+<div>
+<h3 class="text-3xl text-white font-medium uppercase tracking-tight mb-6">Inspeção de Linhas e Rede Elétrica</h3>
+<p class="text-sm text-zinc-500 font-mono leading-relaxed mb-10">Use imagem térmica de alta resolução para detectar pontos quentes em transformadores e linhas de transmissão.</p>
+</div>
+</div>
+</div>
+<div class="scenario-panel absolute inset-0 flex flex-col justify-between opacity-0 pointer-events-none z-0 transition-all duration-300 transform translate-x-4" data-index="2">
+<video autoplay class="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-screen pointer-events-none" loop muted playsinline>
+<source src="assets/ecbced7e9c1bad06_43bec569-e244-4c89-adaf-2c0415.webm" type="video/webm"/>
+</video>
+<div class="flex flex-col h-full z-20 pt-16 pr-16 pb-16 pl-16 relative justify-between">
+<div>
+<h3 class="text-3xl text-white font-medium uppercase tracking-tight mb-6">Mapeamento Topográfico</h3>
+<p class="text-sm text-zinc-500 font-mono leading-relaxed mb-10">Crie mapas 3D e nuvens de pontos com qualidade de levantamento usando sensores LIDAR integrados.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- footer -->
+<footer class="border-t border-zinc-800 bg-[#050505] text-zinc-500 font-mono relative z-20">
+<div class="border-t border-zinc-800 bg-[#080808] px-8 py-4 flex flex-col md:flex-row items-center justify-between text-[10px] uppercase tracking-wider text-zinc-600 relative z-20">
+<div class="flex flex-col md:flex-row items-center gap-4 md:gap-8 mb-2 md:mb-0"><span class="cursor-default">© 2024 AERO_SYS Inc.</span></div>
+<div class="flex items-center gap-6 font-mono"><div class="flex items-center gap-2 text-green-900"><iconify-icon icon="solar:shield-check-linear" width="12"></iconify-icon><span class="text-green-600">Conexão_Criptografada</span></div></div>
+</div>
+</footer>
+
+</div>
+</main>
+
+<!-- js: hero spotlight, neural grid, exploded view parallax, specs flashlight, 3D cards, glitch text, tab switcher, intersection observer, recommendation logic -->
+<script src="assets/js/interactions.js"></script>
+
+</body>
+</html>
