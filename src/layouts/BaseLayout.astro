@@ -1,0 +1,40 @@
+---
+import '@/styles/global.css';
+import '@/styles/components.css';
+import SEOHead from '@/components/SEOHead.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import type { Locale } from '@/i18n/types';
+
+interface Props {
+  title: string;
+  description: string;
+  locale?: Locale;
+}
+const { title, description, locale = 'pt' } = Astro.props;
+const htmlLang = { pt: 'pt-BR', en: 'en', es: 'es', de: 'de' }[locale];
+---
+<!doctype html>
+<html lang={htmlLang} class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Preload Inter variable font (copied to public/fonts/ for reliable path) -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/inter-latin-wght-normal.woff2"
+      crossorigin
+    />
+    <SEOHead title={title} description={description} locale={htmlLang} />
+  </head>
+  <body class="min-h-screen flex flex-col bg-ink text-zinc-300 selection:bg-accent selection:text-white">
+    <div class="fixed inset-0 pointer-events-none z-0 opacity-[0.04] bg-grid" aria-hidden="true"></div>
+    <Header locale={locale} />
+    <main class="relative z-10 flex-1">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+  </body>
+</html>
