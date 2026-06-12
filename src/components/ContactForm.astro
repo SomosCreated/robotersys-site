@@ -1,0 +1,375 @@
+---
+/**
+ * ContactForm — unified lead-capture form with three variants.
+ *
+ * Variants:
+ *  - contato   → commercial inquiry (default)
+ *  - carreiras → job application (sends to RH)
+ *  - produto   → product inquiry (adds Company field)
+ *
+ * Anti-spam measures:
+ *  - Honeypot: hidden `website` field (must stay empty)
+ *  - Timing: hidden `_elapsed` field populated via <script> (form load timestamp)
+ *
+ * UTM / gclid capture from location.search via <script>.
+ *
+ * Loading / success / error states are handled by a lightweight island <script>
+ * (no framework dependency).
+ *
+ * Accessibility: all inputs have associated <label>, aria-describedby for
+ * error messages, and visible focus states.
+ */
+import type { Locale } from '@/i18n/types';
+
+interface Props {
+  variant?: 'contato' | 'carreiras' | 'produto';
+  locale?: Locale;
+}
+
+const { variant = 'contato', locale: _locale = 'pt' } = Astro.props;
+
+const isCarreiras = variant === 'carreiras';
+const isProduto   = variant === 'produto';
+
+const formId = `contact-form-${variant}`;
+const headingText = isCarreiras
+  ? 'Envie seu currículo'
+  : isProduto
+  ? 'Consulta de produto'
+  : 'Vamos construir juntos!';
+
+const submitLabel = isCarreiras
+  ? 'Enviar candidatura'
+  : isProduto
+  ? 'Solicitar informações'
+  : 'Enviar mensagem';
+
+const messagePlaceholder = isCarreiras
+  ? 'Conte sobre sua experiência e o cargo de interesse…'
+  : isProduto
+  ? 'Descreva sua aplicação ou produto de interesse…'
+  : 'Como podemos ajudar você?';
+---
+
+<section
+  class="py-20 border-t border-zinc-800 bg-[#050505]"
+  id={`section-${formId}`}
+  aria-labelledby={`heading-${formId}`}
+>
+  <div class="container mx-auto px-6 lg:px-12 max-w-2xl">
+
+    <!-- Section label -->
+    <div class="text-[10px] font-mono text-accent uppercase tracking-widest flex items-center gap-2 mb-6">
+      <span class="w-1.5 h-1.5 bg-accent animate-pulse" aria-hidden="true"></span>
+      // {isCarreiras ? 'Trabalhe Conosco' : isProduto ? 'Produto' : 'Contato'}
+    </div>
+
+    <h2
+      id={`heading-${formId}`}
+      class="text-3xl md:text-4xl font-medium text-white uppercase tracking-tight leading-tight mb-10"
+    >
+      {headingText}
+    </h2>
+
+    <!-- ── Form ── -->
+    <form
+      id={formId}
+      method="POST"
+      action="/api/contact/"
+      novalidate
+      class="space-y-6"
+      aria-label={headingText}
+    >
+      <!-- Honeypot (hidden from humans, must stay empty) -->
+      <div class="absolute opacity-0 pointer-events-none h-0 overflow-hidden" aria-hidden="true" tabindex="-1">
+        <label for={`website-${formId}`}>Não preencha este campo</label>
+        <input
+          type="text"
+          id={`website-${formId}`}
+          name="website"
+          tabindex="-1"
+          autocomplete="off"
+          value=""
+        />
+      </div>
+
+      <!-- Hidden timing field (_elapsed) -->
+      <input type="hidden" name="_elapsed" id={`elapsed-${formId}`} value="0" />
+
+      <!-- Hidden form type -->
+      <input type="hidden" name="type" value={variant} />
+
+      <!-- Hidden UTM / gclid fields (populated by script) -->
+      <input type="hidden" name="utm_source"   id={`utm_source-${formId}`}   value="" />
+      <input type="hidden" name="utm_medium"   id={`utm_medium-${formId}`}   value="" />
+      <input type="hidden" name="utm_campaign" id={`utm_campaign-${formId}`} value="" />
+      <input type="hidden" name="gclid"        id={`gclid-${formId}`}        value="" />
+
+      <!-- Name -->
+      <div class="space-y-2">
+        <label
+          for={`name-${formId}`}
+          class="block text-[10px] font-mono uppercase tracking-widest text-zinc-400"
+        >
+          Nome completo <span class="text-accent" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="text"
+          id={`name-${formId}`}
+          name="name"
+          required
+          minlength="2"
+          maxlength="120"
+          autocomplete="name"
+          placeholder="Seu nome"
+          aria-required="true"
+          aria-describedby={`name-error-${formId}`}
+          class="w-full bg-zinc-900/50 border border-zinc-800 text-zinc-300 placeholder:text-zinc-500 text-sm px-4 py-3 font-mono focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+        />
+        <p
+          id={`name-error-${formId}`}
+          class="text-[11px] font-mono text-red-400 hidden"
+          role="alert"
+          aria-live="polite"
+        ></p>
+      </div>
+
+      <!-- Email -->
+      <div class="space-y-2">
+        <label
+          for={`email-${formId}`}
+          class="block text-[10px] font-mono uppercase tracking-widest text-zinc-400"
+        >
+          E-mail <span class="text-accent" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="email"
+          id={`email-${formId}`}
+          name="email"
+          required
+          autocomplete="email"
+          placeholder="seu@email.com"
+          aria-required="true"
+          aria-describedby={`email-error-${formId}`}
+          class="w-full bg-zinc-900/50 border border-zinc-800 text-zinc-300 placeholder:text-zinc-500 text-sm px-4 py-3 font-mono focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+        />
+        <p
+          id={`email-error-${formId}`}
+          class="text-[11px] font-mono text-red-400 hidden"
+          role="alert"
+          aria-live="polite"
+        ></p>
+      </div>
+
+      <!-- WhatsApp -->
+      <div class="space-y-2">
+        <label
+          for={`whatsapp-${formId}`}
+          class="block text-[10px] font-mono uppercase tracking-widest text-zinc-400"
+        >
+          WhatsApp <span class="text-accent" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="tel"
+          id={`whatsapp-${formId}`}
+          name="whatsapp"
+          required
+          minlength="8"
+          maxlength="20"
+          autocomplete="tel"
+          placeholder="(47) 99999-9999"
+          aria-required="true"
+          aria-describedby={`whatsapp-error-${formId}`}
+          class="w-full bg-zinc-900/50 border border-zinc-800 text-zinc-300 placeholder:text-zinc-500 text-sm px-4 py-3 font-mono focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+        />
+        <p
+          id={`whatsapp-error-${formId}`}
+          class="text-[11px] font-mono text-red-400 hidden"
+          role="alert"
+          aria-live="polite"
+        ></p>
+      </div>
+
+      <!-- Company (only for produto variant) -->
+      {isProduto && (
+        <div class="space-y-2">
+          <label
+            for={`company-${formId}`}
+            class="block text-[10px] font-mono uppercase tracking-widest text-zinc-400"
+          >
+            Empresa
+          </label>
+          <input
+            type="text"
+            id={`company-${formId}`}
+            name="company"
+            maxlength="120"
+            autocomplete="organization"
+            placeholder="Nome da empresa"
+            aria-describedby={`company-error-${formId}`}
+            class="w-full bg-zinc-900/50 border border-zinc-800 text-zinc-300 placeholder:text-zinc-500 text-sm px-4 py-3 font-mono focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+          />
+          <p
+            id={`company-error-${formId}`}
+            class="text-[11px] font-mono text-red-400 hidden"
+            role="alert"
+            aria-live="polite"
+          ></p>
+        </div>
+      )}
+
+      <!-- Message -->
+      <div class="space-y-2">
+        <label
+          for={`message-${formId}`}
+          class="block text-[10px] font-mono uppercase tracking-widest text-zinc-400"
+        >
+          Mensagem
+        </label>
+        <textarea
+          id={`message-${formId}`}
+          name="message"
+          rows="5"
+          maxlength="2000"
+          placeholder={messagePlaceholder}
+          aria-describedby={`message-error-${formId}`}
+          class="w-full bg-zinc-900/50 border border-zinc-800 text-zinc-300 placeholder:text-zinc-500 text-sm px-4 py-3 font-mono focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-y"
+        ></textarea>
+        <p
+          id={`message-error-${formId}`}
+          class="text-[11px] font-mono text-red-400 hidden"
+          role="alert"
+          aria-live="polite"
+        ></p>
+      </div>
+
+      <!-- Submit button -->
+      <button
+        type="submit"
+        id={`submit-${formId}`}
+        class="group w-full sm:w-auto bg-orange-600 hover:bg-orange-500 text-white text-xs font-mono uppercase tracking-widest px-10 py-4 transition-all flex items-center justify-center gap-3 font-medium shadow-[0_0_20px_rgba(234,88,12,0.3)] hover:shadow-[0_0_40px_rgba(234,88,12,0.6)] relative overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#050505] disabled:opacity-60 disabled:cursor-not-allowed"
+        aria-describedby={`form-status-${formId}`}
+      >
+        <!-- Shimmer effect -->
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"
+          aria-hidden="true"
+        ></div>
+
+        <!-- Normal state text -->
+        <span id={`submit-label-${formId}`}>{submitLabel}</span>
+
+        <!-- Loading spinner (hidden by default) -->
+        <svg
+          id={`submit-spinner-${formId}`}
+          class="hidden animate-spin h-4 w-4"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+        </svg>
+      </button>
+
+      <!-- Status message (success / error) -->
+      <div
+        id={`form-status-${formId}`}
+        class="hidden text-[11px] font-mono px-4 py-3 border"
+        role="status"
+        aria-live="polite"
+      ></div>
+    </form>
+  </div>
+</section>
+
+<script is:inline define:vars={{ formId }}>
+  // --- Timing: record page load timestamp ---
+  const loadedAt = Date.now();
+  const elapsedField = document.getElementById(`elapsed-${formId}`);
+  if (elapsedField) {
+    // Update on focus of first field so elapsed = time-to-complete
+    const firstInput = document.querySelector(`#${formId} input:not([type=hidden])`);
+    if (firstInput) {
+      firstInput.addEventListener('focus', () => {
+        elapsedField.value = String(Date.now() - loadedAt);
+      }, { once: true });
+    }
+  }
+
+  // --- UTM / gclid capture from URL ---
+  const params = new URLSearchParams(window.location.search);
+  const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'gclid'];
+  utmFields.forEach((key) => {
+    const val = params.get(key);
+    if (val) {
+      const field = document.getElementById(`${key}-${formId}`);
+      if (field) field.value = val;
+    }
+  });
+
+  // --- Form submission (fetch, no page reload) ---
+  const form = document.getElementById(formId);
+  const submitBtn = document.getElementById(`submit-${formId}`);
+  const submitLabel = document.getElementById(`submit-label-${formId}`);
+  const submitSpinner = document.getElementById(`submit-spinner-${formId}`);
+  const statusBox = document.getElementById(`form-status-${formId}`);
+
+  function setLoading(loading) {
+    if (!submitBtn || !submitLabel || !submitSpinner) return;
+    submitBtn.disabled = loading;
+    submitLabel.classList.toggle('hidden', loading);
+    submitSpinner.classList.toggle('hidden', !loading);
+  }
+
+  function showStatus(message, type) {
+    if (!statusBox) return;
+    statusBox.textContent = message;
+    statusBox.className = [
+      'text-[11px] font-mono px-4 py-3 border',
+      type === 'success'
+        ? 'border-green-800 bg-green-900/20 text-green-400'
+        : 'border-red-800 bg-red-900/20 text-red-400',
+    ].join(' ');
+  }
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Update elapsed before submit
+      if (elapsedField) {
+        elapsedField.value = String(Date.now() - loadedAt);
+      }
+
+      setLoading(true);
+
+      try {
+        const fd = new FormData(form);
+        const res = await fetch('/api/contact/', { method: 'POST', body: fd });
+        const data = await res.json().catch(() => ({}));
+
+        if (res.ok && data.ok) {
+          showStatus(
+            '✓ Mensagem enviada! Em breve nossa equipe entrará em contato.',
+            'success',
+          );
+          form.reset();
+        } else {
+          showStatus(
+            '✗ Ocorreu um erro. Por favor, tente novamente ou nos chame no WhatsApp.',
+            'error',
+          );
+        }
+      } catch {
+        showStatus(
+          '✗ Falha na conexão. Por favor, verifique sua internet e tente novamente.',
+          'error',
+        );
+      } finally {
+        setLoading(false);
+      }
+    });
+  }
+</script>

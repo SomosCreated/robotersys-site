@@ -1,0 +1,173 @@
+---
+/**
+ * PartsGrid — 17 KUKA part categories grid.
+ *
+ * Each category: Solar icon + label.
+ * Icons chosen from @iconify-json/solar (all verified to exist).
+ * Where no exact icon exists, closest alternative used and noted.
+ *
+ * Source: https://robotersys.com/pecas-de-reposicao/ (fetched 2026-06-12)
+ */
+import { Icon } from 'astro-icon/components';
+
+const categories = [
+  {
+    id: 'kcp1',
+    label: 'KCP1 e KCP2',
+    sublabel: 'KUKA Control Panel / Teachpendant',
+    // solar:monitor-linear — closest to handheld control panel
+    icon: 'solar:monitor-linear',
+  },
+  {
+    id: 'mem',
+    label: 'Membrana e Tela LCD',
+    sublabel: 'Para KCP1, KCP2 e Smartpad',
+    // solar:full-screen-linear — screen/display
+    icon: 'solar:full-screen-linear',
+  },
+  {
+    id: 'kpc',
+    label: 'KPC',
+    sublabel: 'KUKA PC',
+    // solar:cpu-linear — PC/computing board
+    icon: 'solar:cpu-linear',
+  },
+  {
+    id: 'rdw',
+    label: 'RDW e RDW2',
+    sublabel: 'Resolver Digital to Wireless',
+    // solar:refresh-circle-linear — signal/converter
+    icon: 'solar:refresh-circle-linear',
+  },
+  {
+    id: 'mfc23',
+    label: 'MFC2 e MFC3',
+    sublabel: 'Com DSE',
+    // solar:cpu-bolt-linear — power electronics board
+    icon: 'solar:cpu-bolt-linear',
+  },
+  {
+    id: 'mfc1',
+    label: 'MFC1',
+    sublabel: 'Com DSEAT',
+    // solar:cpu-linear — circuit board variant
+    icon: 'solar:cpu-linear',
+  },
+  {
+    id: 'placa-mae',
+    label: 'Placa Mãe',
+    sublabel: 'Motherboard do controlador',
+    // solar:layers-linear — board/layers
+    icon: 'solar:layers-linear',
+  },
+  {
+    id: 'pm',
+    label: 'PM0 / PM1 / PM6',
+    sublabel: 'PM0-600, PM1-600 e PM6-600',
+    // solar:widget-linear — power modules
+    icon: 'solar:widget-linear',
+  },
+  {
+    id: 'kps',
+    label: 'KPS600/20 ESC',
+    sublabel: 'Fonte de alimentação KUKA',
+    // solar:bolt-linear — power supply
+    icon: 'solar:bolt-linear',
+  },
+  {
+    id: 'ksd',
+    label: 'KSD1 — 8, 16, 32, 64',
+    sublabel: 'KUKA Servo Drive',
+    // solar:settings-linear — servo drive
+    icon: 'solar:settings-linear',
+  },
+  {
+    id: 'ksd108',
+    label: 'KSD1-08',
+    sublabel: 'Servo drive 8A',
+    // solar:tuning-2-linear — drive variant
+    icon: 'solar:tuning-2-linear',
+  },
+  {
+    id: 'motor',
+    label: 'Servomotores',
+    sublabel: 'Motores dos eixos KUKA',
+    // solar:settings-bold — closest to motor/actuator; note: no 'motor-linear' in Solar
+    // NOTE: solar:settings-bold used as motor substitute (no solar:motor-linear)
+    icon: 'solar:settings-bold',
+  },
+  {
+    id: 'cabos',
+    label: 'Cabos Diversos',
+    sublabel: 'Cabos de potência, dados e motor',
+    // solar:link-linear — cables/connectors
+    icon: 'solar:link-linear',
+  },
+  {
+    id: 'bateria',
+    label: 'Bateria',
+    sublabel: 'Bateria do controlador',
+    // solar:battery-charge-linear — battery
+    icon: 'solar:battery-charge-linear',
+  },
+  {
+    id: 'oleo',
+    label: 'Óleo e Graxa',
+    sublabel: 'Lubrificantes para manutenção',
+    // solar:filter-bold — closest to lubricants/oil; note: no 'oil-linear' in Solar
+    // NOTE: solar:filter-bold used as lubricants substitute
+    icon: 'solar:filter-bold',
+  },
+  {
+    id: 'correia',
+    label: 'Correia KUKA Roboter',
+    sublabel: 'Correias de transmissão',
+    // solar:repeat-linear — belt/loop
+    icon: 'solar:repeat-linear',
+  },
+  {
+    id: 'manutencao',
+    label: 'Materiais Manutenção Prev.',
+    sublabel: 'Kit completo preventiva',
+    // solar:verified-check-linear — maintenance kit/checklist
+    icon: 'solar:verified-check-linear',
+  },
+] as const;
+---
+
+<div
+  class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-px bg-zinc-800"
+  role="list"
+  aria-label="Categorias de peças de reposição KUKA"
+>
+  {categories.map((cat) => (
+    <div
+      class="bg-[#050505] flex flex-col items-center justify-center gap-3 p-5 text-center hover:bg-zinc-900/60 transition-colors group"
+      role="listitem"
+    >
+      <!-- Icon -->
+      <div
+        class="h-10 w-10 flex items-center justify-center border border-zinc-800 group-hover:border-accent/40 transition-colors"
+        aria-hidden="true"
+      >
+        <Icon
+          name={cat.icon}
+          class="text-zinc-400 group-hover:text-accent transition-colors"
+          width={20}
+          height={20}
+          aria-hidden="true"
+        />
+      </div>
+
+      <!-- Label -->
+      <div class="flex flex-col gap-0.5">
+        <span class="text-[11px] font-medium text-white uppercase tracking-tight leading-tight">
+          {cat.label}
+        </span>
+        <span class="text-[9px] font-mono text-zinc-400 leading-tight hidden sm:block">
+          {cat.sublabel}
+        </span>
+      </div>
+    </div>
+  ))}
+</div>

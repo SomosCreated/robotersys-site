@@ -1,0 +1,152 @@
+---
+/**
+ * /pecas-de-reposicao/ — Peças de Reposição page
+ *
+ * Content source: https://robotersys.com/pecas-de-reposicao/ (fetched 2026-06-12)
+ *
+ * Sections:
+ *  1. PageHero "Peças de Reposição"
+ *  2. Headline "Maior estoque de peças KUKA do sul do Brasil"
+ *  3. PartsGrid — 17 categories
+ *  4. 4 Diferenciais via FeatureCard
+ *  5. ContactForm variant="contato"
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionLabel from '@/components/SectionLabel.astro';
+import PartsGrid from '@/components/PartsGrid.astro';
+import FeatureCard from '@/components/FeatureCard.astro';
+import ContactForm from '@/components/ContactForm.astro';
+import { t } from '@/i18n';
+
+const locale = 'pt' as const;
+
+const crumbs = [
+  { label: t(locale, 'pecas.breadcrumb_home'), href: '/' },
+  { label: t(locale, 'pecas.breadcrumb_page'), href: '/pecas-de-reposicao/' },
+];
+
+const diferenciais = [
+  {
+    icon: 'solar:box-linear',
+    title: t(locale, 'pecas.diff1_title'),
+    desc: t(locale, 'pecas.diff1_desc'),
+    fig: 'DIF. 01',
+    accent: true,
+  },
+  {
+    icon: 'solar:verified-check-linear',
+    title: t(locale, 'pecas.diff2_title'),
+    desc: t(locale, 'pecas.diff2_desc'),
+    fig: 'DIF. 02',
+  },
+  {
+    icon: 'solar:delivery-linear',
+    title: t(locale, 'pecas.diff3_title'),
+    desc: t(locale, 'pecas.diff3_desc'),
+    fig: 'DIF. 03',
+  },
+  {
+    icon: 'solar:lightning-linear',
+    title: t(locale, 'pecas.diff4_title'),
+    desc: t(locale, 'pecas.diff4_desc'),
+    fig: 'DIF. 04',
+  },
+];
+---
+
+<BaseLayout
+  title={t(locale, 'pecas.page_title')}
+  description={t(locale, 'pecas.meta_description')}
+  locale={locale}
+>
+
+  <!-- 1. Hero -->
+  <PageHero
+    kicker={t(locale, 'pecas.hero_kicker')}
+    title={t(locale, 'pecas.hero_title')}
+    crumbs={crumbs}
+  />
+
+  <!-- 2. Headline block -->
+  <section
+    class="py-16 border-b border-zinc-800 bg-[#050505] relative overflow-hidden"
+    aria-labelledby="pecas-headline"
+  >
+    <!-- Decorative left accent bar -->
+    <div
+      class="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-accent via-accent/30 to-transparent"
+      aria-hidden="true"
+    ></div>
+
+    <div class="container mx-auto px-6 lg:px-12 max-w-4xl">
+      <SectionLabel text={t(locale, 'pecas.headline_label')} />
+      <h2
+        id="pecas-headline"
+        class="text-3xl md:text-5xl font-medium text-white uppercase tracking-tight leading-tight mb-6 sys-reveal sys-rise"
+      >
+        {t(locale, 'pecas.headline_heading')}
+      </h2>
+      <p class="text-zinc-400 font-mono text-sm leading-relaxed max-w-2xl">
+        {t(locale, 'pecas.headline_body')}
+      </p>
+    </div>
+  </section>
+
+  <!-- 3. Parts grid -->
+  <section
+    class="py-16 border-b border-zinc-800 bg-[#050505]"
+    aria-labelledby="parts-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12">
+      <SectionLabel text={t(locale, 'pecas.parts_label')} />
+      <h2
+        id="parts-heading"
+        class="text-2xl md:text-3xl font-medium text-white uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
+      >
+        {t(locale, 'pecas.parts_heading')}
+      </h2>
+
+      <div class="sys-reveal">
+        <PartsGrid />
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Diferenciais -->
+  <section
+    class="py-16 border-b border-zinc-800 bg-[#050505]"
+    aria-labelledby="diff-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12">
+      <SectionLabel text={t(locale, 'pecas.diff_label')} />
+      <h2
+        id="diff-heading"
+        class="text-2xl md:text-3xl font-medium text-white uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
+      >
+        {t(locale, 'pecas.diff_heading')}
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sys-reveal">
+        {diferenciais.map((d) => (
+          <FeatureCard
+            icon={d.icon}
+            title={d.title}
+            desc={d.desc}
+            fig={d.fig}
+            accent={d.accent}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Contact Form -->
+  <ContactForm variant="contato" locale={locale} />
+
+</BaseLayout>
+
+<!-- Reveal island -->
+<script>
+  import '@/scripts/reveal';
+</script>

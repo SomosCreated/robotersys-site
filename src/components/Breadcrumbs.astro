@@ -1,0 +1,64 @@
+---
+/**
+ * Breadcrumbs — navigation trail with BreadcrumbList JSON-LD structured data.
+ */
+import { Icon } from 'astro-icon/components';
+
+interface BreadcrumbItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  /** The trail items. The last item is treated as the current page (no link). */
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+
+// Base URL for JSON-LD absolute URLs
+const siteBase = 'https://robotersys.com';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.label,
+    item: `${siteBase}${item.href}`,
+  })),
+};
+---
+
+<!-- BreadcrumbList structured data -->
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+<nav aria-label="Você está aqui">
+  <ol class="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-widest text-zinc-400 flex-wrap">
+    {items.map((item, index) => {
+      const isLast = index === items.length - 1;
+      return (
+        <>
+          <li>
+            {isLast ? (
+              <span class="text-zinc-300" aria-current="page">{item.label}</span>
+            ) : (
+              <a
+                href={item.href}
+                class="hover:text-zinc-300 transition-colors focus-visible:outline-none focus-visible:text-zinc-300"
+              >
+                {item.label}
+              </a>
+            )}
+          </li>
+          {!isLast && (
+            <li aria-hidden="true">
+              <Icon name="solar:alt-arrow-right-linear" width={10} class="text-zinc-400" />
+            </li>
+          )}
+        </>
+      );
+    })}
+  </ol>
+</nav>
