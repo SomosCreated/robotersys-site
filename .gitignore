@@ -3,6 +3,7 @@ dist/
 .astro/
 .vercel/
 .output/
+.claude/
 .env
 .env.*
 !.env.example
