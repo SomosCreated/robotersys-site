@@ -1,16 +1,111 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
+import SectionLabel from '@/components/SectionLabel.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import StatsBand from '@/components/StatsBand.astro';
+import Emergency24hCTA from '@/components/Emergency24hCTA.astro';
+import { t } from '@/i18n';
+
+const locale = 'pt' as const;
+
+const services = [
+  {
+    fig: 'FIG. 01',
+    icon: 'solar:bolt-circle-linear',
+    title: t(locale, 'services.s1_title'),
+    desc: t(locale, 'services.s1_desc'),
+  },
+  {
+    fig: 'FIG. 02',
+    icon: 'solar:shield-check-linear',
+    title: t(locale, 'services.s2_title'),
+    desc: t(locale, 'services.s2_desc'),
+  },
+  {
+    fig: 'FIG. 03',
+    icon: 'solar:box-linear',
+    title: t(locale, 'services.s3_title'),
+    desc: t(locale, 'services.s3_desc'),
+  },
+  {
+    fig: 'FIG. 04',
+    icon: 'solar:adhesive-plaster-linear',
+    title: t(locale, 'services.s4_title'),
+    desc: t(locale, 'services.s4_desc'),
+  },
+  {
+    fig: 'FIG. 05',
+    icon: 'solar:diploma-linear',
+    title: t(locale, 'services.s5_title'),
+    desc: t(locale, 'services.s5_desc'),
+  },
+  {
+    fig: 'FIG. 06',
+    icon: 'solar:settings-linear',
+    title: t(locale, 'services.s6_title'),
+    desc: t(locale, 'services.s6_desc'),
+  },
+];
+
+// PLACEHOLDER NOTE: stat values come from pt.ts and are placeholders.
+// Confirm real numbers with the client before going live.
+const stats = [
+  { label: t(locale, 'stats.clients_label'),       value: t(locale, 'stats.clients_value') },
+  { label: t(locale, 'stats.robots_label'),         value: t(locale, 'stats.robots_value') },
+  { label: t(locale, 'stats.interventions_label'),  value: t(locale, 'stats.interventions_value') },
+  { label: t(locale, 'stats.support_calls_label'),  value: t(locale, 'stats.support_calls_value') },
+  { label: t(locale, 'stats.lines_label'),          value: t(locale, 'stats.lines_value') },
+];
 ---
 
 <BaseLayout
   title="RoboterSys — Soluções completas para Robôs KUKA"
   description="Somos a maior especializada independente em robôs KUKA do Brasil. Manutenção, peças de reposição e suporte 24/7."
-  locale="pt"
+  locale={locale}
 >
-  <Hero locale="pt" />
+  <!-- Hero (Milestone C) -->
+  <Hero locale={locale} />
 
-  <!-- Future sections (Milestone D+): Serviços, Estatísticas, CTA 24h -->
+  <!-- ── Serviços ── -->
+  <section
+    class="border-b border-zinc-800 py-20 px-6 md:px-12"
+    aria-labelledby="services-heading"
+  >
+    <div class="max-w-7xl mx-auto">
+      <SectionLabel text={t(locale, 'services.section_label')} />
+
+      <!-- spotlight-grid: CSS + spotlight.ts set --mouse-x/--mouse-y on each .spotlight-card -->
+      <div
+        id="services-heading"
+        class="sr-only"
+      >
+        Serviços RoboterSys
+      </div>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 spotlight-grid border-t border-l border-zinc-800 sys-reveal"
+        role="list"
+        aria-label="Lista de serviços"
+      >
+        {services.map((service) => (
+          <div role="listitem">
+            <ServiceCard
+              fig={service.fig}
+              icon={service.icon}
+              title={service.title}
+              desc={service.desc}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Estatísticas ── -->
+  <StatsBand stats={stats} />
+
+  <!-- ── Emergência 24h ── -->
+  <Emergency24hCTA />
 </BaseLayout>
 
 <!-- Reveal island: drives .sys-reveal → .sys-active via IntersectionObserver -->
@@ -21,4 +116,9 @@ import Hero from '@/components/Hero.astro';
 <!-- Hero island: spotlight + parallax (guards: hover:hover AND no prefers-reduced-motion) -->
 <script>
   import '@/scripts/hero';
+</script>
+
+<!-- Services grid flashlight (guard: hover:hover) -->
+<script>
+  import '@/scripts/spotlight';
 </script>
