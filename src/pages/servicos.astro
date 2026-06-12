@@ -108,18 +108,18 @@ const supportItems = [
 
   <!-- 2. Positioning block -->
   <section
-    class="py-16 border-b border-zinc-800 bg-[#050505]"
+    class="py-16 border-b border-line bg-bg"
     aria-labelledby="servicos-positioning"
   >
     <div class="container mx-auto px-6 lg:px-12 max-w-4xl">
       <SectionLabel text={t(locale, 'servicos.positioning_label')} />
       <h2
         id="servicos-positioning"
-        class="text-2xl md:text-3xl font-medium text-white uppercase tracking-tight leading-tight mb-6 sys-reveal sys-rise"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-6 sys-reveal sys-rise"
       >
         {t(locale, 'servicos.positioning_heading')}
       </h2>
-      <p class="text-zinc-400 font-mono text-sm leading-relaxed max-w-2xl">
+      <p class="text-muted font-mono text-sm leading-relaxed max-w-2xl">
         {t(locale, 'servicos.positioning_body')}
       </p>
     </div>
@@ -127,21 +127,21 @@ const supportItems = [
 
   <!-- 3. Services spotlight grid -->
   <section
-    class="py-16 border-b border-zinc-800 bg-[#050505]"
+    class="py-16 border-b border-line bg-bg"
     aria-labelledby="servicos-heading"
   >
     <div class="container mx-auto px-6 lg:px-12">
       <SectionLabel text={t(locale, 'servicos.services_label')} />
       <h2
         id="servicos-heading"
-        class="text-2xl md:text-3xl font-medium text-white uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
       >
         {t(locale, 'servicos.services_heading')}
       </h2>
 
       <!-- Reuse the same spotlight-grid pattern from index.astro -->
       <div
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 spotlight-grid border-t border-l border-zinc-800 sys-reveal"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 spotlight-grid border-t border-l border-line sys-reveal"
         role="list"
         aria-label="Lista de serviços"
       >
@@ -161,18 +161,18 @@ const supportItems = [
 
   <!-- 4. Suporte Técnico lifecycle block -->
   <section
-    class="py-16 border-b border-zinc-800 bg-[#050505]"
+    class="py-16 border-b border-line bg-bg"
     aria-labelledby="support-heading"
   >
     <div class="container mx-auto px-6 lg:px-12">
       <SectionLabel text={t(locale, 'servicos.support_label')} />
       <h2
         id="support-heading"
-        class="text-2xl md:text-3xl font-medium text-white uppercase tracking-tight leading-tight mb-4 sys-reveal sys-rise"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-4 sys-reveal sys-rise"
       >
         {t(locale, 'servicos.support_heading')}
       </h2>
-      <p class="text-zinc-400 font-mono text-sm leading-relaxed mb-10 max-w-2xl">
+      <p class="text-muted font-mono text-sm leading-relaxed mb-10 max-w-2xl">
         {t(locale, 'servicos.support_body')}
       </p>
 

@@ -107,7 +107,7 @@ const blogPosts = [
 
   <!-- ── Serviços ── -->
   <section
-    class="border-b border-zinc-800 py-20 px-6 md:px-12"
+    class="border-b border-line py-20 px-6 md:px-12"
     aria-labelledby="services-heading"
   >
     <div class="max-w-7xl mx-auto">
@@ -121,7 +121,7 @@ const blogPosts = [
         Serviços RoboterSys
       </div>
       <div
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 spotlight-grid border-t border-l border-zinc-800 sys-reveal"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 spotlight-grid border-t border-l border-line sys-reveal"
         role="list"
         aria-label="Lista de serviços"
       >
@@ -147,40 +147,40 @@ const blogPosts = [
     Confirm list of client names/logos with the client.
   -->
   <section
-    class="border-b border-zinc-800 py-20 px-6 md:px-12 bg-[#050505] sys-reveal"
+    class="border-b border-line py-20 px-6 md:px-12 bg-bg sys-reveal"
     aria-labelledby="clients-heading"
   >
     <div class="max-w-7xl mx-auto">
       <SectionLabel text={t(locale, 'home.clients_section_label')} />
       <h2
         id="clients-heading"
-        class="text-2xl md:text-3xl font-medium text-white uppercase tracking-tight leading-tight mb-4 sys-reveal sys-rise"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-4 sys-reveal sys-rise"
       >
         {t(locale, 'home.clients_heading')}
       </h2>
-      <p class="text-sm font-mono text-zinc-400 leading-relaxed mb-10 max-w-xl">
+      <p class="text-sm font-mono text-muted leading-relaxed mb-10 max-w-xl">
         {t(locale, 'home.clients_body')}
       </p>
 
       <!-- Logo grid: 2 cols mobile → 5 cols desktop -->
       <div
-        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-px border border-zinc-800 bg-zinc-800"
+        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-px border border-line bg-line"
         role="list"
         aria-label="Logos de clientes"
       >
         {clientSlots.map((slot) => (
           <div
-            class="bg-[#050505] border-0 flex items-center justify-center p-6 min-h-[100px] sys-reveal"
+            class="bg-bg border-0 flex items-center justify-center p-6 min-h-[100px] sys-reveal"
             role="listitem"
             aria-label={`Slot de logo de cliente ${slot.id}`}
           >
             {/* // LOGO PLACEHOLDER — substituir por <img src="..." alt="Nome do cliente" /> */}
             <div class="flex flex-col items-center gap-1.5">
               <div
-                class="w-16 h-8 border border-dashed border-zinc-700 bg-zinc-900/30"
+                class="w-16 h-8 border border-dashed border-line bg-elevated/30"
                 aria-hidden="true"
               ></div>
-              <span class="text-[8px] font-mono text-zinc-400 uppercase tracking-widest">
+              <span class="text-[8px] font-mono text-muted uppercase tracking-widest">
                 {slot.id}
               </span>
             </div>
@@ -199,7 +199,7 @@ const blogPosts = [
     Replace with real GPTW seal/logo image (confirm asset with the client).
   -->
   <section
-    class="border-b border-zinc-800 py-16 px-6 md:px-12 bg-[#080808] sys-reveal"
+    class="border-b border-line py-16 px-6 md:px-12 bg-surface sys-reveal"
     aria-labelledby="gptw-heading"
   >
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-16">
@@ -213,12 +213,12 @@ const blogPosts = [
         >
           <Icon
             name="solar:shield-check-linear"
-            class="text-green-500"
+            class="text-ok"
             width={28}
             height={28}
             aria-hidden="true"
           />
-          <span class="text-[7px] font-mono text-green-600 uppercase tracking-widest text-center leading-tight">
+          <span class="text-[7px] font-mono text-ok/70 uppercase tracking-widest text-center leading-tight">
             GPTW<br />SEAL
           </span>
         </div>
@@ -229,16 +229,16 @@ const blogPosts = [
         <SectionLabel text={t(locale, 'home.gptw_section_label')} />
         <h2
           id="gptw-heading"
-          class="text-xl md:text-2xl lg:text-3xl font-medium text-white uppercase tracking-tight leading-tight mb-3 sys-reveal sys-rise"
+          class="text-xl md:text-2xl lg:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-3 sys-reveal sys-rise"
         >
           {t(locale, 'home.gptw_heading')}
         </h2>
         <div class="flex items-center gap-2 mb-4">
-          <span class="text-xs font-mono text-green-500 uppercase tracking-widest border border-green-800/50 bg-green-950/20 px-3 py-1">
+          <span class="text-xs font-mono text-ok uppercase tracking-widest border border-green-800/50 bg-green-950/20 px-3 py-1">
             {t(locale, 'home.gptw_years')}
           </span>
         </div>
-        <p class="text-sm font-mono text-zinc-400 leading-relaxed max-w-xl">
+        <p class="text-sm font-mono text-muted leading-relaxed max-w-xl">
           {t(locale, 'home.gptw_body')}
         </p>
       </div>
@@ -276,7 +276,7 @@ const blogPosts = [
     Os links apontam para /blog/ (ainda não criado) — confirmar rotas na Fase 4.
   -->
   <section
-    class="border-b border-zinc-800 py-20 px-6 md:px-12 bg-[#080808] sys-reveal"
+    class="border-b border-line py-20 px-6 md:px-12 bg-surface sys-reveal"
     aria-labelledby="blog-heading"
   >
     <div class="max-w-7xl mx-auto">
@@ -285,14 +285,14 @@ const blogPosts = [
       <div class="flex items-end justify-between gap-4 mb-10">
         <h2
           id="blog-heading"
-          class="text-2xl md:text-3xl font-medium text-white uppercase tracking-tight leading-tight sys-reveal sys-rise"
+          class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight sys-reveal sys-rise"
         >
           {t(locale, 'home.blog_heading')}
         </h2>
         <!-- "Ver todos" link — Fase 4 target -->
         <a
           href="/blog/"
-          class="hidden md:inline-flex items-center gap-2 text-[10px] font-mono text-zinc-400 hover:text-white uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent group"
+          class="hidden md:inline-flex items-center gap-2 text-[10px] font-mono text-muted hover:text-strong uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent group"
           aria-label={t(locale, 'home.blog_cta')}
         >
           {t(locale, 'home.blog_cta')}
@@ -308,32 +308,32 @@ const blogPosts = [
 
       <!-- Blog post cards — PLACEHOLDER até a Fase 4 (blog) -->
       <div
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px border border-zinc-800 bg-zinc-800 sys-reveal"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px border border-line bg-line sys-reveal"
         role="list"
         aria-label="Últimos artigos do blog"
       >
         {blogPosts.map((post) => (
           <article
-            class="bg-[#080808] p-6 flex flex-col gap-4 border-0"
+            class="bg-surface p-6 flex flex-col gap-4 border-0"
             role="listitem"
           >
             <!-- Fig label -->
             <div class="flex items-center justify-between">
-              <span class="text-[8px] font-mono text-zinc-400 uppercase tracking-widest border border-zinc-800 px-2 py-0.5">
+              <span class="text-[8px] font-mono text-muted uppercase tracking-widest border border-line px-2 py-0.5">
                 {post.id} {/* // PLACEHOLDER até a Fase 4 (blog) */}
               </span>
-              <span class="text-[8px] font-mono text-zinc-400 uppercase tracking-widest">
+              <span class="text-[8px] font-mono text-muted uppercase tracking-widest">
                 Blog
               </span>
             </div>
 
             <!-- Title -->
-            <h3 class="text-sm font-medium text-white uppercase tracking-tight leading-snug">
+            <h3 class="text-sm font-medium text-strong uppercase tracking-tight leading-snug">
               {post.title}
             </h3>
 
             <!-- Excerpt -->
-            <p class="text-sm font-mono text-zinc-400 leading-relaxed flex-1">
+            <p class="text-sm font-mono text-muted leading-relaxed flex-1">
               {post.excerpt}
             </p>
 
@@ -359,7 +359,7 @@ const blogPosts = [
       <div class="mt-6 md:hidden">
         <a
           href="/blog/"
-          class="inline-flex items-center gap-2 text-[10px] font-mono text-zinc-400 hover:text-white uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent group"
+          class="inline-flex items-center gap-2 text-[10px] font-mono text-muted hover:text-strong uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent group"
         >
           {t(locale, 'home.blog_cta')}
           <Icon
