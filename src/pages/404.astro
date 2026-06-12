@@ -1,0 +1,169 @@
+---
+/**
+ * 404 — SINAL PERDIDO
+ *
+ * HUD-style error page. Reuses BaseLayout (header + footer present).
+ * Design: mono error code aesthetic with orange accent.
+ * Accessibility: prefers-reduced-motion safe (all transitions gated).
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { Icon } from 'astro-icon/components';
+---
+
+<BaseLayout
+  title="404 — Página não encontrada · RoboterSys"
+  description="A página que você procura não existe ou foi movida. Retorne à página inicial da RoboterSys."
+  locale="pt"
+>
+  <section
+    class="min-h-[70vh] flex items-center justify-center px-6 py-24 relative overflow-hidden"
+    aria-labelledby="error-heading"
+  >
+    <!-- Blueprint grid overlay (same as rest of site) -->
+    <div
+      class="pointer-events-none absolute inset-0 opacity-[0.03] bg-grid"
+      aria-hidden="true"
+    ></div>
+
+    <!-- Faint large "404" background watermark — decorative -->
+    <div
+      class="pointer-events-none absolute inset-0 flex items-center justify-center select-none"
+      aria-hidden="true"
+    >
+      <span
+        class="text-[20vw] font-medium text-zinc-900 uppercase tracking-tight leading-none motion-safe:animate-pulse"
+        style="animation-duration: 4s;"
+      >
+        404
+      </span>
+    </div>
+
+    <!-- Card -->
+    <div class="relative z-10 max-w-lg w-full border border-zinc-800 bg-[#080808]/90 p-8 md:p-12">
+
+      <!-- Left accent bar -->
+      <div
+        class="absolute left-0 top-8 bottom-8 w-[3px] bg-accent"
+        aria-hidden="true"
+      ></div>
+
+      <!-- Status label -->
+      <div class="flex items-center gap-3 mb-6">
+        <div
+          class="text-[9px] font-mono text-zinc-400 uppercase tracking-widest border border-zinc-800 px-2 py-1 bg-ink"
+        >
+          STATUS
+        </div>
+        <div
+          class="text-[9px] font-mono text-orange-500 uppercase tracking-widest border border-orange-900/50 px-2 py-1 bg-orange-950/20"
+        >
+          ERR_404
+        </div>
+        <!-- Blinking cursor indicator -->
+        <span
+          class="w-1.5 h-4 bg-orange-500 motion-safe:animate-pulse"
+          aria-hidden="true"
+          style="animation-duration: 1s;"
+        ></span>
+      </div>
+
+      <!-- Error code + heading -->
+      <div class="mb-2">
+        <span class="text-[10px] font-mono text-accent uppercase tracking-widest">
+          // Erro de navegação
+        </span>
+      </div>
+
+      <h1
+        id="error-heading"
+        class="text-4xl md:text-5xl font-medium text-white uppercase tracking-tight leading-tight mb-6"
+      >
+        Sinal<br />
+        <span class="text-accent">Perdido.</span>
+      </h1>
+
+      <!-- Mono message block -->
+      <div
+        class="border-l-2 border-zinc-700 pl-4 mb-8 space-y-1"
+        aria-live="polite"
+      >
+        <p class="text-xs font-mono text-zinc-400 leading-relaxed">
+          A página que você procura não existe, foi movida ou está temporariamente indisponível.
+        </p>
+        <p class="text-[10px] font-mono text-zinc-500 tracking-wider">
+          &gt; Rota não encontrada: <em class="text-zinc-400">[ URL atual ]</em>
+        </p>
+      </div>
+
+      <!-- Inline system-log style lines -->
+      <div class="mb-8 space-y-1" aria-hidden="true">
+        <p class="text-[10px] font-mono text-zinc-700 tracking-wider">
+          [ SYS ] Verificando rota… <span class="text-orange-700">FALHA</span>
+        </p>
+        <p class="text-[10px] font-mono text-zinc-700 tracking-wider">
+          [ SYS ] Sugerindo redirecionamento… <span class="text-green-700">OK</span>
+        </p>
+      </div>
+
+      <!-- Primary CTA back to home -->
+      <a
+        href="/"
+        class="group inline-flex items-center gap-3 bg-accent hover:bg-orange-500 text-white text-xs font-mono uppercase tracking-widest px-8 py-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#080808]"
+      >
+        <Icon
+          name="solar:home-2-linear"
+          width={16}
+          height={16}
+          aria-hidden="true"
+        />
+        Voltar ao início
+        <Icon
+          name="solar:arrow-right-linear"
+          class="motion-safe:group-hover:translate-x-1 transition-transform"
+          width={14}
+          height={14}
+          aria-hidden="true"
+        />
+      </a>
+
+      <!-- Secondary links -->
+      <div class="mt-6 flex flex-wrap gap-4">
+        <a
+          href="/servicos/"
+          class="text-[10px] font-mono text-zinc-400 hover:text-white uppercase tracking-widest flex items-center gap-1.5 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+        >
+          <span class="w-1 h-px bg-zinc-600 group-hover:w-3 transition-all" aria-hidden="true"></span>
+          Serviços
+        </a>
+        <a
+          href="/contato/"
+          class="text-[10px] font-mono text-zinc-400 hover:text-white uppercase tracking-widest flex items-center gap-1.5 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+        >
+          <span class="w-1 h-px bg-zinc-600 transition-all" aria-hidden="true"></span>
+          Contato
+        </a>
+        <a
+          href="/sobre-nos/"
+          class="text-[10px] font-mono text-zinc-400 hover:text-white uppercase tracking-widest flex items-center gap-1.5 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+        >
+          <span class="w-1 h-px bg-zinc-600 transition-all" aria-hidden="true"></span>
+          Sobre Nós
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Display the current path in the error line — purely cosmetic
+  const pathEl = document.querySelector<HTMLElement>('[data-current-path]');
+  if (pathEl) {
+    pathEl.textContent = window.location.pathname;
+  }
+
+  // Set static path display for the em element
+  const emEl = document.querySelector('em[class="text-zinc-400"]');
+  if (emEl) {
+    emEl.textContent = window.location.pathname || '/';
+  }
+</script>
