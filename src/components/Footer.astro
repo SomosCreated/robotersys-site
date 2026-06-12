@@ -15,24 +15,11 @@ const navItems = [
   { key: 'nav.blog',      href: '/blog/' },
 ] as const;
 
-// Social: Solar has no LinkedIn/Instagram/Facebook icons; using share/link icons as substitutes.
-// solar:share-bold (LinkedIn), solar:link-linear (Instagram), solar:global-linear (Facebook)
+// Social brand icons via the simple-icons set. NOTE: handles are placeholders — confirm real URLs with client.
 const socialLinks = [
-  {
-    label: 'LinkedIn',
-    href: 'https://www.linkedin.com/company/robotersys',
-    icon: 'solar:share-bold',
-  },
-  {
-    label: 'Instagram',
-    href: 'https://www.instagram.com/robotersys',
-    icon: 'solar:link-linear',
-  },
-  {
-    label: 'Facebook',
-    href: 'https://www.facebook.com/robotersys',
-    icon: 'solar:global-linear',
-  },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/robotersys', icon: 'simple-icons:linkedin' },
+  { label: 'Instagram', href: 'https://www.instagram.com/robotersys', icon: 'simple-icons:instagram' },
+  { label: 'Facebook', href: 'https://www.facebook.com/robotersys', icon: 'simple-icons:facebook' },
 ] as const;
 ---
 
@@ -54,7 +41,7 @@ const socialLinks = [
           ROBOTER<span class="text-zinc-600">SYS</span>
         </span>
       </a>
-      <p class="text-[10px] text-zinc-500 leading-relaxed max-w-xs">
+      <p class="text-[11px] text-zinc-400 leading-relaxed max-w-xs">
         Especialista independente em manutenção, reparos e peças para robôs KUKA.
       </p>
 
@@ -87,7 +74,7 @@ const socialLinks = [
 
     <!-- nav links -->
     <div class="space-y-4">
-      <div class="text-[9px] font-mono text-zinc-600 uppercase tracking-widest mb-4">// Navegação</div>
+      <div class="text-[9px] font-mono text-zinc-500 uppercase tracking-widest mb-4">// Navegação</div>
       <nav aria-label="Links de rodapé">
         <ul class="space-y-2">
           {navItems.map(({ key, href }) => (
@@ -117,7 +104,7 @@ const socialLinks = [
     <!-- social + certifications -->
     <div class="space-y-6">
       <div>
-        <div class="text-[9px] font-mono text-zinc-600 uppercase tracking-widest mb-4">// Redes Sociais</div>
+        <div class="text-[9px] font-mono text-zinc-500 uppercase tracking-widest mb-4">// Redes Sociais</div>
         <div class="flex items-center gap-3">
           {socialLinks.map(({ label, href, icon }) => (
             <a
@@ -154,11 +141,11 @@ const socialLinks = [
   </div>
 
   <!-- bottom bar -->
-  <div class="bg-[#080808] px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-3 text-[9px] uppercase tracking-wider text-zinc-600">
+  <div class="bg-[#080808] px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-3 text-[10px] uppercase tracking-wider text-zinc-400">
     <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
       <span>© 2026 RoboterSys Serviços do Brasil Ltda</span>
     </div>
-    <div class="text-center text-[8px] text-zinc-700 max-w-md leading-relaxed">
+    <div class="text-center text-[10px] text-zinc-500 max-w-md leading-relaxed">
       Independente da KUKA Roboter do Brasil; a marca KUKA pertence à KUKA Roboter do Brasil.
     </div>
   </div>
