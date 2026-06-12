@@ -1,0 +1,106 @@
+---
+/**
+ * FloatingWhatsApp — fixed pill CTA that cycles between two states:
+ *   State A (alert):  solar:siren-rounded-bold icon + "LINHA PARADA"
+ *   State B (invite): simple-icons:whatsapp icon + "ENTRE EM CONTATO"
+ *
+ * The cycling script is in src/scripts/floating-whatsapp.ts.
+ * prefers-reduced-motion: static invite state only, no animation.
+ *
+ * PLACEHOLDER: Replace 55XXXXXXXXXXX with the real WhatsApp number
+ * (country code 55 + DDD + number, no spaces or dashes) before going live.
+ */
+import { Icon } from 'astro-icon/components';
+---
+
+<!--
+  PLACEHOLDER NUMBER: https://wa.me/55XXXXXXXXXXX
+  Replace XXXXXXXXXXX with the actual number before deploying.
+-->
+<a
+  id="floating-whatsapp"
+  href="https://wa.me/55XXXXXXXXXXX"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Falar no WhatsApp"
+  class="
+    fixed bottom-6 right-6 z-50
+    inline-flex items-center gap-2.5
+    bg-accent hover:bg-orange-500
+    text-white
+    px-5 h-11 min-w-[13rem]
+    rounded-full
+    text-[11px] font-mono font-medium uppercase tracking-widest
+    shadow-[0_0_24px_rgba(234,88,12,0.45)] hover:shadow-[0_0_36px_rgba(234,88,12,0.65)]
+    ring-1 ring-orange-500/30
+    transition-all duration-300
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-accent
+  "
+>
+  <!-- State A: siren/alert — "LINHA PARADA" -->
+  <span
+    id="fwa-state-alert"
+    class="flex items-center gap-2.5 fwa-state"
+    aria-hidden="true"
+  >
+    <Icon
+      name="solar:siren-rounded-bold"
+      width={18}
+      height={18}
+      class="fwa-pulse-icon flex-shrink-0"
+      aria-hidden="true"
+    />
+    <span class="whitespace-nowrap leading-none">LINHA PARADA</span>
+  </span>
+
+  <!-- State B: WhatsApp invite — "ENTRE EM CONTATO" -->
+  <span
+    id="fwa-state-invite"
+    class="flex items-center gap-2.5 fwa-state"
+    aria-hidden="true"
+  >
+    <Icon
+      name="simple-icons:whatsapp"
+      width={18}
+      height={18}
+      class="flex-shrink-0"
+      aria-hidden="true"
+    />
+    <span class="whitespace-nowrap leading-none">ENTRE EM CONTATO</span>
+  </span>
+</a>
+
+<style>
+  /* Default (before JS): show invite (State B), hide alert (State A).
+     IDs are not scoped by Astro — safe to use directly. */
+  #fwa-state-alert  { display: none; }
+  #fwa-state-invite { display: flex; }
+
+  /* .fwa-active is toggled by JS; use :global so the class name isn't hashed */
+  :global(.fwa-state.fwa-active)       { display: flex; }
+  :global(.fwa-state:not(.fwa-active)) { display: none; }
+
+  /* Siren pulse — smooth opacity + gentle scale, not a strobe */
+  @keyframes fwa-siren-pulse {
+    0%, 100% { opacity: 1;    transform: scale(1);    }
+    50%       { opacity: 0.55; transform: scale(1.15); }
+  }
+  :global(.fwa-pulse-icon) {
+    animation: fwa-siren-pulse 1.2s ease-in-out infinite;
+  }
+
+  /* Respect reduced motion: handled by JS (shows only State B, no cycle),
+     but the CSS media query also kills the animation as a safety net. */
+  @media (prefers-reduced-motion: reduce) {
+    :global(.fwa-pulse-icon) { animation: none; }
+  }
+
+  /* Light-mode: slightly more visible shadow/ring on the orange pill */
+  :global(.light) #floating-whatsapp {
+    box-shadow: 0 0 0 1px rgb(234 88 12 / 0.35), 0 0 24px rgba(234,88,12,0.35);
+  }
+</style>
+
+<script>
+  import '@/scripts/floating-whatsapp.ts';
+</script>
