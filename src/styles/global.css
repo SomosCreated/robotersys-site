@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fontes self-hosted (variable) */
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/jetbrains-mono';
+
+:root { --grid-line: #27272a; } /* zinc-800 */
+
+html { background: #050505; scroll-behavior: smooth; }
+body {
+  font-family: theme('fontFamily.sans');
+  color: #d4d4d8; /* zinc-300 — ajuste de contraste WCAG AA (era zinc-400/500) */
+  -webkit-font-smoothing: antialiased;
+}
+.font-mono { font-family: theme('fontFamily.mono'); }
+
+/* Grid de fundo (40px) */
+.bg-grid {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
