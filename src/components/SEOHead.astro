@@ -1,0 +1,26 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  locale?: string;
+  image?: string;
+}
+const {
+  title,
+  description,
+  locale = 'pt-BR',
+  // PLACEHOLDER: og-default.jpg does not exist yet — this image must be created and placed at
+  // public/robotersys/og-default.jpg (1200×630 px recommended) before the site goes live.
+  image = '/robotersys/og-default.jpg',
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, Astro.site).href} />
+<meta property="og:locale" content={locale} />
+<meta name="twitter:card" content="summary_large_image" />
