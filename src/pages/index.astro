@@ -1,3 +1,24 @@
 ---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/Hero.astro';
 ---
-<h1>ok</h1>
+
+<BaseLayout
+  title="RoboterSys — Soluções completas para Robôs KUKA"
+  description="Somos a maior especializada independente em robôs KUKA do Brasil. Manutenção, peças de reposição e suporte 24/7."
+  locale="pt"
+>
+  <Hero locale="pt" />
+
+  <!-- Future sections (Milestone D+): Serviços, Estatísticas, CTA 24h -->
+</BaseLayout>
+
+<!-- Reveal island: drives .sys-reveal → .sys-active via IntersectionObserver -->
+<script>
+  import '@/scripts/reveal';
+</script>
+
+<!-- Hero island: spotlight + parallax (guards: hover:hover AND no prefers-reduced-motion) -->
+<script>
+  import '@/scripts/hero';
+</script>
