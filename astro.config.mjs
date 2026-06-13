@@ -42,4 +42,12 @@ export default defineConfig({
     }),
   ],
   build: { inlineStylesheets: 'auto' },
+  vite: {
+    optimizeDeps: {
+      // Keystatic's React admin imports lodash submodules as CJS; pre-bundle
+      // them so Vite (dev) provides proper default exports — fixes the
+      // "/keystatic" island hydration error (lodash/debounce default export).
+      include: ['lodash/debounce', 'lodash'],
+    },
+  },
 });
