@@ -5,15 +5,19 @@ import SEOHead from '@/components/SEOHead.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp.astro';
+import Hreflang from '@/components/Hreflang.astro';
 import type { Locale } from '@/i18n/types';
+import type { PageKey } from '@/i18n/routes';
+import { LOCALE_HTMLLANG } from '@/i18n/routes';
 
 interface Props {
   title: string;
   description: string;
   locale?: Locale;
+  pageKey?: PageKey;
 }
-const { title, description, locale = 'pt' } = Astro.props;
-const htmlLang = { pt: 'pt-BR', en: 'en', es: 'es', de: 'de' }[locale];
+const { title, description, locale = 'pt', pageKey = 'home' } = Astro.props;
+const htmlLang = LOCALE_HTMLLANG[locale];
 ---
 <!doctype html>
 <html lang={htmlLang} class="scroll-smooth">
@@ -34,10 +38,11 @@ const htmlLang = { pt: 'pt-BR', en: 'en', es: 'es', de: 'de' }[locale];
       crossorigin
     />
     <SEOHead title={title} description={description} locale={htmlLang} />
+    <Hreflang pageKey={pageKey} />
   </head>
   <body class="min-h-screen flex flex-col bg-bg text-fg selection:bg-accent selection:text-white">
     <div class="fixed inset-0 pointer-events-none z-0 opacity-[0.04] bg-grid" aria-hidden="true"></div>
-    <Header locale={locale} />
+    <Header locale={locale} currentPageKey={pageKey} />
     <main class="relative z-10 flex-1">
       <slot />
     </main>
