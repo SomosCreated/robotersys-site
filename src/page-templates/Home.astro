@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
 import SectionLabel from '@/components/SectionLabel.astro';
@@ -7,6 +8,7 @@ import StatsBand from '@/components/StatsBand.astro';
 import Emergency24hCTA from '@/components/Emergency24hCTA.astro';
 import ContactForm from '@/components/ContactForm.astro';
 import ProseSection from '@/components/ProseSection.astro';
+import BlogCard from '@/components/BlogCard.astro';
 import { Icon } from 'astro-icon/components';
 import { t } from '@/i18n';
 import type { Locale } from '@/i18n/types';
@@ -81,28 +83,15 @@ const clientLogos = [
   { file: 'Pirelli.webp',      name: 'Pirelli' },
 ];
 
-// PLACEHOLDER NOTE: blog posts — replace with real CMS data in Phase 4.
-// PLACEHOLDER até a Fase 4 (blog)
-const blogPosts = [
-  {
-    id: 'P01',
-    title: t(locale, 'home.blog_post1_title'),
-    excerpt: t(locale, 'home.blog_post1_excerpt'),
-  },
-  {
-    id: 'P02',
-    title: t(locale, 'home.blog_post2_title'),
-    excerpt: t(locale, 'home.blog_post2_excerpt'),
-  },
-  {
-    id: 'P03',
-    title: t(locale, 'home.blog_post3_title'),
-    excerpt: t(locale, 'home.blog_post3_excerpt'),
-  },
-];
+// Phase 4 — real blog posts from content collection
+const allBlogPosts = await getCollection('blog', (entry) =>
+  entry.data.language === locale && !entry.data.draft
+);
+const latestPosts = allBlogPosts
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
+  .slice(0, 3);
 
-// {/* Phase 4 */} — blog routes special-cased until blog pages exist per locale
-const blogHref = locale === 'pt' ? '/blog/' : `/${locale}/blog/`;
+const blogHref = localizedPath('blog', locale);
 ---
 
 <BaseLayout
@@ -270,109 +259,76 @@ const blogHref = locale === 'pt' ? '/blog/' : `/${locale}/blog/`;
   </ProseSection>
 
   <!-- ── Blog Teaser ── -->
-  <!--
-    PLACEHOLDER até a Fase 4 (blog)
-    Estes são cards de exemplo. Na Fase 4, substituir por dados reais do CMS/blog.
-    Os links apontam para /blog/ (ainda não criado) — confirmar rotas na Fase 4.
-  -->
-  <section
-    class="border-b border-line py-20 px-6 md:px-12 bg-surface sys-reveal"
-    aria-labelledby="blog-heading"
-  >
-    <div class="max-w-7xl mx-auto">
-      <SectionLabel text={t(locale, 'home.blog_section_label')} />
+  {latestPosts.length > 0 && (
+    <section
+      class="border-b border-line py-20 px-6 md:px-12 bg-surface sys-reveal"
+      aria-labelledby="blog-heading"
+    >
+      <div class="max-w-7xl mx-auto">
+        <SectionLabel text={t(locale, 'home.blog_section_label')} />
 
-      <div class="flex items-end justify-between gap-4 mb-10">
-        <h2
-          id="blog-heading"
-          class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight sys-reveal sys-rise"
-        >
-          {t(locale, 'home.blog_heading')}
-        </h2>
-        <!-- "Ver todos" link — Fase 4 target -->
-        <a
-          href={blogHref}
-          class="hidden md:inline-flex items-center gap-2 text-[10px] font-mono text-muted hover:text-strong uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent group"
-          aria-label={t(locale, 'home.blog_cta')}
-        >
-          {t(locale, 'home.blog_cta')}
-          <Icon
-            name="solar:arrow-right-linear"
-            class="motion-safe:group-hover:translate-x-1 transition-transform"
-            width={12}
-            height={12}
-            aria-hidden="true"
-          />
-        </a>
-      </div>
-
-      <!-- Blog post cards — PLACEHOLDER até a Fase 4 (blog) -->
-      <div
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px border border-line bg-line sys-reveal"
-        role="list"
-        aria-label="Últimos artigos do blog"
-      >
-        {blogPosts.map((post) => (
-          <article
-            class="bg-surface p-6 flex flex-col gap-4 border-0"
-            role="listitem"
+        <div class="flex items-end justify-between gap-4 mb-10">
+          <h2
+            id="blog-heading"
+            class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight sys-reveal sys-rise"
           >
-            <!-- Fig label -->
-            <div class="flex items-center justify-between">
-              <span class="text-[8px] font-mono text-muted uppercase tracking-widest border border-line px-2 py-0.5">
-                {post.id} {/* // PLACEHOLDER até a Fase 4 (blog) */}
-              </span>
-              <span class="text-[8px] font-mono text-muted uppercase tracking-widest">
-                Blog
-              </span>
-            </div>
+            {t(locale, 'home.blog_heading')}
+          </h2>
+          <a
+            href={blogHref}
+            class="hidden md:inline-flex items-center gap-2 text-[10px] font-mono text-muted hover:text-strong uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent group"
+            aria-label={t(locale, 'home.blog_cta')}
+          >
+            {t(locale, 'home.blog_cta')}
+            <Icon
+              name="solar:arrow-right-linear"
+              class="motion-safe:group-hover:translate-x-1 transition-transform"
+              width={12}
+              height={12}
+              aria-hidden="true"
+            />
+          </a>
+        </div>
 
-            <!-- Title -->
-            <h3 class="text-sm font-medium text-strong uppercase tracking-tight leading-snug">
-              {post.title}
-            </h3>
-
-            <!-- Excerpt -->
-            <p class="text-sm font-mono text-muted leading-relaxed flex-1">
-              {post.excerpt}
-            </p>
-
-            <!-- Read more link — PLACEHOLDER href até a Fase 4 (blog) -->
-            <a
-              href={blogHref}
-              class="inline-flex items-center gap-2 text-[10px] font-mono text-accent hover:text-orange-400 uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent group mt-auto"
-            >
-              {t(locale, 'home.blog_read_more')}
-              <Icon
-                name="solar:arrow-right-linear"
-                class="motion-safe:group-hover:translate-x-1 transition-transform"
-                width={12}
-                height={12}
-                aria-hidden="true"
-              />
-            </a>
-          </article>
-        ))}
-      </div>
-
-      <!-- Mobile "ver todos" -->
-      <div class="mt-6 md:hidden">
-        <a
-          href={blogHref}
-          class="inline-flex items-center gap-2 text-[10px] font-mono text-muted hover:text-strong uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent group"
+        <!-- Real blog post cards from collection -->
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px border border-line bg-line sys-reveal"
+          role="list"
+          aria-label={t(locale, 'home.blog_heading')}
         >
-          {t(locale, 'home.blog_cta')}
-          <Icon
-            name="solar:arrow-right-linear"
-            class="motion-safe:group-hover:translate-x-1 transition-transform"
-            width={12}
-            height={12}
-            aria-hidden="true"
-          />
-        </a>
+          {latestPosts.map((post) => (
+            <div role="listitem">
+              <BlogCard
+                slug={post.id}
+                title={post.data.title}
+                excerpt={post.data.excerpt}
+                category={post.data.category}
+                publishedAt={post.data.publishedAt}
+                locale={locale}
+              />
+            </div>
+          ))}
+        </div>
+
+        <!-- Mobile "ver todos" -->
+        <div class="mt-6 md:hidden">
+          <a
+            href={blogHref}
+            class="inline-flex items-center gap-2 text-[10px] font-mono text-muted hover:text-strong uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent group"
+          >
+            {t(locale, 'home.blog_cta')}
+            <Icon
+              name="solar:arrow-right-linear"
+              class="motion-safe:group-hover:translate-x-1 transition-transform"
+              width={12}
+              height={12}
+              aria-hidden="true"
+            />
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- ── Contato ── -->
   <ContactForm variant="contato" locale={locale} />
