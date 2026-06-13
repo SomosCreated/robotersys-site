@@ -24,11 +24,14 @@ import { Icon } from 'astro-icon/components';
 </button>
 
 <style>
-  /* Show sun in dark, moon in light */
-  :global(.dark) #theme-toggle .theme-icon-moon { display: none; }
-  :global(.light) #theme-toggle .theme-icon-sun { display: none; }
-  /* Default (before class applied) — show sun */
+  /* Default (before class) — show sun, hide moon */
   #theme-toggle .theme-icon-moon { display: none; }
+  /* Dark — show sun, hide moon */
+  :global(.dark) #theme-toggle .theme-icon-sun { display: inline-block; }
+  :global(.dark) #theme-toggle .theme-icon-moon { display: none; }
+  /* Light — hide sun, SHOW moon */
+  :global(.light) #theme-toggle .theme-icon-sun { display: none; }
+  :global(.light) #theme-toggle .theme-icon-moon { display: inline-block; }
 </style>
 
 <script>
