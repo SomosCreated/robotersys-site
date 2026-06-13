@@ -20,6 +20,7 @@ import { Icon } from 'astro-icon/components';
 import { t } from '@/i18n';
 import type { Locale } from '@/i18n/types';
 import { localizedPath } from '@/i18n/routes';
+import sobreFacilityImg from '@/assets/robotersys/sobre-facility.webp';
 
 interface Props {
   locale: Locale;
@@ -70,6 +71,7 @@ const rhEmail   = t(locale, 'carreiras.rh_email');   // rh@robotersys.com.br
     kicker={t(locale, 'carreiras.hero_kicker')}
     title={t(locale, 'carreiras.hero_title')}
     crumbs={crumbs}
+    bgImage={sobreFacilityImg}
   />
 
   <!-- 2. Intro -->

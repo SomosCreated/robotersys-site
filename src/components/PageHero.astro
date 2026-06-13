@@ -1,8 +1,11 @@
 ---
 /**
  * PageHero — inner-page header: kicker (SectionLabel) + title + optional breadcrumbs.
- * Smaller than the main Hero; no background image. Consistent HUD styling.
+ * Smaller than the main Hero; optional background image with theme-aware scrim.
+ * When bgImage is not provided the plain bg-bg look is preserved (legal pages etc.).
  */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import SectionLabel from '@/components/SectionLabel.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
 
@@ -18,39 +21,78 @@ interface Props {
   title: string;
   /** Breadcrumb trail (the page itself is the last item; parent items link back). */
   crumbs?: CrumbItem[];
+  /**
+   * Optional background image (imported via astro:assets).
+   * When present it renders as an object-cover poster behind the content
+   * with a theme-aware gradient scrim for readability in both light and dark modes.
+   * Legal pages should omit this prop to keep the plain look.
+   */
+  bgImage?: ImageMetadata;
 }
 
-const { kicker, title, crumbs } = Astro.props;
+const { kicker, title, crumbs, bgImage } = Astro.props;
 ---
 
 <section
-  class="border-b border-line bg-bg relative overflow-hidden"
+  class:list={[
+    'border-b border-line bg-bg relative overflow-hidden',
+    bgImage ? 'min-h-[340px] flex items-center' : '',
+  ]}
   aria-labelledby="page-hero-title"
 >
-  <!-- Blueprint grid overlay -->
+  {bgImage && (
+    <>
+      {/* Background photo */}
+      <Image
+        src={bgImage}
+        alt=""
+        aria-hidden="true"
+        width={1280}
+        height={480}
+        class="pointer-events-none absolute inset-0 w-full h-full object-cover object-center z-0"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
+
+      {/* Horizontal scrim (left column readability — adapts to light/dark via from-bg) */}
+      <div
+        class="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-bg from-10% via-bg/85 to-bg/40"
+        aria-hidden="true"
+      ></div>
+
+      {/* Bottom vignette (grounds the section on both themes) */}
+      <div
+        class="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-bg/30 to-bg"
+        aria-hidden="true"
+      ></div>
+    </>
+  )}
+
+  {/* Blueprint grid overlay — on top of bg image if present */}
   <div
-    class="pointer-events-none absolute inset-0 opacity-[0.03] bg-grid"
+    class="pointer-events-none absolute inset-0 opacity-[0.03] bg-grid z-[2]"
     aria-hidden="true"
   ></div>
 
-  <!-- Left orange accent bar -->
+  {/* Left orange accent bar */}
   <div
-    class="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-accent via-accent/50 to-transparent"
+    class="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-accent via-accent/50 to-transparent z-[3]"
     aria-hidden="true"
   ></div>
 
   <div class="container mx-auto px-6 lg:px-12 py-16 md:py-20 relative z-10">
-    <!-- Breadcrumbs (above kicker) -->
+    {/* Breadcrumbs (above kicker) */}
     {crumbs && crumbs.length > 0 && (
       <div class="mb-6">
         <Breadcrumbs items={crumbs} />
       </div>
     )}
 
-    <!-- Kicker label -->
+    {/* Kicker label */}
     <SectionLabel text={kicker} />
 
-    <!-- Page title -->
+    {/* Page title */}
     <h1
       id="page-hero-title"
       class="text-4xl md:text-6xl lg:text-7xl font-medium text-strong uppercase tracking-tight leading-[0.9] mt-2 sys-reveal sys-rise"
