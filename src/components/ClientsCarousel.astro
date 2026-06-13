@@ -1,0 +1,156 @@
+---
+/**
+ * ClientsCarousel — auto-scrolling marquee of client logos.
+ *
+ * - White background in both themes (logos have white background and need it).
+ * - Locale-aware: EN shows only major international brands; PT/ES/DE shows all 36.
+ * - prefers-reduced-motion: falls back to a static wrapped row (no animation).
+ * - Logos duplicated for a seamless infinite-loop CSS marquee.
+ * - grayscale → color on hover for a polished look.
+ */
+import type { Locale } from '@/i18n/types';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'pt' } = Astro.props;
+
+// All 36 logos (PT / ES / DE)
+const ALL_LOGOS = [
+  { file: 'Volkswagen.webp',   name: 'Volkswagen' },
+  { file: 'Mercedes.webp',     name: 'Mercedes-Benz' },
+  { file: 'Renault.webp',      name: 'Renault' },
+  { file: 'Volvo.webp',        name: 'Volvo' },
+  { file: 'Stellantis.webp',   name: 'Stellantis' },
+  { file: 'Continental.webp',  name: 'Continental' },
+  { file: 'ZF.webp',           name: 'ZF' },
+  { file: 'Faurecia.webp',     name: 'Faurecia' },
+  { file: 'Sodecia.webp',      name: 'Sodecia' },
+  { file: 'Pirelli.webp',      name: 'Pirelli' },
+  { file: 'Samsung.webp',      name: 'Samsung' },
+  { file: 'Whirlpool.webp',    name: 'Whirlpool' },
+  { file: 'Arcelor-Mittal.webp', name: 'ArcelorMittal' },
+  { file: 'Gerdau.webp',       name: 'Gerdau' },
+  { file: 'Coca-Cola.webp',    name: 'Coca-Cola' },
+  { file: 'Heineken.webp',     name: 'Heineken' },
+  { file: 'Danone.webp',       name: 'Danone' },
+  { file: 'Nestle.webp',       name: 'Nestlé' },
+  { file: 'Heinz.webp',        name: 'Heinz' },
+  { file: 'SC-Johnson.webp',   name: 'SC Johnson' },
+  { file: 'Ambev.webp',        name: 'Ambev' },
+  { file: 'O-Boticario.webp',  name: 'O Boticário' },
+  { file: 'Marcopolo.webp',    name: 'Marcopolo' },
+  { file: 'DAF-Caminhoes.webp', name: 'DAF Caminhões' },
+  { file: 'Randon.webp',       name: 'Randon' },
+  { file: 'Facchini.webp',     name: 'Facchini' },
+  { file: 'Moura.webp',        name: 'Moura' },
+  { file: 'Schulz.webp',       name: 'Schulz' },
+  { file: 'Embraco.webp',      name: 'Embraco' },
+  { file: 'Deca.webp',         name: 'Deca' },
+  { file: 'Docol.webp',        name: 'Docol' },
+  { file: 'Fortlev.webp',      name: 'Fortlev' },
+  { file: 'Tirol.webp',        name: 'Tirol' },
+  { file: 'Tupy.webp',         name: 'Tupy' },
+  { file: 'Zen.webp',          name: 'Zen' },
+  { file: 'Zm.webp',           name: 'ZM' },
+];
+
+// EN — only the big international/multinational brands
+const EN_LOGOS = [
+  { file: 'Volkswagen.webp',   name: 'Volkswagen' },
+  { file: 'Mercedes.webp',     name: 'Mercedes-Benz' },
+  { file: 'Renault.webp',      name: 'Renault' },
+  { file: 'Volvo.webp',        name: 'Volvo' },
+  { file: 'Stellantis.webp',   name: 'Stellantis' },
+  { file: 'Continental.webp',  name: 'Continental' },
+  { file: 'ZF.webp',           name: 'ZF' },
+  { file: 'Faurecia.webp',     name: 'Faurecia' },
+  { file: 'Pirelli.webp',      name: 'Pirelli' },
+  { file: 'Samsung.webp',      name: 'Samsung' },
+  { file: 'Whirlpool.webp',    name: 'Whirlpool' },
+  { file: 'Arcelor-Mittal.webp', name: 'ArcelorMittal' },
+  { file: 'Coca-Cola.webp',    name: 'Coca-Cola' },
+  { file: 'Heineken.webp',     name: 'Heineken' },
+  { file: 'Danone.webp',       name: 'Danone' },
+  { file: 'Nestle.webp',       name: 'Nestlé' },
+  { file: 'Heinz.webp',        name: 'Heinz' },
+  { file: 'SC-Johnson.webp',   name: 'SC Johnson' },
+];
+
+const logos = locale === 'en' ? EN_LOGOS : ALL_LOGOS;
+---
+
+<div
+  class="clients-carousel-wrapper w-full bg-white overflow-hidden py-6 border-y border-zinc-200"
+  aria-label="Client logos carousel"
+>
+  <!-- CSS marquee track: two identical sets of logos for seamless loop -->
+  <div class="clients-track flex items-center gap-10 w-max" aria-hidden="false">
+    {logos.map((logo) => (
+      <div class="flex-shrink-0 px-2">
+        <img
+          src={`/robotersys/logos/${logo.file}`}
+          alt={logo.name}
+          width="120"
+          height="48"
+          loading="lazy"
+          decoding="async"
+          class="max-h-10 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+        />
+      </div>
+    ))}
+    {/* Duplicate for seamless loop */}
+    {logos.map((logo) => (
+      <div class="flex-shrink-0 px-2" aria-hidden="true">
+        <img
+          src={`/robotersys/logos/${logo.file}`}
+          alt=""
+          width="120"
+          height="48"
+          loading="lazy"
+          decoding="async"
+          class="max-h-10 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+        />
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  /*
+   * CSS marquee — no JS needed for motion.
+   * prefers-reduced-motion: the animation is removed entirely,
+   * and the track wraps naturally into a grid row.
+   */
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  .clients-track {
+    animation: marquee-scroll 40s linear infinite;
+  }
+
+  /* Pause on hover for usability */
+  .clients-carousel-wrapper:hover .clients-track {
+    animation-play-state: paused;
+  }
+
+  /* prefers-reduced-motion: cancel scroll, show static wrapped row */
+  @media (prefers-reduced-motion: reduce) {
+    .clients-carousel-wrapper {
+      overflow: visible;
+    }
+    .clients-track {
+      animation: none;
+      flex-wrap: wrap;
+      width: auto;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    /* Hide duplicate set when static */
+    .clients-track > div[aria-hidden="true"] {
+      display: none;
+    }
+  }
+</style>
