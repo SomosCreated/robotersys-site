@@ -34,11 +34,13 @@
 - [ ] i18n: strings do blog (índice/estado vazio/"Saiba mais"/"Voltar ao blog"/meta) em `t(locale, 'blog.*')` nos 4 dicts (DE marcado).
 - [ ] Verificar build/check/test; `/blog/`, `/en/blog/`, e um post `/blog/<slug>/` geram. Commit.
 
-## M2 — Painel Keystatic
-**Files:** `keystatic.config.ts`, `src/pages/keystatic/[...params].astro` + `src/pages/api/keystatic/[...params].ts` (conforme `@keystatic/astro`), `astro.config.mjs` (react + output), `package.json`.
-- [ ] Instalar Keystatic + React; `keystatic.config.ts` com a collection `posts` mapeada **exatamente** ao schema da content collection (mesmos campos/caminho `src/content/blog/*`). `storage`: `local` em dev / `github` (repo) quando `import.meta.env.PROD` — documentar a GitHub App + conta editorial como passo do usuário.
-- [ ] Rotas do painel (`/keystatic`) + API; `output: 'hybrid'`; `/keystatic` com `noindex`; confirmar que as páginas públicas seguem estáticas e só o painel é server.
-- [ ] Verificar: `astro check`/`build`/`test` verdes; `/keystatic` builda como função; criar/editar um post no modo local reflete no MDX. Commit. (Edição via GitHub fica para quando o usuário conectar a App.)
+## M2 — Painel Keystatic ✅ (2026-06-13)
+**Files:** `keystatic.config.ts` (novo), `astro.config.mjs` (react + keystatic integrations), `public/robots.txt` (noindex /keystatic), `package.json` (deps).
+**Nota:** A integração `@keystatic/astro` injeta as rotas `/keystatic/[...params]` e `/api/keystatic/[...params]` automaticamente — não é necessário criar arquivos de rota manualmente. `output: 'hybrid'` foi removido no Astro v5; `output: 'static'` já suporta `prerender = false` em rotas individuais (comportamento idêntico).
+**Formato de conteúdo:** MDX (`fields.mdx`), não markdoc — mantém compatibilidade total com os posts existentes (`.mdx`) e com `@astrojs/mdx`. Veja comentário em `keystatic.config.ts`.
+- [x] Instalar Keystatic + React; `keystatic.config.ts` com a collection `posts` mapeada **exatamente** ao schema da content collection (mesmos campos/caminho `src/content/blog/*`). `storage`: `local` em dev / `github` (SomosCreated/robotersys-site) quando `import.meta.env.PROD` — documentado em comentário no config.
+- [x] Rotas do painel (`/keystatic`) + API injetadas pelo `@keystatic/astro`; `output: 'static'` (v5 equivalent); `/keystatic` com `noindex` via `public/robots.txt`; páginas públicas estáticas confirmadas, painel é função server.
+- [x] `astro check` 0 erros; `npm run build` sem erros; `npm test` 50/50; `/keystatic` builda como `_render.func`; blog/home são HTML estático. Commit. (Edição via GitHub aguarda GitHub App do usuário.)
 
 ## M3 — Migração dos posts reais (PT + EN)
 - [ ] Subagente: coletar os posts do site atual — PT em `https://robotersys.com/category/pt/` (e as URLs dos posts) + os artigos **EN** (taxonomia EN). Para cada: extrair título, data, conteúdo, capa; converter para **MDX** em `src/content/blog/` com o frontmatter do schema + `language`. Baixar as imagens (capa) p/ `src/assets/blog/`. Remover os posts `// SAMPLE`. Preservar slugs antigos → mapa de **redirect 301** (anotar p/ Fase 5).
