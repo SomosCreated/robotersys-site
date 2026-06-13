@@ -1,0 +1,264 @@
+---
+/**
+ * Pushcorp page template — locale-aware
+ *
+ * Content source: https://robotersys.com/solucoes-pushcorp/ (fetched 2026-06-12)
+ *
+ * Sections:
+ *  1. PageHero "PushCorp · Integrador Parceiro"
+ *  2. Partnership overview (stats: since 1993, made in USA, lab Texas)
+ *  3. Rebarbação applications via FeatureCard × 3
+ *  4. Compliance Device technology via FeatureCard × 3
+ *  5. Diferenciais via FeatureCard × 4
+ *  6. ContactForm variant="produto"
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionLabel from '@/components/SectionLabel.astro';
+import FeatureCard from '@/components/FeatureCard.astro';
+import ContactForm from '@/components/ContactForm.astro';
+import { t } from '@/i18n';
+import type { Locale } from '@/i18n/types';
+import { localizedPath } from '@/i18n/routes';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+
+const crumbs = [
+  { label: t(locale, 'pushcorp.breadcrumb_home'), href: localizedPath('home', locale) },
+  { label: t(locale, 'pushcorp.breadcrumb_page'), href: localizedPath('pushcorp', locale) },
+];
+
+const applications = [
+  {
+    icon: 'solar:settings-linear',
+    title: t(locale, 'pushcorp.app1_title'),
+    desc: t(locale, 'pushcorp.app1_desc'),
+    fig: 'APL. 01',
+    accent: true,
+  },
+  {
+    icon: 'solar:stars-linear',
+    title: t(locale, 'pushcorp.app2_title'),
+    desc: t(locale, 'pushcorp.app2_desc'),
+    fig: 'APL. 02',
+  },
+  {
+    icon: 'solar:verified-check-linear',
+    title: t(locale, 'pushcorp.app3_title'),
+    desc: t(locale, 'pushcorp.app3_desc'),
+    fig: 'APL. 03',
+  },
+];
+
+const techItems = [
+  {
+    icon: 'solar:tuning-2-linear',
+    title: t(locale, 'pushcorp.tech1_title'),
+    desc: t(locale, 'pushcorp.tech1_desc'),
+    fig: 'TEC. 01',
+    accent: true,
+  },
+  {
+    icon: 'solar:refresh-circle-linear',
+    title: t(locale, 'pushcorp.tech2_title'),
+    desc: t(locale, 'pushcorp.tech2_desc'),
+    fig: 'TEC. 02',
+  },
+  {
+    icon: 'solar:widget-linear',
+    title: t(locale, 'pushcorp.tech3_title'),
+    desc: t(locale, 'pushcorp.tech3_desc'),
+    fig: 'TEC. 03',
+  },
+];
+
+const diferenciais = [
+  {
+    icon: 'solar:global-linear',
+    title: t(locale, 'pushcorp.diff1_title'),
+    desc: t(locale, 'pushcorp.diff1_desc'),
+    fig: 'DIF. 01',
+    accent: true,
+  },
+  {
+    icon: 'solar:shield-check-linear',
+    title: t(locale, 'pushcorp.diff2_title'),
+    desc: t(locale, 'pushcorp.diff2_desc'),
+    fig: 'DIF. 02',
+  },
+  {
+    icon: 'solar:test-tube-linear',
+    title: t(locale, 'pushcorp.diff3_title'),
+    desc: t(locale, 'pushcorp.diff3_desc'),
+    fig: 'DIF. 03',
+  },
+  {
+    icon: 'solar:hand-stars-linear',
+    title: t(locale, 'pushcorp.diff4_title'),
+    desc: t(locale, 'pushcorp.diff4_desc'),
+    fig: 'DIF. 04',
+  },
+];
+
+// Partnership stat pills
+const stats = [
+  { label: t(locale, 'pushcorp.partner_since_label'), value: t(locale, 'pushcorp.partner_since_value') },
+  { label: t(locale, 'pushcorp.partner_origin_label'), value: t(locale, 'pushcorp.partner_origin_value') },
+  { label: t(locale, 'pushcorp.partner_lab_label'), value: t(locale, 'pushcorp.partner_lab_value') },
+];
+---
+
+<BaseLayout
+  title={t(locale, 'pushcorp.page_title')}
+  description={t(locale, 'pushcorp.meta_description')}
+  locale={locale}
+  pageKey="pushcorp"
+>
+
+  <!-- 1. Hero -->
+  <PageHero
+    kicker={t(locale, 'pushcorp.hero_kicker')}
+    title={t(locale, 'pushcorp.hero_title')}
+    crumbs={crumbs}
+  />
+
+  <!-- 2. Partnership overview -->
+  <section
+    class="py-16 border-b border-line bg-bg"
+    aria-labelledby="pushcorp-partner-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12">
+      <SectionLabel text={t(locale, 'pushcorp.partner_label')} />
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <!-- Copy -->
+        <div>
+          <h2
+            id="pushcorp-partner-heading"
+            class="text-2xl md:text-4xl font-medium text-strong uppercase tracking-tight leading-tight mb-6 sys-reveal sys-rise"
+          >
+            {t(locale, 'pushcorp.partner_heading')}
+          </h2>
+          <p class="text-muted font-mono text-sm leading-relaxed">
+            {t(locale, 'pushcorp.partner_body')}
+          </p>
+        </div>
+
+        <!-- Stats pills -->
+        <div class="flex flex-col gap-4 sys-reveal">
+          {stats.map((stat) => (
+            <div class="flex items-center gap-4 border border-line p-4 bg-elevated/20 hover:border-line/70 transition-colors">
+              <span class="text-3xl font-medium text-strong tracking-tight flex-shrink-0">
+                {stat.value}
+              </span>
+              <span class="text-[10px] font-mono text-muted uppercase tracking-widest">
+                {stat.label}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Applications -->
+  <section
+    class="py-16 border-b border-line bg-bg"
+    aria-labelledby="pushcorp-apps-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12">
+      <SectionLabel text={t(locale, 'pushcorp.apps_label')} />
+      <h2
+        id="pushcorp-apps-heading"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-4 sys-reveal sys-rise"
+      >
+        {t(locale, 'pushcorp.apps_heading')}
+      </h2>
+      <p class="text-muted font-mono text-sm leading-relaxed mb-10 max-w-2xl">
+        {t(locale, 'pushcorp.apps_body')}
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sys-reveal">
+        {applications.map((app) => (
+          <FeatureCard
+            icon={app.icon}
+            title={app.title}
+            desc={app.desc}
+            fig={app.fig}
+            accent={app.accent}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Compliance Device technology -->
+  <section
+    class="py-16 border-b border-line bg-surface"
+    aria-labelledby="pushcorp-tech-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12">
+      <SectionLabel text={t(locale, 'pushcorp.tech_label')} />
+      <h2
+        id="pushcorp-tech-heading"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-4 sys-reveal sys-rise"
+      >
+        {t(locale, 'pushcorp.tech_heading')}
+      </h2>
+      <p class="text-muted font-mono text-sm leading-relaxed mb-10 max-w-2xl">
+        {t(locale, 'pushcorp.tech_body')}
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sys-reveal">
+        {techItems.map((tech) => (
+          <FeatureCard
+            icon={tech.icon}
+            title={tech.title}
+            desc={tech.desc}
+            fig={tech.fig}
+            accent={tech.accent}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Diferenciais -->
+  <section
+    class="py-16 border-b border-line bg-bg"
+    aria-labelledby="pushcorp-diff-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12">
+      <SectionLabel text={t(locale, 'pushcorp.diff_label')} />
+      <h2
+        id="pushcorp-diff-heading"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
+      >
+        {t(locale, 'pushcorp.diff_heading')}
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sys-reveal">
+        {diferenciais.map((d) => (
+          <FeatureCard
+            icon={d.icon}
+            title={d.title}
+            desc={d.desc}
+            fig={d.fig}
+            accent={d.accent}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Contact Form (produto variant — PushCorp inquiry) -->
+  <ContactForm variant="produto" locale={locale} />
+
+</BaseLayout>
+
+<!-- Reveal island -->
+<script>
+  import '@/scripts/reveal';
+</script>

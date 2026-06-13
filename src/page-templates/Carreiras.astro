@@ -1,0 +1,217 @@
+---
+/**
+ * Carreiras page template — locale-aware
+ *
+ * Content source: https://robotersys.com/trabalhe-conosco/ (fetched 2026-06-12)
+ *
+ * Sections:
+ *  1. PageHero "Trabalhe Conosco" with breadcrumbs
+ *  2. Intro block ("Junte-se ao time")
+ *  3. Cultura: Inovação / Crescimento / Colaboração via FeatureCard × 3
+ *  4. GPTW 4 anos consecutivos (2022–2025)
+ *  5. ContactForm variant="carreiras" (routes lead to RH / rh@robotersys.com.br)
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionLabel from '@/components/SectionLabel.astro';
+import FeatureCard from '@/components/FeatureCard.astro';
+import ContactForm from '@/components/ContactForm.astro';
+import { Icon } from 'astro-icon/components';
+import { t } from '@/i18n';
+import type { Locale } from '@/i18n/types';
+import { localizedPath } from '@/i18n/routes';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+
+const crumbs = [
+  { label: t(locale, 'carreiras.breadcrumb_home'), href: localizedPath('home', locale) },
+  { label: t(locale, 'carreiras.breadcrumb_page'), href: localizedPath('carreiras', locale) },
+];
+
+// Culture cards — icons verified against @iconify-json/solar
+const cultura = [
+  {
+    fig: 'CUL. 01',
+    icon: 'solar:rocket-linear',        // verified OK
+    title: t(locale, 'carreiras.cultura1_title'),
+    desc:  t(locale, 'carreiras.cultura1_desc'),
+    accent: true,
+  },
+  {
+    fig: 'CUL. 02',
+    icon: 'solar:graph-new-linear',     // verified OK
+    title: t(locale, 'carreiras.cultura2_title'),
+    desc:  t(locale, 'carreiras.cultura2_desc'),
+  },
+  {
+    fig: 'CUL. 03',
+    icon: 'solar:users-group-rounded-linear', // verified OK
+    title: t(locale, 'carreiras.cultura3_title'),
+    desc:  t(locale, 'carreiras.cultura3_desc'),
+  },
+];
+
+const gptwYears = t(locale, 'carreiras.gptw_years'); // "2022, 2023, 2024 e 2025"
+const rhEmail   = t(locale, 'carreiras.rh_email');   // rh@robotersys.com.br
+---
+
+<BaseLayout
+  title={t(locale, 'carreiras.page_title')}
+  description={t(locale, 'carreiras.meta_description')}
+  locale={locale}
+  pageKey="carreiras"
+>
+
+  <!-- 1. Hero -->
+  <PageHero
+    kicker={t(locale, 'carreiras.hero_kicker')}
+    title={t(locale, 'carreiras.hero_title')}
+    crumbs={crumbs}
+  />
+
+  <!-- 2. Intro -->
+  <section
+    class="py-16 border-b border-line bg-bg"
+    aria-labelledby="tc-intro-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12 max-w-4xl">
+      <SectionLabel text={t(locale, 'carreiras.intro_label')} />
+      <h2
+        id="tc-intro-heading"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-6 sys-reveal sys-rise"
+      >
+        {t(locale, 'carreiras.intro_title')}
+      </h2>
+      <p class="text-fg font-mono text-sm leading-relaxed max-w-2xl">
+        {t(locale, 'carreiras.intro_text')}
+      </p>
+    </div>
+  </section>
+
+  <!-- 3. Cultura: Inovação / Crescimento / Colaboração -->
+  <section
+    class="py-16 border-b border-line bg-bg"
+    aria-labelledby="tc-cultura-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12">
+      <SectionLabel text={t(locale, 'carreiras.cultura_label')} />
+      <h2
+        id="tc-cultura-heading"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
+      >
+        {t(locale, 'carreiras.cultura_title')}
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sys-reveal">
+        {cultura.map((c) => (
+          <FeatureCard
+            icon={c.icon}
+            title={c.title}
+            desc={c.desc}
+            fig={c.fig}
+            accent={c.accent}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. GPTW — 4 anos consecutivos (2022–2025) -->
+  <section
+    class="py-16 border-b border-line bg-bg"
+    aria-labelledby="tc-gptw-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12 max-w-4xl">
+      <SectionLabel text={t(locale, 'carreiras.gptw_label')} />
+
+      <div class="flex flex-col md:flex-row items-start md:items-center gap-8">
+
+        <!-- GPTW seal — real image from current site (robotersys.com) — Phase 2.5 -->
+        <img
+          src="/robotersys/img/GPTW-Selos.webp"
+          alt="Selo Great Place to Work — RoboterSys certificada GPTW"
+          width="120"
+          height="120"
+          loading="lazy"
+          decoding="async"
+          class="flex-shrink-0 w-24 h-auto object-contain"
+        />
+
+        <div class="flex-1">
+          <h2
+            id="tc-gptw-heading"
+            class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-3 sys-reveal sys-rise"
+          >
+            {t(locale, 'carreiras.gptw_title')}
+          </h2>
+
+          <!-- Year badges -->
+          <div class="flex flex-wrap gap-2 mb-4" aria-label={`Anos de certificação: ${gptwYears}`}>
+            {['2022', '2023', '2024', '2025'].map((year) => (
+              <span class="text-[10px] font-mono text-accent border border-accent/40 bg-accent/5 px-2.5 py-1 uppercase tracking-widest">
+                {year}
+              </span>
+            ))}
+          </div>
+
+          <p class="text-fg font-mono text-sm leading-relaxed max-w-2xl">
+            {t(locale, 'carreiras.gptw_text')}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Candidatura info + rh@robotersys.com.br link -->
+  <section
+    class="py-12 border-b border-line bg-bg"
+    aria-labelledby="tc-form-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12 max-w-2xl">
+      <SectionLabel text={t(locale, 'carreiras.form_label')} />
+      <h2
+        id="tc-form-heading"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-4 sys-reveal sys-rise"
+      >
+        {t(locale, 'carreiras.form_title')}
+      </h2>
+      <p class="text-fg font-mono text-sm leading-relaxed mb-6">
+        {t(locale, 'carreiras.form_intro')}
+      </p>
+
+      <!-- RH email channel -->
+      <div class="flex items-start gap-3 border border-line bg-elevated/20 p-4 mb-2">
+        <div class="mt-0.5 h-8 w-8 flex-shrink-0 border border-line bg-elevated/50 flex items-center justify-center" aria-hidden="true">
+          <Icon name="solar:letter-linear" class="text-muted" width={16} />
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-[9px] font-mono text-muted uppercase tracking-widest mb-1">
+            {t(locale, 'carreiras.rh_email_label')}
+          </p>
+          <a
+            href={`mailto:${rhEmail}`}
+            class="text-accent text-sm font-mono hover:text-orange-500 transition-colors focus-visible:outline-none focus-visible:underline break-all"
+            aria-label={`Enviar e-mail para o RH: ${rhEmail}`}
+          >
+            {rhEmail}
+          </a>
+          <p class="text-muted text-xs font-mono mt-1 leading-relaxed">
+            {t(locale, 'carreiras.rh_email_desc')}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ContactForm variant="carreiras" routes the lead to rh@robotersys.com.br -->
+  <ContactForm variant="carreiras" locale={locale} />
+
+</BaseLayout>
+
+<!-- Reveal island -->
+<script>
+  import '@/scripts/reveal';
+</script>

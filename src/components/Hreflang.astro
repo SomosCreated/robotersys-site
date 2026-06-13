@@ -1,0 +1,23 @@
+---
+import { LOCALES, LOCALE_HTMLLANG, localizedPath } from '@/i18n/routes';
+import type { PageKey } from '@/i18n/routes';
+
+interface Props { pageKey: PageKey; }
+const { pageKey } = Astro.props;
+
+const siteBase = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://robotersys.com';
+---
+
+{LOCALES.map((locale) => (
+  <link
+    rel="alternate"
+    hreflang={LOCALE_HTMLLANG[locale]}
+    href={`${siteBase}${localizedPath(pageKey, locale)}`}
+  />
+))}
+<!-- x-default → PT (canonical default) -->
+<link
+  rel="alternate"
+  hreflang="x-default"
+  href={`${siteBase}${localizedPath(pageKey, 'pt')}`}
+/>

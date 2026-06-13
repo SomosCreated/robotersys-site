@@ -1,0 +1,249 @@
+---
+/**
+ * Contato page template — locale-aware
+ *
+ * Content source: https://robotersys.com/contato/ (fetched 2026-06-12)
+ *
+ * Sections:
+ *  1. PageHero with breadcrumbs
+ *  2. ContactForm (variant="contato")
+ *  3. Channels block (WhatsApp, phone, email, address, hours)
+ *  4. Map embed (lazy iframe)
+ *
+ * Real contact data from spec §3:
+ *   Address:  R. Parati, 335C — Joinville/SC
+ *   Email:    contato.site@robotersys.com.br
+ *   Phone:    (47) 4101 0987
+ *
+ * PLACEHOLDER NOTE: WhatsApp number and map embed URL must be confirmed with
+ * the client before go-live.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import ContactForm from '@/components/ContactForm.astro';
+import { Icon } from 'astro-icon/components';
+import { t } from '@/i18n';
+import type { Locale } from '@/i18n/types';
+import { localizedPath } from '@/i18n/routes';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+
+// contato.meta_description is not yet in the i18n dict — use a static fallback
+const metaDescription =
+  'Entre em contato com a RoboterSys: WhatsApp 24h, telefone, e-mail e endereço. Maior especializada independente em robôs KUKA do Brasil.';
+
+const crumbs = [
+  { label: t(locale, 'contato.breadcrumb_home'), href: localizedPath('home', locale) },
+  { label: t(locale, 'contato.breadcrumb_contact'), href: localizedPath('contato', locale) },
+];
+
+// PLACEHOLDER: replace with real WhatsApp click-to-chat link before go-live
+const whatsappHref = 'https://wa.me/55XXXXXXXX'; // PLACEHOLDER — confirmar número com o cliente
+const phoneHref    = 'tel:+554741010987';
+const emailHref    = `mailto:${t(locale, 'contato.email_address')}`;
+
+// PLACEHOLDER: replace with real Google Maps embed URL for R. Parati 335C Joinville SC
+const mapSrc =
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57568.12345678!2d-48.8456!3d-26.3045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zUi4gUGFyYXRpIDMzNUMsIEpvaW52aWxsZSBTQw!5e0!3m2!1spt!2sbr!4v1234567890';
+// PLACEHOLDER: the embed URL above uses placeholder coordinates. Replace with the
+// real embed URL from Google Maps → Share → Embed a map.
+---
+
+<BaseLayout
+  title={t(locale, 'contato.page_title')}
+  description={metaDescription}
+  locale={locale}
+  pageKey="contato"
+>
+
+  <!-- 1. Hero -->
+  <PageHero
+    kicker={t(locale, 'contato.hero_kicker')}
+    title={t(locale, 'contato.hero_title')}
+    crumbs={crumbs}
+  />
+
+  <!-- 2. Contact Form -->
+  <ContactForm variant="contato" locale={locale} />
+
+  <!-- 3. Channels block -->
+  <section
+    class="py-20 bg-bg border-t border-line"
+    aria-labelledby="channels-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12">
+
+      <!-- Section label -->
+      <div class="text-[10px] font-mono text-accent uppercase tracking-widest flex items-center gap-2 mb-6">
+        <span class="w-1.5 h-1.5 bg-accent animate-pulse" aria-hidden="true"></span>
+        // {t(locale, 'contato.channels_section_label')}
+      </div>
+
+      <h2
+        id="channels-heading"
+        class="text-3xl md:text-4xl font-medium text-strong uppercase tracking-tight leading-tight mb-12"
+      >
+        {t(locale, 'contato.channels_heading')}
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- WhatsApp 24h -->
+        <!-- PLACEHOLDER: whatsapp_number and whatsappHref must be updated with real number -->
+        <article class="bg-elevated/30 border border-line border-l-2 border-l-accent p-6 flex flex-col gap-4 group hover:border-accent/50 transition-colors">
+          <div class="flex items-start gap-4">
+            <div class="mt-0.5 h-8 w-8 rounded-sm bg-accent/10 border border-accent/20 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+              <Icon name="solar:phone-calling-rounded-linear" class="text-accent" width={18} />
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-[9px] font-mono text-muted uppercase tracking-widest mb-1">
+                {t(locale, 'contato.whatsapp_label')}
+              </p>
+              <p class="text-strong font-medium text-lg leading-tight">
+                {t(locale, 'contato.whatsapp_number')}
+              </p>
+            </div>
+          </div>
+          <p class="text-muted text-sm leading-relaxed">
+            {t(locale, 'contato.whatsapp_desc')}
+          </p>
+          <a
+            href={whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-auto text-[10px] font-mono uppercase tracking-widest text-accent hover:text-orange-500 transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:underline"
+            aria-label={`${t(locale, 'contato.whatsapp_cta')} — abre em nova aba`}
+          >
+            {t(locale, 'contato.whatsapp_cta')}
+            <Icon name="solar:arrow-right-linear" width={12} aria-hidden="true" />
+          </a>
+        </article>
+
+        <!-- Phone -->
+        <article class="bg-elevated/30 border border-line p-6 flex flex-col gap-4 hover:border-line transition-colors">
+          <div class="flex items-start gap-4">
+            <div class="mt-0.5 h-8 w-8 rounded-sm bg-elevated/60 border border-line flex items-center justify-center flex-shrink-0" aria-hidden="true">
+              <Icon name="solar:phone-linear" class="text-muted" width={18} />
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-[9px] font-mono text-muted uppercase tracking-widest mb-1">
+                {t(locale, 'contato.phone_label')}
+              </p>
+              <p class="text-strong font-medium text-lg leading-tight">
+                {t(locale, 'contato.phone_number')}
+              </p>
+            </div>
+          </div>
+          <p class="text-muted text-sm leading-relaxed">
+            {t(locale, 'contato.phone_desc')}
+          </p>
+          <a
+            href={phoneHref}
+            class="mt-auto text-[10px] font-mono uppercase tracking-widest text-muted hover:text-strong transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:underline"
+          >
+            {t(locale, 'contato.phone_cta')}
+            <Icon name="solar:arrow-right-linear" width={12} aria-hidden="true" />
+          </a>
+        </article>
+
+        <!-- Email -->
+        <article class="bg-elevated/30 border border-line p-6 flex flex-col gap-4 hover:border-line transition-colors">
+          <div class="flex items-start gap-4">
+            <div class="mt-0.5 h-8 w-8 rounded-sm bg-elevated/60 border border-line flex items-center justify-center flex-shrink-0" aria-hidden="true">
+              <Icon name="solar:letter-linear" class="text-muted" width={18} />
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-[9px] font-mono text-muted uppercase tracking-widest mb-1">
+                {t(locale, 'contato.email_label')}
+              </p>
+              <p class="text-strong font-medium leading-tight break-all">
+                {t(locale, 'contato.email_address')}
+              </p>
+            </div>
+          </div>
+          <p class="text-muted text-sm leading-relaxed">
+            {t(locale, 'contato.email_desc')}
+          </p>
+          <a
+            href={emailHref}
+            class="mt-auto text-[10px] font-mono uppercase tracking-widest text-muted hover:text-strong transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:underline"
+          >
+            {t(locale, 'contato.email_cta')}
+            <Icon name="solar:arrow-right-linear" width={12} aria-hidden="true" />
+          </a>
+        </article>
+
+        <!-- Address -->
+        <article class="bg-elevated/30 border border-line p-6 flex flex-col gap-4 hover:border-line transition-colors">
+          <div class="flex items-start gap-4">
+            <div class="mt-0.5 h-8 w-8 rounded-sm bg-elevated/60 border border-line flex items-center justify-center flex-shrink-0" aria-hidden="true">
+              <Icon name="solar:map-point-linear" class="text-muted" width={18} />
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-[9px] font-mono text-muted uppercase tracking-widest mb-1">
+                {t(locale, 'contato.address_label')}
+              </p>
+              <address class="not-italic text-strong font-medium leading-snug">
+                {t(locale, 'contato.address_street')}<br />
+                {t(locale, 'contato.address_city')}<br />
+                {t(locale, 'contato.address_country')}
+              </address>
+            </div>
+          </div>
+          <p class="text-muted text-sm leading-relaxed">
+            {t(locale, 'contato.address_desc')}
+          </p>
+        </article>
+
+        <!-- Hours -->
+        <article class="bg-elevated/30 border border-line p-6 flex flex-col gap-4 hover:border-line transition-colors sm:col-span-2 lg:col-span-2">
+          <div class="flex items-start gap-4">
+            <div class="mt-0.5 h-8 w-8 rounded-sm bg-elevated/60 border border-line flex items-center justify-center flex-shrink-0" aria-hidden="true">
+              <Icon name="solar:clock-circle-linear" class="text-muted" width={18} />
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-[9px] font-mono text-muted uppercase tracking-widest mb-2">
+                {t(locale, 'contato.hours_label')}
+              </p>
+              <ul class="text-fg text-sm space-y-1.5">
+                <li class="flex items-center gap-2">
+                  <span class="w-1 h-1 bg-line rounded-full flex-shrink-0" aria-hidden="true"></span>
+                  {t(locale, 'contato.hours_weekdays')}
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1 h-1 bg-ok rounded-full flex-shrink-0" aria-hidden="true"></span>
+                  <span class="text-ok">{t(locale, 'contato.hours_support')}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Map embed (lazy iframe) -->
+  <!-- PLACEHOLDER: mapSrc above uses placeholder coordinates.
+       Replace with the real embed URL from Google Maps for R. Parati 335C Joinville SC. -->
+  <section
+    class="border-t border-line"
+    aria-label={t(locale, 'contato.map_label')}
+  >
+    <iframe
+      src={mapSrc}
+      width="100%"
+      height="400"
+      style="border: 0; display: block; filter: invert(90%) hue-rotate(180deg) grayscale(30%) brightness(0.85) contrast(1.1);"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title={t(locale, 'contato.map_placeholder')}
+      class="w-full"
+    ></iframe>
+  </section>
+
+</BaseLayout>

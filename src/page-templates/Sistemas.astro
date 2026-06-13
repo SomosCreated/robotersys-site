@@ -1,0 +1,256 @@
+---
+/**
+ * Sistemas page template — locale-aware
+ *
+ * Content source: https://robotersys.com/sistemas-roboticos/ (fetched 2026-06-12)
+ *
+ * Sections:
+ *  1. PageHero "Sistemas Robóticos"
+ *  2. Positioning / intro block
+ *  3. Applications via FeatureCard × 4
+ *  4. CellGallery — 4 cells
+ *  5. Clients strip (placeholder logo grid)
+ *  6. ContactForm variant="contato"
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionLabel from '@/components/SectionLabel.astro';
+import FeatureCard from '@/components/FeatureCard.astro';
+import CellGallery from '@/components/CellGallery.astro';
+import ContactForm from '@/components/ContactForm.astro';
+import { t } from '@/i18n';
+import type { Locale } from '@/i18n/types';
+import { localizedPath } from '@/i18n/routes';
+
+// Real cell photos from the current site (robotersys.com) — harvested in Phase 2.5
+import cell01Img from '@/assets/robotersys/cell-01-paletizacao.webp';
+import cell02Img from '@/assets/robotersys/cell-02-handling.webp';
+import cell03Img from '@/assets/robotersys/cell-03-paletizacao2.webp';
+import cell04Img from '@/assets/robotersys/cell-04-rebarbacao.webp';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+
+const crumbs = [
+  { label: t(locale, 'sistemas.breadcrumb_home'), href: localizedPath('home', locale) },
+  { label: t(locale, 'sistemas.breadcrumb_page'), href: localizedPath('sistemas', locale) },
+];
+
+const applications = [
+  {
+    icon: 'solar:layers-minimalistic-linear',
+    title: t(locale, 'sistemas.app1_title'),
+    desc: t(locale, 'sistemas.app1_desc'),
+    fig: 'APL. 01',
+    accent: true,
+  },
+  {
+    icon: 'solar:transfer-horizontal-linear',
+    title: t(locale, 'sistemas.app2_title'),
+    desc: t(locale, 'sistemas.app2_desc'),
+    fig: 'APL. 02',
+  },
+  {
+    icon: 'solar:settings-linear',
+    title: t(locale, 'sistemas.app3_title'),
+    desc: t(locale, 'sistemas.app3_desc'),
+    fig: 'APL. 03',
+  },
+  {
+    icon: 'solar:refresh-circle-linear',
+    title: t(locale, 'sistemas.app4_title'),
+    desc: t(locale, 'sistemas.app4_desc'),
+    fig: 'APL. 04',
+  },
+];
+
+const cells = [
+  {
+    fig: 'CEL. 01',
+    title: t(locale, 'sistemas.cell1_title'),
+    desc: t(locale, 'sistemas.cell1_desc'),
+    href: localizedPath('contato', locale),
+    ctaLabel: t(locale, 'sistemas.gallery_saiba_mais'),
+    imgSrc: cell01Img,
+    imgAlt: 'Célula robotizada de paletização KUKA — RoboterSys',
+  },
+  {
+    fig: 'CEL. 02',
+    title: t(locale, 'sistemas.cell2_title'),
+    desc: t(locale, 'sistemas.cell2_desc'),
+    href: localizedPath('contato', locale),
+    ctaLabel: t(locale, 'sistemas.gallery_saiba_mais'),
+    imgSrc: cell02Img,
+    imgAlt: 'Célula robotizada de handling KUKA — RoboterSys',
+  },
+  {
+    fig: 'CEL. 03',
+    title: t(locale, 'sistemas.cell3_title'),
+    desc: t(locale, 'sistemas.cell3_desc'),
+    href: localizedPath('contato', locale),
+    ctaLabel: t(locale, 'sistemas.gallery_saiba_mais'),
+    imgSrc: cell03Img,
+    imgAlt: 'Segunda célula robotizada de paletização KUKA — RoboterSys',
+  },
+  {
+    fig: 'CEL. 04',
+    title: t(locale, 'sistemas.cell4_title'),
+    desc: t(locale, 'sistemas.cell4_desc'),
+    href: localizedPath('contato', locale),
+    ctaLabel: t(locale, 'sistemas.gallery_saiba_mais'),
+    imgSrc: cell04Img,
+    imgAlt: 'Célula robotizada de rebarbação e acabamento KUKA — RoboterSys',
+  },
+];
+
+// Real client logos from the current site (robotersys.com) — harvested in Phase 2.5
+// Logos are served from public/robotersys/logos/ (plain <img>, explicit dimensions)
+const clientLogos = [
+  { file: 'Volkswagen.webp', name: 'Volkswagen' },
+  { file: 'Mercedes.webp',   name: 'Mercedes-Benz' },
+  { file: 'Renault.webp',    name: 'Renault' },
+  { file: 'Volvo.webp',      name: 'Volvo' },
+  { file: 'Ambev.webp',      name: 'Ambev' },
+  { file: 'Coca-Cola.webp',  name: 'Coca-Cola' },
+];
+---
+
+<BaseLayout
+  title={t(locale, 'sistemas.page_title')}
+  description={t(locale, 'sistemas.meta_description')}
+  locale={locale}
+  pageKey="sistemas"
+>
+
+  <!-- 1. Hero -->
+  <PageHero
+    kicker={t(locale, 'sistemas.hero_kicker')}
+    title={t(locale, 'sistemas.hero_title')}
+    crumbs={crumbs}
+  />
+
+  <!-- 2. Positioning block -->
+  <section
+    class="py-16 border-b border-line bg-bg"
+    aria-labelledby="sistemas-pos-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12 max-w-4xl">
+      <SectionLabel text={t(locale, 'sistemas.pos_label')} />
+      <h2
+        id="sistemas-pos-heading"
+        class="text-2xl md:text-4xl font-medium text-strong uppercase tracking-tight leading-tight mb-6 sys-reveal sys-rise"
+      >
+        {t(locale, 'sistemas.pos_heading')}
+      </h2>
+      <p class="text-muted font-mono text-sm leading-relaxed max-w-2xl">
+        {t(locale, 'sistemas.pos_body')}
+      </p>
+    </div>
+  </section>
+
+  <!-- 3. Applications -->
+  <section
+    class="py-16 border-b border-line bg-bg"
+    aria-labelledby="sistemas-apps-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12">
+      <SectionLabel text={t(locale, 'sistemas.apps_label')} />
+      <h2
+        id="sistemas-apps-heading"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
+      >
+        {t(locale, 'sistemas.apps_heading')}
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sys-reveal">
+        {applications.map((app) => (
+          <FeatureCard
+            icon={app.icon}
+            title={app.title}
+            desc={app.desc}
+            fig={app.fig}
+            accent={app.accent}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Cell Gallery -->
+  <section
+    class="py-16 border-b border-line bg-bg"
+    aria-labelledby="gallery-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12">
+      <SectionLabel text={t(locale, 'sistemas.gallery_label')} />
+      <h2
+        id="gallery-heading"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
+      >
+        {t(locale, 'sistemas.gallery_heading')}
+      </h2>
+
+      <div class="sys-reveal">
+        <CellGallery cells={cells} ctaLabel={t(locale, 'sistemas.gallery_saiba_mais')} />
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Clients strip (placeholder) -->
+  <!--
+    PLACEHOLDER: Replace placeholder boxes below with real client logo images
+    once provided by the client. Use <Image> from astro:assets for optimization.
+  -->
+  <section
+    class="py-16 border-b border-line bg-surface"
+    aria-labelledby="clients-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12">
+      <SectionLabel text={t(locale, 'sistemas.clients_label')} />
+      <h2
+        id="clients-heading"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
+      >
+        {t(locale, 'sistemas.clients_heading')}
+      </h2>
+      <p class="text-muted font-mono text-xs mb-8 sys-reveal">
+        {t(locale, 'sistemas.clients_body')}
+      </p>
+
+      <!-- Logo grid — real logos from current site (robotersys.com) -->
+      <div
+        class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-line sys-reveal"
+        role="list"
+        aria-label="Logos de clientes"
+      >
+        {clientLogos.map((logo) => (
+          <div
+            class="bg-surface h-20 flex items-center justify-center px-4"
+            role="listitem"
+          >
+            <img
+              src={`/robotersys/logos/${logo.file}`}
+              alt={logo.name}
+              width="120"
+              height="48"
+              loading="lazy"
+              decoding="async"
+              class="max-h-10 w-auto object-contain filter dark:invert dark:brightness-90 transition-all"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Contact Form -->
+  <ContactForm variant="contato" locale={locale} />
+
+</BaseLayout>
+
+<!-- Reveal island -->
+<script>
+  import '@/scripts/reveal';
+</script>

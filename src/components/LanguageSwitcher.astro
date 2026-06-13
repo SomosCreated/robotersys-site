@@ -1,0 +1,144 @@
+---
+import { Icon } from 'astro-icon/components';
+import { LOCALES, LOCALE_LABELS, localizedPath } from '@/i18n/routes';
+import type { Locale } from '@/i18n/types';
+import type { PageKey } from '@/i18n/routes';
+
+interface Props {
+  currentLocale: Locale;
+  currentPageKey: PageKey;
+}
+const { currentLocale, currentPageKey } = Astro.props;
+
+const switcherId = `lang-switcher-${Math.random().toString(36).slice(2, 7)}`;
+---
+
+<div class="relative lang-switcher" data-switcher-id={switcherId}>
+  <!-- Trigger button -->
+  <button
+    class="flex items-center gap-1.5 px-2.5 h-full text-[10px] font-mono uppercase tracking-widest text-fg hover:text-strong hover:bg-elevated/50 transition-colors border-r border-line focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent min-h-[2.5rem]"
+    id={`${switcherId}-btn`}
+    aria-haspopup="menu"
+    aria-expanded="false"
+    aria-controls={`${switcherId}-menu`}
+    aria-label="Selecionar idioma"
+    type="button"
+  >
+    <Icon
+      name="solar:global-linear"
+      width={14}
+      aria-hidden="true"
+      class="shrink-0"
+    />
+    <span aria-hidden="true">{LOCALE_LABELS[currentLocale]}</span>
+    <Icon
+      name="solar:alt-arrow-down-linear"
+      width={10}
+      aria-hidden="true"
+      class="shrink-0 transition-transform duration-150 lang-switcher-chevron"
+    />
+  </button>
+
+  <!-- Dropdown menu -->
+  <ul
+    class="absolute right-0 top-full mt-px min-w-[72px] bg-bg border border-line z-50 hidden lang-switcher-menu"
+    id={`${switcherId}-menu`}
+    role="menu"
+    aria-labelledby={`${switcherId}-btn`}
+  >
+    {LOCALES.map((locale) => {
+      const isActive = locale === currentLocale;
+      const href = localizedPath(currentPageKey, locale);
+      return (
+        <li role="none">
+          <a
+            role="menuitem"
+            href={href}
+            aria-current={isActive ? 'true' : undefined}
+            class:list={[
+              'flex items-center px-3 py-2 text-[10px] font-mono uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent',
+              isActive
+                ? 'text-accent bg-elevated/40 font-semibold'
+                : 'text-fg hover:text-strong hover:bg-elevated/50',
+            ]}
+          >
+            {LOCALE_LABELS[locale]}
+            {isActive && (
+              <span class="ml-auto pl-2" aria-hidden="true">·</span>
+            )}
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</div>
+
+<script>
+  // Initialise all LanguageSwitcher instances on the page
+  function initSwitchers() {
+    document.querySelectorAll<HTMLElement>('.lang-switcher').forEach((root) => {
+      const id = root.dataset.switcherId;
+      if (!id) return;
+
+      const btn = root.querySelector<HTMLButtonElement>(`#${id}-btn`);
+      const menu = root.querySelector<HTMLElement>(`#${id}-menu`);
+      const chevron = root.querySelector<HTMLElement>('.lang-switcher-chevron');
+      if (!btn || !menu) return;
+
+      let isOpen = false;
+
+      function open() {
+        isOpen = true;
+        menu!.classList.remove('hidden');
+        btn!.setAttribute('aria-expanded', 'true');
+        chevron?.classList.add('rotate-180');
+        // Focus first item
+        const first = menu!.querySelector<HTMLElement>('[role="menuitem"]');
+        first?.focus();
+      }
+
+      function close() {
+        isOpen = false;
+        menu!.classList.add('hidden');
+        btn!.setAttribute('aria-expanded', 'false');
+        chevron?.classList.remove('rotate-180');
+      }
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        isOpen ? close() : open();
+      });
+
+      // Keyboard navigation
+      menu.addEventListener('keydown', (e) => {
+        const items = Array.from(menu!.querySelectorAll<HTMLElement>('[role="menuitem"]'));
+        const focused = document.activeElement as HTMLElement;
+        const idx = items.indexOf(focused);
+
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          items[(idx + 1) % items.length]?.focus();
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          items[(idx - 1 + items.length) % items.length]?.focus();
+        } else if (e.key === 'Escape' || e.key === 'Tab') {
+          close();
+          btn!.focus();
+        }
+      });
+
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') close();
+      });
+
+      // Close when clicking outside
+      document.addEventListener('click', (e) => {
+        if (isOpen && !root.contains(e.target as Node)) close();
+      });
+    });
+  }
+
+  // Run on initial load and after Astro page transitions
+  initSwitchers();
+  document.addEventListener('astro:page-load', initSwitchers);
+</script>
