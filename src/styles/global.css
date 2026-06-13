@@ -1,6 +1,9 @@
 /* Fontes self-hosted (variable) — @import precisa vir antes de @tailwind */
-@import '@fontsource-variable/roboto';
-@import '@fontsource-variable/roboto-mono';
+@import '@fontsource/ubuntu/400.css';
+@import '@fontsource/ubuntu/500.css';
+@import '@fontsource/ubuntu/700.css';
+@import '@fontsource/ubuntu-mono/400.css';
+@import '@fontsource/ubuntu-mono/700.css';
 
 @tailwind base;
 @tailwind components;

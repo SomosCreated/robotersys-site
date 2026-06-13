@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Roboto Variable"', 'Roboto', 'sans-serif'],
-        mono: ['"Roboto Mono Variable"', '"Roboto Mono"', 'monospace'],
+        sans: ['Ubuntu', 'sans-serif'],
+        mono: ['"Ubuntu Mono"', 'monospace'],
       },
       colors: {
         // Semantic tokens — RGB channels, support /<alpha-value>

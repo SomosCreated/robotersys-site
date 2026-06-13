@@ -29,12 +29,12 @@ const htmlLang = LOCALE_HTMLLANG[locale];
       const t = localStorage.getItem('theme') ?? (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
       document.documentElement.classList.add(t);
     </script>
-    <!-- Preload Roboto variable font (Latin, normal axis) -->
+    <!-- Preload Ubuntu font (Latin, 400) -->
     <link
       rel="preload"
       as="font"
       type="font/woff2"
-      href="/fonts/roboto-latin-wght-normal.woff2"
+      href="/fonts/ubuntu-latin-400-normal.woff2"
       crossorigin
     />
     <SEOHead title={title} description={description} locale={htmlLang} />
