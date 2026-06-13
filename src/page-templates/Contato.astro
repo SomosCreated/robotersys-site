@@ -110,6 +110,29 @@ const mapSrc =
           <p class="text-muted text-sm leading-relaxed">
             {t(locale, 'contato.whatsapp_desc')}
           </p>
+          {locale === 'pt' && (
+            <div class="flex flex-col items-start gap-2 pt-2 border-t border-line">
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Aponte a câmera para falar no WhatsApp — abre em nova aba"
+              >
+                <img
+                  src="/robotersys/img/whatsapp-qr.webp"
+                  alt="QR Code para WhatsApp — Grupo Suporte RoboterSys"
+                  width="140"
+                  height="140"
+                  loading="lazy"
+                  decoding="async"
+                  class="border border-line bg-white p-1.5 rounded-sm hover:opacity-90 transition-opacity"
+                />
+              </a>
+              <p class="text-[10px] font-mono text-muted leading-relaxed">
+                Aponte a câmera para falar no WhatsApp
+              </p>
+            </div>
+          )}
           <a
             href={whatsappHref}
             target="_blank"

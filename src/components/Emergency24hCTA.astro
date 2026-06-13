@@ -62,34 +62,60 @@ const { locale = 'pt' } = Astro.props;
         {t(locale, 'emergency.subtext')}
       </p>
 
-      <!-- WhatsApp CTA button -->
+      <!-- WhatsApp CTA button + PT QR code -->
       <!--
         PLACEHOLDER: Replace 55XXXXXXXXXXX with the actual WhatsApp number
         (country code 55 + DDD + number, no spaces or dashes) before going live.
       -->
-      <a
-        href="https://wa.me/55XXXXXXXXXXX"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group inline-flex items-center gap-3 bg-green-600 hover:bg-green-500 text-white text-xs font-mono uppercase tracking-widest px-8 py-4 transition-all shadow-[0_0_20px_rgba(34,197,94,0.25)] hover:shadow-[0_0_40px_rgba(34,197,94,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
-        aria-label={`${t(locale, 'emergency.button')} — ${t(locale, 'emergency.section_label')}`}
-      >
-        <Icon
-          name="solar:phone-calling-rounded-linear"
-          class="group-hover:scale-110 transition-transform"
-          width={18}
-          height={18}
-          aria-hidden="true"
-        />
-        {t(locale, 'emergency.button')}
-        <Icon
-          name="solar:arrow-right-linear"
-          class="group-hover:translate-x-1 transition-transform"
-          width={16}
-          height={16}
-          aria-hidden="true"
-        />
-      </a>
+      <div class="flex flex-wrap items-center gap-6">
+        <a
+          href="https://wa.me/55XXXXXXXXXXX"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group inline-flex items-center gap-3 bg-green-600 hover:bg-green-500 text-white text-xs font-mono uppercase tracking-widest px-8 py-4 transition-all shadow-[0_0_20px_rgba(34,197,94,0.25)] hover:shadow-[0_0_40px_rgba(34,197,94,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+          aria-label={`${t(locale, 'emergency.button')} — ${t(locale, 'emergency.section_label')}`}
+        >
+          <Icon
+            name="solar:phone-calling-rounded-linear"
+            class="group-hover:scale-110 transition-transform"
+            width={18}
+            height={18}
+            aria-hidden="true"
+          />
+          {t(locale, 'emergency.button')}
+          <Icon
+            name="solar:arrow-right-linear"
+            class="group-hover:translate-x-1 transition-transform"
+            width={16}
+            height={16}
+            aria-hidden="true"
+          />
+        </a>
+
+        {locale === 'pt' && (
+          <div class="flex flex-col items-center gap-1.5">
+            <a
+              href="https://wa.me/55XXXXXXXXXXX"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Aponte a câmera para falar no WhatsApp — abre em nova aba"
+            >
+              <img
+                src="/robotersys/img/whatsapp-qr.webp"
+                alt="QR Code — Suporte 24h RoboterSys no WhatsApp"
+                width="120"
+                height="120"
+                loading="lazy"
+                decoding="async"
+                class="bg-white p-1 rounded-sm border border-line hover:opacity-90 transition-opacity"
+              />
+            </a>
+            <p class="text-[9px] font-mono text-muted uppercase tracking-widest text-center leading-tight">
+              Aponte a câmera
+            </p>
+          </div>
+        )}
+      </div>
 
     </div>
   </div>
