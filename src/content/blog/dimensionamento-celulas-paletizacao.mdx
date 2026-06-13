@@ -1,0 +1,55 @@
+---
+# SAMPLE — will be replaced in M3 with real migrated content
+title: 'Dimensionamento de Células de Paletização com Robôs KUKA'
+excerpt: 'Aprenda como calcular ciclos, selecionar o modelo de robô e dimensionar corretamente a sua célula de paletização para máxima eficiência produtiva.'
+language: 'pt'
+category: 'Sistemas Robóticos'
+author: 'Equipe RoboterSys'
+publishedAt: 2025-10-15
+draft: false
+seoDescription: 'Guia técnico completo sobre dimensionamento de células de paletização robotizada com KUKA: ciclos, payloads, alcance e integração com linha de produção.'
+---
+
+## O que é o dimensionamento de uma célula de paletização?
+
+O dimensionamento de uma célula de paletização robotizada é o processo pelo qual o engenheiro define todos os parâmetros físicos, cinemáticos e de processo necessários para que o robô execute a tarefa com eficiência, segurança e dentro do ciclo de tempo exigido pela linha de produção.
+
+Na prática, isso inclui calcular o **tempo de ciclo** de cada movimento, escolher o modelo de robô adequado ao **payload** e ao **alcance** necessários, definir a garra (end-of-arm tooling) e integrar o sistema aos equipamentos periféricos como transportadores, mesas giratórias e sensores de posicionamento.
+
+## Principais variáveis do dimensionamento
+
+### 1. Tempo de ciclo da linha
+
+O primeiro passo é determinar quantas unidades por minuto (ou por hora) a linha deve paletizar. Com esse dado, calcula-se o tempo máximo disponível para cada ciclo do robô — que inclui o movimento de pegar, transportar e posicionar a embalagem no pallet.
+
+Robôs KUKA da série **KR QUANTEC** e **KR 700 PA** conseguem ciclos de paletização entre 8 e 15 segundos, dependendo da trajetória e do peso da carga.
+
+### 2. Payload e alcance
+
+O payload é a carga máxima que o robô suporta no flange de saída. Para paletização, o payload inclui o peso da garra mais o peso do produto. Um erro comum é subestimar o peso da garra, especialmente garras a vácuo com ventosas para embalagens grandes.
+
+O alcance define o raio de trabalho do robô. Em células de paletização, é preciso que o robô alcance tanto o ponto de coleta no transportador quanto o ponto mais distante do pallet — geralmente o canto oposto da camada mais alta.
+
+### 3. Layout e geometria da célula
+
+O layout deve minimizar a distância percorrida em cada ciclo. Células bem dimensionadas posicionam o robô de modo que os ângulos de rotação entre o ponto de coleta e os pontos de deposição sejam menores que 90° sempre que possível.
+
+Utilizar simulação 3D com o software **KUKA.Sim** antes da implementação física reduz retrabalho e permite validar tempos de ciclo com precisão.
+
+## Escolha do modelo de robô
+
+Para paletização, a RoboterSys recomenda os modelos:
+
+- **KR 120 R2700 PA** — payload 120 kg, alcance 2.700 mm. Ideal para embalagens médias e altas cadências.
+- **KR 300 R2700 PA** — payload 300 kg, alcance 2.700 mm. Para produtos pesados como fardos, sacos e caixas grandes.
+- **KR 700 PA** — payload 700 kg, alcance 3.200 mm. Para linha de paletização de cargas muito pesadas.
+
+## Integração e segurança
+
+A célula de paletização deve incluir cercamento perimetral, scanner de área ou cortina de luz para detecção de intrusão, e lógica de segurança no controlador KRC4 ou KRC5 via **KUKA.SafeOperation**. O lay-out deve também prever espaço para troca de pallets vazios sem interrupção da produção — solução comum é o sistema de dupla posição com transportador de pallets.
+
+## Conclusão
+
+Um dimensionamento correto evita gargalos de produção, reduz desgaste mecânico por movimentos desnecessários e garante que o investimento em automação retorne no prazo previsto. Sempre valide com simulação antes de comprometer o layout físico.
+
+Entre em contato com a RoboterSys para suporte técnico no dimensionamento da sua célula.
