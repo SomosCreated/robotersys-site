@@ -2,19 +2,22 @@
 import { Icon } from 'astro-icon/components';
 import type { Locale } from '@/i18n/types';
 import { t } from '@/i18n';
+import { localizedPath } from '@/i18n/routes';
 
 interface Props { locale?: Locale; }
 const { locale = 'pt' } = Astro.props;
 
-const navItems = [
-  { key: 'nav.services',  href: '/servicos/' },
-  { key: 'nav.parts',     href: '/pecas-de-reposicao/' },
-  { key: 'nav.systems',   href: '/sistemas-roboticos/' },
-  { key: 'nav.pushcorp', href: '/solucoes-pushcorp/' },
-  { key: 'nav.about',     href: '/sobre-nos/' },
-  { key: 'nav.careers',   href: '/trabalhe-conosco/' },
-  { key: 'nav.blog',      href: '/blog/' },
-] as const;
+type FooterNavItem = { key: string; href: string };
+const navItems: FooterNavItem[] = [
+  { key: 'nav.services', href: localizedPath('servicos', locale) },
+  { key: 'nav.parts',    href: localizedPath('pecas', locale) },
+  { key: 'nav.systems',  href: localizedPath('sistemas', locale) },
+  { key: 'nav.pushcorp', href: localizedPath('pushcorp', locale) },
+  { key: 'nav.about',    href: localizedPath('sobre', locale) },
+  { key: 'nav.careers',  href: localizedPath('carreiras', locale) },
+  // {/* Phase 4 */} — blog special-cased until blog pages exist per locale
+  { key: 'nav.blog',     href: locale === 'pt' ? '/blog/' : `/${locale}/blog/` },
+];
 
 // Social brand icons via the simple-icons set. NOTE: handles are placeholders — confirm real URLs with client.
 const socialLinks = [
@@ -31,7 +34,7 @@ const socialLinks = [
 
     <!-- brand + contact -->
     <div class="space-y-6">
-      <a class="flex items-center gap-2 group" href="/">
+      <a class="flex items-center gap-2 group" href={localizedPath('home', locale)}>
         <Icon
           name="solar:streets-navigation-linear"
           class="text-strong group-hover:text-accent transition-colors"
@@ -133,7 +136,7 @@ const socialLinks = [
       <!-- CTA contato -->
       <a
         class="block w-full text-center py-3 bg-accent text-white text-[10px] font-mono uppercase tracking-widest hover:bg-orange-500 transition-all flex items-center justify-center gap-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
-        href="/contato/"
+        href={localizedPath('contato', locale)}
       >
         {t(locale, 'header.cta')}
         <Icon name="solar:arrow-right-linear" class="group-hover:translate-x-1 transition-transform" width={12} aria-hidden="true" />
@@ -149,14 +152,14 @@ const socialLinks = [
       <nav aria-label="Links legais" class="flex items-center gap-3">
         <span class="text-line hidden md:inline" aria-hidden="true">|</span>
         <a
-          href="/politica-de-privacidade/"
+          href={localizedPath('privacidade', locale)}
           class="hover:text-strong transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent normal-case"
         >
           {t(locale, 'legal.footer_privacy')}
         </a>
         <span class="text-line" aria-hidden="true">·</span>
         <a
-          href="/politica-de-cookies/"
+          href={localizedPath('cookies', locale)}
           class="hover:text-strong transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent normal-case"
         >
           {t(locale, 'legal.footer_cookies')}

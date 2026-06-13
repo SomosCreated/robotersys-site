@@ -1,0 +1,397 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/Hero.astro';
+import SectionLabel from '@/components/SectionLabel.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import StatsBand from '@/components/StatsBand.astro';
+import Emergency24hCTA from '@/components/Emergency24hCTA.astro';
+import ContactForm from '@/components/ContactForm.astro';
+import ProseSection from '@/components/ProseSection.astro';
+import { Icon } from 'astro-icon/components';
+import { t } from '@/i18n';
+import type { Locale } from '@/i18n/types';
+import { localizedPath } from '@/i18n/routes';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+
+const services = [
+  {
+    fig: 'FIG. 01',
+    icon: 'solar:bolt-circle-linear',
+    title: t(locale, 'services.s1_title'),
+    desc: t(locale, 'services.s1_desc'),
+  },
+  {
+    fig: 'FIG. 02',
+    icon: 'solar:shield-check-linear',
+    title: t(locale, 'services.s2_title'),
+    desc: t(locale, 'services.s2_desc'),
+  },
+  {
+    fig: 'FIG. 03',
+    icon: 'solar:box-linear',
+    title: t(locale, 'services.s3_title'),
+    desc: t(locale, 'services.s3_desc'),
+  },
+  {
+    fig: 'FIG. 04',
+    icon: 'solar:refresh-circle-linear',
+    title: t(locale, 'services.s4_title'),
+    desc: t(locale, 'services.s4_desc'),
+  },
+  {
+    fig: 'FIG. 05',
+    icon: 'solar:diploma-linear',
+    title: t(locale, 'services.s5_title'),
+    desc: t(locale, 'services.s5_desc'),
+  },
+  {
+    fig: 'FIG. 06',
+    icon: 'solar:settings-linear',
+    title: t(locale, 'services.s6_title'),
+    desc: t(locale, 'services.s6_desc'),
+  },
+];
+
+// PLACEHOLDER NOTE: stat values come from pt.ts and are placeholders.
+// Confirm real numbers with the client before going live.
+const stats = [
+  { label: t(locale, 'stats.clients_label'),       value: t(locale, 'stats.clients_value') },
+  { label: t(locale, 'stats.robots_label'),         value: t(locale, 'stats.robots_value') },
+  { label: t(locale, 'stats.interventions_label'),  value: t(locale, 'stats.interventions_value') },
+  { label: t(locale, 'stats.support_calls_label'),  value: t(locale, 'stats.support_calls_value') },
+  { label: t(locale, 'stats.lines_label'),          value: t(locale, 'stats.lines_value') },
+];
+
+// Real client logos from the current site (robotersys.com) — harvested in Phase 2.5
+// Served from public/robotersys/logos/ — plain <img> with explicit dimensions for performance
+const clientLogos = [
+  { file: 'Volkswagen.webp',   name: 'Volkswagen' },
+  { file: 'Mercedes.webp',     name: 'Mercedes-Benz' },
+  { file: 'Renault.webp',      name: 'Renault' },
+  { file: 'Volvo.webp',        name: 'Volvo' },
+  { file: 'Ambev.webp',        name: 'Ambev' },
+  { file: 'Coca-Cola.webp',    name: 'Coca-Cola' },
+  { file: 'Heineken.webp',     name: 'Heineken' },
+  { file: 'Danone.webp',       name: 'Danone' },
+  { file: 'Nestle.webp',       name: 'Nestlé' },
+  { file: 'Pirelli.webp',      name: 'Pirelli' },
+];
+
+// PLACEHOLDER NOTE: blog posts — replace with real CMS data in Phase 4.
+// PLACEHOLDER até a Fase 4 (blog)
+const blogPosts = [
+  {
+    id: 'P01',
+    title: t(locale, 'home.blog_post1_title'),
+    excerpt: t(locale, 'home.blog_post1_excerpt'),
+  },
+  {
+    id: 'P02',
+    title: t(locale, 'home.blog_post2_title'),
+    excerpt: t(locale, 'home.blog_post2_excerpt'),
+  },
+  {
+    id: 'P03',
+    title: t(locale, 'home.blog_post3_title'),
+    excerpt: t(locale, 'home.blog_post3_excerpt'),
+  },
+];
+
+// {/* Phase 4 */} — blog routes special-cased until blog pages exist per locale
+const blogHref = locale === 'pt' ? '/blog/' : `/${locale}/blog/`;
+---
+
+<BaseLayout
+  title="RoboterSys — Soluções completas para Robôs KUKA"
+  description="Somos a maior especializada independente em robôs KUKA do Brasil. Manutenção, peças de reposição e suporte 24/7."
+  locale={locale}
+  pageKey="home"
+>
+  <!-- Hero (LCP — keep first) -->
+  <Hero locale={locale} />
+
+  <!-- ── Serviços ── -->
+  <section
+    class="border-b border-line py-20 px-6 md:px-12"
+    aria-labelledby="services-heading"
+  >
+    <div class="max-w-7xl mx-auto">
+      <SectionLabel text={t(locale, 'services.section_label')} />
+
+      <!-- spotlight-grid: CSS + spotlight.ts set --mouse-x/--mouse-y on each .spotlight-card -->
+      <div
+        id="services-heading"
+        class="sr-only"
+      >
+        Serviços RoboterSys
+      </div>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 spotlight-grid border-t border-l border-line sys-reveal"
+        role="list"
+        aria-label="Lista de serviços"
+      >
+        {services.map((service) => (
+          <div role="listitem">
+            <ServiceCard
+              fig={service.fig}
+              icon={service.icon}
+              title={service.title}
+              desc={service.desc}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Clientes ── -->
+  <!--
+    PLACEHOLDER NOTE: client logos below are placeholder boxes.
+    Replace each "// LOGO PLACEHOLDER" box with an <img> tag or <picture>
+    element pointing to the actual client logo before going live.
+    Confirm list of client names/logos with the client.
+  -->
+  <section
+    class="border-b border-line py-20 px-6 md:px-12 bg-bg sys-reveal"
+    aria-labelledby="clients-heading"
+  >
+    <div class="max-w-7xl mx-auto">
+      <SectionLabel text={t(locale, 'home.clients_section_label')} />
+      <h2
+        id="clients-heading"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-4 sys-reveal sys-rise"
+      >
+        {t(locale, 'home.clients_heading')}
+      </h2>
+      <p class="text-sm font-mono text-muted leading-relaxed mb-10 max-w-xl">
+        {t(locale, 'home.clients_body')}
+      </p>
+
+      <!-- Logo grid: 2 cols mobile → 5 cols desktop — real logos from current site -->
+      <div
+        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-px border border-line bg-line"
+        role="list"
+        aria-label="Logos de clientes"
+      >
+        {clientLogos.map((logo) => (
+          <div
+            class="bg-bg border-0 flex items-center justify-center p-6 min-h-[100px] sys-reveal"
+            role="listitem"
+          >
+            <img
+              src={`/robotersys/logos/${logo.file}`}
+              alt={logo.name}
+              width="140"
+              height="56"
+              loading="lazy"
+              decoding="async"
+              class="max-h-12 w-auto object-contain filter dark:invert dark:brightness-90 transition-all hover:opacity-80"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Estatísticas ── -->
+  <StatsBand stats={stats} />
+
+  <!-- ── GPTW Recognition Band ── -->
+  <!--
+    PLACEHOLDER NOTE: GPTW seal below is a placeholder.
+    Replace with real GPTW seal/logo image (confirm asset with the client).
+  -->
+  <section
+    class="border-b border-line py-16 px-6 md:px-12 bg-surface sys-reveal"
+    aria-labelledby="gptw-heading"
+  >
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-16">
+
+      <!-- GPTW seal — real image from current site (robotersys.com) -->
+      <div class="flex-shrink-0">
+        <img
+          src="/robotersys/img/GPTW-Selos.webp"
+          alt="Selo Great Place to Work — RoboterSys certificada GPTW"
+          width="120"
+          height="120"
+          loading="lazy"
+          decoding="async"
+          class="w-24 h-auto object-contain"
+        />
+      </div>
+
+      <!-- GPTW copy -->
+      <div class="flex-1">
+        <SectionLabel text={t(locale, 'home.gptw_section_label')} />
+        <h2
+          id="gptw-heading"
+          class="text-xl md:text-2xl lg:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-3 sys-reveal sys-rise"
+        >
+          {t(locale, 'home.gptw_heading')}
+        </h2>
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-xs font-mono text-ok uppercase tracking-widest border border-green-800/50 bg-green-950/20 px-3 py-1">
+            {t(locale, 'home.gptw_years')}
+          </span>
+        </div>
+        <p class="text-sm font-mono text-muted leading-relaxed max-w-xl">
+          {t(locale, 'home.gptw_body')}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Sobre / Empresa ── -->
+  <ProseSection
+    kicker={t(locale, 'home.about_section_label')}
+    title={t(locale, 'home.about_heading')}
+  >
+    <p>{t(locale, 'home.about_p1')}</p>
+    <p>{t(locale, 'home.about_p2')}</p>
+    <div class="mt-6">
+      <a
+        href={localizedPath('sobre', locale)}
+        class="inline-flex items-center gap-2 text-xs font-mono text-accent hover:text-orange-400 uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent group"
+      >
+        {t(locale, 'home.about_cta')}
+        <Icon
+          name="solar:arrow-right-linear"
+          class="motion-safe:group-hover:translate-x-1 transition-transform"
+          width={14}
+          height={14}
+          aria-hidden="true"
+        />
+      </a>
+    </div>
+  </ProseSection>
+
+  <!-- ── Blog Teaser ── -->
+  <!--
+    PLACEHOLDER até a Fase 4 (blog)
+    Estes são cards de exemplo. Na Fase 4, substituir por dados reais do CMS/blog.
+    Os links apontam para /blog/ (ainda não criado) — confirmar rotas na Fase 4.
+  -->
+  <section
+    class="border-b border-line py-20 px-6 md:px-12 bg-surface sys-reveal"
+    aria-labelledby="blog-heading"
+  >
+    <div class="max-w-7xl mx-auto">
+      <SectionLabel text={t(locale, 'home.blog_section_label')} />
+
+      <div class="flex items-end justify-between gap-4 mb-10">
+        <h2
+          id="blog-heading"
+          class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight sys-reveal sys-rise"
+        >
+          {t(locale, 'home.blog_heading')}
+        </h2>
+        <!-- "Ver todos" link — Fase 4 target -->
+        <a
+          href={blogHref}
+          class="hidden md:inline-flex items-center gap-2 text-[10px] font-mono text-muted hover:text-strong uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent group"
+          aria-label={t(locale, 'home.blog_cta')}
+        >
+          {t(locale, 'home.blog_cta')}
+          <Icon
+            name="solar:arrow-right-linear"
+            class="motion-safe:group-hover:translate-x-1 transition-transform"
+            width={12}
+            height={12}
+            aria-hidden="true"
+          />
+        </a>
+      </div>
+
+      <!-- Blog post cards — PLACEHOLDER até a Fase 4 (blog) -->
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px border border-line bg-line sys-reveal"
+        role="list"
+        aria-label="Últimos artigos do blog"
+      >
+        {blogPosts.map((post) => (
+          <article
+            class="bg-surface p-6 flex flex-col gap-4 border-0"
+            role="listitem"
+          >
+            <!-- Fig label -->
+            <div class="flex items-center justify-between">
+              <span class="text-[8px] font-mono text-muted uppercase tracking-widest border border-line px-2 py-0.5">
+                {post.id} {/* // PLACEHOLDER até a Fase 4 (blog) */}
+              </span>
+              <span class="text-[8px] font-mono text-muted uppercase tracking-widest">
+                Blog
+              </span>
+            </div>
+
+            <!-- Title -->
+            <h3 class="text-sm font-medium text-strong uppercase tracking-tight leading-snug">
+              {post.title}
+            </h3>
+
+            <!-- Excerpt -->
+            <p class="text-sm font-mono text-muted leading-relaxed flex-1">
+              {post.excerpt}
+            </p>
+
+            <!-- Read more link — PLACEHOLDER href até a Fase 4 (blog) -->
+            <a
+              href={blogHref}
+              class="inline-flex items-center gap-2 text-[10px] font-mono text-accent hover:text-orange-400 uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent group mt-auto"
+            >
+              {t(locale, 'home.blog_read_more')}
+              <Icon
+                name="solar:arrow-right-linear"
+                class="motion-safe:group-hover:translate-x-1 transition-transform"
+                width={12}
+                height={12}
+                aria-hidden="true"
+              />
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <!-- Mobile "ver todos" -->
+      <div class="mt-6 md:hidden">
+        <a
+          href={blogHref}
+          class="inline-flex items-center gap-2 text-[10px] font-mono text-muted hover:text-strong uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent group"
+        >
+          {t(locale, 'home.blog_cta')}
+          <Icon
+            name="solar:arrow-right-linear"
+            class="motion-safe:group-hover:translate-x-1 transition-transform"
+            width={12}
+            height={12}
+            aria-hidden="true"
+          />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contato ── -->
+  <ContactForm variant="contato" locale={locale} />
+
+  <!-- ── Emergência 24h ── -->
+  <Emergency24hCTA />
+</BaseLayout>
+
+<!-- Reveal island: drives .sys-reveal → .sys-active via IntersectionObserver -->
+<script>
+  import '@/scripts/reveal';
+</script>
+
+<!-- Hero island: spotlight + parallax (guards: hover:hover AND no prefers-reduced-motion) -->
+<script>
+  import '@/scripts/hero';
+</script>
+
+<!-- Services grid flashlight (guard: hover:hover) -->
+<script>
+  import '@/scripts/spotlight';
+</script>
