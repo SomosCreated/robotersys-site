@@ -27,37 +27,24 @@ const navItems: NavItem[] = [
 ---
 
 <!-- header -->
-<header class="relative z-50 h-16 border-b border-line bg-bg/95 backdrop-blur-sm flex items-center justify-between sticky top-0">
+<header class="relative z-50 h-16 border-b border-line bg-bg/95 backdrop-blur-sm flex items-center sticky top-0">
 
-  <!-- logo + status chip -->
-  <div class="flex items-center h-full pl-6 pr-8 border-r border-line bg-bg gap-4">
-    <a class="flex items-center group gap-2" href={localizedPath('home', locale)}>
-      <Icon
-        name="solar:streets-navigation-linear"
-        class="text-strong text-2xl group-hover:text-accent transition-colors"
-        width={24}
-        aria-hidden="true"
-      />
-      <span class="text-base font-medium text-strong tracking-tight">
+  <!-- logo (far left) -->
+  <div class="flex items-center h-full pl-6 pr-8 border-r border-line bg-bg">
+    <a class="flex items-center group" href={localizedPath('home', locale)}>
+      <span class="text-xl font-medium text-strong tracking-tight">
         RoboterSys<span class="text-accent">.</span>
       </span>
     </a>
-
-    <!-- status chip — hidden on mobile, shown on desktop -->
-    <div class="hidden lg:flex items-center px-3 py-1 border border-line bg-elevated/30 backdrop-blur-sm gap-2">
-      <span class="text-[10px] font-mono text-muted leading-none" aria-hidden="true">[</span>
-      <span class="relative flex h-1.5 w-1.5" aria-hidden="true">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-ok opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-ok"></span>
-      </span>
-      <span class="text-[9px] font-mono text-muted uppercase tracking-widest">{t(locale, 'header.status')}</span>
-      <span class="text-[10px] font-mono text-muted leading-none" aria-hidden="true">]</span>
-    </div>
   </div>
 
-  <!-- desktop nav -->
-  <nav class="hidden lg:flex flex-1 h-full items-center justify-center" aria-label="Navegação principal">
-    <div class="flex h-full items-center border-x border-line/50">
+  <!-- spacer -->
+  <div class="flex-1"></div>
+
+  <!-- desktop nav + controls (right side) -->
+  <div class="hidden lg:flex items-center h-full border-l border-line bg-bg">
+    <!-- nav links -->
+    <nav class="flex h-full items-center" aria-label="Navegação principal">
       {navItems.map(({ key, href }) => (
         <a
           class="flex items-center px-5 h-full text-[10px] font-mono uppercase tracking-widest text-fg hover:text-strong hover:bg-elevated/50 transition-colors border-r border-line/50 relative group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
@@ -67,12 +54,8 @@ const navItems: NavItem[] = [
           <div class="absolute bottom-0 left-0 w-full h-[2px] bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left" aria-hidden="true"></div>
         </a>
       ))}
-    </div>
-  </nav>
-
-  <!-- desktop CTA + theme toggle + language switcher -->
-  <div class="hidden md:flex items-center h-full border-l border-line bg-bg">
-    <!-- Theme toggle button -->
+    </nav>
+    <!-- Theme toggle -->
     <div class="border-r border-line h-full flex items-center">
       <ThemeToggle />
     </div>
@@ -80,6 +63,7 @@ const navItems: NavItem[] = [
     <div class="border-r border-line h-full flex items-center">
       <LanguageSwitcher currentLocale={locale} currentPageKey={currentPageKey} />
     </div>
+    <!-- CTA -->
     <a
       class="h-full px-8 bg-accent text-white text-[10px] font-mono uppercase tracking-widest hover:bg-orange-500 transition-all flex items-center gap-2 group shadow-[inset_0_0_20px_rgba(0,0,0,0.2)] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-inset"
       href={localizedPath('contato', locale)}

@@ -19,9 +19,13 @@ const navItems: FooterNavItem[] = [
   { key: 'nav.blog',     href: locale === 'pt' ? '/blog/' : `/${locale}/blog/` },
 ];
 
-// Social brand icons via the simple-icons set. NOTE: handles are placeholders — confirm real URLs with client.
+// Social brand icons. LinkedIn URL varies by locale (EN → USA page, others → BR page).
+const linkedinHref = locale === 'en'
+  ? 'https://www.linkedin.com/company/robotersys-usa/'
+  : 'https://www.linkedin.com/company/robotersys./';
+
 const socialLinks = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/robotersys', icon: 'simple-icons:linkedin' },
+  { label: 'LinkedIn', href: linkedinHref, icon: 'simple-icons:linkedin' },
   { label: 'Instagram', href: 'https://www.instagram.com/robotersys', icon: 'simple-icons:instagram' },
   { label: 'Facebook', href: 'https://www.facebook.com/robotersys', icon: 'simple-icons:facebook' },
 ] as const;
@@ -34,14 +38,8 @@ const socialLinks = [
 
     <!-- brand + contact -->
     <div class="space-y-6">
-      <a class="flex items-center gap-2 group" href={localizedPath('home', locale)}>
-        <Icon
-          name="solar:streets-navigation-linear"
-          class="text-strong group-hover:text-accent transition-colors"
-          width={20}
-          aria-hidden="true"
-        />
-        <span class="text-base font-medium text-strong tracking-tight">
+      <a class="flex items-center group" href={localizedPath('home', locale)}>
+        <span class="text-xl font-medium text-strong tracking-tight">
           RoboterSys<span class="text-accent">.</span>
         </span>
       </a>
@@ -124,14 +122,20 @@ const socialLinks = [
         </div>
       </div>
 
-      <!-- GPTW seal -->
-      <div class="border border-line bg-elevated/20 p-3 inline-flex flex-col gap-1">
-        <div class="text-[8px] font-mono text-muted uppercase tracking-widest">Certificação</div>
-        <div class="text-[10px] font-mono text-ok uppercase tracking-widest flex items-center gap-2">
-          <Icon name="solar:shield-check-linear" width={12} aria-hidden="true" />
-          GPTW — Great Place to Work
+      <!-- GPTW seal — shown only in PT (Brazil certification) -->
+      {locale === 'pt' && (
+        <div>
+          <img
+            src="/robotersys/img/GPTW-Selos.webp"
+            alt="Selos de certificação"
+            width={160}
+            height={80}
+            style="max-height: 80px; width: auto;"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
-      </div>
+      )}
 
       <!-- CTA contato -->
       <a
@@ -164,10 +168,22 @@ const socialLinks = [
         >
           {t(locale, 'legal.footer_cookies')}
         </a>
+        <span class="text-line" aria-hidden="true">·</span>
+        <span class="normal-case">
+          Desenvolvido por{' '}
+          <a
+            href="https://created.com.br/?utm_source=robotersys&utm_medium=footer&utm_campaign=developed_by"
+            target="_blank"
+            rel="noopener"
+            class="hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+          >
+            <strong>CREATED</strong>
+          </a>
+        </span>
       </nav>
     </div>
-    <div class="text-center text-[10px] text-muted max-w-md leading-relaxed">
-      Independente da KUKA Roboter do Brasil; a marca KUKA pertence à KUKA Roboter do Brasil.
+    <div class="text-center text-[10px] text-muted leading-relaxed md:whitespace-nowrap">
+      {t(locale, 'legal.footer_kuka_disclaimer')}
     </div>
   </div>
 </footer>

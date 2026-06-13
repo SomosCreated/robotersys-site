@@ -384,6 +384,7 @@ export default {
     // Footer links
     footer_privacy: 'Política de Privacidad',
     footer_cookies: 'Política de Cookies',
+    footer_kuka_disclaimer: 'Independiente de KUKA Roboter do Brasil; la marca KUKA pertenece a KUKA Roboter do Brasil.',
   },
 
   // ── Home — secciones adicionales ─────────────────────────────────────────────
