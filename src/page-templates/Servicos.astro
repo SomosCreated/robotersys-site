@@ -1,0 +1,211 @@
+---
+/**
+ * Servicos page template — locale-aware
+ *
+ * Content source: https://robotersys.com/servicos/ (fetched 2026-06-12)
+ *
+ * Sections:
+ *  1. PageHero "Serviços"
+ *  2. Positioning block
+ *  3. 6 services in .spotlight-grid (ServiceCard)
+ *  4. Suporte Técnico lifecycle block (FeatureCard × 4)
+ *  5. ContactForm variant="contato"
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionLabel from '@/components/SectionLabel.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import FeatureCard from '@/components/FeatureCard.astro';
+import ContactForm from '@/components/ContactForm.astro';
+import { t } from '@/i18n';
+import type { Locale } from '@/i18n/types';
+import { localizedPath } from '@/i18n/routes';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+
+const crumbs = [
+  { label: t(locale, 'servicos.breadcrumb_home'), href: localizedPath('home', locale) },
+  { label: t(locale, 'servicos.breadcrumb_page'), href: localizedPath('servicos', locale) },
+];
+
+const services = [
+  {
+    fig: 'FIG. 01',
+    icon: 'solar:settings-linear',
+    title: t(locale, 'servicos.s1_title'),
+    desc: t(locale, 'servicos.s1_desc'),
+  },
+  {
+    fig: 'FIG. 02',
+    icon: 'solar:refresh-circle-linear',
+    title: t(locale, 'servicos.s2_title'),
+    desc: t(locale, 'servicos.s2_desc'),
+  },
+  {
+    fig: 'FIG. 03',
+    icon: 'solar:shield-check-linear',
+    title: t(locale, 'servicos.s3_title'),
+    desc: t(locale, 'servicos.s3_desc'),
+  },
+  {
+    fig: 'FIG. 04',
+    icon: 'solar:bolt-circle-linear',
+    title: t(locale, 'servicos.s4_title'),
+    desc: t(locale, 'servicos.s4_desc'),
+  },
+  {
+    fig: 'FIG. 05',
+    icon: 'solar:box-linear',
+    title: t(locale, 'servicos.s5_title'),
+    desc: t(locale, 'servicos.s5_desc'),
+  },
+  {
+    fig: 'FIG. 06',
+    icon: 'solar:laptop-minimalistic-linear',
+    title: t(locale, 'servicos.s6_title'),
+    desc: t(locale, 'servicos.s6_desc'),
+  },
+];
+
+const supportItems = [
+  {
+    icon: 'solar:settings-linear',
+    title: t(locale, 'servicos.support_mec_title'),
+    desc: t(locale, 'servicos.support_mec_desc'),
+    fig: 'SUP. 01',
+  },
+  {
+    icon: 'solar:bolt-circle-linear',
+    title: t(locale, 'servicos.support_ele_title'),
+    desc: t(locale, 'servicos.support_ele_desc'),
+    fig: 'SUP. 02',
+  },
+  {
+    icon: 'solar:code-linear',
+    title: t(locale, 'servicos.support_sw_title'),
+    desc: t(locale, 'servicos.support_sw_desc'),
+    fig: 'SUP. 03',
+  },
+  {
+    icon: 'solar:diploma-linear',
+    title: t(locale, 'servicos.support_trein_title'),
+    desc: t(locale, 'servicos.support_trein_desc'),
+    fig: 'SUP. 04',
+  },
+];
+---
+
+<BaseLayout
+  title={t(locale, 'servicos.page_title')}
+  description={t(locale, 'servicos.meta_description')}
+  locale={locale}
+  pageKey="servicos"
+>
+
+  <!-- 1. Hero -->
+  <PageHero
+    kicker={t(locale, 'servicos.hero_kicker')}
+    title={t(locale, 'servicos.hero_title')}
+    crumbs={crumbs}
+  />
+
+  <!-- 2. Positioning block -->
+  <section
+    class="py-16 border-b border-line bg-bg"
+    aria-labelledby="servicos-positioning"
+  >
+    <div class="container mx-auto px-6 lg:px-12 max-w-4xl">
+      <SectionLabel text={t(locale, 'servicos.positioning_label')} />
+      <h2
+        id="servicos-positioning"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-6 sys-reveal sys-rise"
+      >
+        {t(locale, 'servicos.positioning_heading')}
+      </h2>
+      <p class="text-muted font-mono text-sm leading-relaxed max-w-2xl">
+        {t(locale, 'servicos.positioning_body')}
+      </p>
+    </div>
+  </section>
+
+  <!-- 3. Services spotlight grid -->
+  <section
+    class="py-16 border-b border-line bg-bg"
+    aria-labelledby="servicos-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12">
+      <SectionLabel text={t(locale, 'servicos.services_label')} />
+      <h2
+        id="servicos-heading"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
+      >
+        {t(locale, 'servicos.services_heading')}
+      </h2>
+
+      <!-- Reuse the same spotlight-grid pattern from index.astro -->
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 spotlight-grid border-t border-l border-line sys-reveal"
+        role="list"
+        aria-label="Lista de serviços"
+      >
+        {services.map((service) => (
+          <div role="listitem">
+            <ServiceCard
+              fig={service.fig}
+              icon={service.icon}
+              title={service.title}
+              desc={service.desc}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Suporte Técnico lifecycle block -->
+  <section
+    class="py-16 border-b border-line bg-bg"
+    aria-labelledby="support-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12">
+      <SectionLabel text={t(locale, 'servicos.support_label')} />
+      <h2
+        id="support-heading"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-4 sys-reveal sys-rise"
+      >
+        {t(locale, 'servicos.support_heading')}
+      </h2>
+      <p class="text-muted font-mono text-sm leading-relaxed mb-10 max-w-2xl">
+        {t(locale, 'servicos.support_body')}
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sys-reveal">
+        {supportItems.map((item) => (
+          <FeatureCard
+            icon={item.icon}
+            title={item.title}
+            desc={item.desc}
+            fig={item.fig}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Contact Form -->
+  <ContactForm variant="contato" locale={locale} />
+
+</BaseLayout>
+
+<!-- Reveal island -->
+<script>
+  import '@/scripts/reveal';
+</script>
+
+<!-- Spotlight for the services grid -->
+<script>
+  import '@/scripts/spotlight';
+</script>
