@@ -29,6 +29,7 @@ const { locale = 'pt' } = Astro.props;
   <!-- ── Background layer: poster image (LCP) ── -->
   <div class="z-0 absolute inset-0 overflow-hidden">
     <!-- Real hero photo from current site (robotersys.com) — Phase 2.5 -->
+    <!-- Poster image stays as LCP; video loads lazily after first paint (poster-first pattern) -->
     <Image
       id="hero-poster"
       src={heroPosterImg}
@@ -41,6 +42,21 @@ const { locale = 'pt' } = Astro.props;
       loading="eager"
       decoding="async"
     />
+    <!-- Poster-first background video — loads AFTER first paint, no-op if file absent -->
+    <!-- NOTE: No self-hosted video was found on robotersys.com (only a YouTube embed).
+         When a hero video is available, place it at /robotersys/video/hero.mp4
+         and the script below will lazy-load it automatically.
+         prefers-reduced-motion + saveData guards keep the poster for those users. -->
+    <video
+      id="hero-bg-video"
+      muted
+      loop
+      playsinline
+      preload="none"
+      aria-hidden="true"
+      class="pointer-events-none w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-700"
+      style="z-index:1;"
+    ></video>
 
     <!-- Horizontal dark-left gradient (readability for left-column content) -->
     <div
@@ -90,7 +106,7 @@ const { locale = 'pt' } = Astro.props;
 
       <!-- H1 -->
       <h1
-        class="text-5xl md:text-7xl lg:text-8xl font-medium text-strong uppercase tracking-tight leading-[0.9] mb-8 sys-reveal sys-rise sys-delay-100"
+        class="text-4xl md:text-6xl lg:text-7xl font-medium text-strong uppercase tracking-tight leading-[0.9] mb-8 sys-reveal sys-rise sys-delay-100"
         id="hero-title"
       >
         {t(locale, 'hero.title')}
@@ -236,3 +252,40 @@ const { locale = 'pt' } = Astro.props;
     </div>
   </div>
 </section>
+
+<!-- Poster-first video: lazy-loads AFTER paint; respects prefers-reduced-motion + Save-Data -->
+<script>
+(function () {
+  const HERO_VIDEO_SRC = '/robotersys/video/hero.mp4';
+
+  // Guard 1: prefers-reduced-motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  // Guard 2: Save-Data header hint
+  // @ts-ignore
+  if (navigator.connection && (navigator.connection as any).saveData) return;
+
+  // Only load if the file actually exists (HEAD check is cheap; skip if slow)
+  const video = document.getElementById('hero-bg-video') as HTMLVideoElement | null;
+  if (!video) return;
+
+  const loadVideo = () => {
+    fetch(HERO_VIDEO_SRC, { method: 'HEAD' })
+      .then((res) => {
+        if (!res.ok) return; // file not present — keep poster
+        video.src = HERO_VIDEO_SRC;
+        video.load();
+        video.play().then(() => {
+          // Fade in over poster once playing
+          video.style.opacity = '1';
+        }).catch(() => { /* autoplay blocked — keep poster */ });
+      })
+      .catch(() => { /* network error — keep poster */ });
+  };
+
+  if (document.readyState === 'complete') {
+    loadVideo();
+  } else {
+    window.addEventListener('load', loadVideo, { once: true });
+  }
+})();
+</script>
