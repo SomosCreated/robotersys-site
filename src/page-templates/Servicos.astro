@@ -11,6 +11,7 @@
  *  4. Suporte Técnico lifecycle block (FeatureCard × 4)
  *  5. ContactForm variant="contato"
  */
+import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import SectionLabel from '@/components/SectionLabel.astro';
@@ -20,6 +21,9 @@ import ContactForm from '@/components/ContactForm.astro';
 import { t } from '@/i18n';
 import type { Locale } from '@/i18n/types';
 import { localizedPath } from '@/i18n/routes';
+
+// Real photo from current site (robotersys.com) — Servicos primary image
+import servicosImg from '@/assets/robotersys/servicos-robot-cell.webp';
 
 interface Props {
   locale: Locale;
@@ -130,6 +134,19 @@ const supportItems = [
       </p>
     </div>
   </section>
+
+  <!-- 2b. Section image — real robot-cell photo from current site -->
+  <div class="border-b border-line overflow-hidden" aria-hidden="true">
+    <Image
+      src={servicosImg}
+      alt="Célula robotizada KUKA em operação — RoboterSys"
+      width={1280}
+      height={720}
+      class="w-full h-64 md:h-96 object-cover object-center"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
 
   <!-- 3. Services spotlight grid -->
   <section

@@ -12,6 +12,7 @@
  *  5. GPTW recognition block
  *  6. ContactForm variant="contato"
  */
+import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import ProseSection from '@/components/ProseSection.astro';
@@ -22,6 +23,10 @@ import ContactForm from '@/components/ContactForm.astro';
 import { t } from '@/i18n';
 import type { Locale } from '@/i18n/types';
 import { localizedPath } from '@/i18n/routes';
+
+// Real facility and team photos from current site (robotersys.com)
+import sobreFacilityImg from '@/assets/robotersys/sobre-facility.webp';
+import sobreTeamImg from '@/assets/robotersys/sobre-team.webp';
 
 interface Props {
   locale: Locale;
@@ -89,6 +94,19 @@ const stats = [
     <p>{t(locale, 'sobre.historia_p3')}</p>
   </ProseSection>
 
+  <!-- 2b. Facility photo — follows História, illustrates the company's space -->
+  <div class="border-b border-line overflow-hidden" aria-hidden="true">
+    <Image
+      src={sobreFacilityImg}
+      alt="Instalações da RoboterSys — centro de serviços robóticos KUKA"
+      width={1280}
+      height={720}
+      class="w-full h-64 md:h-96 object-cover object-center"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+
   <!-- 3. Missão / Visão / Valores -->
   <section
     class="py-16 border-b border-line bg-bg"
@@ -142,6 +160,19 @@ const stats = [
       </div>
     </div>
   </section>
+
+  <!-- 3b. Team/facility photo — between valores and stats, shows the team at work -->
+  <div class="border-b border-line overflow-hidden" aria-hidden="true">
+    <Image
+      src={sobreTeamImg}
+      alt="Equipe técnica da RoboterSys — especialistas em robótica KUKA"
+      width={1280}
+      height={720}
+      class="w-full h-64 md:h-80 object-cover object-center"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
 
   <!-- 4. Stats Band -->
   <!-- PLACEHOLDER NOTE: stat values are placeholders — confirm with client before go-live. -->

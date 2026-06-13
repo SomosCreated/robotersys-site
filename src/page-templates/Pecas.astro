@@ -11,6 +11,7 @@
  *  4. 4 Diferenciais via FeatureCard
  *  5. ContactForm variant="contato"
  */
+import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import SectionLabel from '@/components/SectionLabel.astro';
@@ -20,6 +21,10 @@ import ContactForm from '@/components/ContactForm.astro';
 import { t } from '@/i18n';
 import type { Locale } from '@/i18n/types';
 import { localizedPath } from '@/i18n/routes';
+
+// Real photos from current site (robotersys.com) — Pecas primary image + parts warehouse
+import pecasPartsImg from '@/assets/robotersys/pecas-parts-shelf.jpg';
+import pecasWarehouseImg from '@/assets/robotersys/pecas-warehouse.webp';
 
 interface Props {
   locale: Locale;
@@ -98,6 +103,32 @@ const diferenciais = [
       </p>
     </div>
   </section>
+
+  <!-- 2b. Image band — parts shelf + warehouse side by side -->
+  <div class="grid grid-cols-1 md:grid-cols-2 border-b border-line" aria-hidden="true">
+    <div class="overflow-hidden border-r border-line">
+      <Image
+        src={pecasPartsImg}
+        alt="Estoque de peças KUKA originais — RoboterSys"
+        width={800}
+        height={450}
+        class="w-full h-48 md:h-64 object-cover object-center"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <div class="overflow-hidden">
+      <Image
+        src={pecasWarehouseImg}
+        alt="Almoxarifado de peças de reposição KUKA — RoboterSys"
+        width={800}
+        height={450}
+        class="w-full h-48 md:h-64 object-cover object-center"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </div>
 
   <!-- 3. Parts grid -->
   <section

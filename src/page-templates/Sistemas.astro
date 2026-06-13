@@ -12,6 +12,7 @@
  *  5. Clients strip (placeholder logo grid)
  *  6. ContactForm variant="contato"
  */
+import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import SectionLabel from '@/components/SectionLabel.astro';
@@ -21,6 +22,9 @@ import ContactForm from '@/components/ContactForm.astro';
 import { t } from '@/i18n';
 import type { Locale } from '@/i18n/types';
 import { localizedPath } from '@/i18n/routes';
+
+// Real photos from current site (robotersys.com) — harvested for inner pages
+import sistemasRobotImg from '@/assets/robotersys/sistemas-robot-app.webp';
 
 // Real cell photos from the current site (robotersys.com) — harvested in Phase 2.5
 import cell01Img from '@/assets/robotersys/cell-01-paletizacao.webp';
@@ -149,6 +153,19 @@ const clientLogos = [
       </p>
     </div>
   </section>
+
+  <!-- 2b. Section image — robot application photo from current site -->
+  <div class="border-b border-line overflow-hidden" aria-hidden="true">
+    <Image
+      src={sistemasRobotImg}
+      alt="Sistema robótico KUKA em operação industrial — RoboterSys"
+      width={1280}
+      height={720}
+      class="w-full h-64 md:h-96 object-cover object-center"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
 
   <!-- 3. Applications -->
   <section

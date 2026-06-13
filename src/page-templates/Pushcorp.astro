@@ -12,6 +12,7 @@
  *  5. Diferenciais via FeatureCard × 4
  *  6. ContactForm variant="produto"
  */
+import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import SectionLabel from '@/components/SectionLabel.astro';
@@ -20,6 +21,9 @@ import ContactForm from '@/components/ContactForm.astro';
 import { t } from '@/i18n';
 import type { Locale } from '@/i18n/types';
 import { localizedPath } from '@/i18n/routes';
+
+// Real robot-grinding photo from current site (robotersys.com) — matches rebarbação content
+import pushcorpImg from '@/assets/robotersys/pushcorp-robot-grinding.webp';
 
 interface Props {
   locale: Locale;
@@ -193,6 +197,19 @@ const stats = [
       </div>
     </div>
   </section>
+
+  <!-- 3b. Section image — robot grinding/finishing photo from current site -->
+  <div class="border-b border-line overflow-hidden" aria-hidden="true">
+    <Image
+      src={pushcorpImg}
+      alt="Robô KUKA com dispositivo PushCorp em operação de rebarbação — RoboterSys"
+      width={1280}
+      height={720}
+      class="w-full h-64 md:h-80 object-cover object-center"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
 
   <!-- 4. Compliance Device technology -->
   <section
