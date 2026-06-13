@@ -1,0 +1,94 @@
+---
+/**
+ * BlogCard — themed card for blog post previews.
+ * Used in blog index and home teaser.
+ */
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import type { Locale } from '@/i18n/types';
+import { t } from '@/i18n';
+
+interface Props {
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  publishedAt: Date;
+  locale: Locale;
+  /** Optional: cover image imported via astro:assets */
+  coverImage?: ImageMetadata;
+}
+
+const { slug, title, excerpt, category, publishedAt, locale, coverImage } = Astro.props;
+
+// Build the post href for the current locale
+const postHref = locale === 'pt' ? `/blog/${slug}/` : `/${locale}/blog/${slug}/`;
+
+// Format date per locale
+const dateStr = publishedAt.toLocaleDateString(
+  locale === 'pt' ? 'pt-BR' : locale === 'de' ? 'de-DE' : locale === 'es' ? 'es-ES' : 'en-US',
+  { year: 'numeric', month: 'short', day: 'numeric' }
+);
+---
+
+<article class="bg-surface flex flex-col border-0 group">
+  <!-- Cover image (optional) -->
+  {coverImage && (
+    <div class="overflow-hidden border-b border-line">
+      <Image
+        src={coverImage}
+        alt={title}
+        width={640}
+        height={360}
+        class="w-full h-48 object-cover transition-transform duration-500 motion-safe:group-hover:scale-105"
+        loading="lazy"
+      />
+    </div>
+  )}
+
+  <div class="p-6 flex flex-col gap-4 flex-1">
+    <!-- Meta bar -->
+    <div class="flex items-center justify-between gap-2 flex-wrap">
+      <span class="text-[8px] font-mono text-muted uppercase tracking-widest border border-line px-2 py-0.5">
+        {category}
+      </span>
+      <time
+        datetime={publishedAt.toISOString().slice(0, 10)}
+        class="text-[8px] font-mono text-muted uppercase tracking-widest"
+      >
+        {dateStr}
+      </time>
+    </div>
+
+    <!-- Title -->
+    <h3 class="text-sm font-medium text-strong uppercase tracking-tight leading-snug">
+      <a
+        href={postHref}
+        class="hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+      >
+        {title}
+      </a>
+    </h3>
+
+    <!-- Excerpt -->
+    <p class="text-sm font-mono text-muted leading-relaxed flex-1 line-clamp-3">
+      {excerpt}
+    </p>
+
+    <!-- Read more -->
+    <a
+      href={postHref}
+      class="inline-flex items-center gap-2 text-[10px] font-mono text-accent hover:text-orange-400 uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent group/link mt-auto"
+      aria-label={`${t(locale, 'blog.read_more')}: ${title}`}
+    >
+      {t(locale, 'blog.read_more')}
+      <Icon
+        name="solar:arrow-right-linear"
+        class="motion-safe:group-hover/link:translate-x-1 transition-transform"
+        width={12}
+        height={12}
+        aria-hidden="true"
+      />
+    </a>
+  </div>
+</article>

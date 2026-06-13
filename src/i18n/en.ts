@@ -417,4 +417,13 @@ export default {
     blog_post3_excerpt: 'For the fourth consecutive year, RoboterSys is recognized as one of the best places to work.',
     blog_read_more: 'Read more',
   },
+  // ── Blog ──────────────────────────────────────────────────────────────────────
+  blog: {
+    title: 'Blog',
+    empty: 'No articles in this language yet. New content is coming soon.',
+    read_more: 'Read more',
+    back: 'Back to Blog',
+    latest_heading: 'Latest articles',
+    meta_description: 'Technical articles on KUKA robots: maintenance, palletizing, programming, and industrial automation.',
+  },
 } satisfies import('./types').Dict;

@@ -416,4 +416,13 @@ export default {
     blog_post3_excerpt: 'Pela quarta vez consecutiva, a RoboterSys é reconhecida como um dos melhores lugares para trabalhar no Brasil.',
     blog_read_more: 'Saiba mais',
   },
+  // ── Blog ──────────────────────────────────────────────────────────────────────
+  blog: {
+    title: 'Blog',
+    empty: 'Ainda não temos artigos neste idioma. Em breve, novos conteúdos chegarão por aqui.',
+    read_more: 'Saiba mais',
+    back: 'Voltar ao Blog',
+    latest_heading: 'Últimos artigos',
+    meta_description: 'Artigos técnicos sobre robôs KUKA: manutenção, paletização, programação e automação industrial.',
+  },
 } satisfies import('./types').Dict;

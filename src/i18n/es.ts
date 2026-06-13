@@ -417,4 +417,13 @@ export default {
     blog_post3_excerpt: 'Por cuarto año consecutivo, RoboterSys es reconocida como uno de los mejores lugares para trabajar.',
     blog_read_more: 'Saber más',
   },
+  // ── Blog ──────────────────────────────────────────────────────────────────────
+  blog: {
+    title: 'Blog',
+    empty: 'Todavía no hay artículos en este idioma. Pronto habrá nuevos contenidos.',
+    read_more: 'Saber más',
+    back: 'Volver al Blog',
+    latest_heading: 'Últimos artículos',
+    meta_description: 'Artículos técnicos sobre robots KUKA: mantenimiento, paletización, programación y automatización industrial.',
+  },
 } satisfies import('./types').Dict;

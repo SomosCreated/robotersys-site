@@ -417,4 +417,14 @@ export default {
     blog_post3_excerpt: 'Zum vierten Mal in Folge wird RoboterSys als einer der besten Arbeitgeber ausgezeichnet.',
     blog_read_more: 'Mehr erfahren',
   },
+  // ── Blog ──────────────────────────────────────────────────────────────────────
+  // REVISÃO: Machine-translated — professional native review required before go-live.
+  blog: {
+    title: 'Blog',
+    empty: 'In dieser Sprache sind noch keine Artikel vorhanden. Neue Inhalte folgen bald.', // REVISÃO
+    read_more: 'Mehr erfahren', // REVISÃO
+    back: 'Zurück zum Blog', // REVISÃO
+    latest_heading: 'Neueste Beiträge', // REVISÃO
+    meta_description: 'Technische Artikel über KUKA-Roboter: Wartung, Palettierung, Programmierung und industrielle Automatisierung.', // REVISÃO
+  },
 } satisfies import('./types').Dict;

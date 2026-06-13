@@ -20,6 +20,7 @@ export const ROUTES = {
   contato:     { pt: 'contato',                en: 'contact',             es: 'contacto',              de: 'kontakt' },
   privacidade: { pt: 'politica-de-privacidade', en: 'privacy-policy',     es: 'politica-de-privacidad', de: 'datenschutz' },
   cookies:     { pt: 'politica-de-cookies',    en: 'cookie-policy',       es: 'politica-de-cookies',   de: 'cookie-richtlinie' },
+  blog:        { pt: 'blog',                   en: 'blog',                es: 'blog',                  de: 'blog' },
 } as const;
 
 export type PageKey = keyof typeof ROUTES;

@@ -4,6 +4,7 @@ import tailwind from '@astrojs/tailwind';
 import vercel from '@astrojs/vercel';
 import icon from 'astro-icon';
 import sitemap from '@astrojs/sitemap';
+import mdx from '@astrojs/mdx';
 
 export default defineConfig({
   site: 'https://robotersys.com',
@@ -16,6 +17,7 @@ export default defineConfig({
     routing: { prefixDefaultLocale: false, redirectToDefaultLocale: false },
   },
   integrations: [
+    mdx(),
     tailwind({ applyBaseStyles: false }), // base styles vêm do nosso global.css
     icon({ iconDir: 'src/icons' }),
     sitemap({

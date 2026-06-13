@@ -1,0 +1,69 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionLabel from '@/components/SectionLabel.astro';
+import BlogCard from '@/components/BlogCard.astro';
+import { t } from '@/i18n';
+import { localizedPath } from '@/i18n/routes';
+
+const locale = 'es' as const;
+
+const allPosts = await getCollection('blog', (entry) =>
+  entry.data.language === locale && !entry.data.draft
+);
+const posts = allPosts.sort(
+  (a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()
+);
+---
+
+<BaseLayout
+  title={`${t(locale, 'blog.title')} — RoboterSys`}
+  description={t(locale, 'blog.meta_description')}
+  locale={locale}
+  pageKey="blog"
+>
+  <PageHero
+    kicker={t(locale, 'blog.title')}
+    title={t(locale, 'blog.title')}
+    crumbs={[
+      { label: t(locale, 'sobre.breadcrumb_home'), href: localizedPath('home', locale) },
+      { label: t(locale, 'blog.title'), href: localizedPath('blog', locale) },
+    ]}
+  />
+
+  <section class="py-20 px-6 md:px-12 bg-bg" aria-labelledby="blog-index-heading">
+    <div class="max-w-7xl mx-auto">
+      <SectionLabel text={t(locale, 'blog.latest_heading')} />
+
+      {posts.length === 0 ? (
+        <!-- Empty state -->
+        <div class="py-20 text-center">
+          <p class="text-sm font-mono text-muted leading-relaxed max-w-lg mx-auto">
+            {t(locale, 'blog.empty')}
+          </p>
+        </div>
+      ) : (
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px border border-line bg-line"
+          role="list"
+          aria-label={t(locale, 'blog.latest_heading')}
+          id="blog-index-heading"
+        >
+          {posts.map((post) => (
+            <div role="listitem">
+              <BlogCard
+                slug={post.id}
+                title={post.data.title}
+                excerpt={post.data.excerpt}
+                category={post.data.category}
+                publishedAt={post.data.publishedAt}
+                locale={locale}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
