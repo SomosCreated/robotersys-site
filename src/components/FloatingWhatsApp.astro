@@ -1,8 +1,8 @@
 ---
 /**
  * FloatingWhatsApp — fixed pill CTA that cycles between two states:
- *   State A (alert):  solar:siren-rounded-bold icon + "LINHA PARADA"
- *   State B (invite): simple-icons:whatsapp icon + "ENTRE EM CONTATO"
+ *   State A (alert):  solar:siren-rounded-bold icon + t('whatsapp.idle')
+ *   State B (invite): simple-icons:whatsapp icon + t('whatsapp.invite')
  *
  * The cycling script is in src/scripts/floating-whatsapp.ts.
  * prefers-reduced-motion: static invite state only, no animation.
@@ -11,6 +11,13 @@
  * (country code 55 + DDD + number, no spaces or dashes) before going live.
  */
 import { Icon } from 'astro-icon/components';
+import { t } from '@/i18n';
+import type { Locale } from '@/i18n/types';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'pt' } = Astro.props;
 ---
 
 <!--
@@ -22,7 +29,7 @@ import { Icon } from 'astro-icon/components';
   href="https://wa.me/55XXXXXXXXXXX"
   target="_blank"
   rel="noopener noreferrer"
-  aria-label="Falar no WhatsApp"
+  aria-label={t(locale, 'whatsapp.aria')}
   class="
     fixed bottom-6 right-6 z-50
     inline-flex items-center gap-2.5
@@ -37,7 +44,7 @@ import { Icon } from 'astro-icon/components';
     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-accent
   "
 >
-  <!-- State A: siren/alert — "LINHA PARADA" -->
+  <!-- State A: siren/alert (whatsapp.idle) -->
   <span
     id="fwa-state-alert"
     class="flex items-center gap-2.5 fwa-state"
@@ -50,10 +57,10 @@ import { Icon } from 'astro-icon/components';
       class="fwa-pulse-icon flex-shrink-0"
       aria-hidden="true"
     />
-    <span class="whitespace-nowrap leading-none">LINHA PARADA</span>
+    <span class="whitespace-nowrap leading-none">{t(locale, 'whatsapp.idle').toUpperCase()}</span>
   </span>
 
-  <!-- State B: WhatsApp invite — "ENTRE EM CONTATO" -->
+  <!-- State B: WhatsApp invite (whatsapp.invite) -->
   <span
     id="fwa-state-invite"
     class="flex items-center gap-2.5 fwa-state"
@@ -66,7 +73,7 @@ import { Icon } from 'astro-icon/components';
       class="flex-shrink-0"
       aria-hidden="true"
     />
-    <span class="whitespace-nowrap leading-none">ENTRE EM CONTATO</span>
+    <span class="whitespace-nowrap leading-none">{t(locale, 'whatsapp.invite').toUpperCase()}</span>
   </span>
 </a>
 

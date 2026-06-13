@@ -20,13 +20,14 @@
  * error messages, and visible focus states.
  */
 import type { Locale } from '@/i18n/types';
+import { t } from '@/i18n';
 
 interface Props {
   variant?: 'contato' | 'carreiras' | 'produto';
   locale?: Locale;
 }
 
-const { variant = 'contato', locale: _locale = 'pt' } = Astro.props;
+const { variant = 'contato', locale = 'pt' } = Astro.props;
 
 const isCarreiras = variant === 'carreiras';
 const isProduto   = variant === 'produto';
@@ -36,7 +37,7 @@ const headingText = isCarreiras
   ? 'Envie seu currículo'
   : isProduto
   ? 'Consulta de produto'
-  : 'Vamos construir juntos!';
+  : t(locale, 'contato.form_heading');
 
 const submitLabel = isCarreiras
   ? 'Enviar candidatura'

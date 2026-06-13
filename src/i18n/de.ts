@@ -315,7 +315,14 @@ export default {
     rh_email_desc: 'Sie können Ihren Lebenslauf auch direkt an unsere HR-E-Mail-Adresse senden.',
   },
 
+  whatsapp: {
+    idle:   'Linie steht still', // REVISÃO
+    invite: 'Kontakt aufnehmen', // REVISÃO
+    aria:   'Über WhatsApp schreiben', // REVISÃO
+  },
+
   contato: {
+    form_heading: 'Lassen Sie uns gemeinsam bauen!', // REVISÃO
     page_title: 'Kontakt',
     hero_kicker: 'Kontakt',
     hero_title: 'Nehmen Sie Kontakt auf',

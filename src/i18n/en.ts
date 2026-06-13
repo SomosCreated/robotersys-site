@@ -315,7 +315,14 @@ export default {
     rh_email_desc: 'You can also send your resume directly to our HR email.',
   },
 
+  whatsapp: {
+    idle:   'Line down',
+    invite: 'Contact us',
+    aria:   'Chat on WhatsApp',
+  },
+
   contato: {
+    form_heading: "Let's build together!",
     page_title: 'Contact',
     hero_kicker: 'Contact',
     hero_title: 'Get in touch',

@@ -314,7 +314,14 @@ export default {
     rh_email_desc: 'Você também pode enviar seu currículo diretamente para o e-mail do nosso RH.',
   },
 
+  whatsapp: {
+    idle:   'Linha parada',
+    invite: 'Entre em contato',
+    aria:   'Falar no WhatsApp',
+  },
+
   contato: {
+    form_heading: 'Vamos construir juntos!',
     page_title: 'Contato',
     hero_kicker: 'Contato',
     hero_title: 'Fale com a gente',
