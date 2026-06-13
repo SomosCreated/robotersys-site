@@ -316,9 +316,9 @@ export default {
   },
 
   whatsapp: {
-    idle:   'Linie steht still', // REVISÃO
-    invite: 'Kontakt aufnehmen', // REVISÃO
-    aria:   'Über WhatsApp schreiben', // REVISÃO
+    idle:   'Linie steht?',
+    invite: 'Kontakt!',
+    aria:   'Über WhatsApp schreiben',
   },
 
   contato: {

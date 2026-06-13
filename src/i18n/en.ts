@@ -316,8 +316,8 @@ export default {
   },
 
   whatsapp: {
-    idle:   'Line down',
-    invite: 'Contact us',
+    idle:   'Line down?',
+    invite: 'Contact us!',
     aria:   'Chat on WhatsApp',
   },
 

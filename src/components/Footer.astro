@@ -39,7 +39,7 @@ const socialLinks = [
     <!-- brand + contact -->
     <div class="space-y-6">
       <a class="flex items-center group" href={localizedPath('home', locale)}>
-        <span class="text-xl font-medium text-strong tracking-tight">
+        <span class="text-3xl font-medium text-strong tracking-tight">
           RoboterSys<span class="text-accent">.</span>
         </span>
       </a>
@@ -78,7 +78,7 @@ const socialLinks = [
     <div class="space-y-4">
       <div class="text-[9px] font-mono text-muted uppercase tracking-widest mb-4">// Navegação</div>
       <nav aria-label="Links de rodapé">
-        <ul class="space-y-2">
+        <ul class="grid grid-cols-2 gap-2">
           {navItems.map(({ key, href }) => (
             <li>
               <a
@@ -168,22 +168,25 @@ const socialLinks = [
         >
           {t(locale, 'legal.footer_cookies')}
         </a>
-        <span class="text-line" aria-hidden="true">·</span>
-        <span class="normal-case">
-          Desenvolvido por{' '}
-          <a
-            href="https://created.com.br/?utm_source=robotersys&utm_medium=footer&utm_campaign=developed_by"
-            target="_blank"
-            rel="noopener"
-            class="hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
-          >
-            <strong>CREATED</strong>
-          </a>
-        </span>
       </nav>
     </div>
     <div class="text-center text-[10px] text-muted leading-relaxed md:whitespace-nowrap">
       {t(locale, 'legal.footer_kuka_disclaimer')}
     </div>
+  </div>
+
+  <!-- "Desenvolvido por CREATED" — full-width row at the very bottom -->
+  <div class="bg-surface border-t border-line px-8 py-3 flex items-center justify-center text-[10px] uppercase tracking-wider text-muted">
+    <span class="normal-case">
+      Desenvolvido por{' '}
+      <a
+        href="https://created.com.br/?utm_source=robotersys&utm_medium=footer&utm_campaign=developed_by"
+        target="_blank"
+        rel="noopener"
+        class="hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+      >
+        <strong>CREATED</strong>
+      </a>
+    </span>
   </div>
 </footer>

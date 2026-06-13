@@ -316,8 +316,8 @@ export default {
   },
 
   whatsapp: {
-    idle:   'Línea parada',
-    invite: 'Contáctenos',
+    idle:   '¿Línea parada?',
+    invite: '¡Contáctenos!',
     aria:   'Hablar por WhatsApp',
   },
 

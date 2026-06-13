@@ -1,45 +1,49 @@
 /**
  * floating-whatsapp.ts
  *
- * Cycles the FloatingWhatsApp button between two visual states every ~3 s.
+ * Cycles the FloatingWhatsApp circle button through 4 visual states every ~2.5 s:
  *
- * State A (alert):  #fwa-state-alert  — siren icon + "LINHA PARADA"
- * State B (invite): #fwa-state-invite — WhatsApp icon + "ENTRE EM CONTATO"
+ *   State 1: #fwa-state-1 — WhatsApp icon, green background
+ *   State 2: #fwa-state-2 — Siren icon,    orange background
+ *   State 3: #fwa-state-3 — idle text,     orange background
+ *   State 4: #fwa-state-4 — invite text,   orange background
  *
  * prefers-reduced-motion: reduced
- *   → Show only State B (invite), static. No cycling, no pulse animation.
+ *   → Show only State 1 (WhatsApp icon, green), static. No cycling, no pulse.
  */
 
 (function initFloatingWhatsApp() {
-  const alert  = document.getElementById('fwa-state-alert');
-  const invite = document.getElementById('fwa-state-invite');
+  const states = [1, 2, 3, 4].map((n) => document.getElementById(`fwa-state-${n}`));
 
-  if (!alert || !invite) return;
+  // Bail out if any expected state element is missing.
+  if (states.some((el) => !el)) return;
 
-  // Honour reduced-motion preference — show static invite and exit.
+  const setActive = (index: number) => {
+    states.forEach((el, i) => {
+      if (i === index) {
+        el!.classList.add('fwa-active');
+      } else {
+        el!.classList.remove('fwa-active');
+      }
+    });
+  };
+
+  // Honour reduced-motion preference — show static State 1 (green WhatsApp) and exit.
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   if (reducedMotion.matches) {
-    invite.classList.add('fwa-active');
-    alert.classList.remove('fwa-active');
+    setActive(0); // State 1 (index 0)
     return;
   }
 
-  // Start with State B (invite) active.
-  invite.classList.add('fwa-active');
-  alert.classList.remove('fwa-active');
-  let showingAlert = false;
+  // Start with State 1 active.
+  let currentIndex = 0;
+  setActive(currentIndex);
 
-  const CYCLE_MS = 3000;
+  const CYCLE_MS = 2500;
 
   const cycle = () => {
-    showingAlert = !showingAlert;
-    if (showingAlert) {
-      invite.classList.remove('fwa-active');
-      alert.classList.add('fwa-active');
-    } else {
-      alert.classList.remove('fwa-active');
-      invite.classList.add('fwa-active');
-    }
+    currentIndex = (currentIndex + 1) % 4;
+    setActive(currentIndex);
   };
 
   let intervalId = window.setInterval(cycle, CYCLE_MS);
@@ -48,10 +52,9 @@
   reducedMotion.addEventListener('change', (e) => {
     if (e.matches) {
       clearInterval(intervalId);
-      invite.classList.add('fwa-active');
-      alert.classList.remove('fwa-active');
+      setActive(0); // Fall back to State 1 (green WhatsApp)
     } else {
-      // Reduced motion was turned off — restart cycling.
+      // Reduced motion was turned off — restart cycling from current state.
       intervalId = window.setInterval(cycle, CYCLE_MS);
     }
   });

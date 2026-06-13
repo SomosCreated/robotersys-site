@@ -1,11 +1,14 @@
 ---
 /**
- * FloatingWhatsApp — fixed pill CTA that cycles between two states:
- *   State A (alert):  solar:siren-rounded-bold icon + t('whatsapp.idle')
- *   State B (invite): simple-icons:whatsapp icon + t('whatsapp.invite')
+ * FloatingWhatsApp — fixed circle CTA that cycles through 4 states every ~2.5 s:
  *
- * The cycling script is in src/scripts/floating-whatsapp.ts.
- * prefers-reduced-motion: static invite state only, no animation.
+ *   State 1: WhatsApp icon    — green background (bg-ok / green-600),  white icon
+ *   State 2: Siren icon       — orange background (bg-accent),          white icon
+ *   State 3: t('whatsapp.idle')   text — orange background,            white text
+ *   State 4: t('whatsapp.invite') text — orange background,            white text
+ *
+ * Same size/shape (w-16 h-16 rounded-full) across all states.
+ * prefers-reduced-motion: static State 1 (WhatsApp icon, green), no cycling.
  *
  * PLACEHOLDER: Replace 55XXXXXXXXXXX with the real WhatsApp number
  * (country code 55 + DDD + number, no spaces or dashes) before going live.
@@ -32,58 +35,77 @@ const { locale = 'pt' } = Astro.props;
   aria-label={t(locale, 'whatsapp.aria')}
   class="
     fixed bottom-6 right-6 z-50
-    inline-flex items-center gap-2.5
-    bg-accent hover:bg-orange-500
-    text-white
-    px-5 h-11 min-w-[13rem]
-    rounded-full
-    text-[11px] font-mono font-medium uppercase tracking-widest
-    shadow-[0_0_24px_rgba(234,88,12,0.45)] hover:shadow-[0_0_36px_rgba(234,88,12,0.65)]
+    w-16 h-16 rounded-full
+    flex items-center justify-center
+    shadow-[0_0_24px_rgba(234,88,12,0.45)]
     ring-1 ring-orange-500/30
     transition-all duration-300
     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-accent
+    fwa-state-1
   "
 >
-  <!-- State A: siren/alert (whatsapp.idle) -->
+  <!-- State 1: WhatsApp icon — green bg -->
   <span
-    id="fwa-state-alert"
-    class="flex items-center gap-2.5 fwa-state"
-    aria-hidden="true"
-  >
-    <Icon
-      name="solar:siren-rounded-bold"
-      width={18}
-      height={18}
-      class="fwa-pulse-icon flex-shrink-0"
-      aria-hidden="true"
-    />
-    <span class="whitespace-nowrap leading-none">{t(locale, 'whatsapp.idle').toUpperCase()}</span>
-  </span>
-
-  <!-- State B: WhatsApp invite (whatsapp.invite) -->
-  <span
-    id="fwa-state-invite"
-    class="flex items-center gap-2.5 fwa-state"
+    id="fwa-state-1"
+    class="fwa-state absolute inset-0 rounded-full flex items-center justify-center bg-green-600"
     aria-hidden="true"
   >
     <Icon
       name="simple-icons:whatsapp"
-      width={18}
-      height={18}
-      class="flex-shrink-0"
+      width={28}
+      height={28}
+      class="text-white flex-shrink-0"
       aria-hidden="true"
     />
-    <span class="whitespace-nowrap leading-none">{t(locale, 'whatsapp.invite').toUpperCase()}</span>
+  </span>
+
+  <!-- State 2: Siren icon — orange bg -->
+  <span
+    id="fwa-state-2"
+    class="fwa-state absolute inset-0 rounded-full flex items-center justify-center bg-accent"
+    aria-hidden="true"
+  >
+    <Icon
+      name="solar:siren-rounded-bold"
+      width={28}
+      height={28}
+      class="text-white flex-shrink-0 fwa-pulse-icon"
+      aria-hidden="true"
+    />
+  </span>
+
+  <!-- State 3: idle text — orange bg -->
+  <span
+    id="fwa-state-3"
+    class="fwa-state absolute inset-0 rounded-full flex items-center justify-center bg-accent px-2"
+    aria-hidden="true"
+  >
+    <span class="text-white text-[10px] font-mono font-semibold uppercase tracking-wide leading-tight text-center">
+      {t(locale, 'whatsapp.idle')}
+    </span>
+  </span>
+
+  <!-- State 4: invite text — orange bg -->
+  <span
+    id="fwa-state-4"
+    class="fwa-state absolute inset-0 rounded-full flex items-center justify-center bg-accent px-2"
+    aria-hidden="true"
+  >
+    <span class="text-white text-[10px] font-mono font-semibold uppercase tracking-wide leading-tight text-center">
+      {t(locale, 'whatsapp.invite')}
+    </span>
   </span>
 </a>
 
 <style>
-  /* Default (before JS): show invite (State B), hide alert (State A).
+  /* Default (before JS): show State 1 (WhatsApp, green), hide others.
      IDs are not scoped by Astro — safe to use directly. */
-  #fwa-state-alert  { display: none; }
-  #fwa-state-invite { display: flex; }
+  #fwa-state-1 { display: flex; }
+  #fwa-state-2,
+  #fwa-state-3,
+  #fwa-state-4 { display: none; }
 
-  /* .fwa-active is toggled by JS; use :global so the class name isn't hashed */
+  /* JS controls visibility via .fwa-active */
   :global(.fwa-state.fwa-active)       { display: flex; }
   :global(.fwa-state:not(.fwa-active)) { display: none; }
 
@@ -96,13 +118,12 @@ const { locale = 'pt' } = Astro.props;
     animation: fwa-siren-pulse 1.2s ease-in-out infinite;
   }
 
-  /* Respect reduced motion: handled by JS (shows only State B, no cycle),
-     but the CSS media query also kills the animation as a safety net. */
+  /* Respect reduced motion — kill pulse animation; JS also shows only State 1, no cycling. */
   @media (prefers-reduced-motion: reduce) {
     :global(.fwa-pulse-icon) { animation: none; }
   }
 
-  /* Light-mode: slightly more visible shadow/ring on the orange pill */
+  /* Light-mode: slightly more visible shadow on the circle */
   :global(.light) #floating-whatsapp {
     box-shadow: 0 0 0 1px rgb(234 88 12 / 0.35), 0 0 24px rgba(234,88,12,0.35);
   }
