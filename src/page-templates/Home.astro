@@ -106,8 +106,8 @@ const blogHref = locale === 'pt' ? '/blog/' : `/${locale}/blog/`;
 ---
 
 <BaseLayout
-  title="RoboterSys — Soluções completas para Robôs KUKA"
-  description="Somos a maior especializada independente em robôs KUKA do Brasil. Manutenção, peças de reposição e suporte 24/7."
+  title={`RoboterSys — ${t(locale, 'hero.title')}`}
+  description={t(locale, 'hero.subtitle')}
   locale={locale}
   pageKey="home"
 >
