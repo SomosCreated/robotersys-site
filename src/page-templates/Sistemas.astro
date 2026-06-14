@@ -18,6 +18,7 @@ import PageHero from '@/components/PageHero.astro';
 import SectionLabel from '@/components/SectionLabel.astro';
 import FeatureCard from '@/components/FeatureCard.astro';
 import CellGallery from '@/components/CellGallery.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
 import ClientsCarousel from '@/components/ClientsCarousel.astro';
 import ContactForm from '@/components/ContactForm.astro';
 import { t } from '@/i18n';
@@ -110,6 +111,19 @@ const cells = [
     imgAlt: 'Célula robotizada de rebarbação e acabamento KUKA — RoboterSys',
   },
 ];
+
+// ── Capacidades RoboterSys checklist (shown in the "// Automação Industrial" section) ──
+const capabilitiesColumns = [
+  { label: t(locale, 'compare.col_rs'), sublabel: t(locale, 'compare.best'), highlight: true },
+];
+const capabilitiesRows = [
+  { feature: t(locale, 'capabilities.c1'), cells: ['yes'] as const },
+  { feature: t(locale, 'capabilities.c2'), cells: ['yes'] as const },
+  { feature: t(locale, 'capabilities.c3'), cells: ['yes'] as const },
+  { feature: t(locale, 'capabilities.c4'), cells: ['yes'] as const },
+  { feature: t(locale, 'capabilities.c5'), cells: ['yes'] as const },
+  { feature: t(locale, 'capabilities.c6'), cells: ['yes'] as const },
+];
 ---
 
 <BaseLayout
@@ -127,22 +141,47 @@ const cells = [
     bgImage={sistemasRobotImg}
   />
 
-  <!-- 2. Positioning block -->
+  <!-- 2. Positioning block "// Automação Industrial" — text + Capacidades RoboterSys table (2nd column) -->
   <section
     class="py-16 border-b border-line bg-bg"
     aria-labelledby="sistemas-pos-heading"
   >
-    <div class="container mx-auto px-6 lg:px-12 max-w-4xl">
-      <SectionLabel text={t(locale, 'sistemas.pos_label')} />
-      <h2
-        id="sistemas-pos-heading"
-        class="text-2xl md:text-4xl font-medium text-strong uppercase tracking-tight leading-tight mb-6 sys-reveal sys-rise"
-      >
-        {t(locale, 'sistemas.pos_heading')}
-      </h2>
-      <p class="text-muted text-sm leading-relaxed max-w-2xl">
-        {t(locale, 'sistemas.pos_body')}
-      </p>
+    <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+        <!-- Col 1: positioning text -->
+        <div>
+          <SectionLabel text={t(locale, 'sistemas.pos_label')} />
+          <h2
+            id="sistemas-pos-heading"
+            class="text-2xl md:text-4xl font-medium text-strong uppercase tracking-tight leading-tight mb-6 sys-reveal sys-rise"
+          >
+            {t(locale, 'sistemas.pos_heading')}
+          </h2>
+          <p class="text-muted text-sm leading-relaxed">
+            {t(locale, 'sistemas.pos_body')}
+          </p>
+        </div>
+
+        <!-- Col 2: Capacidades RoboterSys checklist (compact) -->
+        <div class="sys-reveal">
+          <div class="text-[10px] font-mono text-accent uppercase tracking-widest flex items-center gap-2 mb-3">
+            <span class="w-1.5 h-1.5 bg-accent animate-pulse" aria-hidden="true"></span>
+            // {t(locale, 'capabilities.label')}
+          </div>
+          <h3
+            class="text-base md:text-lg font-medium text-strong uppercase tracking-tight leading-tight mb-5"
+            set:html={brandHtml(t(locale, 'capabilities.heading'))}
+          ></h3>
+          <ComparisonTable
+            caption={t(locale, 'capabilities.heading')}
+            columns={capabilitiesColumns}
+            rows={capabilitiesRows}
+            yesLabel={t(locale, 'compare.yes')}
+            noLabel={t(locale, 'compare.no')}
+            compact
+          />
+        </div>
+      </div>
     </div>
   </section>
 

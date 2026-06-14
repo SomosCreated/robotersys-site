@@ -16,11 +16,9 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import SectionLabel from '@/components/SectionLabel.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
-import ComparisonTable from '@/components/ComparisonTable.astro';
 import FeatureCard from '@/components/FeatureCard.astro';
 import ContactForm from '@/components/ContactForm.astro';
 import { t } from '@/i18n';
-import { brandHtml } from '@/lib/brand';
 import type { Locale } from '@/i18n/types';
 import { localizedPath } from '@/i18n/routes';
 
@@ -102,19 +100,6 @@ const supportItems = [
     fig: 'SUP. 04',
   },
 ];
-
-// ── Capabilities checklist: single highlighted RoboterSys column, all ✓ ──
-const capabilitiesColumns = [
-  { label: t(locale, 'compare.col_rs'), sublabel: t(locale, 'compare.best'), highlight: true },
-];
-const capabilitiesRows = [
-  { feature: t(locale, 'capabilities.c1'), cells: ['yes'] as const },
-  { feature: t(locale, 'capabilities.c2'), cells: ['yes'] as const },
-  { feature: t(locale, 'capabilities.c3'), cells: ['yes'] as const },
-  { feature: t(locale, 'capabilities.c4'), cells: ['yes'] as const },
-  { feature: t(locale, 'capabilities.c5'), cells: ['yes'] as const },
-  { feature: t(locale, 'capabilities.c6'), cells: ['yes'] as const },
-];
 ---
 
 <BaseLayout
@@ -132,46 +117,22 @@ const capabilitiesRows = [
     bgImage={servicosImg}
   />
 
-  <!-- 2. Positioning block "// Especialização" — text + the "Capacidades RoboterSys" table as a 2nd column -->
+  <!-- 2. Positioning block "// Especialização" -->
   <section
     class="py-16 border-b border-line bg-bg"
     aria-labelledby="servicos-positioning"
   >
-    <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-        <!-- Col 1: positioning text -->
-        <div>
-          <SectionLabel text={t(locale, 'servicos.positioning_label')} />
-          <h2
-            id="servicos-positioning"
-            class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-6 sys-reveal sys-rise"
-          >
-            {t(locale, 'servicos.positioning_heading')}
-          </h2>
-          <p class="text-muted text-sm leading-relaxed">
-            {t(locale, 'servicos.positioning_body')}
-          </p>
-        </div>
-
-        <!-- Col 2: Capacidades RoboterSys checklist -->
-        <div class="sys-reveal">
-          <div class="text-[10px] font-mono text-accent uppercase tracking-widest flex items-center gap-2 mb-3">
-            <span class="w-1.5 h-1.5 bg-accent animate-pulse" aria-hidden="true"></span>
-            // {t(locale, 'capabilities.label')}
-          </div>
-          <h3
-            class="text-base md:text-lg font-medium text-strong uppercase tracking-tight leading-tight mb-5"
-            set:html={brandHtml(t(locale, 'capabilities.heading'))}
-          ></h3>
-          <ComparisonTable
-            caption={t(locale, 'capabilities.heading')}
-            columns={capabilitiesColumns}
-            rows={capabilitiesRows}
-            yesLabel={t(locale, 'compare.yes')}
-            noLabel={t(locale, 'compare.no')}
-          />
-        </div>
-      </div>
+    <div class="container mx-auto px-6 lg:px-12 max-w-4xl">
+      <SectionLabel text={t(locale, 'servicos.positioning_label')} />
+      <h2
+        id="servicos-positioning"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-6 sys-reveal sys-rise"
+      >
+        {t(locale, 'servicos.positioning_heading')}
+      </h2>
+      <p class="text-muted text-sm leading-relaxed max-w-2xl">
+        {t(locale, 'servicos.positioning_body')}
+      </p>
     </div>
   </section>
 

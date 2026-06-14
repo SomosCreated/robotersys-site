@@ -145,18 +145,17 @@ const stats = [
     <div class="container mx-auto px-6 lg:px-12">
       <SectionLabel text={t(locale, 'pushcorp.partner_label')} />
 
-      <!-- PushCorp logo — white logo requires dark backdrop for visibility in both themes -->
+      <!-- PushCorp logo (transparent PNG/WebP) — black in light mode, white in dark mode.
+           The source is white, so `invert` turns it black on light; `dark:invert-0` keeps it white on dark. -->
       <div class="mb-8 sys-reveal">
-        <div class="inline-flex items-center justify-center bg-zinc-900 rounded-md px-6 py-3">
-          <Image
-            src={pushcorpLogoWhite}
-            alt={t(locale, 'pushcorp.logo_alt')}
-            height={48}
-            class="h-10 md:h-12 w-auto object-contain"
-            loading="eager"
-            decoding="async"
-          />
-        </div>
+        <Image
+          src={pushcorpLogoWhite}
+          alt={t(locale, 'pushcorp.logo_alt')}
+          height={48}
+          class="h-10 md:h-12 w-auto object-contain invert dark:invert-0"
+          loading="eager"
+          decoding="async"
+        />
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -272,18 +271,7 @@ const stats = [
     </div>
   </section>
 
-  <!-- 3c. Section image — robot grinding/finishing photo from current site -->
-  <div class="border-b border-line overflow-hidden" aria-hidden="true">
-    <Image
-      src={pushcorpImg}
-      alt="Robô KUKA com dispositivo PushCorp em operação de rebarbação — RoboterSys"
-      width={1280}
-      height={720}
-      class="w-full h-64 md:h-80 object-cover object-center"
-      loading="lazy"
-      decoding="async"
-    />
-  </div>
+  <!-- (Full-width grinding photo between the gallery and Compliance Device was removed by request.) -->
 
   <!-- 4. Compliance Device technology -->
   <section

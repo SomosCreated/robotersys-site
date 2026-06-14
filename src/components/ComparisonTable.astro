@@ -57,6 +57,8 @@ interface Props {
   noLabel: string;
   /** Localized scroll hint shown on mobile (e.g. "Arraste para ver mais →") */
   scrollHint?: string;
+  /** Compact density — tighter row padding + smaller icons (shorter table). */
+  compact?: boolean;
 }
 
 const {
@@ -66,11 +68,16 @@ const {
   yesLabel,
   noLabel,
   scrollHint,
+  compact = false,
 } = Astro.props;
 
 // Single highlighted column → keep min-width tighter so it doesn't over-stretch.
 const dataCols = columns.length;
 const singleCol = dataCols === 1;
+
+// Density tokens
+const pad = compact ? 'p-2.5 md:p-3' : 'p-4 md:p-5';
+const iconSize = compact ? 18 : 24;
 ---
 
 <div class="not-prose">
@@ -94,7 +101,7 @@ const singleCol = dataCols === 1;
           <!-- Empty corner cell above the feature column -->
           <th
             scope="col"
-            class="p-4 md:p-5 align-bottom text-[10px] font-mono text-muted uppercase tracking-widest"
+            class:list={[pad, 'align-bottom text-[10px] font-mono text-muted uppercase tracking-widest']}
           >
             <span class="sr-only">{caption}</span>
           </th>
@@ -103,7 +110,8 @@ const singleCol = dataCols === 1;
             <th
               scope="col"
               class:list={[
-                'p-4 md:p-5 align-bottom text-center',
+                pad,
+                'align-bottom text-center',
                 col.highlight
                   ? 'bg-accent/10 border-x border-accent relative'
                   : '',
@@ -143,7 +151,7 @@ const singleCol = dataCols === 1;
             <!-- Feature name = row header -->
             <th
               scope="row"
-              class="p-4 md:p-5 text-sm font-medium text-fg leading-snug text-left align-middle"
+              class:list={[pad, 'text-sm font-medium text-fg leading-snug text-left align-middle']}
             >
               {row.feature}
             </th>
@@ -154,7 +162,8 @@ const singleCol = dataCols === 1;
               return (
                 <td
                   class:list={[
-                    'p-4 md:p-5 text-center align-middle',
+                    pad,
+                    'text-center align-middle',
                     highlight ? 'bg-accent/10 border-x border-accent' : '',
                     highlight && lastRow ? 'border-b border-accent' : '',
                   ]}
@@ -164,8 +173,8 @@ const singleCol = dataCols === 1;
                       <Icon
                         name="solar:check-circle-bold"
                         class="inline-block text-ok"
-                        width={24}
-                        height={24}
+                        width={iconSize}
+                        height={iconSize}
                         aria-hidden="true"
                       />
                       <span class="sr-only">{yesLabel}</span>
@@ -175,8 +184,8 @@ const singleCol = dataCols === 1;
                       <Icon
                         name="solar:close-circle-bold"
                         class="inline-block text-red-500"
-                        width={24}
-                        height={24}
+                        width={iconSize}
+                        height={iconSize}
                         aria-hidden="true"
                       />
                       <span class="sr-only">{noLabel}</span>

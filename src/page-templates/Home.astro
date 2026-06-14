@@ -8,7 +8,6 @@ import ComparisonTable from '@/components/ComparisonTable.astro';
 import StatsBand from '@/components/StatsBand.astro';
 import Emergency24hCTA from '@/components/Emergency24hCTA.astro';
 import ContactForm from '@/components/ContactForm.astro';
-import ProseSection from '@/components/ProseSection.astro';
 import BlogCard from '@/components/BlogCard.astro';
 import ClientsCarousel from '@/components/ClientsCarousel.astro';
 import YouTubeFacade from '@/components/YouTubeFacade.astro';
@@ -168,6 +167,7 @@ const blogHref = localizedPath('blog', locale);
         yesLabel={t(locale, 'compare.yes')}
         noLabel={t(locale, 'compare.no')}
         scrollHint={t(locale, 'compare.scroll_hint')}
+        compact
       />
     </div>
   </section>
@@ -194,42 +194,57 @@ const blogHref = localizedPath('blog', locale);
     <ClientsCarousel locale={locale} />
   </section>
 
-  <!-- ── Quem somos (com vídeo institucional) — logo após Clientes ── -->
-  <ProseSection
-    kicker={t(locale, 'home.about_section_label')}
-    title={t(locale, 'home.about_heading')}
-  >
-    <p>{t(locale, 'home.about_p1')}</p>
-    <p>{t(locale, 'home.about_p2')}</p>
-    <div class="mt-6">
-      <a
-        href={localizedPath('sobre', locale)}
-        class="inline-flex items-center gap-2 text-xs font-mono text-accent hover:text-orange-400 uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent group"
-      >
-        {t(locale, 'home.about_cta')}
-        <Icon
-          name="solar:arrow-right-linear"
-          class="motion-safe:group-hover:translate-x-1 transition-transform"
-          width={14}
-          height={14}
-          aria-hidden="true"
-        />
-      </a>
-    </div>
+  <!-- ── Quem somos (texto + vídeo em 2 colunas) — logo após Clientes ── -->
+  <section class="py-16 border-b border-line bg-bg" aria-labelledby="home-about-heading">
+    <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
-    <!-- Vídeo institucional — movido da seção "Veja em ação" para cá -->
-    <div class="not-prose mt-12">
-      <div class="text-[10px] font-mono text-accent uppercase tracking-widest flex items-center gap-2 mb-4">
-        <span class="w-1.5 h-1.5 bg-accent animate-pulse" aria-hidden="true"></span>
-        // {t(locale, 'home.video_label')}
+        <!-- Col 1: texto -->
+        <div>
+          <SectionLabel text={t(locale, 'home.about_section_label')} />
+          <h2
+            id="home-about-heading"
+            class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-6 sys-reveal sys-rise"
+          >
+            {t(locale, 'home.about_heading')}
+          </h2>
+          <div class="space-y-5 text-sm text-fg leading-relaxed max-w-prose">
+            <p>{t(locale, 'home.about_p1')}</p>
+            <p>{t(locale, 'home.about_p2')}</p>
+          </div>
+          <div class="mt-6">
+            <a
+              href={localizedPath('sobre', locale)}
+              class="inline-flex items-center gap-2 text-xs font-mono text-accent hover:text-orange-400 uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent group"
+            >
+              {t(locale, 'home.about_cta')}
+              <Icon
+                name="solar:arrow-right-linear"
+                class="motion-safe:group-hover:translate-x-1 transition-transform"
+                width={14}
+                height={14}
+                aria-hidden="true"
+              />
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: vídeo institucional -->
+        <div class="sys-reveal">
+          <div class="text-[10px] font-mono text-accent uppercase tracking-widest flex items-center gap-2 mb-4">
+            <span class="w-1.5 h-1.5 bg-accent animate-pulse" aria-hidden="true"></span>
+            // {t(locale, 'home.video_label')}
+          </div>
+          <YouTubeFacade
+            videoId="9LfO5J9cM2I"
+            title={t(locale, 'home.video_heading')}
+            playLabel={t(locale, 'home.video_play_label')}
+          />
+        </div>
+
       </div>
-      <YouTubeFacade
-        videoId="9LfO5J9cM2I"
-        title={t(locale, 'home.video_heading')}
-        playLabel={t(locale, 'home.video_play_label')}
-      />
     </div>
-  </ProseSection>
+  </section>
 
   <!-- ── Estatísticas ── -->
   <StatsBand

@@ -131,10 +131,7 @@ const logos = locale === 'en' ? EN_LOGOS : ALL_LOGOS;
     animation: marquee-scroll 40s linear infinite;
   }
 
-  /* Pause on hover for usability */
-  .clients-carousel-wrapper:hover .clients-track {
-    animation-play-state: paused;
-  }
+  /* Infinite loop runs continuously — no pause on hover/interaction (by request). */
 
   /* prefers-reduced-motion: cancel scroll, show static wrapped row */
   @media (prefers-reduced-motion: reduce) {
