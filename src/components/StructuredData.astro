@@ -1,0 +1,122 @@
+---
+/**
+ * StructuredData — site-wide JSON-LD (schema.org), rendered in <head> of BaseLayout.
+ *
+ * Emits two blocks:
+ *   1. Organization (also typed ProfessionalService) — RoboterSys NAP, locale-aware
+ *      contact point / social profiles / area served.
+ *   2. WebSite — name + url + inLanguage (no SearchAction; the site has no search).
+ *
+ * Page-level JSON-LD (BlogPosting on blog posts, BreadcrumbList from Breadcrumbs.astro)
+ * lives separately on its own pages — multiple ld+json blocks per page are valid, so
+ * these site-wide entities do not collide with them.
+ *
+ * NAP source of truth: src/components/Footer.astro + Phase 5 brief. Do not invent data.
+ */
+import type { Locale } from '@/i18n/types';
+import { t } from '@/i18n';
+import { LOCALE_HTMLLANG } from '@/i18n/routes';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+
+const siteBase = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://robotersys.com';
+const inLanguage = LOCALE_HTMLLANG[locale];
+
+// ── NAP constants (reused from Footer.astro — single source of truth) ──────────
+const NAME = 'RoboterSys';
+// PLACEHOLDER: a brand logo file does not exist yet under public/robotersys/.
+// Place a square/landscape logo at public/robotersys/img/logo.png (min 112×112,
+// PNG/JPG, on a solid background per Google guidelines) before go-live. Same
+// convention as the og-default.jpg placeholder in SEOHead.astro.
+const LOGO_URL = `${siteBase}/robotersys/img/logo.png`;
+
+// Brazilian HQ — the company is physically headquartered in Joinville and serves
+// all regions (BR / LATAM / DACH) from there. Postal code unknown → omitted (do not invent).
+const HQ_ADDRESS = {
+  '@type': 'PostalAddress',
+  streetAddress: 'R. Parati, 335C',
+  addressLocality: 'Joinville',
+  addressRegion: 'SC',
+  addressCountry: 'BR',
+} as const;
+
+// Brazil contact (used for pt / es / de — all served from the Joinville HQ)
+const BR_PHONE = '+55 47 4101-0987';
+const BR_EMAIL = 'contato.site@robotersys.com.br';
+const LINKEDIN_BR = 'https://www.linkedin.com/company/robotersys./';
+
+// US contact (used for en — hybrid regional strategy EN → USA / Ocoee-FL)
+const US_PHONE = '+1 786 292 7410';
+const US_EMAIL = 'usa@robotersys.com';
+const LINKEDIN_US = 'https://www.linkedin.com/company/robotersys-usa/';
+
+const INSTAGRAM = 'https://www.instagram.com/robotersys';
+
+const isEN = locale === 'en';
+
+// Locale-aware contact point: EN → US phone/email; others → BR phone/email.
+const contactPoint = isEN
+  ? {
+      '@type': 'ContactPoint',
+      telephone: US_PHONE,
+      email: US_EMAIL,
+      contactType: 'customer service',
+      areaServed: 'US',
+      availableLanguage: ['en', 'pt'],
+    }
+  : {
+      '@type': 'ContactPoint',
+      telephone: BR_PHONE,
+      email: BR_EMAIL,
+      contactType: 'customer service',
+      availableLanguage: ['pt', 'en', 'es', 'de'],
+    };
+
+// Locale-aware social profiles: EN → LinkedIn USA; others → LinkedIn BR. Instagram always.
+const sameAs = isEN ? [LINKEDIN_US, INSTAGRAM] : [LINKEDIN_BR, INSTAGRAM];
+
+// Locale-aware service region.
+//   pt → Brazil · es → Latin America · de → DACH (DE/AT/CH) · en → United States
+const AREA_SERVED: Record<Locale, unknown> = {
+  pt: { '@type': 'Country', name: 'Brazil' },
+  es: { '@type': 'Place', name: 'Latin America' },
+  de: [
+    { '@type': 'Country', name: 'Germany' },
+    { '@type': 'Country', name: 'Austria' },
+    { '@type': 'Country', name: 'Switzerland' },
+  ],
+  en: { '@type': 'Country', name: 'United States' },
+};
+
+const organization: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': ['Organization', 'ProfessionalService'],
+  '@id': `${siteBase}/#organization`,
+  name: NAME,
+  url: `${siteBase}/`,
+  logo: LOGO_URL,
+  image: LOGO_URL,
+  description: t(locale, 'seo.org_description'),
+  address: HQ_ADDRESS,
+  contactPoint,
+  sameAs,
+  areaServed: AREA_SERVED[locale],
+};
+
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteBase}/#website`,
+  name: NAME,
+  url: `${siteBase}/`,
+  inLanguage,
+  publisher: { '@id': `${siteBase}/#organization` },
+};
+---
+<!-- Organization / ProfessionalService (site-wide, locale-aware NAP) -->
+<script type="application/ld+json" is:inline set:html={JSON.stringify(organization)} />
+<!-- WebSite (site-wide) -->
+<script type="application/ld+json" is:inline set:html={JSON.stringify(website)} />

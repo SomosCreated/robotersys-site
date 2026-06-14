@@ -439,4 +439,8 @@ export default {
     settings: 'Preferences',
     policy_link: 'Cookie Policy',
   },
+  // ── SEO / structured data ─────────────────────────────────────────────────────
+  seo: {
+    org_description: 'Maintenance, spare parts, and integration services for KUKA industrial robots.',
+  },
 } satisfies import('./types').Dict;

@@ -8,6 +8,7 @@ import FloatingWhatsApp from '@/components/FloatingWhatsApp.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import Analytics from '@/components/Analytics.astro';
 import Hreflang from '@/components/Hreflang.astro';
+import StructuredData from '@/components/StructuredData.astro';
 import type { Locale } from '@/i18n/types';
 import type { PageKey } from '@/i18n/routes';
 import { LOCALE_HTMLLANG } from '@/i18n/routes';
@@ -43,6 +44,8 @@ const htmlLang = LOCALE_HTMLLANG[locale];
     />
     <SEOHead title={title} description={description} locale={htmlLang} />
     <Hreflang pageKey={pageKey} />
+    <!-- Site-wide JSON-LD: Organization + WebSite (locale-aware NAP) -->
+    <StructuredData locale={locale} />
   </head>
   <body class="min-h-screen flex flex-col bg-bg text-fg selection:bg-accent selection:text-white">
     <div class="fixed inset-0 pointer-events-none z-0 opacity-[0.04] bg-grid" aria-hidden="true"></div>

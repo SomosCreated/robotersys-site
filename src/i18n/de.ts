@@ -441,4 +441,9 @@ export default {
     settings: 'Einstellungen', // REVISÃO
     policy_link: 'Cookie-Richtlinie', // REVISÃO
   },
+  // ── SEO / structured data ─────────────────────────────────────────────────────
+  // REVISÃO: Machine-translated — professional native review required before go-live.
+  seo: {
+    org_description: 'Wartung, Ersatzteile und Integration von KUKA-Industrierobotern.', // REVISÃO
+  },
 } satisfies import('./types').Dict;
