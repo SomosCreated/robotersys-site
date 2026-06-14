@@ -14,6 +14,7 @@ import ClientsCarousel from '@/components/ClientsCarousel.astro';
 import YouTubeFacade from '@/components/YouTubeFacade.astro';
 import { Icon } from 'astro-icon/components';
 import { t } from '@/i18n';
+import { brandHtml } from '@/lib/brand';
 import type { Locale } from '@/i18n/types';
 import { localizedPath } from '@/i18n/routes';
 
@@ -157,9 +158,8 @@ const blogHref = localizedPath('blog', locale);
       <h2
         id="compare-heading"
         class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
-      >
-        {t(locale, 'compare.heading')}
-      </h2>
+        set:html={brandHtml(t(locale, 'compare.heading'))}
+      ></h2>
 
       <ComparisonTable
         caption={t(locale, 'compare.heading')}
@@ -172,18 +172,12 @@ const blogHref = localizedPath('blog', locale);
     </div>
   </section>
 
-  <!-- ── Clientes ── -->
-  <!--
-    PLACEHOLDER NOTE: client logos below are placeholder boxes.
-    Replace each "// LOGO PLACEHOLDER" box with an <img> tag or <picture>
-    element pointing to the actual client logo before going live.
-    Confirm list of client names/logos with the client.
-  -->
+  <!-- ── Clientes (carrossel full-bleed, largura total) ── -->
   <section
-    class="border-b border-line py-20 px-6 md:px-12 bg-bg sys-reveal"
+    class="border-b border-line py-20 bg-bg sys-reveal"
     aria-labelledby="clients-heading"
   >
-    <div class="max-w-7xl mx-auto">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
       <SectionLabel text={t(locale, 'home.clients_section_label')} />
       <h2
         id="clients-heading"
@@ -194,36 +188,55 @@ const blogHref = localizedPath('blog', locale);
       <p class="text-sm text-muted leading-relaxed mb-10 max-w-xl">
         {t(locale, 'home.clients_body')}
       </p>
-
-      <!-- Clients carousel: auto-scrolling marquee, white bg, locale-aware logo set -->
-      <ClientsCarousel locale={locale} />
     </div>
+
+    <!-- Full-bleed marquee: edge-to-edge white band (largura completa do site) -->
+    <ClientsCarousel locale={locale} />
   </section>
 
-  <!-- ── Veja em ação ── -->
-  <section
-    class="border-b border-line py-20 px-6 md:px-12 bg-surface sys-reveal"
-    aria-labelledby="video-heading"
+  <!-- ── Quem somos (com vídeo institucional) — logo após Clientes ── -->
+  <ProseSection
+    kicker={t(locale, 'home.about_section_label')}
+    title={t(locale, 'home.about_heading')}
   >
-    <div class="max-w-4xl mx-auto">
-      <SectionLabel text={t(locale, 'home.video_label')} />
-      <h2
-        id="video-heading"
-        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-8 sys-reveal sys-rise"
+    <p>{t(locale, 'home.about_p1')}</p>
+    <p>{t(locale, 'home.about_p2')}</p>
+    <div class="mt-6">
+      <a
+        href={localizedPath('sobre', locale)}
+        class="inline-flex items-center gap-2 text-xs font-mono text-accent hover:text-orange-400 uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent group"
       >
-        {t(locale, 'home.video_heading')}
-      </h2>
+        {t(locale, 'home.about_cta')}
+        <Icon
+          name="solar:arrow-right-linear"
+          class="motion-safe:group-hover:translate-x-1 transition-transform"
+          width={14}
+          height={14}
+          aria-hidden="true"
+        />
+      </a>
+    </div>
 
+    <!-- Vídeo institucional — movido da seção "Veja em ação" para cá -->
+    <div class="not-prose mt-12">
+      <div class="text-[10px] font-mono text-accent uppercase tracking-widest flex items-center gap-2 mb-4">
+        <span class="w-1.5 h-1.5 bg-accent animate-pulse" aria-hidden="true"></span>
+        // {t(locale, 'home.video_label')}
+      </div>
       <YouTubeFacade
         videoId="9LfO5J9cM2I"
         title={t(locale, 'home.video_heading')}
         playLabel={t(locale, 'home.video_play_label')}
       />
     </div>
-  </section>
+  </ProseSection>
 
   <!-- ── Estatísticas ── -->
-  <StatsBand stats={stats} />
+  <StatsBand
+    stats={stats}
+    heading={t(locale, 'stats.section_label')}
+    ariaLabel={t(locale, 'stats.section_label')}
+  />
 
   <!-- ── GPTW Recognition Band ── -->
   <!--
@@ -270,29 +283,7 @@ const blogHref = localizedPath('blog', locale);
     </div>
   </section>
 
-  <!-- ── Sobre / Empresa ── -->
-  <ProseSection
-    kicker={t(locale, 'home.about_section_label')}
-    title={t(locale, 'home.about_heading')}
-  >
-    <p>{t(locale, 'home.about_p1')}</p>
-    <p>{t(locale, 'home.about_p2')}</p>
-    <div class="mt-6">
-      <a
-        href={localizedPath('sobre', locale)}
-        class="inline-flex items-center gap-2 text-xs font-mono text-accent hover:text-orange-400 uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent group"
-      >
-        {t(locale, 'home.about_cta')}
-        <Icon
-          name="solar:arrow-right-linear"
-          class="motion-safe:group-hover:translate-x-1 transition-transform"
-          width={14}
-          height={14}
-          aria-hidden="true"
-        />
-      </a>
-    </div>
-  </ProseSection>
+  <!-- (Quem somos + vídeo foi movido para logo após a seção Clientes, acima.) -->
 
   <!-- ── Blog Teaser ── -->
   {latestPosts.length > 0 && (

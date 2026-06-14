@@ -37,8 +37,8 @@ const { locale = 'pt' } = Astro.props;
     fixed bottom-6 right-6 z-50
     w-16 h-16 rounded-full
     flex items-center justify-center
-    shadow-[0_0_24px_rgba(234,88,12,0.45)]
-    ring-1 ring-orange-500/30
+    shadow-[0_8px_24px_rgba(0,0,0,0.5)]
+    ring-1 ring-black/10
     transition-all duration-300
     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-accent
   "
@@ -120,9 +120,9 @@ const { locale = 'pt' } = Astro.props;
     :global(.fwa-pulse-icon) { animation: none; }
   }
 
-  /* Light-mode: slightly more visible shadow on the circle */
+  /* Light-mode: black drop shadow (not orange) for separation from the page */
   :global(.light) #floating-whatsapp {
-    box-shadow: 0 0 0 1px rgb(234 88 12 / 0.35), 0 0 24px rgba(234,88,12,0.35);
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 0.10), 0 8px 24px rgba(0,0,0,0.35);
   }
 </style>
 

@@ -19,6 +19,7 @@ import PartsGrid from '@/components/PartsGrid.astro';
 import FeatureCard from '@/components/FeatureCard.astro';
 import ContactForm from '@/components/ContactForm.astro';
 import { t } from '@/i18n';
+import { brandHtml } from '@/lib/brand';
 import type { Locale } from '@/i18n/types';
 import { localizedPath } from '@/i18n/routes';
 
@@ -77,7 +78,7 @@ const diferenciais = [
     kicker={t(locale, 'pecas.hero_kicker')}
     title={t(locale, 'pecas.hero_title')}
     crumbs={crumbs}
-    bgImage={pecasWarehouseImg}
+    bgImage={pecasPartsImg}
   />
 
   <!-- 2. Headline block -->
@@ -105,30 +106,20 @@ const diferenciais = [
     </div>
   </section>
 
-  <!-- 2b. Image band — parts shelf + warehouse side by side -->
-  <div class="grid grid-cols-1 md:grid-cols-2 border-b border-line" aria-hidden="true">
-    <div class="overflow-hidden border-r border-line">
-      <Image
-        src={pecasPartsImg}
-        alt="Estoque de peças KUKA originais — RoboterSys"
-        width={800}
-        height={450}
-        class="w-full h-48 md:h-64 object-cover object-center"
-        loading="lazy"
-        decoding="async"
-      />
-    </div>
-    <div class="overflow-hidden">
-      <Image
-        src={pecasWarehouseImg}
-        alt="Almoxarifado de peças de reposição KUKA — RoboterSys"
-        width={800}
-        height={450}
-        class="w-full h-48 md:h-64 object-cover object-center"
-        loading="lazy"
-        decoding="async"
-      />
-    </div>
+  <!-- 2b. Image band — technical parts identification (real photo from current site).
+       NOTE: this photo shows parts lookup/identification on a laptop (an exploded
+       KUKA arm-assembly diagram), NOT a warehouse — labelled accordingly. The parts
+       close-up photo is used as the PageHero above. -->
+  <div class="overflow-hidden border-b border-line" aria-hidden="true">
+    <Image
+      src={pecasWarehouseImg}
+      alt="Identificação e consulta técnica de peças KUKA — RoboterSys"
+      width={1280}
+      height={420}
+      class="w-full h-56 md:h-72 object-cover object-center"
+      loading="lazy"
+      decoding="async"
+    />
   </div>
 
   <!-- 3. Parts grid -->
@@ -161,9 +152,8 @@ const diferenciais = [
       <h2
         id="diff-heading"
         class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
-      >
-        {t(locale, 'pecas.diff_heading')}
-      </h2>
+        set:html={brandHtml(t(locale, 'pecas.diff_heading'))}
+      ></h2>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sys-reveal">
         {diferenciais.map((d) => (

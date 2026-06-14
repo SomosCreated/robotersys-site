@@ -118,10 +118,10 @@ const singleCol = dataCols === 1;
                 )}
                 <span
                   class:list={[
-                    'font-medium uppercase tracking-tight leading-tight',
+                    'font-medium tracking-tight leading-tight',
                     col.highlight
-                      ? 'text-accent text-base md:text-lg'
-                      : 'text-strong text-sm md:text-base',
+                      ? 'text-accent text-base md:text-lg normal-case'
+                      : 'text-strong text-sm md:text-base uppercase',
                   ]}
                 >
                   {col.label}

@@ -3,42 +3,55 @@
  * StatsBand — "Nosso trabalho em números"
  *
  * A full-width band with a responsive grid of stat items.
- * Each stat: big white number + mono label in zinc-400.
- * Background: surface (#080808), top/bottom borders zinc-800.
+ * Each stat: big number (count-up animated 0 → value on scroll) + mono label.
+ * Background: surface, top/bottom borders.
  *
  * Props:
- *   stats — array of { label: string; value: string }
+ *   stats   — array of { label: string; value: string }
+ *   heading — localized section heading (defaults to PT for backward-compat)
+ *
+ * The numbers animate via src/scripts/countup.ts (IntersectionObserver,
+ * reduced-motion safe; the markup already holds the final value for no-JS).
  *
  * PLACEHOLDER NOTE: stat values are provided by the parent and marked as
- * placeholders in index.astro until the client confirms real numbers.
+ * placeholders until the client confirms real numbers.
  */
 interface Props {
   stats: { label: string; value: string }[];
+  heading?: string;
+  ariaLabel?: string;
 }
 
-const { stats } = Astro.props;
+const {
+  stats,
+  heading = 'Nosso trabalho em números',
+  ariaLabel,
+} = Astro.props;
 ---
 
-<section aria-label="Nosso trabalho em números" class="border-t border-b border-line bg-surface py-16 px-6 md:px-12 sys-reveal">
+<section aria-label={ariaLabel ?? heading} class="border-t border-b border-line bg-surface py-16 px-6 md:px-12 sys-reveal">
   <!-- Section heading -->
   <div class="max-w-7xl mx-auto">
     <div class="text-[10px] font-mono text-accent uppercase tracking-widest flex items-center gap-2 mb-10">
       <span class="w-1.5 h-1.5 bg-accent animate-pulse" aria-hidden="true"></span>
-      // Nosso trabalho em números
+      // {heading}
     </div>
 
     <!-- Stats grid — 2 cols on mobile, auto-fill up to 5 on wide screens -->
     <div
       class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 divide-x divide-line"
       role="list"
-      aria-label="Estatísticas de serviço"
+      aria-label={ariaLabel ?? heading}
     >
       {stats.map((stat) => (
         <div
           class="flex flex-col items-center justify-center py-8 px-4 text-center first:border-l border-line sys-reveal"
           role="listitem"
         >
-          <span class="text-4xl md:text-5xl font-medium text-strong tracking-tight mb-2">
+          <span
+            class="text-4xl md:text-5xl font-medium text-strong tracking-tight mb-2 tabular-nums"
+            data-countup
+          >
             {stat.value}
           </span>
           <span class="text-xs font-mono text-muted uppercase tracking-widest leading-tight">
@@ -49,3 +62,8 @@ const { stats } = Astro.props;
     </div>
   </div>
 </section>
+
+<!-- Count-up animation (IntersectionObserver-triggered, reduced-motion safe) -->
+<script>
+  import '@/scripts/countup';
+</script>

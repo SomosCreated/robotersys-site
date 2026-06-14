@@ -21,6 +21,7 @@ import CellGallery from '@/components/CellGallery.astro';
 import ClientsCarousel from '@/components/ClientsCarousel.astro';
 import ContactForm from '@/components/ContactForm.astro';
 import { t } from '@/i18n';
+import { brandHtml } from '@/lib/brand';
 import type { Locale } from '@/i18n/types';
 import { localizedPath } from '@/i18n/routes';
 
@@ -216,16 +217,15 @@ const cells = [
       <h2
         id="clients-heading"
         class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
-      >
-        {t(locale, 'sistemas.clients_heading')}
-      </h2>
-      <p class="text-muted text-xs mb-8 sys-reveal">
+        set:html={brandHtml(t(locale, 'sistemas.clients_heading'))}
+      ></h2>
+      <p class="text-muted text-xs mb-10 sys-reveal">
         {t(locale, 'sistemas.clients_body')}
       </p>
-
-      <!-- Clients carousel: auto-scrolling marquee, white bg, big logos, locale-aware (same as home) -->
-      <ClientsCarousel locale={locale} />
     </div>
+
+    <!-- Full-bleed marquee: edge-to-edge white band (same as home) -->
+    <ClientsCarousel locale={locale} />
   </section>
 
   <!-- 6. Contact Form -->

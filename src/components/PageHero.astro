@@ -55,15 +55,15 @@ const { kicker, title, crumbs, bgImage } = Astro.props;
         fetchpriority="high"
       />
 
-      {/* Horizontal scrim (left column readability — adapts to light/dark via from-bg) */}
+      {/* Horizontal scrim — light, just enough for title legibility; lets the photo show */}
       <div
-        class="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-bg from-10% via-bg/85 to-bg/40"
+        class="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-bg/90 from-5% via-bg/40 to-transparent"
         aria-hidden="true"
       ></div>
 
-      {/* Bottom vignette (grounds the section on both themes) */}
+      {/* Bottom vignette — subtle, grounds the section without hiding the image */}
       <div
-        class="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-bg/30 to-bg"
+        class="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-transparent to-bg/60"
         aria-hidden="true"
       ></div>
     </>

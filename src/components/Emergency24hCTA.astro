@@ -44,14 +44,8 @@ const showQr = locale === 'pt';
     loading="lazy"
     decoding="async"
   />
-  <div
-    class="absolute inset-0 bg-bg/85 dark:bg-bg/80 pointer-events-none"
-    aria-hidden="true"
-  ></div>
-  <div
-    class="absolute inset-0 bg-gradient-to-r from-bg via-bg/70 to-transparent pointer-events-none"
-    aria-hidden="true"
-  ></div>
+  <!-- No colour layer over the photo (per brand request) — the content card below
+       provides its own background for text contrast. -->
 
   <div class="max-w-6xl mx-auto relative">
 
