@@ -9,7 +9,7 @@
  *  2. Positioning / intro block
  *  3. Applications via FeatureCard × 4
  *  4. CellGallery — 4 cells
- *  5. Clients strip (placeholder logo grid)
+ *  5. Clients strip — ClientsCarousel (same marquee as home)
  *  6. ContactForm variant="contato"
  */
 import { Image } from 'astro:assets';
@@ -18,6 +18,7 @@ import PageHero from '@/components/PageHero.astro';
 import SectionLabel from '@/components/SectionLabel.astro';
 import FeatureCard from '@/components/FeatureCard.astro';
 import CellGallery from '@/components/CellGallery.astro';
+import ClientsCarousel from '@/components/ClientsCarousel.astro';
 import ContactForm from '@/components/ContactForm.astro';
 import { t } from '@/i18n';
 import type { Locale } from '@/i18n/types';
@@ -30,7 +31,7 @@ import sistemasRobotImg from '@/assets/robotersys/sistemas-robot-app.webp';
 import cell01Img from '@/assets/robotersys/cell-01-paletizacao.webp';
 import cell02Img from '@/assets/robotersys/cell-02-handling.webp';
 import cell03Img from '@/assets/robotersys/cell-03-paletizacao2.webp';
-import cell04Img from '@/assets/robotersys/cell-04-rebarbacao.webp';
+import cell04Img from '@/assets/robotersys/cell-04-rebarbacao.jpg';
 
 interface Props {
   locale: Locale;
@@ -107,17 +108,6 @@ const cells = [
     imgSrc: cell04Img,
     imgAlt: 'Célula robotizada de rebarbação e acabamento KUKA — RoboterSys',
   },
-];
-
-// Real client logos from the current site (robotersys.com) — harvested in Phase 2.5
-// Logos are served from public/robotersys/logos/ (plain <img>, explicit dimensions)
-const clientLogos = [
-  { file: 'Volkswagen.webp', name: 'Volkswagen' },
-  { file: 'Mercedes.webp',   name: 'Mercedes-Benz' },
-  { file: 'Renault.webp',    name: 'Renault' },
-  { file: 'Volvo.webp',      name: 'Volvo' },
-  { file: 'Ambev.webp',      name: 'Ambev' },
-  { file: 'Coca-Cola.webp',  name: 'Coca-Cola' },
 ];
 ---
 
@@ -216,13 +206,9 @@ const clientLogos = [
     </div>
   </section>
 
-  <!-- 5. Clients strip (placeholder) -->
-  <!--
-    PLACEHOLDER: Replace placeholder boxes below with real client logo images
-    once provided by the client. Use <Image> from astro:assets for optimization.
-  -->
+  <!-- 5. Clients strip -->
   <section
-    class="py-16 border-b border-line bg-surface"
+    class="py-16 border-b border-line bg-bg"
     aria-labelledby="clients-heading"
   >
     <div class="container mx-auto px-6 lg:px-12">
@@ -237,29 +223,8 @@ const clientLogos = [
         {t(locale, 'sistemas.clients_body')}
       </p>
 
-      <!-- Logo grid — real logos from current site (robotersys.com) -->
-      <div
-        class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-line sys-reveal"
-        role="list"
-        aria-label="Logos de clientes"
-      >
-        {clientLogos.map((logo) => (
-          <div
-            class="bg-surface h-20 flex items-center justify-center px-4"
-            role="listitem"
-          >
-            <img
-              src={`/robotersys/logos/${logo.file}`}
-              alt={logo.name}
-              width="120"
-              height="48"
-              loading="lazy"
-              decoding="async"
-              class="max-h-10 w-auto object-contain filter dark:invert dark:brightness-90 transition-all"
-            />
-          </div>
-        ))}
-      </div>
+      <!-- Clients carousel: auto-scrolling marquee, white bg, big logos, locale-aware (same as home) -->
+      <ClientsCarousel locale={locale} />
     </div>
   </section>
 

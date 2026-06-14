@@ -280,6 +280,10 @@ export default {
     gptw_label: 'Reconhecimento',
     gptw_title: 'Great Place to Work',
     gptw_text: 'A RoboterSys é certificada pelo Great Place to Work (GPTW) — um reconhecimento que reflete nosso compromisso com um ambiente de trabalho excelente, onde as pessoas crescem e entregam o melhor de si.', // REVISAR com cliente — confirmar anos de certificação
+    // Clients section
+    clients_label: 'Clientes',
+    clients_heading: 'Empresas que confiam na RoboterSys',
+    clients_body: 'Atendemos indústrias de todos os segmentos no sul do Brasil e em todo o território nacional.', // REVISAR com cliente
     // CTA
     cta_label: 'Contato',
   },
