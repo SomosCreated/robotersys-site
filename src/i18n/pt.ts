@@ -444,6 +444,39 @@ export default {
     settings: 'Preferências',
     policy_link: 'Política de Cookies',
   },
+  // ── Comparação — "Por que escolher a RoboterSys" (Home) ───────────────────────
+  // Only text is translated here; the ✓/✗ matrix lives in Home.astro.
+  compare: {
+    label: 'Por que RoboterSys',
+    heading: 'Por que escolher a RoboterSys?',
+    best: 'Melhor Escolha',
+    col_rs: 'RoboterSys.',
+    col_others: 'Não especializadas',
+    col_maker: 'Fabricante',
+    yes: 'Sim',
+    no: 'Não',
+    scroll_hint: 'Arraste para ver toda a tabela',
+    // Linhas (recursos comparados)
+    r1: 'Profissionais especializados',
+    r2: 'Atendimento sem burocracia',
+    r3: 'Preço justo',
+    r4: 'Uso de peças externas',
+    r5: 'Equipamentos originais',
+    r6: 'Reparos de componentes',
+    r7: 'Maior credibilidade',
+  },
+  // ── Capacidades — checklist RoboterSys (Serviços) ─────────────────────────────
+  capabilities: {
+    label: 'O que entregamos',
+    heading: 'Capacidades RoboterSys',
+    // Linhas (o que entregamos) — todas ✓
+    c1: 'Projetos Turn Key',
+    c2: 'Projetos Semi Turn Key — implementar robôs em processos já existentes',
+    c3: 'Manipulação & Paletização',
+    c4: 'Rebarbação',
+    c5: 'Retrofit e reengenharia de ferramentas',
+    c6: 'Pós-venda para todo o ciclo de vida da célula (inclusive do robô)',
+  },
   // ── SEO / structured data ─────────────────────────────────────────────────────
   seo: {
     org_description: 'Serviços de manutenção, peças e integração de robôs industriais KUKA.',

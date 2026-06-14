@@ -16,6 +16,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import SectionLabel from '@/components/SectionLabel.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
 import FeatureCard from '@/components/FeatureCard.astro';
 import ContactForm from '@/components/ContactForm.astro';
 import { t } from '@/i18n';
@@ -99,6 +100,19 @@ const supportItems = [
     desc: t(locale, 'servicos.support_trein_desc'),
     fig: 'SUP. 04',
   },
+];
+
+// ── Capabilities checklist: single highlighted RoboterSys column, all ✓ ──
+const capabilitiesColumns = [
+  { label: t(locale, 'compare.col_rs'), sublabel: t(locale, 'compare.best'), highlight: true },
+];
+const capabilitiesRows = [
+  { feature: t(locale, 'capabilities.c1'), cells: ['yes'] as const },
+  { feature: t(locale, 'capabilities.c2'), cells: ['yes'] as const },
+  { feature: t(locale, 'capabilities.c3'), cells: ['yes'] as const },
+  { feature: t(locale, 'capabilities.c4'), cells: ['yes'] as const },
+  { feature: t(locale, 'capabilities.c5'), cells: ['yes'] as const },
+  { feature: t(locale, 'capabilities.c6'), cells: ['yes'] as const },
 ];
 ---
 
@@ -210,6 +224,31 @@ const supportItems = [
           />
         ))}
       </div>
+    </div>
+  </section>
+
+  <!-- 4b. Capacidades (checklist) -->
+  <!-- bg-surface alternates against the bg-bg support section above -->
+  <section
+    class="py-16 border-b border-line bg-surface sys-reveal"
+    aria-labelledby="capabilities-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12 max-w-4xl">
+      <SectionLabel text={t(locale, 'capabilities.label')} />
+      <h2
+        id="capabilities-heading"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
+      >
+        {t(locale, 'capabilities.heading')}
+      </h2>
+
+      <ComparisonTable
+        caption={t(locale, 'capabilities.heading')}
+        columns={capabilitiesColumns}
+        rows={capabilitiesRows}
+        yesLabel={t(locale, 'compare.yes')}
+        noLabel={t(locale, 'compare.no')}
+      />
     </div>
   </section>
 

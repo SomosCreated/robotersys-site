@@ -447,6 +447,38 @@ export default {
     settings: 'Einstellungen', // REVISÃO
     policy_link: 'Cookie-Richtlinie', // REVISÃO
   },
+  // ── Vergleich — "Warum RoboterSys wählen" (Home) ──────────────────────────────
+  // REVISÃO: Machine-translated — professional native review required before go-live.
+  compare: {
+    label: 'Warum RoboterSys', // REVISÃO
+    heading: 'Warum RoboterSys wählen?', // REVISÃO
+    best: 'Beste Wahl', // REVISÃO
+    col_rs: 'RoboterSys.', // REVISÃO
+    col_others: 'Nicht spezialisiert', // REVISÃO
+    col_maker: 'Hersteller', // REVISÃO
+    yes: 'Ja', // REVISÃO
+    no: 'Nein', // REVISÃO
+    scroll_hint: 'Wischen, um die ganze Tabelle zu sehen', // REVISÃO
+    r1: 'Spezialisierte Fachkräfte', // REVISÃO
+    r2: 'Unkomplizierter Service', // REVISÃO
+    r3: 'Fairer Preis', // REVISÃO
+    r4: 'Verwendung von Fremdteilen', // REVISÃO
+    r5: 'Originalausrüstung', // REVISÃO
+    r6: 'Reparatur von Komponenten', // REVISÃO
+    r7: 'Höhere Glaubwürdigkeit', // REVISÃO
+  },
+  // ── Fähigkeiten — RoboterSys-Checkliste (Leistungen) ──────────────────────────
+  // REVISÃO: Machine-translated — professional native review required before go-live.
+  capabilities: {
+    label: 'Was wir liefern', // REVISÃO
+    heading: 'RoboterSys-Fähigkeiten', // REVISÃO
+    c1: 'Turn-Key-Projekte', // REVISÃO
+    c2: 'Semi-Turn-Key-Projekte — Roboter in bestehende Prozesse integrieren', // REVISÃO
+    c3: 'Handling & Palettierung', // REVISÃO
+    c4: 'Entgratung', // REVISÃO
+    c5: 'Retrofit und Werkzeug-Reengineering', // REVISÃO
+    c6: 'After-Sales für den gesamten Lebenszyklus der Zelle (einschließlich Roboter)', // REVISÃO
+  },
   // ── SEO / structured data ─────────────────────────────────────────────────────
   // REVISÃO: Machine-translated — professional native review required before go-live.
   seo: {

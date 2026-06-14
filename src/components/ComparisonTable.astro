@@ -1,0 +1,201 @@
+---
+/**
+ * ComparisonTable — native, themed, accessible comparison matrix.
+ *
+ * Recreates the client's marketing comparison graphics as a semantic <table>:
+ * responsive, dark/orange "HUD/AERO" theme, i18n-ready, WCAG AA.
+ *
+ * Layout:
+ *  - Leftmost column = feature name (row header, scope="row").
+ *  - Data columns = centered ✓ / ✗ (solar:check-circle-bold / close-circle-bold).
+ *  - The highlighted column (RoboterSys = "Melhor Escolha") gets a prominent
+ *    treatment: an accent badge above the header, an accent border running down
+ *    the column, and a subtly elevated (orange-tinted) background — exactly like
+ *    the source graphics where the RoboterSys column is boxed in orange.
+ *
+ * Responsive: wrapped in overflow-x-auto with a min-width so it scrolls
+ * horizontally on narrow screens instead of breaking. A scroll hint is shown
+ * on mobile only.
+ *
+ * Theming: uses semantic tokens only (bg-surface / bg-elevated / text-strong /
+ * text-muted / border-line / bg-accent / text-ok) so it reads correctly in BOTH
+ * .light and .dark. The highlight tint uses bg-accent/10 which works on the white
+ * light-mode sections and the near-black dark-mode sections alike.
+ *
+ * Accessibility: <caption class="sr-only">, <thead> with scope="col",
+ * <th scope="row"> for feature names, and sr-only "Sim/Não" text behind each icon
+ * (the ✓/✗ alone is not conveyed to screen readers).
+ */
+import { Icon } from 'astro-icon/components';
+
+interface Column {
+  /** Column header label (e.g. "RoboterSys.") */
+  label: string;
+  /** Optional sub-label under the header (e.g. "Melhor Escolha") */
+  sublabel?: string;
+  /** When true → the prominent accent "best choice" treatment */
+  highlight?: boolean;
+}
+
+interface Row {
+  /** Feature name — rendered as the row header (left column) */
+  feature: string;
+  /** One cell per data column, aligned with `columns` order.
+   *  `readonly` so callers can pass `as const` literal tuples. */
+  cells: readonly ('yes' | 'no')[];
+}
+
+interface Props {
+  /** sr-only <caption> describing the table for assistive tech */
+  caption: string;
+  /** Data columns, in display order (does NOT include the feature column) */
+  columns: Column[];
+  /** Rows; each row.cells length must equal columns.length */
+  rows: Row[];
+  /** Localized accessible labels for the cell states */
+  yesLabel: string;
+  noLabel: string;
+  /** Localized scroll hint shown on mobile (e.g. "Arraste para ver mais →") */
+  scrollHint?: string;
+}
+
+const {
+  caption,
+  columns,
+  rows,
+  yesLabel,
+  noLabel,
+  scrollHint,
+} = Astro.props;
+
+// Single highlighted column → keep min-width tighter so it doesn't over-stretch.
+const dataCols = columns.length;
+const singleCol = dataCols === 1;
+---
+
+<div class="not-prose">
+  <!-- Horizontal-scroll wrapper: keeps the table readable on narrow screens -->
+  <div
+    class="overflow-x-auto border border-line bg-surface"
+    tabindex="0"
+    role="group"
+    aria-label={caption}
+  >
+    <table
+      class:list={[
+        'w-full border-collapse text-left',
+        singleCol ? 'min-w-[360px]' : 'min-w-[640px]',
+      ]}
+    >
+      <caption class="sr-only">{caption}</caption>
+
+      <thead>
+        <tr class="border-b border-line">
+          <!-- Empty corner cell above the feature column -->
+          <th
+            scope="col"
+            class="p-4 md:p-5 align-bottom text-[10px] font-mono text-muted uppercase tracking-widest"
+          >
+            <span class="sr-only">{caption}</span>
+          </th>
+
+          {columns.map((col) => (
+            <th
+              scope="col"
+              class:list={[
+                'p-4 md:p-5 align-bottom text-center',
+                col.highlight
+                  ? 'bg-accent/10 border-x border-accent relative'
+                  : '',
+              ]}
+            >
+              <div class="flex flex-col items-center gap-2">
+                {col.highlight && col.sublabel && (
+                  <!-- "Melhor Escolha" accent pill above the RoboterSys header -->
+                  <span class="inline-block bg-accent text-white text-[9px] font-mono uppercase tracking-widest px-2.5 py-1 leading-none whitespace-nowrap">
+                    {col.sublabel}
+                  </span>
+                )}
+                <span
+                  class:list={[
+                    'font-medium uppercase tracking-tight leading-tight',
+                    col.highlight
+                      ? 'text-accent text-base md:text-lg'
+                      : 'text-strong text-sm md:text-base',
+                  ]}
+                >
+                  {col.label}
+                </span>
+                {!col.highlight && col.sublabel && (
+                  <span class="text-[10px] font-mono text-muted uppercase tracking-widest leading-tight">
+                    {col.sublabel}
+                  </span>
+                )}
+              </div>
+            </th>
+          ))}
+        </tr>
+      </thead>
+
+      <tbody>
+        {rows.map((row, rIdx) => (
+          <tr class:list={[rIdx < rows.length - 1 ? 'border-b border-line' : '']}>
+            <!-- Feature name = row header -->
+            <th
+              scope="row"
+              class="p-4 md:p-5 text-sm font-medium text-fg leading-snug text-left align-middle"
+            >
+              {row.feature}
+            </th>
+
+            {row.cells.map((cell, cIdx) => {
+              const highlight = columns[cIdx]?.highlight ?? false;
+              const lastRow = rIdx === rows.length - 1;
+              return (
+                <td
+                  class:list={[
+                    'p-4 md:p-5 text-center align-middle',
+                    highlight ? 'bg-accent/10 border-x border-accent' : '',
+                    highlight && lastRow ? 'border-b border-accent' : '',
+                  ]}
+                >
+                  {cell === 'yes' ? (
+                    <>
+                      <Icon
+                        name="solar:check-circle-bold"
+                        class="inline-block text-ok"
+                        width={24}
+                        height={24}
+                        aria-hidden="true"
+                      />
+                      <span class="sr-only">{yesLabel}</span>
+                    </>
+                  ) : (
+                    <>
+                      <Icon
+                        name="solar:close-circle-bold"
+                        class="inline-block text-red-500"
+                        width={24}
+                        height={24}
+                        aria-hidden="true"
+                      />
+                      <span class="sr-only">{noLabel}</span>
+                    </>
+                  )}
+                </td>
+              );
+            })}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  {scrollHint && (
+    <!-- Scroll affordance — mobile only (table fits without scroll on >=md) -->
+    <p class="md:hidden mt-3 text-[10px] font-mono text-muted uppercase tracking-widest flex items-center gap-2">
+      <Icon name="solar:arrow-right-linear" width={12} height={12} aria-hidden="true" />
+      {scrollHint}
+    </p>
+  )}
+</div>

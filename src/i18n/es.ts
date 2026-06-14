@@ -445,6 +445,36 @@ export default {
     settings: 'Preferencias',
     policy_link: 'Política de Cookies',
   },
+  // ── Comparación — "Por qué elegir RoboterSys" (Home) ──────────────────────────
+  compare: {
+    label: 'Por qué RoboterSys',
+    heading: '¿Por qué elegir RoboterSys?',
+    best: 'Mejor Elección',
+    col_rs: 'RoboterSys.',
+    col_others: 'No especializadas',
+    col_maker: 'Fabricante',
+    yes: 'Sí',
+    no: 'No',
+    scroll_hint: 'Desliza para ver toda la tabla',
+    r1: 'Profesionales especializados',
+    r2: 'Atención sin burocracia',
+    r3: 'Precio justo',
+    r4: 'Uso de piezas externas',
+    r5: 'Equipos originales',
+    r6: 'Reparación de componentes',
+    r7: 'Mayor credibilidad',
+  },
+  // ── Capacidades — checklist RoboterSys (Servicios) ────────────────────────────
+  capabilities: {
+    label: 'Lo que entregamos',
+    heading: 'Capacidades RoboterSys',
+    c1: 'Proyectos Turn Key',
+    c2: 'Proyectos Semi Turn Key — implementar robots en procesos ya existentes',
+    c3: 'Manipulación y Paletizado',
+    c4: 'Rebabado',
+    c5: 'Retrofit y reingeniería de herramientas',
+    c6: 'Posventa para todo el ciclo de vida de la célula (incluido el robot)',
+  },
   // ── SEO / structured data ─────────────────────────────────────────────────────
   seo: {
     org_description: 'Servicios de mantenimiento, repuestos e integración de robots industriales KUKA.',
