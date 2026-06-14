@@ -26,13 +26,10 @@ import { brandHtml } from '@/lib/brand';
 import type { Locale } from '@/i18n/types';
 import { localizedPath } from '@/i18n/routes';
 
-// Hero background: IMG_5700 from the home-hero slideshow set (warehouse/robot-facility shot).
-// sistemas-robot-app.webp (IMG_5666) was NOT part of the home-hero acervo; replaced with
-// pecas-warehouse.webp (IMG_5700) which IS in the canonical hero set and depicts the
-// robotics facility — an appropriate backdrop for the Sistemas Robóticos page.
-import sistemasRobotImg from '@/assets/robotersys/pecas-warehouse.webp';
-// Body section image — robot application photo from current site (IMG_5666)
-import sistemasBodyImg from '@/assets/robotersys/sistemas-robot-app.webp';
+// Hero + body background: real KUKA robotic-cell/application photo (IMG_5666) — the most
+// page-relevant image for "Sistemas Robóticos". (pecas-warehouse.webp / IMG_5700 is a
+// laptop + parts-diagram scene — wrong subject for this hero, so it's NOT used here.)
+import sistemasRobotImg from '@/assets/robotersys/sistemas-robot-app.webp';
 
 // Real cell photos from the current site (robotersys.com) — harvested in Phase 2.5
 import cell01Img from '@/assets/robotersys/cell-01-paletizacao.webp';
@@ -193,7 +190,7 @@ const capabilitiesRows = [
   <!-- 2b. Section image — robot application photo from current site -->
   <div class="border-b border-line overflow-hidden" aria-hidden="true">
     <Image
-      src={sistemasBodyImg}
+      src={sistemasRobotImg}
       alt="Sistema robótico KUKA em operação industrial — RoboterSys"
       width={1280}
       height={720}
