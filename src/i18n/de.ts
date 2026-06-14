@@ -247,6 +247,14 @@ export default {
     diff3_desc: 'Prozesslabor in Texas zur kundenspezifischen Anwendungsvalidierung vor der Auslieferung. Reduziert Risiken und garantiert die Leistung in Ihrer Anlage.',
     diff4_title: 'Vollständiger Kundendienst',
     diff4_desc: 'After-Sales-Betreuung über den gesamten Anlagenlebenszyklus mit lokalem technischen Support durch RoboterSys.',
+    // Logo
+    logo_alt: 'PushCorp — RoboterSys-Partner', // REVISÃO
+    // Gallery
+    gallery_label: '// Galerie', // REVISÃO
+    gallery_heading: 'Im Einsatz', // REVISÃO
+    gallery_alt_sanding_corners: 'PushCorp-Roboter schleift Ecken eines Industrieteils', // REVISÃO
+    gallery_alt_sanding_guitar: 'PushCorp schleift einen Gitarrenkörper — Oberflächenbearbeitung geschwungener Flächen', // REVISÃO
+    gallery_alt_steelwelds: 'Schweißnahtbearbeitung an Stahl mit PushCorp-Compliance-Device', // REVISÃO
   },
 
   // ── Über uns-Seite ────────────────────────────────────────────────────────────

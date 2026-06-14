@@ -247,6 +247,14 @@ export default {
     diff3_desc: 'Laboratorio de procesos en Texas para validación personalizada de cada aplicación antes de la entrega. Reduce el riesgo y garantiza el rendimiento en su planta.',
     diff4_title: 'Posventa Completo',
     diff4_desc: 'Atención de posventa durante todo el ciclo de vida del equipo, con soporte técnico local a cargo de RoboterSys.',
+    // Logo
+    logo_alt: 'PushCorp — socio RoboterSys',
+    // Gallery
+    gallery_label: '// Galería',
+    gallery_heading: 'En Operación',
+    gallery_alt_sanding_corners: 'Robot PushCorp lijando bordes de una pieza industrial',
+    gallery_alt_sanding_guitar: 'PushCorp lijando cuerpo de guitarra — acabado de superficies curvas',
+    gallery_alt_steelwelds: 'Acabado de soldaduras en acero con dispositivo PushCorp',
   },
 
   // ── Sobre Nosotros page ───────────────────────────────────────────────────────

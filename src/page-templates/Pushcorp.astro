@@ -25,6 +25,12 @@ import { localizedPath } from '@/i18n/routes';
 
 // Real robot-grinding photo from current site (robotersys.com) — matches rebarbação content
 import pushcorpImg from '@/assets/robotersys/pushcorp-robot-grinding.webp';
+// PushCorp brand logo (white/transparent bg — displayed on dark container)
+import pushcorpLogoWhite from '@/assets/robotersys/pushcorp-logo-white.webp';
+// Gallery images — PushCorp operations
+import gallerySandingCorners from '@/assets/robotersys/cell-04-rebarbacao.jpg';
+import gallerySandingGuitar from '@/assets/robotersys/pushcorp-sanding-guitar.jpg';
+import gallerySteelwelds from '@/assets/robotersys/pushcorp-steelwelds.jpg';
 
 interface Props {
   locale: Locale;
@@ -138,6 +144,21 @@ const stats = [
   >
     <div class="container mx-auto px-6 lg:px-12">
       <SectionLabel text={t(locale, 'pushcorp.partner_label')} />
+
+      <!-- PushCorp logo — white logo requires dark backdrop for visibility in both themes -->
+      <div class="mb-8 sys-reveal">
+        <div class="inline-flex items-center justify-center bg-zinc-900 rounded-md px-6 py-3">
+          <Image
+            src={pushcorpLogoWhite}
+            alt={t(locale, 'pushcorp.logo_alt')}
+            height={48}
+            class="h-10 md:h-12 w-auto object-contain"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         <!-- Copy -->
         <div>
@@ -200,7 +221,58 @@ const stats = [
     </div>
   </section>
 
-  <!-- 3b. Section image — robot grinding/finishing photo from current site -->
+  <!-- 3b. PushCorp operations photo gallery -->
+  <section
+    class="py-16 border-b border-line bg-surface"
+    aria-labelledby="pushcorp-gallery-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12">
+      <SectionLabel text={t(locale, 'pushcorp.gallery_label')} />
+      <h2
+        id="pushcorp-gallery-heading"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-8 sys-reveal sys-rise"
+      >
+        {t(locale, 'pushcorp.gallery_heading')}
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sys-reveal">
+        <div class="overflow-hidden rounded border border-line group">
+          <Image
+            src={gallerySandingCorners}
+            alt={t(locale, 'pushcorp.gallery_alt_sanding_corners')}
+            width={800}
+            height={600}
+            class="w-full h-56 object-cover object-center motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-105"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="overflow-hidden rounded border border-line group">
+          <Image
+            src={gallerySandingGuitar}
+            alt={t(locale, 'pushcorp.gallery_alt_sanding_guitar')}
+            width={800}
+            height={600}
+            class="w-full h-56 object-cover object-center motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-105"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="overflow-hidden rounded border border-line group">
+          <Image
+            src={gallerySteelwelds}
+            alt={t(locale, 'pushcorp.gallery_alt_steelwelds')}
+            width={800}
+            height={600}
+            class="w-full h-56 object-cover object-center motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-105"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3c. Section image — robot grinding/finishing photo from current site -->
   <div class="border-b border-line overflow-hidden" aria-hidden="true">
     <Image
       src={pushcorpImg}

@@ -247,6 +247,14 @@ export default {
     diff3_desc: 'Process laboratory in Texas for customized application validation before delivery. Reduces risk and guarantees performance at your plant.',
     diff4_title: 'Full After-Sales Support',
     diff4_desc: 'After-sales support throughout the full equipment lifecycle, with local technical support provided by RoboterSys.',
+    // Logo
+    logo_alt: 'PushCorp — RoboterSys partner',
+    // Gallery
+    gallery_label: '// Gallery',
+    gallery_heading: 'In Operation',
+    gallery_alt_sanding_corners: 'PushCorp robot sanding corners of an industrial part',
+    gallery_alt_sanding_guitar: 'PushCorp sanding a guitar body — curved surface finishing',
+    gallery_alt_steelwelds: 'Steel weld finishing with a PushCorp compliance device',
   },
 
   // ── About Us page ─────────────────────────────────────────────────────────────
