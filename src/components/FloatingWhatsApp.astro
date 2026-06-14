@@ -41,13 +41,12 @@ const { locale = 'pt' } = Astro.props;
     ring-1 ring-orange-500/30
     transition-all duration-300
     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-accent
-    fwa-state-1
   "
 >
   <!-- State 1: WhatsApp icon — green bg -->
   <span
     id="fwa-state-1"
-    class="fwa-state absolute inset-0 rounded-full flex items-center justify-center bg-green-600"
+    class="fwa-state fwa-active absolute inset-0 rounded-full flex items-center justify-center bg-green-600"
     aria-hidden="true"
   >
     <Icon
@@ -98,14 +97,12 @@ const { locale = 'pt' } = Astro.props;
 </a>
 
 <style>
-  /* Default (before JS): show State 1 (WhatsApp, green), hide others.
-     IDs are not scoped by Astro — safe to use directly. */
-  #fwa-state-1 { display: flex; }
-  #fwa-state-2,
-  #fwa-state-3,
-  #fwa-state-4 { display: none; }
-
-  /* JS controls visibility via .fwa-active */
+  /* Visibility is controlled entirely by the .fwa-active class (toggled by JS).
+     State 1 carries .fwa-active in the markup so it shows before/without JS.
+     These class rules (specificity 0,2,0) intentionally out-rank Tailwind's
+     .flex utility (0,1,0). NOTE: the previous #id defaults (specificity 1,0,0)
+     out-ranked this toggle and froze the button on State 1 — that was the
+     "WhatsApp button doesn't cycle" bug. Keep these selectors class-based. */
   :global(.fwa-state.fwa-active)       { display: flex; }
   :global(.fwa-state:not(.fwa-active)) { display: none; }
 
