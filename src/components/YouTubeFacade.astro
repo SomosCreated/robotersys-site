@@ -10,9 +10,10 @@ import videoThumb from '@/assets/robotersys/video-thumb.jpg';
 interface Props {
   videoId: string;
   title: string;
+  playLabel: string;
 }
 
-const { videoId, title } = Astro.props;
+const { videoId, title, playLabel } = Astro.props;
 ---
 
 <!-- 16:9 wrapper -->
@@ -33,7 +34,7 @@ const { videoId, title } = Astro.props;
   <!-- data-host is split to avoid any static-HTML scanner matching the embed URL before click -->
   <button
     id="yt-play"
-    aria-label={`Reproduzir vídeo: ${title}`}
+    aria-label={`${playLabel}: ${title}`}
     data-video-id={videoId}
     data-host-a="youtube-noco"
     data-host-b="okie.com"

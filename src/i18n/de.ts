@@ -407,6 +407,7 @@ export default {
     // Video section
     video_label: 'Video', // REVISÃO
     video_heading: 'RoboterSys in Aktion', // REVISÃO
+    video_play_label: 'Video abspielen', // REVISÃO
     // Blog-Teaser
     blog_section_label: 'Inhalte',
     blog_heading: 'Neueste Beiträge',

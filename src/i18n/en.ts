@@ -407,6 +407,7 @@ export default {
     // Video section
     video_label: 'Video',
     video_heading: 'See RoboterSys in action',
+    video_play_label: 'Play video',
     // Blog teaser
     blog_section_label: 'Content',
     blog_heading: 'Latest articles',
