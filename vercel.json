@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "_comment": "RoboterSys — Phase 5 / M3. Merged by Vercel with the @astrojs/vercel Build Output. Redirects = old WordPress (root-domain, trailing-slash) URLs -> new Astro paths, all statusCode 301 (permanent, SEO-canonical; NOT 308). Source values carry the trailing slash because the site is trailingSlash:'always'. Headers apply site-wide.",
+  "_comment_csp": "The CSP below is shipped as Content-Security-Policy-Report-Only (NON-enforcing) on launch. A strict CSP can silently break GTM/GA4/Google Ads conversion tracking and the youtube-nocookie embed, and cannot be live-tested here. Observe violation reports on the Vercel PREVIEW deploy, then PROMOTE to enforcing by renaming the header key to 'Content-Security-Policy'. The /keystatic admin React island is unaffected while Report-Only. See docs/reference/security-perf-notes.md.",
+  "redirects": [
+    { "source": "/dimensionar-celula-paletizacao/", "destination": "/blog/dimensionar-celula-paletizacao/", "statusCode": 301 },
+    { "source": "/paletizacao-robotizada-erros/", "destination": "/blog/paletizacao-robotizada-erros/", "statusCode": 301 },
+    { "source": "/manutencao-emergencial-robos-kuka/", "destination": "/blog/manutencao-emergencial-robos-kuka/", "statusCode": 301 },
+    { "source": "/celulas-de-rebarbacao-robotizadas/", "destination": "/blog/celulas-de-rebarbacao-robotizadas/", "statusCode": 301 },
+    { "source": "/robos-para-tarefas-pesadas/", "destination": "/blog/robos-para-tarefas-pesadas/", "statusCode": 301 },
+    { "source": "/simulacao-robotica-automacao-industrial/", "destination": "/blog/simulacao-robotica-automacao-industrial/", "statusCode": 301 },
+    { "source": "/manutencao-preventiva-robos-kuka/", "destination": "/blog/manutencao-preventiva-robos-kuka/", "statusCode": 301 },
+    { "source": "/como-iniciar-o-ano-com-uma-celula-de-paletizacao-eficiente/", "destination": "/blog/como-iniciar-o-ano-com-uma-celula-de-paletizacao-eficiente/", "statusCode": 301 },
+    { "source": "/solucoes-automatizadas-para-rebarbacao-industrial/", "destination": "/blog/solucoes-automatizadas-para-rebarbacao-industrial/", "statusCode": 301 },
+    { "source": "/como-escolher-o-robo-industrial-ideal/", "destination": "/blog/como-escolher-o-robo-industrial-ideal/", "statusCode": 301 },
+    { "source": "/suporte-remoto-para-robos-kuka/", "destination": "/blog/suporte-remoto-para-robos-kuka/", "statusCode": 301 },
+    { "source": "/seguranca-em-celulas-robotizadas-industriais/", "destination": "/blog/seguranca-em-celulas-robotizadas-industriais/", "statusCode": 301 },
+    { "source": "/simulacoes-virtuais-na-aplicacao-de-celulas-robotizadas/", "destination": "/blog/simulacoes-virtuais-na-aplicacao-de-celulas-robotizadas/", "statusCode": 301 },
+    { "source": "/dispositivos-e-equipamentos-que-interagem-com-robos-industriais/", "destination": "/blog/dispositivos-e-equipamentos-que-interagem-com-robos-industriais/", "statusCode": 301 },
+    { "source": "/como-planejar-um-projeto-de-automacao-industrial-com-robos/", "destination": "/blog/como-planejar-um-projeto-de-automacao-industrial-com-robos/", "statusCode": 301 },
+    { "source": "/robos-na-paletizacao-beneficios-automacao/", "destination": "/blog/robos-na-paletizacao-beneficios-automacao/", "statusCode": 301 },
+    { "source": "/manutencao-eletronica-de-robos-industriais/", "destination": "/blog/manutencao-eletronica-de-robos-industriais/", "statusCode": 301 },
+    { "source": "/robotica-industrial-beneficios-e-transformacao-nas-industrias/", "destination": "/blog/robotica-industrial-beneficios-e-transformacao-nas-industrias/", "statusCode": 301 },
+    { "source": "/manutencao-de-robos-no-verao/", "destination": "/blog/manutencao-de-robos-no-verao/", "statusCode": 301 },
+
+    { "source": "/industrial-robot-selection/", "destination": "/en/blog/industrial-robot-selection/", "statusCode": 301 },
+    { "source": "/kuka-robot-remote-support/", "destination": "/en/blog/kuka-robot-remote-support/", "statusCode": 301 },
+    { "source": "/robotic-cell-simulation/", "destination": "/en/blog/robotic-cell-simulation/", "statusCode": 301 },
+    { "source": "/robot-safety-devices/", "destination": "/en/blog/robot-safety-devices/", "statusCode": 301 },
+    { "source": "/robot-automation-projects/", "destination": "/en/blog/robot-automation-projects/", "statusCode": 301 },
+    { "source": "/industrial-robotics-manufacturing-efficiency/", "destination": "/en/blog/industrial-robotics-manufacturing-efficiency/", "statusCode": 301 },
+    { "source": "/remote-support-for-kuka-robots/", "destination": "/en/blog/remote-support-for-kuka-robots/", "statusCode": 301 },
+
+    { "source": "/category/pt/", "destination": "/blog/", "statusCode": 301 },
+    { "source": "/category/en/", "destination": "/en/blog/", "statusCode": 301 },
+
+    { "source": "/remote-support-usa/", "destination": "/en/", "statusCode": 301 },
+    { "source": "/remote-support-latam/", "destination": "/es/", "statusCode": 301 }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), browsing-topics=()" },
+        {
+          "key": "Content-Security-Policy-Report-Only",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://*.g.doubleclick.net; frame-src https://www.youtube-nocookie.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
+        }
+      ]
+    }
+  ]
+}
