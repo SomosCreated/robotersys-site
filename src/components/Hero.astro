@@ -13,7 +13,10 @@ import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
 import type { Locale } from '@/i18n/types';
 import { t } from '@/i18n';
-import heroPosterImg from '@/assets/robotersys/hero-robot.webp';
+// Hero LCP poster — full-resolution (2560×1440) source of the factory/robot
+// photo so astro:assets can emit a crisp ~1600px image (the 1024px crop was
+// too small for the hero width). Same photo as the Emergency section bg.
+import heroPosterImg from '@/assets/robotersys/sobre-facility.webp';
 
 interface Props {
   locale?: Locale;
