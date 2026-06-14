@@ -403,6 +403,9 @@ export default {
     about_p1: 'A RoboterSys é a maior especializada independente em robôs KUKA do Brasil. Fundada em 2006 a partir de experiências técnicas em Berlim, nossa empresa acumula mais de 18 anos de expertise em manutenção corretiva e preventiva, peças de reposição, reparo de componentes e integração de células robotizadas.',
     about_p2: 'Sediada em Joinville/SC, atendemos clientes em todo o território nacional, mantendo o maior estoque de peças KUKA do sul do Brasil e oferecendo suporte técnico de emergência disponível 24 horas por dia.',
     about_cta: 'Conheça nossa história',
+    // Video section
+    video_label: 'Vídeo',
+    video_heading: 'Veja a RoboterSys em ação',
     // Blog teaser
     blog_section_label: 'Conteúdo',
     blog_heading: 'Últimos conteúdos',

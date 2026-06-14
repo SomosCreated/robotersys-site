@@ -404,6 +404,9 @@ export default {
     about_p1: 'RoboterSys es la mayor especializada independiente en robots KUKA de Brasil, también presente en América Latina. Fundada en 2006 a partir de experiencias técnicas en Berlín, nuestra empresa acumula más de 18 años de expertise en mantenimiento correctivo y preventivo, piezas de repuesto, reparación de componentes e integración de celdas robotizadas.',
     about_p2: 'Con sede en Joinville/SC (Brasil), atendemos clientes en toda América Latina, manteniendo un amplio inventario de piezas KUKA y ofreciendo soporte técnico de emergencia disponible las 24 horas del día.',
     about_cta: 'Conozca nuestra historia',
+    // Video section
+    video_label: 'Vídeo',
+    video_heading: 'Vea RoboterSys en acción',
     // Blog teaser
     blog_section_label: 'Contenido',
     blog_heading: 'Últimos contenidos',

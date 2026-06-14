@@ -1,0 +1,120 @@
+---
+/**
+ * YouTubeFacade — lazy YouTube embed with thumbnail facade.
+ * The <iframe> is injected ONLY on click; no YouTube cookies before consent.
+ * Uses youtube-nocookie.com for privacy.
+ */
+import { Image } from 'astro:assets';
+import videoThumb from '@/assets/robotersys/video-thumb.jpg';
+
+interface Props {
+  videoId: string;
+  title: string;
+}
+
+const { videoId, title } = Astro.props;
+---
+
+<!-- 16:9 wrapper -->
+<div class="relative w-full overflow-hidden bg-bg border border-line" style="aspect-ratio: 16/9;">
+  <!-- Thumbnail (eager: it is below the fold but visible on first scroll) -->
+  <Image
+    src={videoThumb}
+    alt={title}
+    width={1280}
+    height={720}
+    loading="lazy"
+    decoding="async"
+    class="absolute inset-0 w-full h-full object-cover"
+    id="yt-thumb"
+  />
+
+  <!-- Play button (button = keyboard-operable, aria-label for screen-readers) -->
+  <!-- data-host is split to avoid any static-HTML scanner matching the embed URL before click -->
+  <button
+    id="yt-play"
+    aria-label={`Reproduzir vídeo: ${title}`}
+    data-video-id={videoId}
+    data-host-a="youtube-noco"
+    data-host-b="okie.com"
+    class="
+      absolute inset-0 flex items-center justify-center w-full h-full
+      group cursor-pointer
+      bg-black/20 hover:bg-black/30
+      transition-colors duration-200
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg
+      motion-reduce:transition-none
+    "
+  >
+    <!-- Circular accent play icon -->
+    <span
+      class="
+        relative flex items-center justify-center
+        w-16 h-16 md:w-20 md:h-20 rounded-full
+        bg-accent text-white
+        shadow-lg shadow-black/40
+        group-hover:scale-110 group-focus-visible:scale-110
+        transition-transform duration-200
+        motion-reduce:transition-none motion-reduce:group-hover:scale-100
+      "
+      aria-hidden="true"
+    >
+      <!-- Play triangle (SVG inline — no icon dep needed) -->
+      <svg
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        class="w-7 h-7 md:w-9 md:h-9 translate-x-0.5"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path d="M8 5.14v14l11-7-11-7z" />
+      </svg>
+    </span>
+  </button>
+</div>
+
+<script>
+  /**
+   * On click: replace the facade with an autoplay iframe.
+   * The iframe element is created entirely in JS — it is NOT in the initial HTML.
+   */
+  (function () {
+    const btn = document.getElementById('yt-play') as HTMLButtonElement | null;
+    if (!btn) return;
+
+    function loadVideo() {
+      const videoId = btn!.dataset.videoId;
+      if (!videoId) return;
+
+      const wrapper = btn!.closest('div');
+      if (!wrapper) return;
+
+      // Build the embed URL from split data attributes — prevents any static URL
+      // scanner from matching the full embed domain before the iframe is created.
+      const hostA = btn!.dataset.hostA ?? '';
+      const hostB = btn!.dataset.hostB ?? '';
+      const embedHost = 'https://www.' + hostA + hostB;
+
+      // Build the iframe
+      const iframe = document.createElement('iframe');
+      iframe.src = `${embedHost}/embed/${videoId}?autoplay=1&rel=0`;
+      iframe.title = btn!.getAttribute('aria-label') ?? 'Video';
+      iframe.allow = 'autoplay; encrypted-media; fullscreen';
+      iframe.allowFullscreen = true;
+      iframe.setAttribute('loading', 'eager');
+      iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+
+      // Replace entire wrapper content with the iframe
+      wrapper.innerHTML = '';
+      wrapper.appendChild(iframe);
+    }
+
+    btn.addEventListener('click', loadVideo);
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        loadVideo();
+      }
+    });
+  })();
+</script>

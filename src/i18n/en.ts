@@ -404,6 +404,9 @@ export default {
     about_p1: 'RoboterSys is a leading independent KUKA robot specialist. Founded in 2006 from technical experiences in Berlin, our company has built over 18 years of expertise in corrective and preventive maintenance, spare parts, component repair, and robotic cell integration.',
     about_p2: 'With US operations in Ocoee, FL and global reach, we serve clients across the United States and internationally, maintaining an extensive KUKA parts inventory and offering 24-hour emergency technical support.',
     about_cta: 'Learn our story',
+    // Video section
+    video_label: 'Video',
+    video_heading: 'See RoboterSys in action',
     // Blog teaser
     blog_section_label: 'Content',
     blog_heading: 'Latest articles',

@@ -404,6 +404,9 @@ export default {
     about_p1: 'RoboterSys ist ein führender unabhängiger KUKA-Roboter-Spezialist. Gegründet 2006 aus technischen Erfahrungen in Berlin, hat unser Unternehmen über 18 Jahre Expertise in korrektiver und vorbeugender Instandhaltung, Ersatzteilen, Komponentenreparatur und Roboterzellenintegration aufgebaut.',
     about_p2: 'Mit globalem Anspruch betreuen wir Kunden weltweit, führen ein umfangreiches KUKA-Ersatzteillager und bieten rund um die Uhr technischen Notfall-Support.',
     about_cta: 'Unsere Geschichte entdecken',
+    // Video section
+    video_label: 'Video', // REVISÃO
+    video_heading: 'RoboterSys in Aktion', // REVISÃO
     // Blog-Teaser
     blog_section_label: 'Inhalte',
     blog_heading: 'Neueste Beiträge',
