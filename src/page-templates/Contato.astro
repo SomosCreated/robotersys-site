@@ -21,7 +21,11 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import ContactForm from '@/components/ContactForm.astro';
-import heroRobotImg from '@/assets/robotersys/hero-robot.webp';
+// Hero background: same photo as home hero (20240709_173125 = sobre-facility.webp, 2560×1440).
+// Replaced hero-robot.webp (same photo but 1024×576 low-res crop) so astro:assets can emit
+// a crisp full-width image. The Contato page has no dedicated hero on the original site —
+// sobre-facility.webp is from the canonical home-hero acervo set.
+import heroRobotImg from '@/assets/robotersys/sobre-facility.webp';
 import { Icon } from 'astro-icon/components';
 import { t } from '@/i18n';
 import type { Locale } from '@/i18n/types';
