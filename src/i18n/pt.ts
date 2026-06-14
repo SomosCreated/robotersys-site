@@ -8,6 +8,10 @@ export default {
     careers: 'Trabalhe Conosco',
     blog: 'Blog',
     contact: 'Entrar em contato',
+    aria_main: 'Navegação principal',
+    aria_open: 'Abrir menu de navegação',
+    aria_close: 'Fechar menu de navegação',
+    language: 'Idioma',
   },
   header: {
     status: 'Suporte 24h: Ativo',

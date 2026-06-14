@@ -44,7 +44,7 @@ const navItems: NavItem[] = [
   <!-- desktop nav + controls (right side) -->
   <div class="hidden lg:flex items-center h-full border-l border-line bg-bg">
     <!-- nav links -->
-    <nav class="flex h-full items-center" aria-label="Navegação principal">
+    <nav class="flex h-full items-center" aria-label={t(locale, 'nav.aria_main')}>
       {navItems.map(({ key, href }) => (
         <a
           class="flex items-center px-5 h-full text-[10px] font-mono uppercase tracking-widest text-fg hover:text-strong hover:bg-elevated/50 transition-colors border-r border-line/50 relative group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
@@ -88,7 +88,9 @@ const navItems: NavItem[] = [
     <button
       class="p-0 w-16 h-full text-fg hover:text-strong border-l border-line bg-bg flex items-center justify-center transition-colors hover:bg-elevated focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent"
       id="mobile-menu-btn"
-      aria-label="Abrir menu de navegação"
+      aria-label={t(locale, 'nav.aria_open')}
+      data-label-open={t(locale, 'nav.aria_open')}
+      data-label-close={t(locale, 'nav.aria_close')}
       aria-expanded="false"
       aria-controls="mobile-menu"
     >
@@ -116,7 +118,7 @@ const navItems: NavItem[] = [
     <!-- mobile language switcher -->
     <div class="border border-line bg-elevated/20 flex items-center px-4 py-2 gap-2">
       <Icon name="solar:global-linear" width={14} aria-hidden="true" class="text-muted shrink-0" />
-      <span class="text-[10px] font-mono uppercase tracking-widest text-muted">Idioma</span>
+      <span class="text-[10px] font-mono uppercase tracking-widest text-muted">{t(locale, 'nav.language')}</span>
       <div class="ml-auto flex gap-1">
         {LOCALES.map((loc) => {
           const isActive = loc === locale;
@@ -165,16 +167,18 @@ const navItems: NavItem[] = [
   if (btn && menu) {
     btn.addEventListener('click', () => {
       const isOpen = !menu.classList.contains('translate-x-full');
+      const labelOpen = btn.dataset.labelOpen ?? 'Open navigation menu';
+      const labelClose = btn.dataset.labelClose ?? 'Close navigation menu';
       if (isOpen) {
         menu.classList.add('translate-x-full');
         menu.setAttribute('aria-hidden', 'true');
         btn.setAttribute('aria-expanded', 'false');
-        btn.setAttribute('aria-label', 'Abrir menu de navegação');
+        btn.setAttribute('aria-label', labelOpen);
       } else {
         menu.classList.remove('translate-x-full');
         menu.setAttribute('aria-hidden', 'false');
         btn.setAttribute('aria-expanded', 'true');
-        btn.setAttribute('aria-label', 'Fechar menu de navegação');
+        btn.setAttribute('aria-label', labelClose);
       }
     });
   }

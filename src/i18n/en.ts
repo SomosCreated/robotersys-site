@@ -9,6 +9,10 @@ export default {
     careers: 'Careers',
     blog: 'Blog',
     contact: 'Contact Us',
+    aria_main: 'Main navigation',
+    aria_open: 'Open navigation menu',
+    aria_close: 'Close navigation menu',
+    language: 'Language',
   },
   header: {
     status: '24h Support: Active',

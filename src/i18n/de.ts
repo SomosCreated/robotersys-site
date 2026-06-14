@@ -9,6 +9,10 @@ export default {
     careers: 'Karriere',
     blog: 'Blog',
     contact: 'Kontakt',
+    aria_main: 'Hauptnavigation', // REVISÃO
+    aria_open: 'Navigationsmenü öffnen', // REVISÃO
+    aria_close: 'Navigationsmenü schließen', // REVISÃO
+    language: 'Sprache', // REVISÃO
   },
   header: {
     status: '24h-Support: Aktiv',

@@ -9,6 +9,10 @@ export default {
     careers: 'Trabaja con Nosotros',
     blog: 'Blog',
     contact: 'Contáctenos',
+    aria_main: 'Navegación principal',
+    aria_open: 'Abrir menú de navegación',
+    aria_close: 'Cerrar menú de navegación',
+    language: 'Idioma',
   },
   header: {
     status: 'Soporte 24h: Activo',
