@@ -73,6 +73,7 @@ export default {
     button: 'Contactar por WhatsApp',
     online_label: 'En línea ahora',
     section_label: 'Emergencia',
+    qr_caption: 'Apunte la cámara',
   },
   // ── Servicios page ────────────────────────────────────────────────────────────
   servicos: {

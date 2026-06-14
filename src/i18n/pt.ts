@@ -72,6 +72,7 @@ export default {
     button: 'Chamar no WhatsApp',
     online_label: 'Online agora',
     section_label: 'Emergência',
+    qr_caption: 'Aponte a câmera',
   },
   // ── Serviços page ────────────────────────────────────────────────────────────
   servicos: {

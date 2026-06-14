@@ -18,8 +18,12 @@
 /* Spotlight Border Effect */
 .spotlight-card {
   position: relative;
-  background: rgba(20, 20, 20, 0.4);
+  background: rgba(20, 20, 20, 0.4); /* dark theme: translucent dark fill */
   overflow: hidden;
+}
+/* Light theme: pure white cards (no grey tint over the white Services section) */
+.light .spotlight-card {
+  background: #ffffff;
 }
 .spotlight-card::before {
   content: "";

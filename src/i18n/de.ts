@@ -73,6 +73,7 @@ export default {
     button: 'WhatsApp-Nachricht senden',
     online_label: 'Jetzt online',
     section_label: 'Notfall',
+    qr_caption: 'Kamera draufhalten', // REVISÃO
   },
   // ── Leistungen-Seite ─────────────────────────────────────────────────────────
   servicos: {

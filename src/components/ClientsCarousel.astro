@@ -81,21 +81,21 @@ const logos = locale === 'en' ? EN_LOGOS : ALL_LOGOS;
 ---
 
 <div
-  class="clients-carousel-wrapper w-full bg-white overflow-hidden py-6 border-y border-zinc-200"
+  class="clients-carousel-wrapper w-full bg-white overflow-hidden py-10 border-y border-zinc-200"
   aria-label="Client logos carousel"
 >
   <!-- CSS marquee track: two identical sets of logos for seamless loop -->
-  <div class="clients-track flex items-center gap-10 w-max" aria-hidden="false">
+  <div class="clients-track flex items-center gap-16 w-max" aria-hidden="false">
     {logos.map((logo) => (
       <div class="flex-shrink-0 px-2">
         <img
           src={`/robotersys/logos/${logo.file}`}
           alt={logo.name}
-          width="120"
-          height="48"
+          width="200"
+          height="80"
           loading="lazy"
           decoding="async"
-          class="max-h-10 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+          class="max-h-20 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
         />
       </div>
     ))}
@@ -105,11 +105,11 @@ const logos = locale === 'en' ? EN_LOGOS : ALL_LOGOS;
         <img
           src={`/robotersys/logos/${logo.file}`}
           alt=""
-          width="120"
-          height="48"
+          width="200"
+          height="80"
           loading="lazy"
           decoding="async"
-          class="max-h-10 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+          class="max-h-20 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
         />
       </div>
     ))}

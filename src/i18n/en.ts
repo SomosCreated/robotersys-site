@@ -73,6 +73,7 @@ export default {
     button: 'Message on WhatsApp',
     online_label: 'Online now',
     section_label: 'Emergency',
+    qr_caption: 'Point your camera',
   },
   // ── Services page ─────────────────────────────────────────────────────────────
   servicos: {
