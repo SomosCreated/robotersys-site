@@ -5,6 +5,8 @@ import SEOHead from '@/components/SEOHead.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import Analytics from '@/components/Analytics.astro';
 import Hreflang from '@/components/Hreflang.astro';
 import type { Locale } from '@/i18n/types';
 import type { PageKey } from '@/i18n/routes';
@@ -29,6 +31,8 @@ const htmlLang = LOCALE_HTMLLANG[locale];
       const t = localStorage.getItem('theme') ?? (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
       document.documentElement.classList.add(t);
     </script>
+    <!-- Consent Mode v2 defaults + GTM loader (no-op unless PUBLIC_GTM_ID set) -->
+    <Analytics />
     <!-- Preload Ubuntu font (Latin, 400) -->
     <link
       rel="preload"
@@ -49,5 +53,7 @@ const htmlLang = LOCALE_HTMLLANG[locale];
     <Footer locale={locale} />
     <!-- Floating WhatsApp CTA — fixed pill, cycles siren/invite states -->
     <FloatingWhatsApp locale={locale} />
+    <!-- Cookie consent banner (LGPD/GDPR) — hidden until no choice stored -->
+    <CookieConsent locale={locale} />
   </body>
 </html>

@@ -430,4 +430,13 @@ export default {
     latest_heading: 'Últimos artículos',
     meta_description: 'Artículos técnicos sobre robots KUKA: mantenimiento, paletización, programación y automatización industrial.',
   },
+  // ── Consentimiento de cookies (LGPD / GDPR) ───────────────────────────────────
+  consent: {
+    title: 'Privacidad',
+    message: 'Usamos cookies para analizar el tráfico y mejorar tu experiencia (incluido el marketing). Puedes aceptar o rechazar. Más información en nuestra',
+    accept: 'Aceptar',
+    reject: 'Rechazar',
+    settings: 'Preferencias',
+    policy_link: 'Política de Cookies',
+  },
 } satisfies import('./types').Dict;

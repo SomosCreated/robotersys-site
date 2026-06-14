@@ -285,7 +285,7 @@ const messagePlaceholder = isCarreiras
   </div>
 </section>
 
-<script is:inline define:vars={{ formId }}>
+<script is:inline define:vars={{ formId, variant }}>
   // --- Timing: record page load timestamp ---
   const loadedAt = Date.now();
   const elapsedField = document.getElementById(`elapsed-${formId}`);
@@ -356,6 +356,11 @@ const messagePlaceholder = isCarreiras
             '✓ Mensagem enviada! Em breve nossa equipe entrará em contato.',
             'success',
           );
+          // Measurement: lead generated (no-op-safe; GTM picks it up if loaded).
+          try {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'generate_lead', form_variant: variant });
+          } catch (err) { /* never block UX on tracking */ }
           form.reset();
         } else {
           showStatus(

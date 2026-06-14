@@ -12,7 +12,15 @@
  *   → Show only State 1 (WhatsApp icon, green), static. No cycling, no pulse.
  */
 
+import { pushEvent } from './analytics';
+
 (function initFloatingWhatsApp() {
+  // Measurement: fire whatsapp_click when the floating CTA is used (no-op-safe).
+  // The global delegated handler in analytics.ts also catches wa.me links; this
+  // explicit hook keeps the floating CTA's intent unambiguous in dataLayer.
+  const fab = document.getElementById('floating-whatsapp');
+  fab?.addEventListener('click', () => pushEvent('whatsapp_click', { source: 'floating_cta' }));
+
   const states = [1, 2, 3, 4].map((n) => document.getElementById(`fwa-state-${n}`));
 
   // Bail out if any expected state element is missing.

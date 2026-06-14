@@ -431,4 +431,14 @@ export default {
     latest_heading: 'Neueste Beiträge', // REVISÃO
     meta_description: 'Technische Artikel über KUKA-Roboter: Wartung, Palettierung, Programmierung und industrielle Automatisierung.', // REVISÃO
   },
+  // ── Cookie-Einwilligung (LGPD / GDPR) ─────────────────────────────────────────
+  // REVISÃO: Machine-translated — professional native review required before go-live.
+  consent: {
+    title: 'Datenschutz', // REVISÃO
+    message: 'Wir verwenden Cookies, um den Datenverkehr zu analysieren und Ihre Erfahrung zu verbessern (einschließlich Marketing). Sie können zustimmen oder ablehnen. Mehr dazu in unserer', // REVISÃO
+    accept: 'Akzeptieren', // REVISÃO
+    reject: 'Ablehnen', // REVISÃO
+    settings: 'Einstellungen', // REVISÃO
+    policy_link: 'Cookie-Richtlinie', // REVISÃO
+  },
 } satisfies import('./types').Dict;

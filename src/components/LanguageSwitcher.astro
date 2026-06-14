@@ -54,6 +54,7 @@ const switcherId = `lang-switcher-${Math.random().toString(36).slice(2, 7)}`;
           <a
             role="menuitem"
             href={href}
+            data-locale={locale}
             aria-current={isActive ? 'true' : undefined}
             class:list={[
               'flex items-center px-3 py-2 text-[10px] font-mono uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent',
@@ -74,6 +75,8 @@ const switcherId = `lang-switcher-${Math.random().toString(36).slice(2, 7)}`;
 </div>
 
 <script>
+  import { pushEvent } from '@/scripts/analytics';
+
   // Initialise all LanguageSwitcher instances on the page
   function initSwitchers() {
     document.querySelectorAll<HTMLElement>('.lang-switcher').forEach((root) => {
@@ -84,6 +87,16 @@ const switcherId = `lang-switcher-${Math.random().toString(36).slice(2, 7)}`;
       const menu = root.querySelector<HTMLElement>(`#${id}-menu`);
       const chevron = root.querySelector<HTMLElement>('.lang-switcher-chevron');
       if (!btn || !menu) return;
+
+      // Measurement: language_switch when a different language is chosen.
+      menu.querySelectorAll<HTMLAnchorElement>('[role="menuitem"]').forEach((item) => {
+        item.addEventListener('click', () => {
+          const target = item.dataset.locale;
+          if (target && item.getAttribute('aria-current') !== 'true') {
+            pushEvent('language_switch', { language: target });
+          }
+        });
+      });
 
       let isOpen = false;
 

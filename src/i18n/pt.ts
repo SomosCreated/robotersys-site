@@ -429,4 +429,13 @@ export default {
     latest_heading: 'Últimos artigos',
     meta_description: 'Artigos técnicos sobre robôs KUKA: manutenção, paletização, programação e automação industrial.',
   },
+  // ── Consentimento de cookies (LGPD / GDPR) ────────────────────────────────────
+  consent: {
+    title: 'Privacidade',
+    message: 'Usamos cookies para analisar o tráfego e melhorar sua experiência (incluindo marketing). Você pode aceitar ou recusar. Saiba mais na nossa',
+    accept: 'Aceitar',
+    reject: 'Recusar',
+    settings: 'Preferências',
+    policy_link: 'Política de Cookies',
+  },
 } satisfies import('./types').Dict;

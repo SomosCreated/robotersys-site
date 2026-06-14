@@ -168,6 +168,15 @@ const socialLinks = [
         >
           {t(locale, 'legal.footer_cookies')}
         </a>
+        <span class="text-line" aria-hidden="true">·</span>
+        <!-- Reopens the consent banner (LGPD/GDPR — right to change choice) -->
+        <button
+          type="button"
+          data-cookie-settings
+          class="hover:text-strong transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent normal-case"
+        >
+          {t(locale, 'consent.settings')}
+        </button>
       </nav>
     </div>
     <div class="text-center text-[10px] text-muted leading-relaxed md:whitespace-nowrap">

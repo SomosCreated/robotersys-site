@@ -1,0 +1,79 @@
+---
+/**
+ * CookieConsent.astro — LGPD/GDPR consent banner (consent-first).
+ *
+ * Hidden by default (`hidden` attr + `hidden` class). consent.ts shows it only
+ * when no choice is stored, and re-shows it on demand via window.openCookieConsent().
+ *
+ * a11y: role="dialog", aria-label, keyboard-operable buttons with focus rings,
+ * reduced-motion safe (transition only on motion-safe). Sits above the floating
+ * WhatsApp (z-[60] vs its z-50).
+ *
+ * All copy via t(locale, 'consent.*'); policy link via localizedPath('cookies').
+ */
+import type { Locale } from '@/i18n/types';
+import { t } from '@/i18n';
+import { localizedPath } from '@/i18n/routes';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'pt' } = Astro.props;
+
+const cookiesHref = localizedPath('cookies', locale);
+---
+
+<div
+  id="cookie-consent"
+  role="dialog"
+  aria-modal="false"
+  aria-label={t(locale, 'consent.title')}
+  hidden
+  class="hidden fixed inset-x-0 bottom-0 z-[60] px-4 pb-4 pt-3 sm:px-6 sm:pb-6 motion-safe:transition-transform"
+>
+  <div
+    class="mx-auto max-w-3xl rounded-lg border border-line bg-surface text-fg shadow-[0_8px_40px_rgba(0,0,0,0.35)] backdrop-blur-sm"
+  >
+    <div class="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:gap-6 sm:p-6">
+      <!-- Message -->
+      <div class="flex-1 space-y-1">
+        <p class="text-xs font-mono uppercase tracking-widest text-muted">
+          // {t(locale, 'consent.title')}
+        </p>
+        <p class="text-sm leading-relaxed text-fg">
+          {t(locale, 'consent.message')}{' '}
+          <a
+            href={cookiesHref}
+            class="text-accent underline underline-offset-2 hover:text-orange-500 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+          >
+            {t(locale, 'consent.policy_link')}</a>.
+        </p>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex shrink-0 flex-col-reverse gap-2 sm:flex-row sm:items-center">
+        <button
+          type="button"
+          data-consent="reject"
+          class="px-4 py-2.5 text-xs font-mono uppercase tracking-widest text-muted border border-line bg-elevated hover:text-strong hover:border-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+        >
+          {t(locale, 'consent.reject')}
+        </button>
+        <button
+          type="button"
+          data-consent="accept"
+          class="px-5 py-2.5 text-xs font-mono uppercase tracking-widest text-white bg-accent hover:bg-orange-500 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-accent"
+        >
+          {t(locale, 'consent.accept')}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import '@/scripts/consent.ts';
+  import { initGlobalTracking } from '@/scripts/analytics';
+  // Attach document-level phone/whatsapp click tracking once per page.
+  initGlobalTracking();
+</script>

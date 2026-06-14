@@ -1,0 +1,78 @@
+---
+/**
+ * Analytics.astro — Google Consent Mode v2 (advanced) bootstrap + GTM loader.
+ *
+ * Rendered in <head> of BaseLayout, immediately after the pre-paint theme script,
+ * so Consent Mode defaults are set as early as possible (before any tag could run).
+ *
+ * NO-OP WITHOUT AN ID (key correctness property):
+ *   The whole block is wrapped in `{gtmId && (...)}`. When PUBLIC_GTM_ID is empty
+ *   (the current/default state) NOTHING is emitted — zero gtag, zero dataLayer
+ *   bootstrap, zero googletagmanager.com reference in the built HTML. True no-op.
+ *
+ * WHEN PUBLIC_GTM_ID IS SET:
+ *   1. Initialize dataLayer + gtag(), then `consent default` = ALL storage DENIED
+ *      (LGPD/GDPR-safe: nothing is *stored* before the user opts in). Ads can
+ *      still model conversions cookielessly via Consent Mode.
+ *   2. If a prior 'granted' choice exists (localStorage rs-consent), immediately
+ *      `consent update` to granted so returning accepters keep analytics with no
+ *      re-prompt.
+ *   3. Load the GTM container DEFERRED (requestIdleCallback, fallback setTimeout)
+ *      to protect LCP. GA4 + Google Ads tags are configured INSIDE GTM by the
+ *      user — here we only load the container.
+ *
+ * The GTM <noscript> iframe (for JS-disabled clients) is intentionally skipped:
+ * BaseLayout renders no <body>-open slot here, and a noscript iframe would load
+ * GTM unconditionally — bypassing Consent Mode gating — which is undesirable for
+ * a consent-first setup. All real users run JS; the gated loader covers them.
+ */
+const gtmId = import.meta.env.PUBLIC_GTM_ID;
+---
+{gtmId && (
+  <script is:inline define:vars={{ gtmId }}>
+    {/* --- Consent Mode v2: defaults DENIED before anything loads --- */}
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      functionality_storage: 'granted',
+      security_storage: 'granted',
+      wait_for_update: 500,
+    });
+
+    {/* Returning visitor who already accepted: raise consent immediately. */}
+    try {
+      if (localStorage.getItem('rs-consent') === 'granted') {
+        gtag('consent', 'update', {
+          ad_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted',
+          analytics_storage: 'granted',
+        });
+      }
+    } catch (e) { /* storage unavailable — stay denied */ }
+
+    {/* Mark dataLayer start time (GTM convention). */}
+    gtag('js', new Date());
+
+    {/* Load GTM container deferred to protect LCP. */}
+    function loadGTM() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtm.js?id=' + gtmId;
+      var f = document.getElementsByTagName('script')[0];
+      f.parentNode.insertBefore(s, f);
+      window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    }
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadGTM, { timeout: 2000 });
+    } else {
+      setTimeout(loadGTM, 2000);
+    }
+  </script>
+)}
