@@ -1,0 +1,110 @@
+---
+/**
+ * SelfHostedVideo — lazy self-hosted MP4 player with a thumbnail facade.
+ *
+ * Mirrors YouTubeFacade's look. The <video> element is created ONLY on click,
+ * so the (large) MP4 is never downloaded before the user chooses to play it —
+ * no impact on LCP or bandwidth on first paint.
+ *
+ * Used for the institutional video on non-PT locales (the YouTube version is
+ * Portuguese-only).
+ */
+import { Image } from 'astro:assets';
+import videoThumb from '@/assets/robotersys/video-thumb.jpg';
+
+interface Props {
+  /** Public path to the .mp4 (e.g. /robotersys/video/institucional-en.mp4) */
+  src: string;
+  title: string;
+  playLabel: string;
+}
+
+const { src, title, playLabel } = Astro.props;
+---
+
+<!-- 16:9 wrapper -->
+<div class="relative w-full overflow-hidden bg-bg border border-line" style="aspect-ratio: 16/9;">
+  <Image
+    src={videoThumb}
+    alt={title}
+    width={1280}
+    height={720}
+    loading="lazy"
+    decoding="async"
+    class="absolute inset-0 w-full h-full object-cover"
+  />
+
+  <!-- Play button (button = keyboard-operable, aria-label for screen-readers) -->
+  <button
+    class="
+      shv-play
+      absolute inset-0 flex items-center justify-center w-full h-full
+      group cursor-pointer
+      bg-black/20 hover:bg-black/30
+      transition-colors duration-200
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg
+      motion-reduce:transition-none
+    "
+    aria-label={`${playLabel}: ${title}`}
+    data-video-src={src}
+  >
+    <span
+      class="
+        relative flex items-center justify-center
+        w-16 h-16 md:w-20 md:h-20 rounded-full
+        bg-accent text-white
+        shadow-lg shadow-black/40
+        group-hover:scale-110 group-focus-visible:scale-110
+        transition-transform duration-200
+        motion-reduce:transition-none motion-reduce:group-hover:scale-100
+      "
+      aria-hidden="true"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        class="w-7 h-7 md:w-9 md:h-9 translate-x-0.5"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path d="M8 5.14v14l11-7-11-7z" />
+      </svg>
+    </span>
+  </button>
+</div>
+
+<script>
+  /**
+   * On click/Enter/Space: replace the facade with a controls+autoplay <video>.
+   * The <video> (and thus the MP4 download) is created entirely in JS — not in
+   * the initial HTML.
+   */
+  (function () {
+    const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('.shv-play'));
+    for (const btn of buttons) {
+      const load = () => {
+        const src = btn.dataset.videoSrc;
+        if (!src) return;
+        const wrapper = btn.closest('div');
+        if (!wrapper) return;
+        const video = document.createElement('video');
+        video.src = src;
+        video.controls = true;
+        video.autoplay = true;
+        video.setAttribute('playsinline', '');
+        video.title = btn.getAttribute('aria-label') ?? 'Video';
+        video.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;background:#000;';
+        wrapper.innerHTML = '';
+        wrapper.appendChild(video);
+        video.play().catch(() => { /* user can press the native play control */ });
+      };
+      btn.addEventListener('click', load);
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          load();
+        }
+      });
+    }
+  })();
+</script>

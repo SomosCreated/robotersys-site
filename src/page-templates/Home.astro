@@ -12,6 +12,7 @@ import BlogCard from '@/components/BlogCard.astro';
 import ClientsCarousel from '@/components/ClientsCarousel.astro';
 import blogHeroImg from '@/assets/robotersys/blog-hero.webp';
 import YouTubeFacade from '@/components/YouTubeFacade.astro';
+import SelfHostedVideo from '@/components/SelfHostedVideo.astro';
 import { Icon } from 'astro-icon/components';
 import { t } from '@/i18n';
 import { brandHtml } from '@/lib/brand';
@@ -236,11 +237,20 @@ const blogHref = localizedPath('blog', locale);
             <span class="w-1.5 h-1.5 bg-accent animate-pulse" aria-hidden="true"></span>
             // {t(locale, 'home.video_label')}
           </div>
-          <YouTubeFacade
-            videoId="9LfO5J9cM2I"
-            title={t(locale, 'home.video_heading')}
-            playLabel={t(locale, 'home.video_play_label')}
-          />
+          {/* PT: the YouTube institutional video (Portuguese). EN/ES/DE: the self-hosted English institutional MP4 (lazy). */}
+          {locale === 'pt' ? (
+            <YouTubeFacade
+              videoId="9LfO5J9cM2I"
+              title={t(locale, 'home.video_heading')}
+              playLabel={t(locale, 'home.video_play_label')}
+            />
+          ) : (
+            <SelfHostedVideo
+              src="/robotersys/video/institucional-en.mp4"
+              title={t(locale, 'home.video_heading')}
+              playLabel={t(locale, 'home.video_play_label')}
+            />
+          )}
         </div>
 
       </div>
