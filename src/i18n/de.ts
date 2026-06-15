@@ -495,6 +495,126 @@ export default {
     c5: 'Retrofit und Werkzeug-Reengineering', // REVISÃO
     c6: 'After-Sales für den gesamten Lebenszyklus der Zelle (einschließlich Roboter)', // REVISÃO
   },
+  // ── Palettierzelle 1 ─────────────────────────────────────────────────────────
+  // REVISÃO: Machine-translated — professional native review required before go-live.
+  celulaPaletizacao1: {
+    page_title: 'Palettierzelle 1 — RoboterSys', // REVISÃO
+    meta_description: 'Schlüsselfertige robotergestützte Palettierzelle mit KUKA-Robotern: vollständige, sichere und anpassbare Lösung für maximale Industrieproduktivität. Ca. Abmessungen 5.665 × 5.000 × 2.200 mm.', // REVISÃO
+    hero_kicker: 'Robotersysteme', // REVISÃO
+    hero_title: 'Palettierzelle 1', // REVISÃO
+    breadcrumb_home: 'Startseite', // REVISÃO
+    breadcrumb_sistemas: 'Robotersysteme', // REVISÃO
+    breadcrumb_page: 'Palettierzelle 1', // REVISÃO
+    // Intro section
+    intro_label: 'Schlüsselfertige Lösung', // REVISÃO
+    intro_heading: 'Hochleistungs-Roboterpalettierung', // REVISÃO
+    intro_body: 'Palettierzelle 1 ist eine vollständig schlüsselfertige Lösung, die von RoboterSys mit präzisen KUKA-Robotern entwickelt und integriert wurde. Mit ca. Abmessungen von 5.665 × 5.000 × 2.200 mm (anpassbar an Ihr Anlagenlayout) liefert diese Zelle zuverlässige, sichere Automatisierung — betriebsbereit ab dem ersten Tag.', // REVISÃO
+    // Components section
+    components_label: 'Komponenten', // REVISÃO
+    components_heading: 'Was die Zelle umfasst', // REVISÃO
+    comp1_title: 'KUKA-Industrieroboter', // REVISÃO
+    comp1_desc: 'Präzisions-Palettierroboter mit KR C4- oder KR C5-Steuerung, kalibriert auf Ihren Prozesszyklus und die erforderliche Traglast.', // REVISÃO
+    comp2_title: 'Palettierwerkzeug', // REVISÃO
+    comp2_desc: 'Dedizierter Prozessgreifer — Sauggreifer oder mechanischer Greifer — ausgelegt für Ihr Produkt und den gewünschten Durchsatz.', // REVISÃO
+    comp3_title: 'Palettenindexierer', // REVISÃO
+    comp3_desc: 'Indexiersystem, das Paletten automatisch positioniert und wechselt und so einen kontinuierlichen Produktionsfluss aufrechterhält.', // REVISÃO
+    comp4_title: 'Grundgestell', // REVISÃO
+    comp4_desc: 'Robuste Stahlkonstruktion, nach Industriestandards dimensioniert, um Stabilität und Langlebigkeit zu gewährleisten.', // REVISÃO
+    comp5_title: 'Vollständiger Schaltschrank', // REVISÃO
+    comp5_desc: 'Dedizierter Schaltschrank mit allen integrierten und dokumentierten Steuerungs-, Schutz- und Kommunikationskomponenten.', // REVISÃO
+    comp6_title: 'Schutzeinrichtung und Sicherheitsbarrieren', // REVISÃO
+    comp6_desc: 'Zertifizierter Perimeterschutz mit Sicherheitszäunen und Lichtvorhängen gemäß ISO 10218 und geltenden Sicherheitsnormen.', // REVISÃO
+    // Differentials section
+    diff_label: 'Unsere Stärken', // REVISÃO
+    diff_heading: 'Warum diese Lösung wählen', // REVISÃO
+    diff1: '100 % maßgeschneidertes Projekt für Ihren Prozess und Ihr Anlagenlayout', // REVISÃO
+    diff2: 'Hohe Wiederholgenauigkeit und Präzision bei jedem Palettierzyklus', // REVISÃO
+    diff3: 'Robuste Konstruktion nach den anspruchsvollsten Industriestandards', // REVISÃO
+    diff4: 'Einfacher Zugang für Wartung und Werkzeugwechsel', // REVISÃO
+    diff5: 'Spezialisierter technischer Support und KUKA-After-Sales-Service inklusive', // REVISÃO
+    diff6: 'Integrierter Fernwartungs-Support für schnelle Diagnose und Hilfe', // REVISÃO
+    diff7: 'Vollständig installiert, integriert und betriebsbereit geliefert', // REVISÃO
+    // CTA
+    cta_label: 'Technische Analyse anfordern', // REVISÃO
+  },
+
+  // ── Palettierzelle 2 ─────────────────────────────────────────────────────────
+  // REVISÃO: Machine-translated — professional native review required before go-live.
+  celulaPaletizacao2: {
+    page_title: 'Palettierzelle 2 — RoboterSys', // REVISÃO
+    meta_description: 'Hochdurchsatz-schlüsselfertige Roboter-Palettierzelle mit KUKA-Robotern und doppeltem Palettenindexierer. Ca. Abmessungen 9.000 × 5.100 × 2.200 mm.', // REVISÃO
+    hero_kicker: 'Robotersysteme', // REVISÃO
+    hero_title: 'Palettierzelle 2', // REVISÃO
+    breadcrumb_home: 'Startseite', // REVISÃO
+    breadcrumb_sistemas: 'Robotersysteme', // REVISÃO
+    breadcrumb_page: 'Palettierzelle 2', // REVISÃO
+    // Intro section
+    intro_label: 'Schlüsselfertige Lösung', // REVISÃO
+    intro_heading: 'Größere Kapazität, dieselbe KUKA-Präzision', // REVISÃO
+    intro_body: 'Palettierzelle 2 erweitert das Konzept von Zelle 1 für Fertigungslinien mit höherem Volumen. Mit ca. Abmessungen von 9.000 × 5.100 × 2.200 mm und doppeltem Palettenindexierer erhöht diese Zelle den Durchsatz, ohne auf Zuverlässigkeit oder vollständige Anpassbarkeit zu verzichten — schlüsselfertig von RoboterSys geliefert.', // REVISÃO
+    // Components section
+    components_label: 'Komponenten', // REVISÃO
+    components_heading: 'Was die Zelle umfasst', // REVISÃO
+    comp1_title: 'KUKA-Industrieroboter', // REVISÃO
+    comp1_desc: 'Präzisions-Palettierroboter mit KR C4- oder KR C5-Steuerung, kalibriert auf Ihren Prozesszyklus und die erforderliche Traglast.', // REVISÃO
+    comp2_title: 'Palettierwerkzeug', // REVISÃO
+    comp2_desc: 'Dedizierter Prozessgreifer — Sauggreifer oder mechanischer Greifer — ausgelegt für Ihr Produkt und den gewünschten Durchsatz.', // REVISÃO
+    comp3_title: 'Doppelter Palettenindexierer', // REVISÃO
+    comp3_desc: 'Zwei parallel arbeitende Indexierer für gleichzeitigen und kontinuierlichen Palettenwechsel — maximiert den Liniendurchsatz.', // REVISÃO
+    comp4_title: 'Grundgestell', // REVISÃO
+    comp4_desc: 'Robuste Stahlkonstruktion, nach Industriestandards dimensioniert, um Stabilität und Langlebigkeit zu gewährleisten.', // REVISÃO
+    comp5_title: 'Vollständiger Schaltschrank', // REVISÃO
+    comp5_desc: 'Dedizierter Schaltschrank mit allen integrierten und dokumentierten Steuerungs-, Schutz- und Kommunikationskomponenten.', // REVISÃO
+    comp6_title: 'Schutzeinrichtung und Sicherheitsbarrieren', // REVISÃO
+    comp6_desc: 'Zertifizierter Perimeterschutz mit Sicherheitszäunen und Lichtvorhängen gemäß ISO 10218 und geltenden Sicherheitsnormen.', // REVISÃO
+    // Differentials section
+    diff_label: 'Unsere Stärken', // REVISÃO
+    diff_heading: 'Warum diese Lösung wählen', // REVISÃO
+    diff1: '100 % maßgeschneidertes Projekt für Ihren Prozess und Ihr Anlagenlayout', // REVISÃO
+    diff2: 'Hohe Wiederholgenauigkeit und Präzision bei jedem Palettierzyklus', // REVISÃO
+    diff3: 'Robuste Konstruktion nach den anspruchsvollsten Industriestandards', // REVISÃO
+    diff4: 'Einfacher Zugang für Wartung und Werkzeugwechsel', // REVISÃO
+    diff5: 'Spezialisierter technischer Support und KUKA-After-Sales-Service inklusive', // REVISÃO
+    diff6: 'Integrierter Fernwartungs-Support für schnelle Diagnose und Hilfe', // REVISÃO
+    diff7: 'Vollständig installiert, integriert und betriebsbereit geliefert', // REVISÃO
+    // CTA
+    cta_label: 'Technische Analyse anfordern', // REVISÃO
+  },
+
+  // ── Handhabungszellen ─────────────────────────────────────────────────────────
+  // REVISÃO: Machine-translated — professional native review required before go-live.
+  celulasManipulacao: {
+    page_title: 'Handhabungszellen — RoboterSys', // REVISÃO
+    meta_description: 'Robotergestützte Handhabungszellen für CNC-Maschinen, Pressen und Industrieanlagen. Automatisieren Sie Be- und Entladevorgänge mit KUKA-Robotern — mehr Produktivität, mehr Sicherheit.', // REVISÃO
+    hero_kicker: 'Robotersysteme', // REVISÃO
+    hero_title: 'Handhabungszellen', // REVISÃO
+    breadcrumb_home: 'Startseite', // REVISÃO
+    breadcrumb_sistemas: 'Robotersysteme', // REVISÃO
+    breadcrumb_page: 'Handhabungszellen', // REVISÃO
+    // Intro section
+    intro_label: 'Zellen für CNC, Pressen u. ä.', // REVISÃO
+    intro_heading: 'Autonomie und Effizienz in der industriellen Zuführung', // REVISÃO
+    intro_body: 'Die RoboterSys-Handhabungszellen automatisieren das Be- und Entladen von CNC-Maschinen, Pressen und Industrieanlagen und gewährleisten kontinuierliche, stabile Prozesse. Ein einziger Bediener kann mehrere Zellen gleichzeitig überwachen — Wiederholaufgaben entfallen, das Team wird für wertschöpfende Tätigkeiten freigesetzt.', // REVISÃO
+    // Applications section
+    apps_label: 'Anwendungen', // REVISÃO
+    apps_heading: 'Wo wir diese Technologie einsetzen', // REVISÃO
+    app1_title: 'CNC-Handhabung', // REVISÃO
+    app1_desc: 'Automatisches Be- und Entladen von Bearbeitungszentren mit hoher Positioniergenauigkeit — reduziert die Zykluszeit und eliminiert manuelle Beladefehler.', // REVISÃO
+    app2_title: 'Pressen-Handhabung', // REVISÃO
+    app2_desc: 'Sicheres und schnelles Be- und Entladen von Metallteilen in Pressen — schützt Bediener vor Gefahrenzonen und erhöht die Produktionstaktrate.', // REVISÃO
+    // Benefits section
+    benefits_label: 'Vorteile', // REVISÃO
+    benefits_heading: 'Was Sie durch Automatisierung gewinnen', // REVISÃO
+    benefit1: 'Deutliche Produktivitätssteigerung durch kontinuierliche Produktionszyklen', // REVISÃO
+    benefit2: 'Reduzierung der Betriebskosten auf mittlere und lange Sicht', // REVISÃO
+    benefit3: 'Gleichbleibende Teilequalität bei jedem Stück — ohne menschliche Schwankungen', // REVISÃO
+    benefit4: 'Arbeitssicherheit, da Bediener aus Gefahrenzonen ferngehalten werden', // REVISÃO
+    benefit5: 'Produktionsflexibilität für unterschiedliche Teile und Prozesse', // REVISÃO
+    benefit6: 'Raumoptimierung in der Fabrik durch kompakte Zellenauslegung', // REVISÃO
+    // CTA
+    cta_label: 'Technische Analyse anfordern', // REVISÃO
+  },
+
   // ── SEO / structured data ─────────────────────────────────────────────────────
   // REVISÃO: Machine-translated — professional native review required before go-live.
   seo: {

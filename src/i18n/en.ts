@@ -491,6 +491,123 @@ export default {
     c5: 'Retrofit and tooling reengineering',
     c6: 'After-sales for the full cell life cycle (including the robot)',
   },
+  // ── Palletizing Cell 1 ───────────────────────────────────────────────────────
+  celulaPaletizacao1: {
+    page_title: 'Palletizing Cell 1 — RoboterSys',
+    meta_description: 'Turn-key robotic palletizing cell with KUKA robots: a complete, safe, and customizable solution for maximum industrial productivity. Approx. dimensions 5,665 × 5,000 × 2,200 mm.',
+    hero_kicker: 'Robotic Systems',
+    hero_title: 'Palletizing Cell 1',
+    breadcrumb_home: 'Home',
+    breadcrumb_sistemas: 'Robotic Systems',
+    breadcrumb_page: 'Palletizing Cell 1',
+    // Intro section
+    intro_label: 'Turn-Key Solution',
+    intro_heading: 'High-performance robotic palletizing',
+    intro_body: 'Palletizing Cell 1 is a complete turn-key solution designed and integrated by RoboterSys using precision KUKA robots. With approximate dimensions of 5,665 × 5,000 × 2,200 mm (customizable to your plant layout), this cell delivers reliable, safe automation that is ready to produce from day one.',
+    // Components section
+    components_label: 'Components',
+    components_heading: 'What makes up the cell',
+    comp1_title: 'KUKA Industrial Robot',
+    comp1_desc: 'Precision palletizing robot with KR C4 or KR C5 controller, calibrated for your process cycle and payload requirements.',
+    comp2_title: 'Palletizing Tool',
+    comp2_desc: 'Dedicated process gripper — suction cups or mechanical gripper — engineered for your product and desired throughput.',
+    comp3_title: 'Pallet Indexer',
+    comp3_desc: 'Indexing system that automatically positions and swaps pallets, maintaining continuous production flow.',
+    comp4_title: 'Structural Base',
+    comp4_desc: 'Robust steel structure, dimensioned to industrial standards to ensure stability and long-term durability.',
+    comp5_title: 'Complete Electrical Panel',
+    comp5_desc: 'Dedicated electrical panel with all integrated and documented control, protection, and communication components.',
+    comp6_title: 'Safety Enclosure and Barriers',
+    comp6_desc: 'Certified perimeter protection with safety fencing and light curtains, ensuring compliance with ISO 10218 and applicable safety standards.',
+    // Differentials section
+    diff_label: 'Why Choose Us',
+    diff_heading: 'Why choose this solution',
+    diff1: '100% custom project tailored to your process and plant layout',
+    diff2: 'High repeatability and precision on every palletizing cycle',
+    diff3: 'Robust structure built to the most demanding industrial standards',
+    diff4: 'Easy access for maintenance and tooling changes',
+    diff5: 'Specialized technical support and KUKA after-sales service included',
+    diff6: 'Integrated remote support for rapid diagnostics and assistance',
+    diff7: 'Delivered fully installed, integrated, and ready to produce',
+    // CTA
+    cta_label: 'Request a technical analysis',
+  },
+
+  // ── Palletizing Cell 2 ───────────────────────────────────────────────────────
+  celulaPaletizacao2: {
+    page_title: 'Palletizing Cell 2 — RoboterSys',
+    meta_description: 'High-throughput turn-key robotic palletizing cell with KUKA robots and dual pallet indexers. Approx. dimensions 9,000 × 5,100 × 2,200 mm.',
+    hero_kicker: 'Robotic Systems',
+    hero_title: 'Palletizing Cell 2',
+    breadcrumb_home: 'Home',
+    breadcrumb_sistemas: 'Robotic Systems',
+    breadcrumb_page: 'Palletizing Cell 2',
+    // Intro section
+    intro_label: 'Turn-Key Solution',
+    intro_heading: 'Greater capacity, same KUKA precision',
+    intro_body: 'Palletizing Cell 2 expands the Cell 1 concept to serve higher-volume production lines. With approximate dimensions of 9,000 × 5,100 × 2,200 mm and dual pallet indexers, this cell boosts throughput without compromising on reliability or customization — delivered turn-key by RoboterSys.',
+    // Components section
+    components_label: 'Components',
+    components_heading: 'What makes up the cell',
+    comp1_title: 'KUKA Industrial Robot',
+    comp1_desc: 'Precision palletizing robot with KR C4 or KR C5 controller, calibrated for your process cycle and payload requirements.',
+    comp2_title: 'Palletizing Tool',
+    comp2_desc: 'Dedicated process gripper — suction cups or mechanical gripper — engineered for your product and desired throughput.',
+    comp3_title: 'Dual Pallet Indexers',
+    comp3_desc: 'Two indexers operating in parallel for simultaneous and continuous pallet swapping, maximizing line throughput.',
+    comp4_title: 'Structural Base',
+    comp4_desc: 'Robust steel structure, dimensioned to industrial standards to ensure stability and long-term durability.',
+    comp5_title: 'Complete Electrical Panel',
+    comp5_desc: 'Dedicated electrical panel with all integrated and documented control, protection, and communication components.',
+    comp6_title: 'Safety Enclosure and Barriers',
+    comp6_desc: 'Certified perimeter protection with safety fencing and light curtains, ensuring compliance with ISO 10218 and applicable safety standards.',
+    // Differentials section
+    diff_label: 'Why Choose Us',
+    diff_heading: 'Why choose this solution',
+    diff1: '100% custom project tailored to your process and plant layout',
+    diff2: 'High repeatability and precision on every palletizing cycle',
+    diff3: 'Robust structure built to the most demanding industrial standards',
+    diff4: 'Easy access for maintenance and tooling changes',
+    diff5: 'Specialized technical support and KUKA after-sales service included',
+    diff6: 'Integrated remote support for rapid diagnostics and assistance',
+    diff7: 'Delivered fully installed, integrated, and ready to produce',
+    // CTA
+    cta_label: 'Request a technical analysis',
+  },
+
+  // ── Handling Cells ────────────────────────────────────────────────────────────
+  celulasManipulacao: {
+    page_title: 'Handling Cells — RoboterSys',
+    meta_description: 'Robotic handling cells for CNCs, presses, and industrial equipment. Automate loading and unloading with KUKA robots — more productivity, safer operations.',
+    hero_kicker: 'Robotic Systems',
+    hero_title: 'Handling Cells',
+    breadcrumb_home: 'Home',
+    breadcrumb_sistemas: 'Robotic Systems',
+    breadcrumb_page: 'Handling Cells',
+    // Intro section
+    intro_label: 'CNC, Press & Equipment Cells',
+    intro_heading: 'Autonomy and efficiency in industrial feeding',
+    intro_body: 'RoboterSys Handling Cells automate the loading and unloading of CNCs, presses, and industrial equipment, ensuring continuous and stable processes. A single operator can supervise multiple cells simultaneously, eliminating repetitive tasks and freeing the team for higher-value activities.',
+    // Applications section
+    apps_label: 'Applications',
+    apps_heading: 'Where we apply this technology',
+    app1_title: 'CNC Handling',
+    app1_desc: 'Automatic loading and unloading of machining centers with high positioning precision, reducing cycle time and eliminating manual feeding errors.',
+    app2_title: 'Press Handling',
+    app2_desc: 'Safe and agile loading and unloading of metal components in presses, removing operators from risk zones and increasing production cadence.',
+    // Benefits section
+    benefits_label: 'Benefits',
+    benefits_heading: 'What you gain with automation',
+    benefit1: 'Significant productivity gains through continuous production cycles',
+    benefit2: 'Reduced operating costs over the medium and long term',
+    benefit3: 'Consistent part quality on every piece — no human variation',
+    benefit4: 'Worker safety by removing personnel from hazardous zones',
+    benefit5: 'Production flexibility for different parts and processes',
+    benefit6: 'Plant space optimization with compact cell layouts',
+    // CTA
+    cta_label: 'Request a technical analysis',
+  },
+
   // ── SEO / structured data ─────────────────────────────────────────────────────
   seo: {
     org_description: 'Maintenance, spare parts, and integration services for KUKA industrial robots.',

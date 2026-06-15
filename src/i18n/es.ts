@@ -491,6 +491,123 @@ export default {
     c5: 'Retrofit y reingeniería de herramientas',
     c6: 'Posventa para todo el ciclo de vida de la célula (incluido el robot)',
   },
+  // ── Celda de Paletizado 1 ─────────────────────────────────────────────────────
+  celulaPaletizacao1: {
+    page_title: 'Celda de Paletizado 1 — RoboterSys',
+    meta_description: 'Celda robotizada turn key de paletizado con robots KUKA: solución completa, segura y personalizable para máxima productividad industrial. Dimensiones aprox. 5.665 × 5.000 × 2.200 mm.',
+    hero_kicker: 'Sistemas Robóticos',
+    hero_title: 'Celda de Paletizado 1',
+    breadcrumb_home: 'Inicio',
+    breadcrumb_sistemas: 'Sistemas Robóticos',
+    breadcrumb_page: 'Celda de Paletizado 1',
+    // Intro section
+    intro_label: 'Solución Turn Key',
+    intro_heading: 'Paletizado robotizado de alta performance',
+    intro_body: 'La Celda de Paletizado 1 es una solución turn key completa, desarrollada e integrada por RoboterSys con robots KUKA de precisión. Con dimensiones aproximadas de 5.665 × 5.000 × 2.200 mm (personalizables según el layout de su planta), esta celda ofrece automatización confiable, segura y lista para operar desde el primer día.',
+    // Components section
+    components_label: 'Componentes',
+    components_heading: 'Qué compone la celda',
+    comp1_title: 'Robot Industrial KUKA',
+    comp1_desc: 'Robot de paletizado de precisión con controlador KR C4 o KR C5, calibrado para el ciclo y payload de su proceso.',
+    comp2_title: 'Herramienta de Paletizado',
+    comp2_desc: 'Garra dedicada al proceso — ventosas de succión o garra mecánica — diseñada para el producto y la cadencia deseados.',
+    comp3_title: 'Indexador de Palés',
+    comp3_desc: 'Sistema de indexación que posiciona y cambia palés automáticamente, manteniendo el flujo continuo de producción.',
+    comp4_title: 'Base Estructural',
+    comp4_desc: 'Estructura metálica robusta, dimensionada según estándares industriales para garantizar estabilidad y durabilidad.',
+    comp5_title: 'Panel Eléctrico Completo',
+    comp5_desc: 'Panel eléctrico dedicado con todos los componentes de control, protección y comunicación integrados y documentados.',
+    comp6_title: 'Cercado y Barreras de Seguridad',
+    comp6_desc: 'Protección perimetral certificada con rejas y cortinas de luz, garantizando conformidad con las normas de seguridad ISO 10218 y aplicables.',
+    // Differentials section
+    diff_label: 'Diferenciales',
+    diff_heading: 'Por qué elegir esta solución',
+    diff1: 'Proyecto 100% personalizado para su proceso y layout',
+    diff2: 'Alta repetibilidad y precisión en cada ciclo de paletizado',
+    diff3: 'Estructura robusta diseñada para los más exigentes estándares industriales',
+    diff4: 'Acceso facilitado para mantenimiento y cambio de herramientas',
+    diff5: 'Soporte técnico especializado y posventa KUKA incluidos',
+    diff6: 'Soporte remoto integrado para diagnóstico y asistencia rápida',
+    diff7: 'Entregada totalmente instalada, integrada y lista para producir',
+    // CTA
+    cta_label: 'Solicite un análisis técnico',
+  },
+
+  // ── Celda de Paletizado 2 ─────────────────────────────────────────────────────
+  celulaPaletizacao2: {
+    page_title: 'Celda de Paletizado 2 — RoboterSys',
+    meta_description: 'Celda robotizada turn key de paletizado de alto throughput con robots KUKA y doble indexador de palés. Dimensiones aprox. 9.000 × 5.100 × 2.200 mm.',
+    hero_kicker: 'Sistemas Robóticos',
+    hero_title: 'Celda de Paletizado 2',
+    breadcrumb_home: 'Inicio',
+    breadcrumb_sistemas: 'Sistemas Robóticos',
+    breadcrumb_page: 'Celda de Paletizado 2',
+    // Intro section
+    intro_label: 'Solución Turn Key',
+    intro_heading: 'Mayor capacidad, la misma precisión KUKA',
+    intro_body: 'La Celda de Paletizado 2 amplía el concepto de la Celda 1 para atender líneas de mayor volumen. Con dimensiones aproximadas de 9.000 × 5.100 × 2.200 mm y doble indexador de palés, esta celda eleva el throughput sin renunciar a la confiabilidad ni a la personalización total — entregada turn key por RoboterSys.',
+    // Components section
+    components_label: 'Componentes',
+    components_heading: 'Qué compone la celda',
+    comp1_title: 'Robot Industrial KUKA',
+    comp1_desc: 'Robot de paletizado de precisión con controlador KR C4 o KR C5, calibrado para el ciclo y payload de su proceso.',
+    comp2_title: 'Herramienta de Paletizado',
+    comp2_desc: 'Garra dedicada al proceso — ventosas de succión o garra mecánica — diseñada para el producto y la cadencia deseados.',
+    comp3_title: 'Doble Indexador de Palés',
+    comp3_desc: 'Dos indexadores operando en paralelo para cambio simultáneo y continuo de palés, maximizando el throughput de la línea.',
+    comp4_title: 'Base Estructural',
+    comp4_desc: 'Estructura metálica robusta, dimensionada según estándares industriales para garantizar estabilidad y durabilidad.',
+    comp5_title: 'Panel Eléctrico Completo',
+    comp5_desc: 'Panel eléctrico dedicado con todos los componentes de control, protección y comunicación integrados y documentados.',
+    comp6_title: 'Cercado y Barreras de Seguridad',
+    comp6_desc: 'Protección perimetral certificada con rejas y cortinas de luz, garantizando conformidad con las normas de seguridad ISO 10218 y aplicables.',
+    // Differentials section
+    diff_label: 'Diferenciales',
+    diff_heading: 'Por qué elegir esta solución',
+    diff1: 'Proyecto 100% personalizado para su proceso y layout',
+    diff2: 'Alta repetibilidad y precisión en cada ciclo de paletizado',
+    diff3: 'Estructura robusta diseñada para los más exigentes estándares industriales',
+    diff4: 'Acceso facilitado para mantenimiento y cambio de herramientas',
+    diff5: 'Soporte técnico especializado y posventa KUKA incluidos',
+    diff6: 'Soporte remoto integrado para diagnóstico y asistencia rápida',
+    diff7: 'Entregada totalmente instalada, integrada y lista para producir',
+    // CTA
+    cta_label: 'Solicite un análisis técnico',
+  },
+
+  // ── Celdas de Manipulación ────────────────────────────────────────────────────
+  celulasManipulacao: {
+    page_title: 'Celdas de Manipulación — RoboterSys',
+    meta_description: 'Celdas robotizadas de manipulación para CNCs, prensas y equipos industriales. Automatice la carga y descarga con robots KUKA — más productividad, más seguridad.',
+    hero_kicker: 'Sistemas Robóticos',
+    hero_title: 'Celdas de Manipulación',
+    breadcrumb_home: 'Inicio',
+    breadcrumb_sistemas: 'Sistemas Robóticos',
+    breadcrumb_page: 'Celdas de Manipulación',
+    // Intro section
+    intro_label: 'Celdas de CNC, Prensas y Afines',
+    intro_heading: 'Autonomía y eficiencia en la alimentación industrial',
+    intro_body: 'Las Celdas de Manipulación de RoboterSys automatizan la carga y descarga de CNCs, prensas y equipos industriales, garantizando procesos continuos y estables. Un único operador puede supervisar múltiples celdas de forma simultánea, eliminando tareas repetitivas y liberando al equipo para actividades de mayor valor agregado.',
+    // Applications section
+    apps_label: 'Aplicaciones',
+    apps_heading: 'Dónde aplicamos esta tecnología',
+    app1_title: 'Handling de CNC',
+    app1_desc: 'Carga y descarga automática de centros de mecanizado con alta precisión de posicionamiento, reduciendo el tiempo de ciclo y eliminando errores de alimentación manual.',
+    app2_title: 'Handling de Prensas',
+    app2_desc: 'Carga y descarga de componentes metálicos en prensas de forma segura y ágil, alejando operadores de zonas de riesgo y aumentando la cadencia productiva.',
+    // Benefits section
+    benefits_label: 'Beneficios',
+    benefits_heading: 'Lo que obtiene con la automatización',
+    benefit1: 'Aumento significativo de productividad con ciclos continuos',
+    benefit2: 'Reducción de costos operativos a mediano y largo plazo',
+    benefit3: 'Calidad consistente en cada pieza — sin variación humana',
+    benefit4: 'Seguridad para el trabajador al alejarlo de zonas de riesgo',
+    benefit5: 'Flexibilidad productiva para diferentes piezas y procesos',
+    benefit6: 'Optimización del espacio de fábrica con layout compacto',
+    // CTA
+    cta_label: 'Solicite un análisis técnico',
+  },
+
   // ── SEO / structured data ─────────────────────────────────────────────────────
   seo: {
     org_description: 'Servicios de mantenimiento, repuestos e integración de robots industriales KUKA.',

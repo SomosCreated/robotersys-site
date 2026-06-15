@@ -1,0 +1,285 @@
+---
+/**
+ * CellDetail page template — locale-aware
+ * Shared template for robotic cell detail pages:
+ *   celulaPaletizacao1, celulaPaletizacao2, celulasManipulacao
+ *
+ * Sections:
+ *  1. PageHero — kicker + cell name + breadcrumbs
+ *  2. Intro + product image (2-column on large screens)
+ *  3. Components (paletização) OR Applications (manipulação) — FeatureCard grid
+ *  4. Differentials / Benefits — styled accent-bullet list
+ *  5. ContactForm variant="produto"
+ */
+import { Image } from 'astro:assets';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionLabel from '@/components/SectionLabel.astro';
+import FeatureCard from '@/components/FeatureCard.astro';
+import ContactForm from '@/components/ContactForm.astro';
+import { t } from '@/i18n';
+import type { Locale } from '@/i18n/types';
+import type { PageKey } from '@/i18n/routes';
+import { localizedPath } from '@/i18n/routes';
+
+// Hero background images
+import heroRobotCell from '@/assets/robotersys/sistemas-robot-app.webp';
+import heroHandling from '@/assets/robotersys/cell-02-handling.webp';
+
+// Product images (intro section)
+import productPaletizacao1 from '@/assets/robotersys/cell-paletizacao-1-product.webp';
+import productPaletizacao2 from '@/assets/robotersys/cell-paletizacao-2-product.webp';
+import productHandling from '@/assets/robotersys/cell-02-handling.webp';
+
+export type CellKey = 'celulaPaletizacao1' | 'celulaPaletizacao2' | 'celulasManipulacao';
+
+interface Props {
+  locale: Locale;
+  cellKey: CellKey;
+}
+
+const { locale, cellKey } = Astro.props;
+
+// ── Per-cell configuration ──────────────────────────────────────────────────
+const isMani = cellKey === 'celulasManipulacao';
+const isPalet1 = cellKey === 'celulaPaletizacao1';
+
+// Hero bg: paletização uses the robot-app shot; manipulação uses handling cell photo
+const heroBg = isMani ? heroHandling : heroRobotCell;
+
+// Product image for intro section
+const productImg = isMani ? productHandling : isPalet1 ? productPaletizacao1 : productPaletizacao2;
+const productAlt = isMani
+  ? 'Célula de manipulação robotizada KUKA — RoboterSys'
+  : isPalet1
+    ? 'Célula de paletização 1 — RoboterSys'
+    : 'Célula de paletização 2 — RoboterSys';
+
+// Breadcrumbs
+const crumbs = [
+  { label: t(locale, `${cellKey}.breadcrumb_home` as const), href: localizedPath('home', locale) },
+  { label: t(locale, `${cellKey}.breadcrumb_sistemas` as const), href: localizedPath('sistemas', locale) },
+  { label: t(locale, `${cellKey}.breadcrumb_page` as const), href: localizedPath(cellKey as PageKey, locale) },
+];
+
+// ── Components / Applications items ─────────────────────────────────────────
+// Paletização cells: 6 components
+// Manipulação cell: 2 applications
+const featureItems = isMani
+  ? [
+      {
+        icon: 'solar:cpu-linear',
+        title: t(locale, 'celulasManipulacao.app1_title'),
+        desc:  t(locale, 'celulasManipulacao.app1_desc'),
+        fig: 'APL. 01',
+        accent: true,
+      },
+      {
+        icon: 'solar:settings-linear',
+        title: t(locale, 'celulasManipulacao.app2_title'),
+        desc:  t(locale, 'celulasManipulacao.app2_desc'),
+        fig: 'APL. 02',
+      },
+    ]
+  : [
+      {
+        icon: 'solar:cpu-bolt-linear',
+        title: t(locale, `${cellKey}.comp1_title` as const),
+        desc:  t(locale, `${cellKey}.comp1_desc` as const),
+        fig: 'CMP. 01',
+        accent: true,
+      },
+      {
+        icon: 'solar:hand-stars-linear',
+        title: t(locale, `${cellKey}.comp2_title` as const),
+        desc:  t(locale, `${cellKey}.comp2_desc` as const),
+        fig: 'CMP. 02',
+      },
+      {
+        icon: 'solar:layers-minimalistic-linear',
+        title: t(locale, `${cellKey}.comp3_title` as const),
+        desc:  t(locale, `${cellKey}.comp3_desc` as const),
+        fig: 'CMP. 03',
+      },
+      {
+        icon: 'solar:widget-linear',
+        title: t(locale, `${cellKey}.comp4_title` as const),
+        desc:  t(locale, `${cellKey}.comp4_desc` as const),
+        fig: 'CMP. 04',
+      },
+      {
+        icon: 'solar:bolt-linear',
+        title: t(locale, `${cellKey}.comp5_title` as const),
+        desc:  t(locale, `${cellKey}.comp5_desc` as const),
+        fig: 'CMP. 05',
+      },
+      {
+        icon: 'solar:shield-check-linear',
+        title: t(locale, `${cellKey}.comp6_title` as const),
+        desc:  t(locale, `${cellKey}.comp6_desc` as const),
+        fig: 'CMP. 06',
+      },
+    ];
+
+// ── Differentials / Benefits list ────────────────────────────────────────────
+const listItems = isMani
+  ? [
+      t(locale, 'celulasManipulacao.benefit1'),
+      t(locale, 'celulasManipulacao.benefit2'),
+      t(locale, 'celulasManipulacao.benefit3'),
+      t(locale, 'celulasManipulacao.benefit4'),
+      t(locale, 'celulasManipulacao.benefit5'),
+      t(locale, 'celulasManipulacao.benefit6'),
+    ]
+  : [
+      t(locale, `${cellKey}.diff1` as const),
+      t(locale, `${cellKey}.diff2` as const),
+      t(locale, `${cellKey}.diff3` as const),
+      t(locale, `${cellKey}.diff4` as const),
+      t(locale, `${cellKey}.diff5` as const),
+      t(locale, `${cellKey}.diff6` as const),
+      t(locale, `${cellKey}.diff7` as const),
+    ];
+
+const featuresLabel = isMani
+  ? t(locale, 'celulasManipulacao.apps_label')
+  : t(locale, `${cellKey}.components_label` as const);
+
+const featuresHeading = isMani
+  ? t(locale, 'celulasManipulacao.apps_heading')
+  : t(locale, `${cellKey}.components_heading` as const);
+
+const diffLabel = isMani
+  ? t(locale, 'celulasManipulacao.benefits_label')
+  : t(locale, `${cellKey}.diff_label` as const);
+
+const diffHeading = isMani
+  ? t(locale, 'celulasManipulacao.benefits_heading')
+  : t(locale, `${cellKey}.diff_heading` as const);
+---
+
+<BaseLayout
+  title={t(locale, `${cellKey}.page_title` as const)}
+  description={t(locale, `${cellKey}.meta_description` as const)}
+  locale={locale}
+  pageKey={cellKey as PageKey}
+>
+
+  <!-- 1. Hero -->
+  <PageHero
+    kicker={t(locale, `${cellKey}.hero_kicker` as const)}
+    title={t(locale, `${cellKey}.hero_title` as const)}
+    crumbs={crumbs}
+    bgImage={heroBg}
+  />
+
+  <!-- 2. Intro + product image -->
+  <section
+    class="py-16 border-b border-line bg-bg"
+    aria-labelledby="cell-intro-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+        <!-- Col 1: intro text -->
+        <div>
+          <SectionLabel text={t(locale, `${cellKey}.intro_label` as const)} />
+          <h2
+            id="cell-intro-heading"
+            class="text-2xl md:text-4xl font-medium text-strong uppercase tracking-tight leading-tight mb-6 sys-reveal sys-rise"
+          >
+            {t(locale, `${cellKey}.intro_heading` as const)}
+          </h2>
+          <p class="text-muted text-sm leading-relaxed">
+            {t(locale, `${cellKey}.intro_body` as const)}
+          </p>
+        </div>
+
+        <!-- Col 2: product photo -->
+        <div class="sys-reveal overflow-hidden rounded border border-line">
+          <Image
+            src={productImg}
+            alt={productAlt}
+            width={800}
+            height={600}
+            class="w-full h-auto object-cover object-center"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Components / Applications -->
+  <section
+    class="py-16 border-b border-line bg-surface"
+    aria-labelledby="cell-features-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12">
+      <SectionLabel text={featuresLabel} />
+      <h2
+        id="cell-features-heading"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
+      >
+        {featuresHeading}
+      </h2>
+
+      <div class={`grid gap-4 sys-reveal ${isMani ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'}`}>
+        {featureItems.map((item) => (
+          <FeatureCard
+            icon={item.icon}
+            title={item.title}
+            desc={item.desc}
+            fig={item.fig}
+            accent={item.accent}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Differentials / Benefits -->
+  <section
+    class="py-16 border-b border-line bg-bg"
+    aria-labelledby="cell-diff-heading"
+  >
+    <div class="container mx-auto px-6 lg:px-12 max-w-4xl">
+      <SectionLabel text={diffLabel} />
+      <h2
+        id="cell-diff-heading"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
+      >
+        {diffHeading}
+      </h2>
+
+      <ul class="space-y-3 sys-reveal" role="list">
+        {listItems.map((item) => (
+          <li class="flex items-start gap-3">
+            <span
+              class="mt-1 flex-shrink-0 w-2 h-2 bg-accent"
+              aria-hidden="true"
+            ></span>
+            <span class="text-sm text-muted leading-relaxed">{item}</span>
+          </li>
+        ))}
+      </ul>
+
+      <!-- CTA nudge -->
+      <div class="mt-10 sys-reveal">
+        <div class="text-[10px] font-mono text-accent uppercase tracking-widest flex items-center gap-2">
+          <span class="w-1.5 h-1.5 bg-accent animate-pulse" aria-hidden="true"></span>
+          // {t(locale, `${cellKey}.cta_label` as const)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Contact Form -->
+  <ContactForm variant="produto" locale={locale} />
+
+</BaseLayout>
+
+<!-- Reveal island -->
+<script>
+  import '@/scripts/reveal';
+</script>

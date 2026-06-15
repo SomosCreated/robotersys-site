@@ -21,6 +21,9 @@ export const ROUTES = {
   privacidade: { pt: 'politica-de-privacidade', en: 'privacy-policy',     es: 'politica-de-privacidad', de: 'datenschutz' },
   cookies:     { pt: 'politica-de-cookies',    en: 'cookie-policy',       es: 'politica-de-cookies',   de: 'cookie-richtlinie' },
   blog:        { pt: 'blog',                   en: 'blog',                es: 'blog',                  de: 'blog' },
+  celulaPaletizacao1: { pt: 'celula-de-paletizacao-1', en: 'palletizing-cell-1', es: 'celula-de-paletizado-1', de: 'palettierzelle-1' },
+  celulaPaletizacao2: { pt: 'celula-de-paletizacao-2', en: 'palletizing-cell-2', es: 'celula-de-paletizado-2', de: 'palettierzelle-2' },
+  celulasManipulacao: { pt: 'celulas-de-manipulacao',  en: 'handling-cells',    es: 'celulas-de-manipulacion', de: 'handhabungszellen' },
 } as const;
 
 export type PageKey = keyof typeof ROUTES;
