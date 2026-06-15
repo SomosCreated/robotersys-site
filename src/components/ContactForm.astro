@@ -25,9 +25,11 @@ import { t } from '@/i18n';
 interface Props {
   variant?: 'contato' | 'carreiras' | 'produto';
   locale?: Locale;
+  /** When true, drop the top border so the form sits flush against the element above (e.g. the clients carousel). */
+  flush?: boolean;
 }
 
-const { variant = 'contato', locale = 'pt' } = Astro.props;
+const { variant = 'contato', locale = 'pt', flush = false } = Astro.props;
 
 const isCarreiras = variant === 'carreiras';
 const isProduto   = variant === 'produto';
@@ -53,7 +55,7 @@ const messagePlaceholder = isCarreiras
 ---
 
 <section
-  class="py-20 border-t border-line bg-accent"
+  class:list={['py-20 bg-accent', { 'border-t border-line': !flush }]}
   id={`section-${formId}`}
   aria-labelledby={`heading-${formId}`}
 >

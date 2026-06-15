@@ -296,7 +296,7 @@ const diffHeading = isMani
   </section>
 
   <!-- 5. Clients strip — same full-bleed marquee/pattern as the other pages -->
-  <section class="pt-16 border-b border-line bg-surface" aria-labelledby="cell-clients-heading">
+  <section class="pt-16 bg-surface" aria-labelledby="cell-clients-heading">
     <div class="container mx-auto px-6 lg:px-12">
       <SectionLabel text={t(locale, 'sistemas.clients_label')} />
       <h2
@@ -313,7 +313,7 @@ const diffHeading = isMani
 
   <!-- 6. Contact Form — anchor target for the "Solicitar orçamento" CTA (offset for sticky header) -->
   <div id="solicitar-orcamento" class="scroll-mt-20">
-    <ContactForm variant="produto" locale={locale} />
+    <ContactForm variant="produto" locale={locale} flush />
   </div>
 
 </BaseLayout>
