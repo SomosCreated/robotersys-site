@@ -23,9 +23,8 @@ import { brandHtml } from '@/lib/brand';
 import type { Locale } from '@/i18n/types';
 import { localizedPath } from '@/i18n/routes';
 
-// Real photos from current site (robotersys.com) — Pecas primary image + parts warehouse
-import pecasPartsImg from '@/assets/robotersys/pecas-parts-shelf.jpg';
-import pecasWarehouseImg from '@/assets/robotersys/pecas-warehouse.webp';
+// Team photo (IMG_5654) — client-specified for both hero and section band
+import sobreTeamImg from '@/assets/robotersys/sobre-team.webp';
 
 interface Props {
   locale: Locale;
@@ -78,7 +77,7 @@ const diferenciais = [
     kicker={t(locale, 'pecas.hero_kicker')}
     title={t(locale, 'pecas.hero_title')}
     crumbs={crumbs}
-    bgImage={pecasPartsImg}
+    bgImage={sobreTeamImg}
   />
 
   <!-- 2. Headline block -->
@@ -106,14 +105,11 @@ const diferenciais = [
     </div>
   </section>
 
-  <!-- 2b. Image band — technical parts identification (real photo from current site).
-       NOTE: this photo shows parts lookup/identification on a laptop (an exploded
-       KUKA arm-assembly diagram), NOT a warehouse — labelled accordingly. The parts
-       close-up photo is used as the PageHero above. -->
+  <!-- 2b. Image band — RoboterSys team photo (IMG_5654, same as hero) -->
   <div class="overflow-hidden border-b border-line" aria-hidden="true">
     <Image
-      src={pecasWarehouseImg}
-      alt="Identificação e consulta técnica de peças KUKA — RoboterSys"
+      src={sobreTeamImg}
+      alt="Equipe técnica RoboterSys especialistas em robôs KUKA"
       width={1280}
       height={420}
       class="w-full h-56 md:h-72 object-cover object-center"

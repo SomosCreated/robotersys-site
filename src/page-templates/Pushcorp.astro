@@ -18,16 +18,16 @@ import PageHero from '@/components/PageHero.astro';
 import SectionLabel from '@/components/SectionLabel.astro';
 import FeatureCard from '@/components/FeatureCard.astro';
 import ContactForm from '@/components/ContactForm.astro';
+import YouTubeFacade from '@/components/YouTubeFacade.astro';
 import { t } from '@/i18n';
 import { brandHtml } from '@/lib/brand';
 import type { Locale } from '@/i18n/types';
 import { localizedPath } from '@/i18n/routes';
 
-// Real robot-grinding photo from current site (robotersys.com) — matches rebarbação content
-import pushcorpImg from '@/assets/robotersys/pushcorp-robot-grinding.webp';
 // PushCorp brand logo (white/transparent bg — displayed on dark container)
 import pushcorpLogoWhite from '@/assets/robotersys/pushcorp-logo-white.webp';
 // Gallery images — PushCorp operations
+// gallerySandingCorners also doubles as the hero background (cell-04-rebarbacao.jpg)
 import gallerySandingCorners from '@/assets/robotersys/cell-04-rebarbacao.jpg';
 import gallerySandingGuitar from '@/assets/robotersys/pushcorp-sanding-guitar.jpg';
 import gallerySteelwelds from '@/assets/robotersys/pushcorp-steelwelds.jpg';
@@ -134,7 +134,7 @@ const stats = [
     kicker={t(locale, 'pushcorp.hero_kicker')}
     title={t(locale, 'pushcorp.hero_title')}
     crumbs={crumbs}
-    bgImage={pushcorpImg}
+    bgImage={gallerySandingCorners}
   />
 
   <!-- 2. Partnership overview -->
@@ -185,6 +185,22 @@ const stats = [
             </div>
           ))}
         </div>
+      </div>
+
+      <!-- Partnership video -->
+      <div class="mt-12 sys-reveal">
+        <div class="text-[10px] font-mono text-accent uppercase tracking-widest flex items-center gap-2 mb-4">
+          <span class="w-1.5 h-1.5 bg-accent animate-pulse" aria-hidden="true"></span>
+          // {t(locale, 'pushcorp.video_label')}
+        </div>
+        <h3 class="text-base md:text-lg font-medium text-strong uppercase tracking-tight leading-tight mb-5">
+          {t(locale, 'pushcorp.video_heading')}
+        </h3>
+        <YouTubeFacade
+          videoId="7nQCp4MbSaM"
+          title={t(locale, 'pushcorp.video_heading')}
+          playLabel={t(locale, 'home.video_play_label')}
+        />
       </div>
     </div>
   </section>

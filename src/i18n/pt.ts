@@ -246,6 +246,9 @@ export default {
     diff3_desc: 'Laboratório de processos no Texas para validação customizada de cada aplicação antes da entrega. Reduz risco e garante performance na sua planta.',
     diff4_title: 'Pós-Venda Completo',
     diff4_desc: 'Atendimento de pós-venda durante todo o ciclo de vida do equipamento, com suporte técnico local pela RoboterSys.',
+    // Partnership video
+    video_label: 'Vídeo',
+    video_heading: 'A parceria em ação',
     // Logo
     logo_alt: 'PushCorp — parceiro RoboterSys',
     // Gallery
@@ -401,6 +404,7 @@ export default {
     footer_privacy: 'Política de Privacidade',
     footer_cookies: 'Política de Cookies',
     footer_kuka_disclaimer: 'Independente da KUKA Roboter do Brasil; a marca KUKA pertence à KUKA Roboter do Brasil.',
+    duns: 'D-U-N-S® 125818621',
   },
 
   // ── Home — additional sections ────────────────────────────────────────────────

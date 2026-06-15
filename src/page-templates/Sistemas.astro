@@ -26,9 +26,9 @@ import { brandHtml } from '@/lib/brand';
 import type { Locale } from '@/i18n/types';
 import { localizedPath } from '@/i18n/routes';
 
-// Hero + body background: real KUKA robotic-cell/application photo (IMG_5666) — the most
-// page-relevant image for "Sistemas Robóticos". (pecas-warehouse.webp / IMG_5700 is a
-// laptop + parts-diagram scene — wrong subject for this hero, so it's NOT used here.)
+// Hero background: team photo (IMG_5654) — client-specified
+import sistemasHeroImg from '@/assets/robotersys/sobre-team.webp';
+// Section band (2b): robot-cell application photo (IMG_5666)
 import sistemasRobotImg from '@/assets/robotersys/sistemas-robot-app.webp';
 
 // Real cell photos from the current site (robotersys.com) — harvested in Phase 2.5
@@ -140,7 +140,7 @@ const capabilitiesRows = [
     kicker={t(locale, 'sistemas.hero_kicker')}
     title={t(locale, 'sistemas.hero_title')}
     crumbs={crumbs}
-    bgImage={sistemasRobotImg}
+    bgImage={sistemasHeroImg}
   />
 
   <!-- 2. Positioning block "// Automação Industrial" — text + Capacidades RoboterSys table (2nd column) -->

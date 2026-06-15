@@ -137,6 +137,19 @@ const socialLinks = [
         </div>
       )}
 
+      <!-- D-U-N-S seal — shown only in EN (US trust signal) -->
+      {locale === 'en' && (
+        <div>
+          <img
+            src="/robotersys/img/duns-selo.webp"
+            alt="D-U-N-S Registered — RoboterSys"
+            class="h-16 md:h-20 w-auto"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      )}
+
       <!-- CTA contato -->
       <a
         class="block w-full text-center py-3 bg-accent text-white text-[10px] font-mono uppercase tracking-widest hover:bg-orange-500 transition-all flex items-center justify-center gap-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
@@ -152,6 +165,9 @@ const socialLinks = [
   <div class="bg-surface px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-3 text-[10px] uppercase tracking-wider text-muted">
     <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
       <span>© 2026 RoboterSys Serviços do Brasil Ltda</span>
+      <!-- D-U-N-S number — all locales -->
+      <span class="text-line hidden md:inline" aria-hidden="true">·</span>
+      <span class="normal-case">{t(locale, 'legal.duns')}</span>
       <!-- Legal links row -->
       <nav aria-label="Links legais" class="flex items-center gap-3">
         <span class="text-line hidden md:inline" aria-hidden="true">|</span>
