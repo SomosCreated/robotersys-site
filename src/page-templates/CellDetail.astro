@@ -18,19 +18,21 @@ import PageHero from '@/components/PageHero.astro';
 import SectionLabel from '@/components/SectionLabel.astro';
 import FeatureCard from '@/components/FeatureCard.astro';
 import ContactForm from '@/components/ContactForm.astro';
+import ClientsCarousel from '@/components/ClientsCarousel.astro';
 import { t } from '@/i18n';
+import { brandHtml } from '@/lib/brand';
 import type { Locale } from '@/i18n/types';
 import type { PageKey } from '@/i18n/routes';
 import { localizedPath } from '@/i18n/routes';
 
 // Hero background images
 import heroRobotCell from '@/assets/robotersys/sistemas-robot-app.webp';
-import heroHandling from '@/assets/robotersys/cell-02-handling.webp';
 
 // Product images (intro section)
 import productPaletizacao1 from '@/assets/robotersys/cell-paletizacao-1-product.webp';
 import productPaletizacao2 from '@/assets/robotersys/cell-paletizacao-2-product.webp';
-import productHandling from '@/assets/robotersys/cell-02-handling.webp';
+// Manipulação page photo (IMG_5793) — used for both its hero bg and its intro image
+import manipulacaoImg from '@/assets/robotersys/manipulacao-cell.jpg';
 
 export type CellKey = 'celulaPaletizacao1' | 'celulaPaletizacao2' | 'celulasManipulacao';
 
@@ -45,11 +47,11 @@ const { locale, cellKey } = Astro.props;
 const isMani = cellKey === 'celulasManipulacao';
 const isPalet1 = cellKey === 'celulaPaletizacao1';
 
-// Hero bg: paletização uses the robot-app shot; manipulação uses handling cell photo
-const heroBg = isMani ? heroHandling : heroRobotCell;
+// Hero bg: paletização uses the robot-app shot; manipulação uses the IMG_5793 photo
+const heroBg = isMani ? manipulacaoImg : heroRobotCell;
 
 // Product image for intro section
-const productImg = isMani ? productHandling : isPalet1 ? productPaletizacao1 : productPaletizacao2;
+const productImg = isMani ? manipulacaoImg : isPalet1 ? productPaletizacao1 : productPaletizacao2;
 const productAlt = isMani
   ? 'Célula de manipulação robotizada KUKA — RoboterSys'
   : isPalet1
@@ -293,7 +295,23 @@ const diffHeading = isMani
     </div>
   </section>
 
-  <!-- 5. Contact Form — anchor target for the "Solicitar orçamento" CTA (offset for sticky header) -->
+  <!-- 5. Clients strip — same full-bleed marquee/pattern as the other pages -->
+  <section class="py-16 border-b border-line bg-surface" aria-labelledby="cell-clients-heading">
+    <div class="container mx-auto px-6 lg:px-12">
+      <SectionLabel text={t(locale, 'sistemas.clients_label')} />
+      <h2
+        id="cell-clients-heading"
+        class="text-2xl md:text-3xl font-medium text-strong uppercase tracking-tight leading-tight mb-10 sys-reveal sys-rise"
+        set:html={brandHtml(t(locale, 'sistemas.clients_heading'))}
+      ></h2>
+      <p class="text-muted text-xs mb-10 sys-reveal">
+        {t(locale, 'sistemas.clients_body')}
+      </p>
+    </div>
+    <ClientsCarousel locale={locale} />
+  </section>
+
+  <!-- 6. Contact Form — anchor target for the "Solicitar orçamento" CTA (offset for sticky header) -->
   <div id="solicitar-orcamento" class="scroll-mt-20">
     <ContactForm variant="produto" locale={locale} />
   </div>
