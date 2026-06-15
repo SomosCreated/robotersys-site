@@ -13,9 +13,9 @@
  *    the column, and a subtly elevated (orange-tinted) background — exactly like
  *    the source graphics where the RoboterSys column is boxed in orange.
  *
- * Responsive: wrapped in overflow-x-auto with a min-width so it scrolls
- * horizontally on narrow screens instead of breaking. A scroll hint is shown
- * on mobile only.
+ * Responsive: the table is w-full with NO min-width and break-words/hyphens on
+ * every text cell, so it always fits the viewport on mobile — no horizontal
+ * scroll. (overflow-x-auto is kept only as a safety net for extreme edge cases.)
  *
  * Theming: uses semantic tokens only (bg-surface / bg-elevated / text-strong /
  * text-muted / border-line / bg-accent / text-ok) so it reads correctly in BOTH
@@ -71,12 +71,8 @@ const {
   compact = false,
 } = Astro.props;
 
-// Single highlighted column → keep min-width tighter so it doesn't over-stretch.
-const dataCols = columns.length;
-const singleCol = dataCols === 1;
-
 // Density tokens
-const pad = compact ? 'p-2.5 md:p-3' : 'p-4 md:p-5';
+const pad = compact ? 'px-2 py-2.5 md:p-3' : 'p-4 md:p-5';
 const iconSize = compact ? 18 : 24;
 ---
 
@@ -88,12 +84,7 @@ const iconSize = compact ? 18 : 24;
     role="group"
     aria-label={caption}
   >
-    <table
-      class:list={[
-        'w-full border-collapse text-left',
-        singleCol ? 'min-w-[360px]' : 'min-w-[640px]',
-      ]}
-    >
+    <table class="w-full border-collapse text-left">
       <caption class="sr-only">{caption}</caption>
 
       <thead>
@@ -120,16 +111,16 @@ const iconSize = compact ? 18 : 24;
               <div class="flex flex-col items-center gap-2">
                 {col.highlight && col.sublabel && (
                   <!-- "Melhor Escolha" accent pill above the RoboterSys header -->
-                  <span class="inline-block bg-accent text-white text-[9px] font-mono uppercase tracking-widest px-2.5 py-1 leading-none whitespace-nowrap">
+                  <span class="inline-block bg-accent text-white text-[9px] font-mono uppercase tracking-widest px-1.5 md:px-2.5 py-1 leading-none">
                     {col.sublabel}
                   </span>
                 )}
                 <span
                   class:list={[
-                    'font-medium tracking-tight leading-tight',
+                    'font-medium tracking-tight leading-tight break-words hyphens-auto',
                     col.highlight
                       ? 'text-accent text-base md:text-lg normal-case'
-                      : 'text-strong text-sm md:text-base uppercase',
+                      : 'text-strong text-xs md:text-base uppercase',
                   ]}
                 >
                   {col.label}
@@ -151,7 +142,7 @@ const iconSize = compact ? 18 : 24;
             <!-- Feature name = row header -->
             <th
               scope="row"
-              class:list={[pad, 'text-sm font-medium text-fg leading-snug text-left align-middle']}
+              class:list={[pad, 'text-sm font-medium text-fg leading-snug text-left align-middle break-words hyphens-auto']}
             >
               {row.feature}
             </th>

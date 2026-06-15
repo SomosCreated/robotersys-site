@@ -4,9 +4,10 @@
  *
  * Layout: section background is the same factory/robot photo as the hero,
  * with a theme-aware scrim for readability. Inside, a HUD card splits into
- * two columns: the WhatsApp support-group QR code (PT only) and the texts
- * (headline + subtext + WhatsApp button). For non-PT locales the QR column
- * is omitted and the texts span the full width.
+ * two columns: the WhatsApp support-group QR code (PT only, and desktop only —
+ * a phone user can't scan their own screen) and the texts (headline + subtext +
+ * WhatsApp button). The QR is hidden on mobile and for non-PT locales; the texts
+ * then span the full width.
  *
  * WhatsApp button links to https://wa.me/55XXXXXXXXXXX — PLACEHOLDER number.
  * Replace XXXXXXXXXXX with the real WhatsApp number before going live.
@@ -25,6 +26,8 @@ interface Props {
 const { locale = 'pt' } = Astro.props;
 
 // The WhatsApp support-group QR is a Brazil-only asset → PT only.
+// It is also hidden on mobile (see `hidden md:flex` below): a phone user
+// cannot scan a QR shown on their own screen.
 const showQr = locale === 'pt';
 ---
 
@@ -83,7 +86,7 @@ const showQr = locale === 'pt';
             PLACEHOLDER: Replace 55XXXXXXXXXXX with the actual WhatsApp number
             (country code 55 + DDD + number, no spaces or dashes) before going live.
           -->
-          <div class="flex flex-col items-center gap-3 order-1">
+          <div class="hidden md:flex flex-col items-center gap-3 order-1">
             <a
               href="https://wa.me/55XXXXXXXXXXX"
               target="_blank"

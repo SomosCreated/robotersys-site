@@ -2,7 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import type { Locale } from '@/i18n/types';
 import type { PageKey } from '@/i18n/routes';
-import { LOCALES, LOCALE_LABELS, localizedPath } from '@/i18n/routes';
+import { localizedPath } from '@/i18n/routes';
 import { t } from '@/i18n';
 import ThemeToggle from '@/components/ThemeToggle.astro';
 import LanguageSwitcher from '@/components/LanguageSwitcher.astro';
@@ -128,10 +128,14 @@ const navItems: NavItem[] = [
     </a>
   </div>
 
-  <!-- mobile right side: theme toggle + hamburger -->
-  <div class="md:hidden flex items-center h-full">
-    <!-- Theme toggle (mobile) -->
+  <!-- mobile/tablet right side: language + theme toggle + hamburger -->
+  <div class="lg:hidden flex items-center h-full">
+    <!-- Language switcher (mobile) — always visible, not buried in the menu -->
     <div class="border-l border-line h-full flex items-center">
+      <LanguageSwitcher currentLocale={locale} currentPageKey={currentPageKey} />
+    </div>
+    <!-- Theme toggle (mobile) — divider comes from the switcher's right border -->
+    <div class="h-full flex items-center">
       <ThemeToggle />
     </div>
     <!-- Hamburger -->
@@ -151,7 +155,7 @@ const navItems: NavItem[] = [
 
 <!-- mobile menu panel -->
 <div
-  class="fixed inset-x-0 top-16 bottom-0 z-40 bg-bg transform translate-x-full transition-transform duration-300 md:hidden flex flex-col border-t border-line overflow-y-auto"
+  class="fixed inset-x-0 top-16 bottom-0 z-40 bg-bg transform translate-x-full transition-transform duration-300 lg:hidden flex flex-col border-t border-line overflow-y-auto"
   id="mobile-menu"
   aria-hidden="true"
 >
@@ -165,30 +169,7 @@ const navItems: NavItem[] = [
       <Icon name="solar:arrow-right-linear" width={16} aria-hidden="true" />
     </a>
 
-    <!-- mobile language switcher -->
-    <div class="border border-line bg-elevated/20 flex items-center px-4 py-2 gap-2">
-      <Icon name="solar:global-linear" width={14} aria-hidden="true" class="text-muted shrink-0" />
-      <span class="text-[10px] font-mono uppercase tracking-widest text-muted">{t(locale, 'nav.language')}</span>
-      <div class="ml-auto flex gap-1">
-        {LOCALES.map((loc) => {
-          const isActive = loc === locale;
-          return (
-            <a
-              href={localizedPath(currentPageKey, loc)}
-              aria-current={isActive ? 'true' : undefined}
-              class:list={[
-                'px-2 py-1 text-[10px] font-mono uppercase tracking-widest border border-line transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent',
-                isActive
-                  ? 'bg-accent text-white border-accent'
-                  : 'text-fg hover:text-strong hover:bg-elevated',
-              ]}
-            >
-              {LOCALE_LABELS[loc]}
-            </a>
-          );
-        })}
-      </div>
-    </div>
+    <!-- (Language switcher lives in the always-visible header bar now, not here.) -->
 
     <!-- mobile nav links -->
     <div class="flex flex-col border border-line bg-elevated/20">
