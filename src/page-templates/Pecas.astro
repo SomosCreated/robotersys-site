@@ -25,6 +25,8 @@ import { localizedPath } from '@/i18n/routes';
 
 // Team photo (IMG_5654) — client-specified for both hero and section band
 import sobreTeamImg from '@/assets/robotersys/sobre-team.webp';
+// Highlight/section band image (not the hero) — KUKA robot-cell photo (IMG_5307)
+import servicosRobotImg from '@/assets/robotersys/servicos-robot-cell.webp';
 
 interface Props {
   locale: Locale;
@@ -108,8 +110,8 @@ const diferenciais = [
   <!-- 2b. Image band — RoboterSys team photo (IMG_5654, same as hero) -->
   <div class="overflow-hidden border-b border-line" aria-hidden="true">
     <Image
-      src={sobreTeamImg}
-      alt="Equipe técnica RoboterSys especialistas em robôs KUKA"
+      src={servicosRobotImg}
+      alt="Célula robotizada KUKA em operação — RoboterSys"
       width={1280}
       height={420}
       class="w-full h-56 md:h-72 object-cover object-center"
