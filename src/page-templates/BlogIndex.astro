@@ -1,0 +1,202 @@
+---
+/**
+ * BlogIndex — shared blog index template for all 4 locales.
+ * Thin wrappers in src/pages/.../blog/index.astro pass `locale` and delegate here.
+ *
+ * Features:
+ *  - Cover images with fallback to blog-hero.webp
+ *  - Client-side search/filter bar (debounced, diacritic-insensitive)
+ *  - Distinct hero kicker (blog.hero_kicker) vs title (blog.title)
+ */
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionLabel from '@/components/SectionLabel.astro';
+import BlogCard from '@/components/BlogCard.astro';
+import { t } from '@/i18n';
+import { localizedPath } from '@/i18n/routes';
+import type { Locale } from '@/i18n/types';
+import blogHeroImg from '@/assets/robotersys/blog-hero.webp';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const allPosts = await getCollection('blog', (entry) =>
+  entry.data.language === locale && !entry.data.draft
+);
+const posts = allPosts.sort(
+  (a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()
+);
+
+// Localized strings used both in markup and in script (passed as data attributes)
+const searchPlaceholder = t(locale, 'blog.search_placeholder');
+const searchLabel = t(locale, 'blog.search_label');
+const noResultsMsg = t(locale, 'blog.no_results');
+---
+
+<BaseLayout
+  title={`${t(locale, 'blog.title')} — RoboterSys`}
+  description={t(locale, 'blog.meta_description')}
+  locale={locale}
+  pageKey="blog"
+>
+  <PageHero
+    kicker={t(locale, 'blog.hero_kicker')}
+    title={t(locale, 'blog.title')}
+    crumbs={[
+      { label: t(locale, 'sobre.breadcrumb_home'), href: localizedPath('home', locale) },
+      { label: t(locale, 'blog.title'), href: localizedPath('blog', locale) },
+    ]}
+    bgImage={blogHeroImg}
+  />
+
+  <section class="py-20 px-6 md:px-12 bg-bg" aria-labelledby="blog-index-heading">
+    <div class="max-w-7xl mx-auto">
+      <SectionLabel text={t(locale, 'blog.latest_heading')} />
+
+      {posts.length === 0 ? (
+        <!-- Empty state -->
+        <div class="py-20 text-center">
+          <p class="text-sm text-muted leading-relaxed max-w-lg mx-auto">
+            {t(locale, 'blog.empty')}
+          </p>
+        </div>
+      ) : (
+        <>
+          <!-- ── Search bar ── -->
+          <div class="mb-8">
+            <label
+              for="blog-search"
+              class="block text-[9px] font-mono text-muted uppercase tracking-widest mb-2"
+            >
+              {searchLabel}
+            </label>
+            <div class="relative max-w-md">
+              <!-- Search icon -->
+              <span
+                class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-muted"
+                aria-hidden="true"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+              </span>
+              <input
+                id="blog-search"
+                type="search"
+                placeholder={searchPlaceholder}
+                aria-controls="blog-cards-grid"
+                autocomplete="off"
+                spellcheck="false"
+                class="w-full pl-9 pr-4 py-2.5 bg-surface border border-line text-sm text-fg font-mono placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-accent transition-colors"
+              />
+            </div>
+          </div>
+
+          <!-- ── No-results message (hidden until search produces no hits) ── -->
+          <p
+            id="blog-no-results"
+            class="hidden text-sm text-muted leading-relaxed py-12 text-center"
+            aria-live="polite"
+            data-no-results-msg={noResultsMsg}
+          >
+            {noResultsMsg}
+          </p>
+
+          <!-- ── Post grid ── -->
+          <div
+            id="blog-cards-grid"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px border border-line bg-line"
+            role="list"
+            aria-label={t(locale, 'blog.latest_heading')}
+            aria-labelledby="blog-index-heading"
+          >
+            <!-- Hidden heading for aria-labelledby (screen readers only) -->
+            <span id="blog-index-heading" class="sr-only">{t(locale, 'blog.latest_heading')}</span>
+
+            {posts.map((post) => {
+              const cover = post.data.coverImage ?? blogHeroImg;
+              const searchVal = [
+                post.data.title,
+                post.data.excerpt,
+                post.data.category,
+              ]
+                .join(' ')
+                .toLowerCase();
+              return (
+                <div role="listitem" data-search={searchVal}>
+                  <BlogCard
+                    slug={post.id}
+                    title={post.data.title}
+                    excerpt={post.data.excerpt}
+                    category={post.data.category}
+                    publishedAt={post.data.publishedAt}
+                    locale={locale}
+                    coverImage={cover}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // ── Client-side blog search ──────────────────────────────────────────────────
+  // Runs after page load. Debounced, diacritic-insensitive filter on data-search.
+  (function () {
+    const input = document.getElementById('blog-search') as HTMLInputElement | null;
+    const grid = document.getElementById('blog-cards-grid');
+    const noResults = document.getElementById('blog-no-results');
+    if (!input || !grid || !noResults) return;
+
+    /** Strip diacritics for case/accent-insensitive matching */
+    function normalize(str: string): string {
+      return str
+        .normalize('NFD')
+        .replace(/\p{Diacritic}/gu, '')
+        .toLowerCase();
+    }
+
+    let timer: ReturnType<typeof setTimeout>;
+
+    input.addEventListener('input', () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        const query = normalize(input.value.trim());
+        const cards = grid.querySelectorAll<HTMLElement>('[data-search]');
+        let visible = 0;
+
+        cards.forEach((card) => {
+          const haystack = normalize(card.dataset.search ?? '');
+          const match = !query || haystack.includes(query);
+          card.classList.toggle('hidden', !match);
+          if (match) visible++;
+        });
+
+        // Show/hide no-results message
+        noResults.classList.toggle('hidden', visible > 0);
+        // Keep grid border visible only when there are results
+        grid.classList.toggle('border-transparent', visible === 0);
+        grid.classList.toggle('bg-transparent', visible === 0);
+      }, 200);
+    });
+  })();
+</script>

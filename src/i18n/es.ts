@@ -454,6 +454,10 @@ export default {
     back: 'Volver al Blog',
     latest_heading: 'Últimos artículos',
     meta_description: 'Artículos técnicos sobre robots KUKA: mantenimiento, paletización, programación y automatización industrial.',
+    hero_kicker: 'Contenidos y novedades',
+    search_placeholder: 'Buscar artículos…',
+    search_label: 'Buscar',
+    no_results: 'No se encontraron artículos para tu búsqueda.',
   },
   // ── Consentimiento de cookies (LGPD / GDPR) ───────────────────────────────────
   consent: {

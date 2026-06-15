@@ -453,6 +453,10 @@ export default {
     back: 'Voltar ao Blog',
     latest_heading: 'Últimos artigos',
     meta_description: 'Artigos técnicos sobre robôs KUKA: manutenção, paletização, programação e automação industrial.',
+    hero_kicker: 'Conteúdos e novidades',
+    search_placeholder: 'Pesquisar artigos…',
+    search_label: 'Pesquisar',
+    no_results: 'Nenhum artigo encontrado para a sua busca.',
   },
   // ── Consentimento de cookies (LGPD / GDPR) ────────────────────────────────────
   consent: {

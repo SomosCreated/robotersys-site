@@ -454,6 +454,10 @@ export default {
     back: 'Back to Blog',
     latest_heading: 'Latest articles',
     meta_description: 'Technical articles on KUKA robots: maintenance, palletizing, programming, and industrial automation.',
+    hero_kicker: 'Insights & updates',
+    search_placeholder: 'Search articles…',
+    search_label: 'Search',
+    no_results: 'No articles found for your search.',
   },
   // ── Cookie consent (LGPD / GDPR) ──────────────────────────────────────────────
   consent: {

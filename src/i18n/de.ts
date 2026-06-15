@@ -455,6 +455,10 @@ export default {
     back: 'Zurück zum Blog', // REVISÃO
     latest_heading: 'Neueste Beiträge', // REVISÃO
     meta_description: 'Technische Artikel über KUKA-Roboter: Wartung, Palettierung, Programmierung und industrielle Automatisierung.', // REVISÃO
+    hero_kicker: 'Inhalte & Neuigkeiten', // REVISÃO
+    search_placeholder: 'Artikel suchen…', // REVISÃO
+    search_label: 'Suchen', // REVISÃO
+    no_results: 'Keine Artikel für Ihre Suche gefunden.', // REVISÃO
   },
   // ── Cookie-Einwilligung (LGPD / GDPR) ─────────────────────────────────────────
   // REVISÃO: Machine-translated — professional native review required before go-live.
