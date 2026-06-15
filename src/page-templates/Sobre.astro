@@ -29,7 +29,6 @@ import { localizedPath } from '@/i18n/routes';
 
 // Real facility and team photos from current site (robotersys.com)
 import sobreFacilityImg from '@/assets/robotersys/sobre-facility.webp';
-import sobreTeamImg from '@/assets/robotersys/sobre-team.webp';
 
 interface Props {
   locale: Locale;
@@ -98,18 +97,7 @@ const stats = [
     <p>{t(locale, 'sobre.historia_p3')}</p>
   </ProseSection>
 
-  <!-- 2b. Facility photo — follows História, illustrates the company's space -->
-  <div class="border-b border-line overflow-hidden" aria-hidden="true">
-    <Image
-      src={sobreFacilityImg}
-      alt="Instalações da RoboterSys — centro de serviços robóticos KUKA"
-      width={1280}
-      height={720}
-      class="w-full h-64 md:h-96 object-cover object-center"
-      loading="lazy"
-      decoding="async"
-    />
-  </div>
+  <!-- (Band image between História and MVV removed — the "Rio" image will go here once provided by the client.) -->
 
   <!-- 3. Missão / Visão / Valores -->
   <section
@@ -165,18 +153,7 @@ const stats = [
     </div>
   </section>
 
-  <!-- 3b. Team/facility photo — between valores and stats, shows the team at work -->
-  <div class="border-b border-line overflow-hidden" aria-hidden="true">
-    <Image
-      src={sobreTeamImg}
-      alt="Equipe técnica da RoboterSys — especialistas em robótica KUKA"
-      width={1280}
-      height={720}
-      class="w-full h-64 md:h-80 object-cover object-center"
-      loading="lazy"
-      decoding="async"
-    />
-  </div>
+  <!-- (Band image between Valores and Stats removed by request.) -->
 
   <!-- 4. Stats Band -->
   <!-- PLACEHOLDER NOTE: stat values are placeholders — confirm with client before go-live. -->
@@ -196,11 +173,11 @@ const stats = [
         <img
           src="/robotersys/img/GPTW-Selos.webp"
           alt="Selo Great Place to Work — RoboterSys certificada GPTW"
-          width="120"
-          height="120"
+          width="240"
+          height="240"
           loading="lazy"
           decoding="async"
-          class="flex-shrink-0 w-24 h-auto object-contain"
+          class="flex-shrink-0 w-48 h-auto object-contain"
         />
 
         <div class="flex-1">

@@ -74,13 +74,19 @@ const navItems: NavItem[] = [
             </a>
             <!-- Mega-menu panel -->
             <div class="absolute top-full left-0 min-w-[280px] border border-line bg-bg shadow-2xl shadow-black/30 opacity-0 invisible translate-y-1 group-hover/dd:opacity-100 group-hover/dd:visible group-hover/dd:translate-y-0 group-focus-within/dd:opacity-100 group-focus-within/dd:visible group-focus-within/dd:translate-y-0 transition-all duration-150 z-50">
-              <div class="px-5 pt-3 pb-2 text-[9px] font-mono text-muted uppercase tracking-widest border-b border-line/50">
-                {t(locale, item.key)}
-              </div>
+              <!-- Parent = the Sistemas overview PAGE — accent-tinted + arrow to signal it's its own page -->
+              <a
+                href={item.href}
+                class="flex items-center justify-between gap-4 px-5 py-4 bg-accent/10 border-b border-accent/30 hover:bg-accent/20 transition-colors focus-visible:outline-none focus-visible:bg-accent/25 group/ov"
+              >
+                <span class="text-[11px] font-mono uppercase tracking-widest text-strong">{t(locale, item.key)}</span>
+                <Icon name="solar:arrow-right-linear" width={12} class="text-accent motion-safe:group-hover/ov:translate-x-0.5 transition-transform" aria-hidden="true" />
+              </a>
+              <!-- Sub-pages -->
               {item.children.map((child) => (
                 <a
                   href={child.href}
-                  class="flex items-center gap-2.5 px-5 py-3.5 text-[10px] font-mono uppercase tracking-widest text-fg hover:text-strong hover:bg-elevated border-b border-line/50 last:border-b-0 transition-colors focus-visible:outline-none focus-visible:bg-elevated focus-visible:text-strong"
+                  class="flex items-center gap-2.5 px-5 py-3 text-[10px] font-mono uppercase tracking-widest text-fg hover:text-strong hover:bg-elevated border-b border-line/50 last:border-b-0 transition-colors focus-visible:outline-none focus-visible:bg-elevated focus-visible:text-strong"
                 >
                   <span class="w-1 h-1 bg-accent flex-shrink-0" aria-hidden="true"></span>
                   {child.label}
@@ -206,13 +212,13 @@ const navItems: NavItem[] = [
               />
             </button>
             <div id={`submenu-${idx}`} class="hidden flex-col bg-bg/40" data-submenu>
-              <!-- Overview link (the Sistemas page itself) + the sub-pages -->
+              <!-- Overview link (the Sistemas page itself) — accent-tinted + arrow, distinct from the sub-pages -->
               <a
                 href={item.href}
-                class="flex items-center gap-2 py-3 pl-8 pr-4 border-t border-line/40 text-[11px] font-mono uppercase tracking-widest text-muted hover:text-strong hover:bg-elevated transition-colors"
+                class="flex items-center justify-between gap-2 py-3.5 pl-8 pr-4 border-t border-line/40 bg-accent/10 text-[11px] font-mono uppercase tracking-widest text-strong hover:bg-accent/20 transition-colors"
               >
-                <span class="w-1 h-1 bg-accent flex-shrink-0" aria-hidden="true"></span>
                 {t(locale, item.key)}
+                <Icon name="solar:arrow-right-linear" width={12} class="text-accent shrink-0" aria-hidden="true" />
               </a>
               {item.children.map((child) => (
                 <a
