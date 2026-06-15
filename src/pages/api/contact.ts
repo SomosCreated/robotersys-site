@@ -13,7 +13,9 @@ const json = (b: unknown, s: number) =>
   });
 
 export const POST: APIRoute = async ({ request }) => {
-  const data = Object.fromEntries(await request.formData());
+  // Read formData once; Zod strips unknown keys so `cv` (File) is handled separately.
+  const fd = await request.formData();
+  const data = Object.fromEntries(fd);
 
   // Check antispam on raw data BEFORE schema validation to avoid leaking
   // validation behaviour to bots (honeypot filled OR too fast → silent 200)
@@ -31,6 +33,23 @@ export const POST: APIRoute = async ({ request }) => {
 
   const input = parsed.data;
 
+  // --- CV file (careers form only; optional) ---
+  // Vercel serverless body limit is ~4.5 MB, so we cap the PDF at 4 MB to stay safe.
+  const MAX_CV_BYTES = 4 * 1024 * 1024; // 4 MB
+  let cvAttachment: { filename: string; content: Buffer } | undefined;
+  const cvRaw = fd.get('cv');
+  if (cvRaw instanceof File && cvRaw.size > 0) {
+    const isPdf =
+      cvRaw.type === 'application/pdf' || cvRaw.name.toLowerCase().endsWith('.pdf');
+    if (!isPdf || cvRaw.size > MAX_CV_BYTES) {
+      return json({ ok: false, errors: { cv: 'invalid' } }, 400);
+    }
+    const buf = Buffer.from(await cvRaw.arrayBuffer());
+    // Sanitize filename: keep only safe characters
+    const safeName = cvRaw.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+    cvAttachment = { filename: safeName, content: buf };
+  }
+
   const to =
     input.type === 'carreiras'
       ? (import.meta.env.CONTACT_TO_RH ?? '')
@@ -40,7 +59,10 @@ export const POST: APIRoute = async ({ request }) => {
 
   // TODO (Fase 5): IP rate-limit + Turnstile/BotID — tráfego pago
   const ploomes = await createPloomesLead(input);
-  const email = await sendLeadEmail({ ...input, _ploomesFailed: !ploomes.ok }, { to });
+  const email = await sendLeadEmail(
+    { ...input, _ploomesFailed: !ploomes.ok },
+    { to, attachment: cvAttachment },
+  );
 
   const ok = email.ok || 'skipped' in email ? true : false;
 

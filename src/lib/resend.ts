@@ -25,13 +25,20 @@ function renderLeadText(input: LeadEmailInput): string {
   return lines.filter((l) => l !== null).join('\n');
 }
 
+export interface LeadEmailOpts {
+  to: string;
+  /** Optional PDF attachment (CV upload from careers form). */
+  attachment?: { filename: string; content: Buffer };
+}
+
 /**
  * Envia e-mail de notificação de lead via Resend.
  * Degrada graciosamente se RESEND_API_KEY não estiver configurada.
+ * Suporta anexo opcional (PDF do currículo, via variante carreiras).
  */
 export async function sendLeadEmail(
   input: LeadEmailInput,
-  { to }: { to: string },
+  { to, attachment }: LeadEmailOpts,
 ): Promise<{ ok: boolean; skipped?: string; error?: unknown }> {
   const key = import.meta.env.RESEND_API_KEY;
   if (!key) return { ok: false, skipped: 'no RESEND_API_KEY' };
@@ -44,6 +51,13 @@ export async function sendLeadEmail(
     to,
     subject: `${flagged}[${input.type}] Lead: ${input.name}`,
     text: renderLeadText(input),
+    ...(attachment
+      ? {
+          attachments: [
+            { filename: attachment.filename, content: attachment.content },
+          ],
+        }
+      : {}),
   });
 
   if (error) console.error('[resend] send failed:', error);

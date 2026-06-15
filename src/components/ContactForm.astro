@@ -219,6 +219,35 @@ const messagePlaceholder = isCarreiras
         </div>
       )}
 
+      <!-- CV upload (carreiras variant only) -->
+      {isCarreiras && (
+        <div class="space-y-2">
+          <label
+            for={`cv-${formId}`}
+            class="block text-[10px] font-mono uppercase tracking-widest text-white"
+          >
+            Currículo (PDF)
+          </label>
+          <input
+            type="file"
+            id={`cv-${formId}`}
+            name="cv"
+            accept="application/pdf,.pdf"
+            aria-describedby={`cv-hint-${formId} cv-error-${formId}`}
+            class="w-full text-sm text-white/90 file:mr-4 file:py-2.5 file:px-5 file:border-0 file:text-[11px] file:font-mono file:uppercase file:tracking-widest file:bg-white file:text-zinc-900 file:cursor-pointer hover:file:bg-zinc-100 file:transition-colors bg-white/10 border border-white/30 px-4 py-2.5 cursor-pointer focus:outline-none focus:border-white focus:ring-2 focus:ring-white/70 transition-colors"
+          />
+          <p id={`cv-hint-${formId}`} class="text-[10px] text-white/60 font-mono">
+            PDF, até 4 MB
+          </p>
+          <p
+            id={`cv-error-${formId}`}
+            class="text-[11px] text-red-400 hidden"
+            role="alert"
+            aria-live="polite"
+          ></p>
+        </div>
+      )}
+
       <!-- Message -->
       <div class="space-y-2">
         <label
@@ -342,6 +371,28 @@ const messagePlaceholder = isCarreiras
       // Update elapsed before submit
       if (elapsedField) {
         elapsedField.value = String(Date.now() - loadedAt);
+      }
+
+      // --- CV file validation (carreiras only; field is optional) ---
+      const cvInput = /** @type {HTMLInputElement|null} */ (document.getElementById(`cv-${formId}`));
+      const cvError = document.getElementById(`cv-error-${formId}`);
+      if (cvInput && cvInput.files && cvInput.files.length > 0) {
+        const file = cvInput.files[0];
+        const MAX_CV_BYTES = 4 * 1024 * 1024; // 4 MB
+        let cvErr = '';
+        if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+          cvErr = 'Apenas arquivos PDF são aceitos.';
+        } else if (file.size > MAX_CV_BYTES) {
+          cvErr = 'O arquivo deve ter no máximo 4 MB.';
+        }
+        if (cvError) {
+          cvError.textContent = cvErr;
+          cvError.classList.toggle('hidden', !cvErr);
+        }
+        if (cvErr) return; // abort submit
+      } else if (cvError) {
+        cvError.textContent = '';
+        cvError.classList.add('hidden');
       }
 
       setLoading(true);
