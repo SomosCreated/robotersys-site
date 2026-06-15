@@ -12,7 +12,6 @@
  *  5. Diferenciais via FeatureCard × 4
  *  6. ContactForm variant="produto"
  */
-import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import SectionLabel from '@/components/SectionLabel.astro';
@@ -25,7 +24,7 @@ import { brandHtml } from '@/lib/brand';
 import type { Locale } from '@/i18n/types';
 import { localizedPath } from '@/i18n/routes';
 
-// PushCorp brand logo (white/transparent bg — hero + partnership section)
+// PushCorp brand logo (white/transparent bg) — shown in the hero only
 import pushcorpLogoWhite from '@/assets/robotersys/pushcorp-logo-white.webp';
 // Gallery images — PushCorp operations
 // gallerySandingCorners also doubles as the hero background AND video poster
@@ -163,19 +162,6 @@ const gallerySlides = [
   >
     <div class="container mx-auto px-6 lg:px-12">
       <SectionLabel text={t(locale, 'pushcorp.partner_label')} />
-
-      <!-- PushCorp logo (transparent PNG/WebP) — black in light mode, white in dark mode.
-           The source is white, so `invert` turns it black on light; `dark:invert-0` keeps it white on dark. -->
-      <div class="mb-8 sys-reveal">
-        <Image
-          src={pushcorpLogoWhite}
-          alt={t(locale, 'pushcorp.logo_alt')}
-          height={48}
-          class="h-10 md:h-12 w-auto object-contain invert dark:invert-0"
-          loading="eager"
-          decoding="async"
-        />
-      </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         <!-- Copy -->
