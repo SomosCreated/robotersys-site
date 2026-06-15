@@ -75,6 +75,9 @@ export default {
     section_label: 'Notfall',
     qr_caption: 'Kamera draufhalten', // REVISÃO
   },
+  cells: {
+    request_quote: 'Angebot anfordern', // REVISÃO
+  },
   // ── Leistungen-Seite ─────────────────────────────────────────────────────────
   servicos: {
     page_title: 'Leistungen — RoboterSys',

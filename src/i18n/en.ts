@@ -75,6 +75,9 @@ export default {
     section_label: 'Emergency',
     qr_caption: 'Point your camera',
   },
+  cells: {
+    request_quote: 'Request a quote',
+  },
   // ── Services page ─────────────────────────────────────────────────────────────
   servicos: {
     page_title: 'Services — RoboterSys',

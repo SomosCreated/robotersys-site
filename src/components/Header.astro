@@ -13,12 +13,21 @@ interface Props {
 }
 const { locale = 'pt', currentPageKey = 'home' } = Astro.props;
 
-type NavItem = { key: string; href: string };
+type NavChild = { label: string; href: string };
+type NavItem = { key: string; href: string; children?: NavChild[] };
+
+// Sistemas mega-menu sub-pages: the 3 robotic cells + PushCorp (now a Sistemas sub-page).
+const sistemasChildren: NavChild[] = [
+  { label: t(locale, 'sistemas.cell1_title'), href: localizedPath('celulaPaletizacao1', locale) },
+  { label: t(locale, 'sistemas.cell2_title'), href: localizedPath('celulaPaletizacao2', locale) },
+  { label: t(locale, 'sistemas.cell3_title'), href: localizedPath('celulasManipulacao', locale) },
+  { label: t(locale, 'nav.pushcorp'),         href: localizedPath('pushcorp', locale) },
+];
+
 const navItems: NavItem[] = [
   { key: 'nav.services', href: localizedPath('servicos', locale) },
   { key: 'nav.parts',    href: localizedPath('pecas', locale) },
-  { key: 'nav.systems',  href: localizedPath('sistemas', locale) },
-  { key: 'nav.pushcorp', href: localizedPath('pushcorp', locale) },
+  { key: 'nav.systems',  href: localizedPath('sistemas', locale), children: sistemasChildren },
   { key: 'nav.about',    href: localizedPath('sobre', locale) },
   { key: 'nav.careers',  href: localizedPath('carreiras', locale) },
   // {/* Phase 4 */} — blog not yet localized; special-cased until blog pages exist per locale
@@ -45,14 +54,49 @@ const navItems: NavItem[] = [
   <div class="hidden lg:flex items-center h-full border-l border-line bg-bg">
     <!-- nav links -->
     <nav class="flex h-full items-center" aria-label={t(locale, 'nav.aria_main')}>
-      {navItems.map(({ key, href }) => (
-        <a
-          class="flex items-center px-5 h-full text-[10px] font-mono uppercase tracking-widest text-fg hover:text-strong hover:bg-elevated/50 transition-colors border-r border-line/50 relative group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
-          href={href}
-        >
-          {t(locale, key)}
-          <div class="absolute bottom-0 left-0 w-full h-[2px] bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left" aria-hidden="true"></div>
-        </a>
+      {navItems.map((item) => (
+        item.children ? (
+          <!-- Dropdown / mega-menu parent (Sistemas) — opens on hover and keyboard focus -->
+          <div class="relative h-full group/dd">
+            <a
+              class="flex items-center gap-1.5 px-5 h-full text-[10px] font-mono uppercase tracking-widest text-fg hover:text-strong hover:bg-elevated/50 transition-colors border-r border-line/50 relative focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+              href={item.href}
+              aria-haspopup="true"
+            >
+              {t(locale, item.key)}
+              <Icon
+                name="solar:alt-arrow-down-linear"
+                width={10}
+                class="opacity-70 group-hover/dd:rotate-180 group-focus-within/dd:rotate-180 transition-transform"
+                aria-hidden="true"
+              />
+              <div class="absolute bottom-0 left-0 w-full h-[2px] bg-accent scale-x-0 group-hover/dd:scale-x-100 group-focus-within/dd:scale-x-100 transition-transform origin-left" aria-hidden="true"></div>
+            </a>
+            <!-- Mega-menu panel -->
+            <div class="absolute top-full left-0 min-w-[280px] border border-line bg-bg shadow-2xl shadow-black/30 opacity-0 invisible translate-y-1 group-hover/dd:opacity-100 group-hover/dd:visible group-hover/dd:translate-y-0 group-focus-within/dd:opacity-100 group-focus-within/dd:visible group-focus-within/dd:translate-y-0 transition-all duration-150 z-50">
+              <div class="px-5 pt-3 pb-2 text-[9px] font-mono text-muted uppercase tracking-widest border-b border-line/50">
+                {t(locale, item.key)}
+              </div>
+              {item.children.map((child) => (
+                <a
+                  href={child.href}
+                  class="flex items-center gap-2.5 px-5 py-3.5 text-[10px] font-mono uppercase tracking-widest text-fg hover:text-strong hover:bg-elevated border-b border-line/50 last:border-b-0 transition-colors focus-visible:outline-none focus-visible:bg-elevated focus-visible:text-strong"
+                >
+                  <span class="w-1 h-1 bg-accent flex-shrink-0" aria-hidden="true"></span>
+                  {child.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <a
+            class="flex items-center px-5 h-full text-[10px] font-mono uppercase tracking-widest text-fg hover:text-strong hover:bg-elevated/50 transition-colors border-r border-line/50 relative group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+            href={item.href}
+          >
+            {t(locale, item.key)}
+            <div class="absolute bottom-0 left-0 w-full h-[2px] bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left" aria-hidden="true"></div>
+          </a>
+        )
       ))}
     </nav>
     <!-- Theme toggle -->
@@ -142,19 +186,59 @@ const navItems: NavItem[] = [
 
     <!-- mobile nav links -->
     <div class="flex flex-col border border-line bg-elevated/20">
-      {navItems.map(({ key, href }) => (
-        <a
-          class="flex items-center justify-between p-4 border-b border-line text-xs font-mono uppercase tracking-widest text-fg hover:text-strong hover:bg-elevated transition-colors group last:border-b-0"
-          href={href}
-        >
-          {t(locale, key)}
-          <Icon
-            name="solar:alt-arrow-right-linear"
-            class="opacity-0 group-hover:opacity-100 transition-opacity text-accent"
-            width={14}
-            aria-hidden="true"
-          />
-        </a>
+      {navItems.map((item, idx) => (
+        item.children ? (
+          <div class="border-b border-line last:border-b-0">
+            <button
+              type="button"
+              class="w-full flex items-center justify-between p-4 text-xs font-mono uppercase tracking-widest text-fg hover:text-strong hover:bg-elevated transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent"
+              data-submenu-toggle
+              aria-expanded="false"
+              aria-controls={`submenu-${idx}`}
+            >
+              {t(locale, item.key)}
+              <Icon
+                name="solar:alt-arrow-down-linear"
+                class="transition-transform text-accent"
+                data-submenu-chevron
+                width={14}
+                aria-hidden="true"
+              />
+            </button>
+            <div id={`submenu-${idx}`} class="hidden flex-col bg-bg/40" data-submenu>
+              <!-- Overview link (the Sistemas page itself) + the sub-pages -->
+              <a
+                href={item.href}
+                class="flex items-center gap-2 py-3 pl-8 pr-4 border-t border-line/40 text-[11px] font-mono uppercase tracking-widest text-muted hover:text-strong hover:bg-elevated transition-colors"
+              >
+                <span class="w-1 h-1 bg-accent flex-shrink-0" aria-hidden="true"></span>
+                {t(locale, item.key)}
+              </a>
+              {item.children.map((child) => (
+                <a
+                  href={child.href}
+                  class="flex items-center gap-2 py-3 pl-8 pr-4 border-t border-line/40 text-[11px] font-mono uppercase tracking-widest text-muted hover:text-strong hover:bg-elevated transition-colors"
+                >
+                  <span class="w-1 h-1 bg-accent flex-shrink-0" aria-hidden="true"></span>
+                  {child.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <a
+            class="flex items-center justify-between p-4 border-b border-line text-xs font-mono uppercase tracking-widest text-fg hover:text-strong hover:bg-elevated transition-colors group last:border-b-0"
+            href={item.href}
+          >
+            {t(locale, item.key)}
+            <Icon
+              name="solar:alt-arrow-right-linear"
+              class="opacity-0 group-hover:opacity-100 transition-opacity text-accent"
+              width={14}
+              aria-hidden="true"
+            />
+          </a>
+        )
       ))}
     </div>
   </div>
@@ -182,4 +266,18 @@ const navItems: NavItem[] = [
       }
     });
   }
+
+  // Mobile submenu accordions (Sistemas mega-menu on mobile)
+  document.querySelectorAll('[data-submenu-toggle]').forEach((toggle) => {
+    toggle.addEventListener('click', () => {
+      const wrapper = toggle.parentElement;
+      const panel = wrapper?.querySelector('[data-submenu]');
+      const chevron = toggle.querySelector('[data-submenu-chevron]');
+      if (!panel) return;
+      const willOpen = panel.classList.contains('hidden');
+      panel.classList.toggle('hidden', !willOpen);
+      toggle.setAttribute('aria-expanded', String(willOpen));
+      chevron?.classList.toggle('rotate-180', willOpen);
+    });
+  });
 </script>

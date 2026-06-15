@@ -12,6 +12,7 @@
  *  5. ContactForm variant="produto"
  */
 import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import SectionLabel from '@/components/SectionLabel.astro';
@@ -192,6 +193,24 @@ const diffHeading = isMani
           <p class="text-muted text-sm leading-relaxed">
             {t(locale, `${cellKey}.intro_body` as const)}
           </p>
+
+          <!-- E-commerce-style CTA — "request a quote", scrolls to the contact form on this page -->
+          <div class="mt-8 sys-reveal">
+            <a
+              href="#solicitar-orcamento"
+              class="group inline-flex items-center gap-3 bg-accent hover:bg-orange-500 text-white text-xs font-mono uppercase tracking-widest px-8 py-4 transition-all font-medium shadow-[0_0_20px_rgba(234,88,12,0.3)] hover:shadow-[0_0_40px_rgba(234,88,12,0.6)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+            >
+              <Icon name="solar:list-check-linear" width={16} height={16} aria-hidden="true" />
+              {t(locale, 'cells.request_quote')}
+              <Icon
+                name="solar:arrow-right-linear"
+                class="motion-safe:group-hover:translate-x-1 transition-transform"
+                width={16}
+                height={16}
+                aria-hidden="true"
+              />
+            </a>
+          </div>
         </div>
 
         <!-- Col 2: product photo -->
@@ -274,8 +293,10 @@ const diffHeading = isMani
     </div>
   </section>
 
-  <!-- 5. Contact Form -->
-  <ContactForm variant="produto" locale={locale} />
+  <!-- 5. Contact Form — anchor target for the "Solicitar orçamento" CTA (offset for sticky header) -->
+  <div id="solicitar-orcamento" class="scroll-mt-20">
+    <ContactForm variant="produto" locale={locale} />
+  </div>
 
 </BaseLayout>
 

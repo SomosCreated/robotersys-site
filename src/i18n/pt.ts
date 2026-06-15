@@ -74,6 +74,9 @@ export default {
     section_label: 'Emergência',
     qr_caption: 'Aponte a câmera',
   },
+  cells: {
+    request_quote: 'Solicitar orçamento',
+  },
   // ── Serviços page ────────────────────────────────────────────────────────────
   servicos: {
     page_title: 'Serviços — RoboterSys',
