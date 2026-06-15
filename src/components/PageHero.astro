@@ -17,7 +17,7 @@ interface CrumbItem {
 interface Props {
   /** Small mono label above the title (e.g. 'Contato') */
   kicker: string;
-  /** H1 text */
+  /** H1 text — always used for SEO/a11y. When logoImage is set this becomes sr-only. */
   title: string;
   /** Breadcrumb trail (the page itself is the last item; parent items link back). */
   crumbs?: CrumbItem[];
@@ -28,9 +28,17 @@ interface Props {
    * Legal pages should omit this prop to keep the plain look.
    */
   bgImage?: ImageMetadata;
+  /**
+   * Optional logo image (imported via astro:assets).
+   * When set, the logo is shown IN PLACE of the visible H1 text.
+   * The H1 still renders as sr-only so the page retains a proper heading for SEO/a11y.
+   */
+  logoImage?: ImageMetadata;
+  /** Alt text for the logo image (defaults to title). */
+  logoAlt?: string;
 }
 
-const { kicker, title, crumbs, bgImage } = Astro.props;
+const { kicker, title, crumbs, bgImage, logoImage, logoAlt } = Astro.props;
 ---
 
 <section
@@ -92,12 +100,32 @@ const { kicker, title, crumbs, bgImage } = Astro.props;
     {/* Kicker label */}
     <SectionLabel text={kicker} />
 
-    {/* Page title */}
+    {/* Page title — sr-only when a logoImage is supplied; visible heading otherwise */}
     <h1
       id="page-hero-title"
-      class="text-4xl md:text-6xl lg:text-7xl font-medium text-strong uppercase tracking-tight leading-[0.9] mt-2 sys-reveal sys-rise"
+      class:list={[
+        'mt-2 sys-reveal sys-rise',
+        logoImage
+          ? 'sr-only'
+          : 'text-4xl md:text-6xl lg:text-7xl font-medium text-strong uppercase tracking-tight leading-[0.9]',
+      ]}
     >
       {title}
     </h1>
+
+    {/* Logo shown in the hero in place of the visible title text */}
+    {logoImage && (
+      <div class="mt-4 sys-reveal sys-rise" aria-hidden="true">
+        <Image
+          src={logoImage}
+          alt={logoAlt ?? title}
+          height={96}
+          class="h-16 md:h-24 w-auto object-contain"
+          loading="eager"
+          decoding="async"
+          style="filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6))"
+        />
+      </div>
+    )}
   </div>
 </section>

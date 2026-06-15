@@ -1,0 +1,255 @@
+---
+/**
+ * PushcorpGallery — auto-sliding carousel with 7 PushCorp operation photos.
+ *
+ * Behavior:
+ * - Auto-advances every 4 s with a smooth CSS transition (slide left).
+ * - Prev / Next buttons and dot indicators for manual control.
+ * - prefers-reduced-motion: auto-advance and slide animation are disabled;
+ *   a static horizontal scroll-row is shown instead.
+ * - Accessible: role="region" aria-label, aria-roledescription="carousel",
+ *   real <button> controls with aria-labels, aria-current on active dot.
+ * - Uses astro:assets <Image> with lazy loading for off-screen slides.
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Slide {
+  src: ImageMetadata;
+  alt: string;
+}
+
+interface Props {
+  slides: Slide[];
+  /** aria-label for the carousel region */
+  ariaLabel?: string;
+}
+
+const { slides, ariaLabel = 'PushCorp photo gallery' } = Astro.props;
+const total = slides.length;
+---
+
+<!-- Reduced-motion: static scrollable row -->
+<div
+  class="motion-reduce:flex motion-reduce:gap-3 motion-reduce:overflow-x-auto motion-reduce:snap-x motion-reduce:snap-mandatory motion-safe:hidden"
+  aria-label={ariaLabel}
+  role="region"
+>
+  {slides.map((slide, i) => (
+    <div class="flex-none w-[85%] snap-start overflow-hidden border border-line">
+      <Image
+        src={slide.src}
+        alt={slide.alt}
+        width={1280}
+        height={960}
+        class="w-full aspect-video object-cover object-center"
+        loading={i === 0 ? 'eager' : 'lazy'}
+        decoding="async"
+      />
+    </div>
+  ))}
+</div>
+
+<!-- Full carousel (hidden for reduced-motion via CSS) -->
+<div
+  class="motion-reduce:hidden relative w-full overflow-hidden border border-line bg-bg"
+  style="aspect-ratio: 16/9;"
+  role="region"
+  aria-label={ariaLabel}
+  aria-roledescription="carousel"
+  id="pc-gallery"
+>
+  <!-- Slide track -->
+  <div
+    id="pc-track"
+    class="flex h-full"
+    style="width: 100%; position: relative;"
+    aria-live="polite"
+    aria-atomic="false"
+  >
+    {slides.map((slide, i) => (
+      <div
+        class="absolute inset-0 w-full h-full transition-opacity duration-700"
+        style={`opacity: ${i === 0 ? 1 : 0}; z-index: ${i === 0 ? 1 : 0};`}
+        data-slide={i}
+        role="group"
+        aria-roledescription="slide"
+        aria-label={`${i + 1} / ${total}`}
+        aria-hidden={i !== 0 ? 'true' : 'false'}
+      >
+        <Image
+          src={slide.src}
+          alt={slide.alt}
+          width={1280}
+          height={960}
+          class="w-full h-full object-cover object-center"
+          loading={i === 0 ? 'eager' : 'lazy'}
+          decoding="async"
+        />
+      </div>
+    ))}
+  </div>
+
+  <!-- Prev / Next controls -->
+  <button
+    id="pc-prev"
+    type="button"
+    aria-label="Previous slide"
+    class="
+      absolute left-3 top-1/2 -translate-y-1/2 z-10
+      w-9 h-9 flex items-center justify-center
+      bg-bg/70 hover:bg-accent text-strong hover:text-white
+      border border-line hover:border-accent
+      transition-colors duration-150
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1
+    "
+  >
+    <!-- Left chevron -->
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5" aria-hidden="true" focusable="false">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6" />
+    </svg>
+  </button>
+
+  <button
+    id="pc-next"
+    type="button"
+    aria-label="Next slide"
+    class="
+      absolute right-3 top-1/2 -translate-y-1/2 z-10
+      w-9 h-9 flex items-center justify-center
+      bg-bg/70 hover:bg-accent text-strong hover:text-white
+      border border-line hover:border-accent
+      transition-colors duration-150
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1
+    "
+  >
+    <!-- Right chevron -->
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5" aria-hidden="true" focusable="false">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6" />
+    </svg>
+  </button>
+
+  <!-- Dot indicators -->
+  <div
+    class="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex gap-2"
+    role="tablist"
+    aria-label="Slide indicators"
+  >
+    {slides.map((_, i) => (
+      <button
+        type="button"
+        role="tab"
+        data-dot={i}
+        aria-label={`Go to slide ${i + 1}`}
+        aria-selected={i === 0 ? 'true' : 'false'}
+        aria-current={i === 0 ? 'true' : undefined}
+        class:list={[
+          'w-2 h-2 rounded-full border border-white/60 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent',
+          i === 0 ? 'bg-accent scale-110' : 'bg-white/40 hover:bg-white/70',
+        ]}
+      ></button>
+    ))}
+  </div>
+</div>
+
+<script define:vars={{ total }}>
+  (function () {
+    const gallery = document.getElementById('pc-gallery');
+    if (!gallery) return;
+
+    /** @type {HTMLElement[]} */
+    const slideEls = Array.from(gallery.querySelectorAll('[data-slide]'));
+    /** @type {HTMLElement[]} */
+    const dots = Array.from(gallery.querySelectorAll('[data-dot]'));
+    const prevBtn = document.getElementById('pc-prev');
+    const nextBtn = document.getElementById('pc-next');
+
+    let current = 0;
+    /** @type {ReturnType<typeof setInterval> | null} */
+    let timer = null;
+
+    function goTo(/** @type {number} */ idx) {
+      const prev = current;
+      current = (idx + total) % total;
+
+      // Hide old slide
+      slideEls[prev].style.opacity = '0';
+      slideEls[prev].style.zIndex = '0';
+      slideEls[prev].setAttribute('aria-hidden', 'true');
+
+      // Show new slide
+      slideEls[current].style.opacity = '1';
+      slideEls[current].style.zIndex = '1';
+      slideEls[current].setAttribute('aria-hidden', 'false');
+
+      // Update dots
+      dots.forEach((dot, i) => {
+        const active = i === current;
+        dot.setAttribute('aria-selected', active ? 'true' : 'false');
+        if (active) {
+          dot.setAttribute('aria-current', 'true');
+          dot.classList.add('bg-accent', 'scale-110');
+          dot.classList.remove('bg-white/40', 'hover:bg-white/70');
+        } else {
+          dot.removeAttribute('aria-current');
+          dot.classList.remove('bg-accent', 'scale-110');
+          dot.classList.add('bg-white/40', 'hover:bg-white/70');
+        }
+      });
+    }
+
+    function startAuto() {
+      timer = setInterval(function () {
+        goTo(current + 1);
+      }, 4000);
+    }
+
+    function stopAuto() {
+      if (timer !== null) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    // Prev / Next
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () {
+        stopAuto();
+        goTo(current - 1);
+        startAuto();
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        stopAuto();
+        goTo(current + 1);
+        startAuto();
+      });
+    }
+
+    // Dots
+    dots.forEach(function (dot, i) {
+      dot.addEventListener('click', function () {
+        stopAuto();
+        goTo(i);
+        startAuto();
+      });
+    });
+
+    // Keyboard: left/right arrows when gallery is focused
+    gallery.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') {
+        stopAuto();
+        goTo(current - 1);
+        startAuto();
+      } else if (e.key === 'ArrowRight') {
+        stopAuto();
+        goTo(current + 1);
+        startAuto();
+      }
+    });
+
+    // Start auto-advance
+    startAuto();
+  })();
+</script>

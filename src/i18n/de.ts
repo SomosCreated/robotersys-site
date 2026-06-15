@@ -261,6 +261,10 @@ export default {
     gallery_alt_sanding_corners: 'PushCorp-Roboter schleift Ecken eines Industrieteils', // REVISÃO
     gallery_alt_sanding_guitar: 'PushCorp schleift einen Gitarrenkörper — Oberflächenbearbeitung geschwungener Flächen', // REVISÃO
     gallery_alt_steelwelds: 'Schweißnahtbearbeitung an Stahl mit PushCorp-Compliance-Device', // REVISÃO
+    gallery_alt_op9656: 'PushCorp-Roboter-Finishing-Betrieb', // REVISÃO
+    gallery_alt_op9708: 'PushCorp-Roboter-Finishing-Betrieb', // REVISÃO
+    gallery_alt_op9677: 'PushCorp-Roboter-Finishing-Betrieb', // REVISÃO
+    gallery_alt_op9719: 'PushCorp-Roboter-Finishing-Betrieb', // REVISÃO
   },
 
   // ── Über uns-Seite ────────────────────────────────────────────────────────────

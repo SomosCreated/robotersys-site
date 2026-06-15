@@ -261,6 +261,10 @@ export default {
     gallery_alt_sanding_corners: 'PushCorp robot sanding corners of an industrial part',
     gallery_alt_sanding_guitar: 'PushCorp sanding a guitar body — curved surface finishing',
     gallery_alt_steelwelds: 'Steel weld finishing with a PushCorp compliance device',
+    gallery_alt_op9656: 'PushCorp robotic finishing operation',
+    gallery_alt_op9708: 'PushCorp robotic finishing operation',
+    gallery_alt_op9677: 'PushCorp robotic finishing operation',
+    gallery_alt_op9719: 'PushCorp robotic finishing operation',
   },
 
   // ── About Us page ─────────────────────────────────────────────────────────────

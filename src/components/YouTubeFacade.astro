@@ -5,22 +5,28 @@
  * Uses youtube-nocookie.com for privacy.
  */
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import videoThumb from '@/assets/robotersys/video-thumb.jpg';
 
 interface Props {
   videoId: string;
   title: string;
   playLabel: string;
+  /**
+   * Optional custom poster image (imported via astro:assets).
+   * Defaults to the shared video-thumb.jpg so existing usages are unchanged.
+   */
+  poster?: ImageMetadata;
 }
 
-const { videoId, title, playLabel } = Astro.props;
+const { videoId, title, playLabel, poster = videoThumb } = Astro.props;
 ---
 
 <!-- 16:9 wrapper -->
 <div class="relative w-full overflow-hidden bg-bg border border-line" style="aspect-ratio: 16/9;">
   <!-- Thumbnail (eager: it is below the fold but visible on first scroll) -->
   <Image
-    src={videoThumb}
+    src={poster}
     alt={title}
     width={1280}
     height={720}

@@ -260,6 +260,10 @@ export default {
     gallery_alt_sanding_corners: 'Robô PushCorp lixando cantos de peça industrial',
     gallery_alt_sanding_guitar: 'PushCorp lixando corpo de guitarra — acabamento de superfícies curvas',
     gallery_alt_steelwelds: 'Acabamento de soldas em aço com dispositivo PushCorp',
+    gallery_alt_op9656: 'Operação robótica de acabamento PushCorp',
+    gallery_alt_op9708: 'Operação robótica de acabamento PushCorp',
+    gallery_alt_op9677: 'Operação robótica de acabamento PushCorp',
+    gallery_alt_op9719: 'Operação robótica de acabamento PushCorp',
   },
 
   // ── Sobre Nós page ────────────────────────────────────────────────────────────

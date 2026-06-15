@@ -19,18 +19,24 @@ import SectionLabel from '@/components/SectionLabel.astro';
 import FeatureCard from '@/components/FeatureCard.astro';
 import ContactForm from '@/components/ContactForm.astro';
 import YouTubeFacade from '@/components/YouTubeFacade.astro';
+import PushcorpGallery from '@/components/PushcorpGallery.astro';
 import { t } from '@/i18n';
 import { brandHtml } from '@/lib/brand';
 import type { Locale } from '@/i18n/types';
 import { localizedPath } from '@/i18n/routes';
 
-// PushCorp brand logo (white/transparent bg — displayed on dark container)
+// PushCorp brand logo (white/transparent bg — hero + partnership section)
 import pushcorpLogoWhite from '@/assets/robotersys/pushcorp-logo-white.webp';
 // Gallery images — PushCorp operations
-// gallerySandingCorners also doubles as the hero background (cell-04-rebarbacao.jpg)
+// gallerySandingCorners also doubles as the hero background AND video poster
 import gallerySandingCorners from '@/assets/robotersys/cell-04-rebarbacao.jpg';
 import gallerySandingGuitar from '@/assets/robotersys/pushcorp-sanding-guitar.jpg';
 import gallerySteelwelds from '@/assets/robotersys/pushcorp-steelwelds.jpg';
+// New gallery photos (2560×1920)
+import galleryOp9656 from '@/assets/robotersys/pushcorp-gallery-9656.webp';
+import galleryOp9708 from '@/assets/robotersys/pushcorp-gallery-9708.webp';
+import galleryOp9677 from '@/assets/robotersys/pushcorp-gallery-9677.webp';
+import galleryOp9719 from '@/assets/robotersys/pushcorp-gallery-9719.webp';
 
 interface Props {
   locale: Locale;
@@ -120,6 +126,17 @@ const stats = [
   { label: t(locale, 'pushcorp.partner_origin_label'), value: t(locale, 'pushcorp.partner_origin_value') },
   { label: t(locale, 'pushcorp.partner_lab_label'), value: t(locale, 'pushcorp.partner_lab_value') },
 ];
+
+// Gallery carousel — 7 photos (3 existing + 4 new)
+const gallerySlides = [
+  { src: gallerySandingCorners, alt: t(locale, 'pushcorp.gallery_alt_sanding_corners') },
+  { src: gallerySandingGuitar,  alt: t(locale, 'pushcorp.gallery_alt_sanding_guitar') },
+  { src: gallerySteelwelds,     alt: t(locale, 'pushcorp.gallery_alt_steelwelds') },
+  { src: galleryOp9656,         alt: t(locale, 'pushcorp.gallery_alt_op9656') },
+  { src: galleryOp9708,         alt: t(locale, 'pushcorp.gallery_alt_op9708') },
+  { src: galleryOp9677,         alt: t(locale, 'pushcorp.gallery_alt_op9677') },
+  { src: galleryOp9719,         alt: t(locale, 'pushcorp.gallery_alt_op9719') },
+];
 ---
 
 <BaseLayout
@@ -129,12 +146,14 @@ const stats = [
   pageKey="pushcorp"
 >
 
-  <!-- 1. Hero -->
+  <!-- 1. Hero — logo in place of visible title; sr-only H1 preserved for a11y/SEO -->
   <PageHero
     kicker={t(locale, 'pushcorp.hero_kicker')}
     title={t(locale, 'pushcorp.hero_title')}
     crumbs={crumbs}
     bgImage={gallerySandingCorners}
+    logoImage={pushcorpLogoWhite}
+    logoAlt="PushCorp"
   />
 
   <!-- 2. Partnership overview -->
@@ -200,6 +219,7 @@ const stats = [
           videoId="7nQCp4MbSaM"
           title={t(locale, 'pushcorp.video_heading')}
           playLabel={t(locale, 'home.video_play_label')}
+          poster={gallerySandingCorners}
         />
       </div>
     </div>
@@ -236,7 +256,7 @@ const stats = [
     </div>
   </section>
 
-  <!-- 3b. PushCorp operations photo gallery -->
+  <!-- 3b. PushCorp operations photo gallery — auto-sliding carousel (7 photos) -->
   <section
     class="py-16 border-b border-line bg-surface"
     aria-labelledby="pushcorp-gallery-heading"
@@ -249,40 +269,11 @@ const stats = [
       >
         {t(locale, 'pushcorp.gallery_heading')}
       </h2>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sys-reveal">
-        <div class="overflow-hidden rounded border border-line group">
-          <Image
-            src={gallerySandingCorners}
-            alt={t(locale, 'pushcorp.gallery_alt_sanding_corners')}
-            width={800}
-            height={600}
-            class="w-full h-56 object-cover object-center motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-105"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-        <div class="overflow-hidden rounded border border-line group">
-          <Image
-            src={gallerySandingGuitar}
-            alt={t(locale, 'pushcorp.gallery_alt_sanding_guitar')}
-            width={800}
-            height={600}
-            class="w-full h-56 object-cover object-center motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-105"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-        <div class="overflow-hidden rounded border border-line group">
-          <Image
-            src={gallerySteelwelds}
-            alt={t(locale, 'pushcorp.gallery_alt_steelwelds')}
-            width={800}
-            height={600}
-            class="w-full h-56 object-cover object-center motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-105"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
+      <div class="sys-reveal">
+        <PushcorpGallery
+          slides={gallerySlides}
+          ariaLabel={t(locale, 'pushcorp.gallery_heading')}
+        />
       </div>
     </div>
   </section>
