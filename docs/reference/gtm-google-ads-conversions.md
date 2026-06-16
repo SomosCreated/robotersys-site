@@ -7,7 +7,7 @@ into Google Ads so **form = primary** and **WhatsApp/phone = secondary (observe)
 
 | Event | When | Params |
 |---|---|---|
-| `generate_lead` | Contact form submitted **and** API confirmed success | `form_variant` (`contato`/`produto`/`carreiras`), `user_data` `{ email, phone_number }` (normalized, UNHASHED — Google hashes) |
+| `generate_lead` | Contact form submitted **and** API confirmed success | `form_variant` (`contato`/`produto`/`carreiras`), `user_data` `{ email, phone_number }` (normalized, UNHASHED — Google hashes in-browser & sends only when `ad_user_data` consent is granted) |
 | `whatsapp_click` | Click on any wa.me / whatsapp link | `source` (`floating_cta` / `link`) |
 | `phone_click` | Click on any `tel:` link | `phone` |
 

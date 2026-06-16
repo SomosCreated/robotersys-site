@@ -17,6 +17,7 @@ describe('extractClickIds', () => {
 describe('readCookie', () => {
   it('reads a named cookie value', () => {
     expect(readCookie('a=1; rs_gclid=xyz; b=2', 'rs_gclid')).toBe('xyz');
+    expect(readCookie('rs_gclid=xyz', 'rs_gclid')).toBe('xyz'); // first/only cookie (no leading "; ")
   });
   it('decodes URI-encoded values', () => {
     expect(readCookie('rs_gclid=a%20b', 'rs_gclid')).toBe('a b');

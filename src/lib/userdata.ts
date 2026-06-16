@@ -22,6 +22,8 @@ export function normalizeEmail(raw: string | null | undefined): string | undefin
 export function normalizePhoneBR(raw: string | null | undefined): string | undefined {
   if (!raw) return undefined;
   const digits = raw.replace(/\D/g, '');
+  // DDD 55 is unallocated in Brazil, so a 12/13-digit number starting with 55 is
+  // treated as already carrying the country code (the form UX is local format).
   if (digits.startsWith('55') && (digits.length === 12 || digits.length === 13)) {
     return '+' + digits;
   }
