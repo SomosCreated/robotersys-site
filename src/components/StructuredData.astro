@@ -15,7 +15,7 @@
  */
 import type { Locale } from '@/i18n/types';
 import { t } from '@/i18n';
-import { LOCALE_HTMLLANG } from '@/i18n/routes';
+import { LOCALE_HTMLLANG, localizedPath } from '@/i18n/routes';
 
 interface Props {
   locale: Locale;
@@ -109,6 +109,17 @@ const organization: Record<string, unknown> = {
   contactPoint,
   sameAs,
   areaServed: AREA_SERVED[locale],
+  // What RoboterSys offers (helps Google + AI understand the service lines).
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: NAME,
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: t(locale, 'nav.services'), url: `${siteBase}${localizedPath('servicos', locale)}`, provider: { '@id': `${siteBase}/#organization` } } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: t(locale, 'nav.parts'),    url: `${siteBase}${localizedPath('pecas', locale)}`,    provider: { '@id': `${siteBase}/#organization` } } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: t(locale, 'nav.systems'),  url: `${siteBase}${localizedPath('sistemas', locale)}`, provider: { '@id': `${siteBase}/#organization` } } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: t(locale, 'nav.pushcorp'), url: `${siteBase}${localizedPath('pushcorp', locale)}`, provider: { '@id': `${siteBase}/#organization` } } },
+    ],
+  },
 };
 
 const website = {

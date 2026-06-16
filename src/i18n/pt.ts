@@ -80,7 +80,7 @@ export default {
   // ── Serviços page ────────────────────────────────────────────────────────────
   servicos: {
     page_title: 'Serviços — RoboterSys',
-    meta_description: 'Serviços especializados em robôs KUKA: instalação, programação, manutenção preventiva e corretiva, reparo de peças, peças de reposição e simulações. Maior especializada independente do Brasil.',
+    meta_description: 'Serviços especializados em robôs KUKA: instalação, programação, manutenção preventiva e corretiva, reparo e peças de reposição. Maior especializada do Brasil.',
     hero_kicker: 'Serviços',
     hero_title: 'Serviços',
     breadcrumb_home: 'Início',
@@ -162,7 +162,7 @@ export default {
   // ── Sistemas Robóticos page ───────────────────────────────────────────────────
   sistemas: {
     page_title: 'Sistemas Robóticos — RoboterSys',
-    meta_description: 'Células robotizadas turn key e semi turn key para paletização, manipulação, rebarbação e retrofit. A RoboterSys projeta e implanta a solução completa para sua indústria.',
+    meta_description: 'Células robotizadas turn key e semi turn key para paletização, manipulação e rebarbação. Projeto e implantação completos para sua indústria.',
     hero_kicker: 'Sistemas Robóticos',
     hero_title: 'Sistemas Robóticos',
     breadcrumb_home: 'Início',
@@ -309,7 +309,7 @@ export default {
   // ── Trabalhe Conosco page ──────────────────────────────────────────────────────
   carreiras: {
     page_title: 'Trabalhe Conosco — RoboterSys',
-    meta_description: 'Faça parte do time RoboterSys. Empresa certificada GPTW quatro anos consecutivos (2022–2025). Cultura de inovação, crescimento e colaboração. Envie seu currículo.',
+    meta_description: 'Faça parte do time RoboterSys. Certificada GPTW por quatro anos (2022–2025). Cultura de inovação, crescimento e colaboração. Envie seu currículo.',
     hero_kicker: 'Trabalhe Conosco',
     hero_title: 'Trabalhe Conosco',
     breadcrumb_home: 'Início',
@@ -507,7 +507,7 @@ export default {
   // ── Célula de Paletização 1 ───────────────────────────────────────────────────
   celulaPaletizacao1: {
     page_title: 'Célula de Paletização 1 — RoboterSys',
-    meta_description: 'Célula robotizada turn key de paletização com robôs KUKA: solução completa, segura e personalizável para máxima produtividade industrial. Dimensões aprox. 5.665 × 5.000 × 2.200 mm.',
+    meta_description: 'Célula robotizada turn key de paletização com robôs KUKA: solução completa, segura e personalizável para máxima produtividade industrial.',
     hero_kicker: 'Sistemas Robóticos',
     hero_title: 'Célula de Paletização 1',
     breadcrumb_home: 'Início',
@@ -591,7 +591,7 @@ export default {
   // ── Células de Manipulação ────────────────────────────────────────────────────
   celulasManipulacao: {
     page_title: 'Células de Manipulação — RoboterSys',
-    meta_description: 'Células robotizadas de manipulação para CNCs, prensas e equipamentos industriais. Automatize o carregamento e descarregamento com robôs KUKA — mais produtividade, mais segurança.',
+    meta_description: 'Células robotizadas de manipulação para CNCs, prensas e equipamentos. Automatize carga e descarga com robôs KUKA — mais produtividade e segurança.',
     hero_kicker: 'Sistemas Robóticos',
     hero_title: 'Células de Manipulação',
     breadcrumb_home: 'Início',

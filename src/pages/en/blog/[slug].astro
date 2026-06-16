@@ -44,6 +44,8 @@ const jsonLd = {
   headline: entry.data.title,
   description: entry.data.seoDescription ?? entry.data.excerpt,
   datePublished: entry.data.publishedAt.toISOString().slice(0, 10),
+  dateModified: (entry.data.updatedAt ?? entry.data.publishedAt).toISOString().slice(0, 10),
+  ...(entry.data.coverImage ? { image: new URL(entry.data.coverImage.src, siteBase).href } : {}),
   author: { '@type': 'Person', name: entry.data.author },
   publisher: {
     '@type': 'Organization',
