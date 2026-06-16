@@ -409,10 +409,19 @@ const messagePlaceholder = isCarreiras
             '✓ Mensagem enviada! Em breve nossa equipe entrará em contato.',
             'success',
           );
-          // Measurement: lead generated (no-op-safe; GTM picks it up if loaded).
+          // Measurement: signal a confirmed lead with the user's email/phone so
+          // the bundled lead.ts builds Enhanced-Conversions user_data and pushes
+          // generate_lead. Read field values BEFORE form.reset().
           try {
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({ event: 'generate_lead', form_variant: variant });
+            const emailEl = document.getElementById(`email-${formId}`);
+            const phoneEl = document.getElementById(`whatsapp-${formId}`);
+            document.dispatchEvent(new CustomEvent('rs:lead', {
+              detail: {
+                variant,
+                email: emailEl ? emailEl.value : '',
+                phone: phoneEl ? phoneEl.value : '',
+              },
+            }));
           } catch (err) { /* never block UX on tracking */ }
           form.reset();
         } else {
@@ -431,4 +440,9 @@ const messagePlaceholder = isCarreiras
       }
     });
   }
+</script>
+
+<script>
+  // Bundled (module) — registers the rs:lead -> generate_lead bridge once per page.
+  import '@/scripts/lead.ts';
 </script>
