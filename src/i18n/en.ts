@@ -81,7 +81,7 @@ export default {
   // ── Services page ─────────────────────────────────────────────────────────────
   servicos: {
     page_title: 'Services — RoboterSys',
-    meta_description: 'Specialized KUKA robot services: installation, programming, preventive and corrective maintenance, component repair, spare parts, and simulations. Leading independent KUKA specialist.',
+    meta_description: 'Specialized KUKA robot services: installation, programming, preventive and corrective maintenance, repair and parts. The leading KUKA specialist in Brazil.',
     hero_kicker: 'Services',
     hero_title: 'Services',
     breadcrumb_home: 'Home',
@@ -163,7 +163,7 @@ export default {
   // ── Robotic Systems page ──────────────────────────────────────────────────────
   sistemas: {
     page_title: 'Robotic Systems — RoboterSys',
-    meta_description: 'Turn-key and semi-turn-key robotic cells for palletizing, material handling, deburring, and retrofit. RoboterSys designs and deploys complete solutions for your industry.',
+    meta_description: 'Turn-key and semi-turn-key robotic cells for palletizing, handling and deburring. RoboterSys designs and deploys the complete solution for your industry.',
     hero_kicker: 'Robotic Systems',
     hero_title: 'Robotic Systems',
     breadcrumb_home: 'Home',
@@ -505,7 +505,7 @@ export default {
   // ── Palletizing Cell 1 ───────────────────────────────────────────────────────
   celulaPaletizacao1: {
     page_title: 'Palletizing Cell 1 — RoboterSys',
-    meta_description: 'Turn-key robotic palletizing cell with KUKA robots: a complete, safe, and customizable solution for maximum industrial productivity. Approx. dimensions 5,665 × 5,000 × 2,200 mm.',
+    meta_description: 'Turn-key robotic palletizing cell with KUKA robots: a complete, safe and customizable solution for maximum industrial productivity.',
     hero_kicker: 'Robotic Systems',
     hero_title: 'Palletizing Cell 1',
     breadcrumb_home: 'Home',

@@ -81,7 +81,7 @@ export default {
   // ── Leistungen-Seite ─────────────────────────────────────────────────────────
   servicos: {
     page_title: 'Leistungen — RoboterSys',
-    meta_description: 'Spezialisierte KUKA-Roboter-Services: Installation, Programmierung, vorbeugende und korrektive Instandhaltung, Komponentenreparatur, Ersatzteile und Simulationen.',
+    meta_description: 'Spezialisierte KUKA-Roboter-Services: Installation, Programmierung, vorbeugende/korrektive Wartung, Komponentenreparatur und Ersatzteile.',
     hero_kicker: 'Leistungen',
     hero_title: 'Leistungen',
     breadcrumb_home: 'Startseite',
@@ -163,7 +163,7 @@ export default {
   // ── Robotersysteme-Seite ──────────────────────────────────────────────────────
   sistemas: {
     page_title: 'Robotersysteme — RoboterSys',
-    meta_description: 'Schlüsselfertige und semi-schlüsselfertige Roboterzellen für Palettierung, Handling, Entgraten und Retrofit. RoboterSys entwickelt und implementiert die Komplettlösung für Ihre Industrie.',
+    meta_description: 'Schlüsselfertige und semi-schlüsselfertige Roboterzellen für Palettierung, Handling und Entgraten. RoboterSys liefert die Komplettlösung für Ihre Industrie.',
     hero_kicker: 'Robotersysteme',
     hero_title: 'Robotersysteme',
     breadcrumb_home: 'Startseite',
@@ -204,7 +204,7 @@ export default {
   // ── PushCorp-Seite ────────────────────────────────────────────────────────────
   pushcorp: {
     page_title: 'PushCorp-Lösungen — RoboterSys',
-    meta_description: 'RoboterSys ist autorisierter PushCorp-Integrationspartner — weltweiter Marktführer für robotergestützte Materialentfernung, Entgraten und Oberflächenbearbeitung seit 1993.',
+    meta_description: 'RoboterSys ist PushCorp-Integrationspartner — weltweiter Marktführer für robotergestützte Materialentfernung, Entgraten und Finishing seit 1993.',
     hero_kicker: 'PushCorp · Integrationspartner',
     hero_title: 'PushCorp-Lösungen',
     breadcrumb_home: 'Startseite',
@@ -310,7 +310,7 @@ export default {
   // ── Karriere-Seite ────────────────────────────────────────────────────────────
   carreiras: {
     page_title: 'Karriere — RoboterSys',
-    meta_description: 'Werden Sie Teil des RoboterSys-Teams. GPTW-zertifiziertes Unternehmen vier Jahre in Folge (2022–2025). Kultur der Innovation, des Wachstums und der Zusammenarbeit. Bewerben Sie sich jetzt.',
+    meta_description: 'Werden Sie Teil des RoboterSys-Teams. GPTW-zertifiziert (2022–2025). Kultur aus Innovation, Wachstum und Zusammenarbeit. Bewerben Sie sich jetzt.',
     hero_kicker: 'Karriere',
     hero_title: 'Karriere',
     breadcrumb_home: 'Startseite',
@@ -510,7 +510,7 @@ export default {
   // REVISÃO: Machine-translated — professional native review required before go-live.
   celulaPaletizacao1: {
     page_title: 'Palettierzelle 1 — RoboterSys', // REVISÃO
-    meta_description: 'Schlüsselfertige robotergestützte Palettierzelle mit KUKA-Robotern: vollständige, sichere und anpassbare Lösung für maximale Industrieproduktivität. Ca. Abmessungen 5.665 × 5.000 × 2.200 mm.', // REVISÃO
+    meta_description: 'Schlüsselfertige Palettierzelle mit KUKA-Robotern: vollständige, sichere und anpassbare Lösung für maximale Industrieproduktivität.', // REVISÃO
     hero_kicker: 'Robotersysteme', // REVISÃO
     hero_title: 'Palettierzelle 1', // REVISÃO
     breadcrumb_home: 'Startseite', // REVISÃO
@@ -596,7 +596,7 @@ export default {
   // REVISÃO: Machine-translated — professional native review required before go-live.
   celulasManipulacao: {
     page_title: 'Handhabungszellen — RoboterSys', // REVISÃO
-    meta_description: 'Robotergestützte Handhabungszellen für CNC-Maschinen, Pressen und Industrieanlagen. Automatisieren Sie Be- und Entladevorgänge mit KUKA-Robotern — mehr Produktivität, mehr Sicherheit.', // REVISÃO
+    meta_description: 'Robotergestützte Handhabungszellen für CNC, Pressen und Anlagen. Automatisieren Sie Be- und Entladung mit KUKA-Robotern — mehr Produktivität und Sicherheit.', // REVISÃO
     hero_kicker: 'Robotersysteme', // REVISÃO
     hero_title: 'Handhabungszellen', // REVISÃO
     breadcrumb_home: 'Startseite', // REVISÃO
