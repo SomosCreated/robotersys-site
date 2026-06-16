@@ -1,0 +1,71 @@
+---
+title: 'Masterização de Robôs KUKA: O Que É e Quando Refazer'
+excerpt: 'A masterização define a posição de referência de cada eixo do robô KUKA. Entenda o que é, quando ela se perde e por que é essencial para precisão e segurança.'
+language: 'pt'
+category: 'Manutenção'
+author: 'Equipe RoboterSys'
+publishedAt: 2026-06-16
+draft: false
+seoDescription: 'Masterização de robôs KUKA: o que é, quando refazer (após colisão, troca de motor ou perda de bateria) e como o EMD garante precisão e segurança da célula.'
+---
+
+A **masterização de robôs KUKA** (mastering) é um procedimento muitas vezes invisível no dia a dia — até o momento em que ela se perde e o robô simplesmente **deixa de saber onde está**. Entender o que é a masterização e quando ela precisa ser refeita evita erros de posição, retrabalho e riscos de segurança.
+
+Neste artigo, a **RoboterSys** explica de forma direta o que é a masterização, por que ela é tão importante e em quais situações deve ser refeita.
+
+## O que é a masterização
+
+Cada eixo do robô tem um sensor de posição (encoder ou resolver). A masterização é o procedimento que **alinha a posição eletrônica desse sensor com a posição mecânica real** do eixo, definindo o ponto de referência (a posição “zero”).
+
+É a partir dessa referência que o robô calcula todas as posições dos programas. Sem ela correta, **o ponto central da ferramenta (TCP) deixa de corresponder à realidade** — e a precisão e a repetibilidade ficam comprometidas.
+
+## Por que a masterização é tão importante
+
+- **Precisão e repetibilidade:** todo programa depende da referência de cada eixo
+- **Segurança:** um robô sem masterização correta pode se mover para posições inesperadas
+- **Qualidade:** desvios de posição geram refugo, retrabalho e colisões com dispositivos
+
+Em resumo: a masterização é a base sobre a qual todo o resto da célula robotizada funciona.
+
+## Quando a masterização precisa ser refeita
+
+A masterização deve ser refeita sempre que a referência de um ou mais eixos for perdida ou alterada. As situações mais comuns são:
+
+- Após uma **colisão** ou impacto no robô
+- Após a **troca de motor, redutor ou da placa RDC**
+- Após **perda de dados por bateria descarregada** (veja [troca de bateria KUKA](/blog/troca-de-bateria-robos-kuka/))
+- Quando aparece uma mensagem de **mastering perdido** (veja [códigos de erro KUKA](/blog/codigos-de-erro-kuka/))
+- Após desmontagem mecânica de um eixo
+
+## Como a masterização é feita
+
+O método padrão da KUKA utiliza o **EMD (Electronic Mastering Device)**, um dispositivo que se conecta a cada eixo e detecta com precisão o ponto de referência (a “entalha” de masterização). Em equipamentos mais antigos, podia-se usar o **relógio comparador** (dial gauge), método manual e menos preciso.
+
+O procedimento é feito **eixo a eixo**, em uma posição mecânica definida, e exige técnico habilitado — uma masterização malfeita gera desvios sutis que só aparecem na qualidade da peça.
+
+## Sinais de que a masterização foi perdida
+
+- Mensagem de erro relacionada a mastering no SmartPad
+- Robô que vai para uma posição visivelmente errada ao rodar um programa
+- Perda de precisão repentina, mesmo sem alteração no programa
+- Alarmes após queda de energia com bateria fraca
+
+## Conclusão
+
+A **masterização de robôs KUKA** é o que garante que o robô conheça a posição real de cada eixo. Refazê-la corretamente após colisões, trocas de componentes ou perda de bateria é essencial para manter precisão, qualidade e segurança na célula robotizada.
+
+A **RoboterSys** realiza masterização em campo com EMD, como parte dos serviços de manutenção de robôs KUKA em todo o Brasil. **Fale com a RoboterSys** se o seu robô perdeu a referência ou apresentou erro de mastering.
+
+## Perguntas Frequentes (FAQ)
+
+**O robô KUKA pode operar sem masterização?**
+Não com segurança. Sem a referência correta, o robô não conhece a posição real dos eixos e pode se mover de forma inesperada. Ele deve ser remasterizado antes de rodar programas.
+
+**Toda colisão exige refazer a masterização?**
+Colisões com impacto significativo podem deslocar a referência e exigem verificação. Nem todo toque leve altera a masterização, mas a checagem é recomendada.
+
+**Qual a diferença entre masterização com EMD e com relógio comparador?**
+O EMD é o método eletrônico padrão da KUKA, mais preciso e rápido. O relógio comparador é manual, mais antigo e sujeito a maior variação.
+
+**A RoboterSys faz masterização em campo?**
+Sim. Realizamos a masterização com EMD no local, normalmente integrada a um atendimento de manutenção ou após a troca de componentes.

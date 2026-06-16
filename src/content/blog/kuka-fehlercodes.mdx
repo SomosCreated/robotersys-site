@@ -1,0 +1,89 @@
+---
+title: 'KUKA Fehlercodes: Die häufigsten und wie man sie deutet'
+excerpt: 'Verstehen Sie die häufigsten KUKA Fehlercodes — wie KSS15005 und den Überstrom A1–A6 —, was jeder bedeutet und welche Prüfungen vor dem Anruf beim Support sinnvoll sind.'
+language: 'de'
+category: 'Wartung'
+author: 'RoboterSys Team'
+publishedAt: 2026-06-16
+draft: false
+seoDescription: 'Leitfaden zu den häufigsten KUKA Fehlercodes (KSS15005, Überstrom A1–A6, KPP/KSP-Fehler): Bedeutung, erste Prüfungen und wann man den Support ruft.'
+---
+
+**KUKA Fehlercodes** sind die Art und Weise, wie der Roboter meldet, dass etwas nicht wie erwartet läuft — von einer einfachen Meldung bis zu einer Störung, die die Produktion stoppt. Diese **Meldungen richtig zu deuten** ist der erste Schritt, um Stillstandszeiten zu verringern und falsche Eingriffe zu vermeiden, die das Problem oft verschlimmern.
+
+In diesem Leitfaden fasst **RoboterSys** die häufigsten Fehlercodes und Meldungen bei KUKA Robotern zusammen, was jeder davon in der Regel anzeigt und welche ersten Prüfungen Ihr Team durchführen kann, bevor es den spezialisierten technischen Support hinzuzieht.
+
+## Wie KUKA Roboter Fehler anzeigen
+
+Die Meldungen werden von der **KSS (KUKA System Software)** erzeugt und erscheinen im Meldungsfenster des **SmartPad**. Jede Meldung hat eine **Nummer** und eine **Beschreibung** und kann von unterschiedlichem Typ sein: Quittierung, Zustand, Hinweis, Warten oder Dialog.
+
+Eine bewährte Vorgehensweise gilt für jede Störung: **Notieren Sie die genaue Meldungsnummer** und lesen Sie den Verlauf im Log, bevor Sie sie einfach quittieren (acknowledge). Eine Störung zu quittieren, ohne die Ursache zu verstehen, verdeckt nur das Symptom — und das Problem kehrt meist zurück.
+
+## Die häufigsten KUKA Fehlercodes und Meldungen
+
+| Meldung / Code | Was es in der Regel anzeigt | Erste Prüfung |
+| --- | --- | --- |
+| `KSS15005` | Pufferbatterie schwach oder entladen | Wechsel der Steuerungsbatterien einplanen |
+| Überstrom `A1`–`A6` (Over Current) | Zu hoher Strom im Antrieb einer Achse | Mechanische Blockade, Bremse nicht gelüftet, Motor oder Kabel |
+| `KPP` / `KSP`-Fehler | Fehler im Leistungs- oder Servomodul (KR C4) | Diagnose des Antriebs — erfordert in der Regel einen Techniker |
+| Mastering / Referenz verloren | Referenzposition der Achse verloren | Mastering mit dem EMD erneut durchführen |
+| Kommunikationsfehler (EtherCAT / Antriebsbus) | Kommunikationsverlust am Bus | Verbindungen, Kabel und die RDC-Karte |
+
+## Batteriefehler und Datenverlust
+
+`KSS15005` und ähnliche Meldungen weisen auf die **Pufferbatterien der Steuerung** hin, die ein kontrolliertes Herunterfahren bei einem Stromausfall sicherstellen. Sind sie schwach, besteht neben dem Alarm das **Risiko eines Datenverlusts** und sogar des Verlusts des Roboter-Masterings.
+
+Die Lösung ist vorbeugend: die Batterien innerhalb des empfohlenen Intervalls wechseln. So geht es unter Batteriewechsel bei KUKA Robotern.
+
+## Überstrom in den Achsen (A1–A6 / Over Current)
+
+Ein Überstrom an einer Achse (`A1` bis `A6`) bedeutet, dass der Antrieb mehr Strom gezogen hat als erwartet. Die häufigsten Ursachen sind:
+
+- Eine mechanische Blockade oder Schwergängigkeit an der Achse
+- Eine Bremse, die nicht korrekt lüftet
+- Ein Defekt am Motor, am Leistungskabel oder am Encoder
+- Ein Fehler im Antriebsmodul selbst
+
+Es ist nicht immer ein Motordefekt — deshalb steht die mechanische Prüfung vor jedem Austausch eines Teils.
+
+## Antriebsfehler (KPP und KSP)
+
+Bei den **KR C4**-Steuerungen sind der `KPP` (KUKA Power Pack) und der `KSP` (KUKA Servo Pack) die Leistungs- und Servomodule. Fehler an diesen Komponenten sind in der Regel **kritisch** und erfordern eine fachkundige Diagnose, da sie mit Hochspannung und dem Risiko von Folgeschäden verbunden sind. Wir empfehlen keinen Eingriff ohne qualifizierten Techniker.
+
+## Verlust des Masterings
+
+Meldungen über **verlorenes Mastering** treten normalerweise nach einem Stromausfall bei schwacher Batterie, einer Kollision oder dem Wechsel von Motor, Getriebe oder RDC auf. Ohne die korrekte Referenz **kennt der Roboter die tatsächliche Position der Achsen nicht** und sollte keine Programme ausführen, bis er neu gemastert wurde. Das Verfahren erklären wir unter Mastering von KUKA Robotern.
+
+## Wie man vor dem Anruf beim Support diagnostiziert
+
+- Notieren Sie die Meldungsnummer und den Kontext, in dem sie auftrat
+- Sehen Sie den Verlauf im Meldungs-Log des SmartPad ein
+- Nutzen Sie **WorkVisual**, um detailliertere Logs zu analysieren
+- Prüfen Sie kürzliche Änderungen: Wartung, Kollision, Stromausfall, Update
+- Quittieren Sie dieselbe Störung nicht wiederholt, ohne die eigentliche Ursache zu verstehen
+
+## Wann man den spezialisierten Support hinzuzieht
+
+Manche Situationen erfordern so früh wie möglich einen Spezialisten: **Antriebsfehler (KPP/KSP)**, **Fehler in den Sicherheitskreisen**, **wiederkehrender Verlust des Masterings** und **Überstrom, der zurückkehrt**, selbst nach der Prüfung. In diesen Fällen erhöht jeder Versuch, "das Symptom zu überdecken", das Risiko und die Kosten.
+
+**RoboterSys** bietet [24-Stunden-Fernwartung für KUKA Roboter](/de/blog/fernwartung-kuka-roboter/), mit Ferndiagnose von Störungen, um die Stillstandszeit überall in Brasilien zu verringern.
+
+## Fazit
+
+Die richtige Deutung der **KUKA Fehlercodes** verhindert lange Stillstände und falsche Eingriffe. Die Meldung zu notieren, das Log zu lesen und die Ursache zu verstehen, bevor man handelt, ist das, was eine dauerhafte Behebung von einem Problem unterscheidet, das jede Woche wiederkehrt.
+
+Wenn die Störung anhält oder Antriebe und Sicherheit betrifft, **sprechen Sie mit RoboterSys** — wir sind Spezialisten für KUKA Roboter und arbeiten mit Wartung, Fernwartung und Ersatzteilen.
+
+## Häufige Fragen (FAQ)
+
+**Was bedeutet der Fehler KSS15005 bei KUKA Robotern?**
+Er zeigt an, dass die Pufferbatterien der Steuerung schwach oder entladen sind. Am besten plant man den Wechsel ein, bevor das Risiko eines Datenverlusts oder des Verlusts des Masterings besteht.
+
+**Kann ich den Fehler einfach quittieren (acknowledge) und weiterproduzieren?**
+Das ist nicht zu empfehlen. Ein Quittieren ohne Verständnis der Ursache verdeckt das Symptom; Antriebs-, Sicherheits- oder Mastering-Fehler erfordern eine Diagnose, bevor der Betrieb fortgesetzt wird.
+
+**Zeigt der Überstrom A1–A6 immer einen Motordefekt an?**
+Nein. Häufig ist die Ursache mechanisch (eine Blockade, eine Bremse, die nicht lüftet) oder ein Kabel. Die mechanische Prüfung steht vor jedem Austausch eines Teils.
+
+**Führt RoboterSys eine Ferndiagnose von KUKA Fehlern durch?**
+Ja. Mit spezialisierter Fernwartung können wir Alarme und Logs aus der Ferne analysieren und die Behebung anleiten, was die Stillstandszeit verringert.

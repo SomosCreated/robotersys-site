@@ -1,0 +1,67 @@
+---
+title: 'Troca de Bateria em Robôs KUKA (KRC2/KRC4): Quando e Como Fazer'
+excerpt: 'As baterias do controlador KUKA garantem o desligamento seguro e preservam dados como a masterização. Veja quando trocá-las, os sinais de alerta e os cuidados.'
+language: 'pt'
+category: 'Manutenção'
+author: 'Equipe RoboterSys'
+publishedAt: 2026-06-16
+draft: false
+seoDescription: 'Troca de bateria em robôs KUKA (KRC2/KRC4): para que servem, sinais de bateria fraca (KSS15005), intervalo de troca e cuidados para evitar perda de dados.'
+---
+
+A **troca de bateria em robôs KUKA** é um dos itens de manutenção mais simples — e, ao mesmo tempo, um dos mais negligenciados. As baterias do controlador são responsáveis por **desligar o sistema de forma segura** em uma queda de energia e por **preservar dados críticos**, como a masterização do robô. Quando falham, o que era um item barato vira risco de parada e perda de configuração.
+
+Neste artigo, a **RoboterSys** explica para que servem essas baterias, quando trocá-las e quais cuidados tomar em controladores **KRC2** e **KRC4**.
+
+## Para que servem as baterias do controlador KUKA
+
+Diferente do que muita gente imagina, essas baterias **não movimentam o robô**. A função delas é dar autonomia ao controlador no momento de uma falta de energia, permitindo um **desligamento controlado** do sistema. Sem essa reserva, o desligamento abrupto pode corromper dados e, em alguns casos, levar à **perda da masterização**.
+
+Por isso, manter as baterias em bom estado é parte essencial de qualquer plano de [manutenção preventiva em robôs KUKA](/blog/manutencao-preventiva-robos-kuka/).
+
+## Sinais de que a bateria precisa ser trocada
+
+- Mensagem de bateria fraca no SmartPad, como o `KSS15005`
+- Alarme de “verificar acumulador” (check accumulator) após uma queda de energia
+- Perda de data/hora ou de configurações após desligamentos
+- Robô que perde a referência (masterização) sem causa mecânica aparente
+
+Qualquer um desses sinais indica que a troca deve ser **programada o quanto antes**, antes que haja perda de dados.
+
+## Onde ficam e quais baterias são usadas
+
+As baterias ficam **dentro do armário do controlador** — a posição varia conforme a geração (em alguns modelos, na parte interna da porta; em outros, na região inferior, sob o duto de ar). Tipicamente são **duas baterias seladas de 12 V** (chumbo-ácido, tipo SLA), ligadas em série.
+
+> O tipo e a capacidade exatos dependem do modelo do controlador. Use sempre baterias com a especificação correta — capacidade ou terminais errados comprometem o desligamento seguro.
+
+## Cuidados na troca
+
+- A intervenção é feita **dentro do controlador**: deve ser realizada por **pessoal qualificado**, com o equipamento desenergizado conforme o procedimento
+- Substitua o **par completo** de baterias, não apenas uma
+- Após a instalação, **deixe o controlador ligado por 12 a 24 horas** para a carga completa antes de novos desligamentos
+- Confirme a mensagem de **“verificar acumulador”** quando ela aparecer após a troca
+- Descarte as baterias usadas conforme a legislação ambiental
+
+## Com que frequência trocar
+
+Como item consumível, a recomendação geral é a **troca preventiva a cada 2 a 3 anos**, ajustando conforme o ambiente (calor e operação contínua reduzem a vida útil) e o histórico do equipamento. O melhor momento para fazer isso é **durante a manutenção preventiva**, aproveitando a parada programada.
+
+## Conclusão
+
+A **troca de bateria em robôs KUKA** custa pouco perto do prejuízo de uma parada não planejada ou de uma masterização perdida. Tratá-la como item de rotina — e não como emergência — é a forma mais barata de evitar dor de cabeça.
+
+A **RoboterSys** inclui a verificação e a troca das baterias nos planos de manutenção preventiva de robôs KUKA, com peças de especificação correta e atendimento em todo o Brasil. Se aparecer um alarme de bateria, veja também o nosso guia de [códigos de erro KUKA](/blog/codigos-de-erro-kuka/).
+
+## Perguntas Frequentes (FAQ)
+
+**A bateria do robô KUKA descarregada pode apagar a programação?**
+A programação costuma ficar preservada, mas o risco maior é a **perda da masterização** e de configurações durante um desligamento sem energia de buffer. Por isso a troca preventiva é importante.
+
+**De quanto em quanto tempo devo trocar as baterias do controlador?**
+Em geral a cada 2 a 3 anos, ou imediatamente ao surgir um alarme de bateria fraca. Ambientes quentes e operação contínua encurtam esse prazo.
+
+**Posso trocar apenas uma das baterias?**
+Não. As baterias trabalham em conjunto; troque sempre o par completo, com a mesma especificação.
+
+**Preciso recalibrar o robô depois de trocar a bateria?**
+Se a masterização não foi perdida, não. Caso o robô tenha perdido a referência, será necessário [refazer a masterização](/blog/masterizacao-robos-kuka/).

@@ -1,0 +1,89 @@
+---
+title: 'Códigos de Error KUKA: Los Más Comunes y Cómo Interpretarlos'
+excerpt: 'Conoce los códigos de error KUKA más comunes —como KSS15005 y la sobrecorriente A1–A6—, qué indica cada uno y las primeras verificaciones antes de llamar al soporte.'
+language: 'es'
+category: 'Mantenimiento'
+author: 'Equipo RoboterSys'
+publishedAt: 2026-06-16
+draft: false
+seoDescription: 'Códigos de error KUKA más comunes (KSS15005, sobrecorriente A1–A6, fallos KPP/KSP): qué significan, primeras verificaciones y cuándo llamar al soporte.'
+---
+
+Los **códigos de error KUKA** son la forma en que el robot avisa de que algo no funciona como debería — desde una simple notificación hasta un fallo que detiene la producción. Saber **interpretar estos mensajes** es el primer paso para reducir el tiempo de parada y evitar intervenciones equivocadas, que muchas veces agravan el problema.
+
+En esta guía, **RoboterSys** reúne los códigos y mensajes de error más comunes en robots KUKA, qué suele indicar cada uno y cuáles son las primeras verificaciones que tu equipo puede realizar antes de llamar al soporte técnico especializado.
+
+## Cómo muestran los errores los robots KUKA
+
+Los mensajes los genera el **KSS (KUKA System Software)** y aparecen en la ventana de mensajes del **SmartPad**. Cada mensaje tiene un **número** y una **descripción**, y puede ser de distintos tipos: confirmación, estado, notificación, espera o diálogo.
+
+Una buena práctica vale para cualquier fallo: **anota el número exacto del mensaje** y lee el historial en el log antes de simplemente confirmarlo (acknowledge). Confirmar un fallo sin entender la causa solo oculta el síntoma — y el problema tiende a volver.
+
+## Códigos y mensajes de error KUKA más comunes
+
+| Mensaje / Código | Qué suele indicar | Primera verificación |
+| --- | --- | --- |
+| `KSS15005` | Batería tampón débil o descargada | Programar el cambio de las baterías del controlador |
+| Sobrecorriente `A1`–`A6` (Over Current) | Corriente excesiva en el accionamiento de un eje | Bloqueo mecánico, freno sin liberar, motor o cable |
+| Fallo `KPP` / `KSP` | Fallo en el módulo de potencia o servo (KR C4) | Diagnóstico del accionamiento — suele requerir técnico |
+| Mastering / referencia perdida | Posición de referencia del eje perdida | Rehacer la masterización con el EMD |
+| Fallo de comunicación (EtherCAT / bus de accionamientos) | Pérdida de comunicación en el bus | Conexiones, cables y la placa RDC |
+
+## Errores de batería y pérdida de datos
+
+El `KSS15005` y los mensajes similares apuntan a las **baterías tampón del controlador**, encargadas de garantizar un apagado controlado en caso de corte de energía. Cuando están débiles, además de la alarma, existe **riesgo de pérdida de datos** e incluso de la masterización del robot.
+
+La solución es preventiva: cambiar las baterías dentro del intervalo recomendado. Mira cómo en Cambio de batería en robots KUKA.
+
+## Sobrecorriente en los ejes (A1–A6 / Over Current)
+
+La sobrecorriente en un eje (`A1` a `A6`) indica que el accionamiento ha demandado más corriente de la esperada. Las causas más frecuentes son:
+
+- Bloqueo o resistencia mecánica en el eje
+- Freno que no se libera correctamente
+- Defecto en el motor, en el cable de potencia o en el encoder
+- Fallo en el propio módulo de accionamiento
+
+No siempre es un defecto del motor — por eso la verificación mecánica va antes de cualquier cambio de pieza.
+
+## Fallos de accionamiento (KPP y KSP)
+
+En los controladores **KR C4**, el `KPP` (KUKA Power Pack) y el `KSP` (KUKA Servo Pack) son los módulos de potencia y servo. Los fallos en estos componentes suelen ser **críticos** y exigen un diagnóstico especializado, ya que implican alta tensión y riesgo de daños en cascada. No recomendamos ninguna intervención sin un técnico cualificado.
+
+## Pérdida de masterización
+
+Los mensajes de **mastering perdido** suelen aparecer tras un corte de energía con la batería débil, una colisión, o el cambio de motor, reductor o RDC. Sin la referencia correcta, el robot **no conoce la posición real de los ejes** y no debe ejecutar programas hasta que se vuelva a masterizar. Conoce el procedimiento en Masterización de robots KUKA.
+
+## Cómo diagnosticar antes de llamar al soporte
+
+- Anota el número del mensaje y el contexto en que apareció
+- Consulta el historial en el log de mensajes del SmartPad
+- Usa **WorkVisual** para analizar logs más detallados
+- Revisa los cambios recientes: mantenimiento, colisión, corte de energía, actualización
+- No confirmes repetidamente el mismo fallo sin entender la causa raíz
+
+## Cuándo llamar al soporte especializado
+
+Algunas situaciones requieren un especialista cuanto antes: **fallos de accionamiento (KPP/KSP)**, **fallos en los circuitos de seguridad**, **pérdida de masterización recurrente** y **sobrecorriente que vuelve** incluso tras la verificación. En estos casos, cada intento de "tapar el síntoma" aumenta el riesgo y el coste.
+
+**RoboterSys** ofrece [soporte remoto 24h para robots KUKA](/es/blog/soporte-remoto-robots-kuka/), con diagnóstico de fallos a distancia para reducir el tiempo de parada en cualquier lugar de Brasil.
+
+## Conclusión
+
+Interpretar correctamente los **códigos de error KUKA** evita paradas largas e intervenciones equivocadas. Anotar el mensaje, leer el log y entender la causa antes de actuar es lo que separa una corrección definitiva de un problema que vuelve cada semana.
+
+Si el fallo persiste o implica accionamientos y seguridad, **habla con RoboterSys** — somos especialistas en robots KUKA y trabajamos con mantenimiento, soporte remoto y repuestos.
+
+## Preguntas Frecuentes (FAQ)
+
+**¿Qué significa el error KSS15005 en robots KUKA?**
+Indica que las baterías tampón del controlador están débiles o descargadas. Lo ideal es programar el cambio antes de que haya riesgo de pérdida de datos o de masterización.
+
+**¿Puedo simplemente confirmar (acknowledge) el error y seguir produciendo?**
+No es recomendable. Confirmar sin entender la causa oculta el síntoma; los fallos de accionamiento, seguridad o masterización exigen un diagnóstico antes de reanudar la operación.
+
+**¿La sobrecorriente A1–A6 siempre indica un defecto en el motor?**
+No. Muchas veces la causa es mecánica (un bloqueo, un freno que no libera) o de cable. La verificación mecánica va antes de cualquier sustitución de pieza.
+
+**¿RoboterSys realiza diagnóstico remoto de errores KUKA?**
+Sí. Con soporte remoto especializado podemos analizar alarmas y logs a distancia y orientar la corrección, reduciendo el tiempo de parada.
