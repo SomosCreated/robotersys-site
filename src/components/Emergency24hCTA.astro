@@ -9,8 +9,8 @@
  * WhatsApp button). The QR is hidden on mobile and for non-PT locales; the texts
  * then span the full width.
  *
- * WhatsApp button links to https://wa.me/55XXXXXXXXXXX — PLACEHOLDER number.
- * Replace XXXXXXXXXXX with the real WhatsApp number before going live.
+ * WhatsApp button + QR link to the RoboterSys 24h support WhatsApp GROUP
+ * (chat.whatsapp.com invite).
  *
  * Accessibility: role="region" + aria-label, motion behind prefers-reduced-motion.
  */
@@ -88,14 +88,14 @@ const showQr = locale === 'pt';
           -->
           <div class="hidden md:flex flex-col items-center gap-3 order-1">
             <a
-              href="https://wa.me/55XXXXXXXXXXX"
+              href="https://chat.whatsapp.com/FyPvBjF3HAPF4aPrToRnxh"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Aponte a câmera para falar no WhatsApp — abre em nova aba"
+              aria-label="Aponte a câmera para entrar no grupo de suporte 24h no WhatsApp — abre em nova aba"
               class="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
             >
               <img
-                src="/robotersys/img/whatsapp-qr.webp"
+                src="/robotersys/img/whatsapp-qr.png"
                 alt="QR Code — Suporte 24h RoboterSys no WhatsApp"
                 width="200"
                 height="200"
@@ -131,7 +131,7 @@ const showQr = locale === 'pt';
 
           <!-- WhatsApp CTA button -->
           <a
-            href="https://wa.me/55XXXXXXXXXXX"
+            href="https://chat.whatsapp.com/FyPvBjF3HAPF4aPrToRnxh"
             target="_blank"
             rel="noopener noreferrer"
             class="group inline-flex items-center gap-3 bg-green-600 hover:bg-green-500 text-white text-xs font-mono uppercase tracking-widest px-8 py-4 transition-all shadow-[0_0_20px_rgba(34,197,94,0.25)] hover:shadow-[0_0_40px_rgba(34,197,94,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-surface"

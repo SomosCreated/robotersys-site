@@ -30,7 +30,7 @@ export function pushEvent(event: string, params?: Record<string, unknown>): void
  * pages/components. Idempotent — guarded so repeated imports attach once.
  *
  *   - phone_click    → any  a[href^="tel:"]
- *   - whatsapp_click → any  wa.me / api.whatsapp.com link (covers contact-page
+ *   - whatsapp_click → any  wa.me / chat.whatsapp.com / api.whatsapp.com link (covers contact-page
  *                      links in addition to the FloatingWhatsApp component, which
  *                      also fires its own push for redundancy/clarity).
  */
@@ -53,7 +53,7 @@ export function initGlobalTracking(): void {
         return;
       }
 
-      if (/(?:wa\.me|api\.whatsapp\.com|web\.whatsapp\.com)/i.test(href)) {
+      if (/(?:wa\.me|chat\.whatsapp\.com|api\.whatsapp\.com|web\.whatsapp\.com)/i.test(href)) {
         // The floating CTA fires its own richer whatsapp_click (source:floating_cta)
         // in floating-whatsapp.ts; skip it here to avoid a duplicate event.
         if (link.id === 'floating-whatsapp') return;
