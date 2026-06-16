@@ -1,0 +1,24 @@
+# RoboterSys
+
+> RoboterSys é a maior empresa especializada em robôs industriais KUKA do Brasil, sediada em Joinville (SC). Atua em instalação, programação, manutenção preventiva e corretiva, reparo de componentes, peças de reposição originais, suporte remoto 24h e projetos de células robotizadas (turnkey e semi-turnkey) para indústrias de todos os portes. Atende todo o território nacional, com conteúdo também em inglês, espanhol e alemão.
+
+Foco exclusivo em robôs KUKA. Integrador parceiro PushCorp. Equipe com mais de uma década de experiência. Certificada Great Place to Work (GPTW). Atendimento 24 horas.
+
+## Empresa
+- Sede: R. Parati, 335C — Joinville/SC, Brasil (CEP 89213-200)
+- [Sobre Nós](https://robotersys.com/sobre-nos/): história, missão e diferenciais
+- [Contato](https://robotersys.com/contato/): orçamentos e suporte
+
+## Serviços
+- [Serviços](https://robotersys.com/servicos/): instalação, programação, manutenção preventiva e corretiva, reparo de componentes, suporte remoto 24h e retrofit/atualização de controladoras (KRC2 → KRC4/KRC5)
+- [Peças de Reposição](https://robotersys.com/pecas-de-reposicao/): estoque de peças originais KUKA (KCP, placas MFC, motores, cabos, baterias, correias) para KRC1/KRC2/KRC4/KRC5, com entrega express
+
+## Sistemas Robóticos
+- [Sistemas Robóticos](https://robotersys.com/sistemas-roboticos/): células turnkey e semi-turnkey — paletização, manipulação e rebarbação — com simulação 3D e estudo de tempo de ciclo
+- [Célula de Paletização 1](https://robotersys.com/celula-de-paletizacao-1/)
+- [Célula de Paletização 2](https://robotersys.com/celula-de-paletizacao-2/)
+- [Células de Manipulação](https://robotersys.com/celulas-de-manipulacao/)
+- [Soluções PushCorp](https://robotersys.com/solucoes-pushcorp/): integrador parceiro PushCorp — rebarbação e acabamento de superfícies com compliance device
+
+## Conteúdo
+- [Blog](https://robotersys.com/blog/): artigos técnicos sobre manutenção, paletização, segurança, simulação e automação com robôs KUKA

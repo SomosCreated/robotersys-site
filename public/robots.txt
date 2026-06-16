@@ -1,3 +1,6 @@
+# All crawlers allowed, including AI assistants & answer engines (GPTBot, ChatGPT-User,
+# OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, Applebot-Extended, ...).
+# Intentional — RoboterSys opts in to AI visibility. See /llms.txt for an AI-friendly summary.
 User-agent: *
 Allow: /
 Disallow: /api/

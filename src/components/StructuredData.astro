@@ -27,11 +27,9 @@ const inLanguage = LOCALE_HTMLLANG[locale];
 
 // ── NAP constants (reused from Footer.astro — single source of truth) ──────────
 const NAME = 'RoboterSys';
-// PLACEHOLDER: a brand logo file does not exist yet under public/robotersys/.
-// Place a square/landscape logo at public/robotersys/img/logo.png (min 112×112,
-// PNG/JPG, on a solid background per Google guidelines) before go-live. Same
-// convention as the og-default.jpg placeholder in SEOHead.astro.
-const LOGO_URL = `${siteBase}/robotersys/img/logo.png`;
+// Brand wordmark on a solid dark background (600×600) — always legible in Google's
+// knowledge panel (the bare logo.png is white-on-transparent, invisible on white).
+const LOGO_URL = `${siteBase}/robotersys/img/logo-mark.jpg`;
 
 // Brazilian HQ — the company is physically headquartered in Joinville and serves
 // all regions (BR / LATAM / DACH) from there. Postal code unknown → omitted (do not invent).
@@ -40,6 +38,7 @@ const HQ_ADDRESS = {
   streetAddress: 'R. Parati, 335C',
   addressLocality: 'Joinville',
   addressRegion: 'SC',
+  postalCode: '89213-200',
   addressCountry: 'BR',
 } as const;
 
@@ -101,6 +100,12 @@ const organization: Record<string, unknown> = {
   image: LOGO_URL,
   description: t(locale, 'seo.org_description'),
   address: HQ_ADDRESS,
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    opens: '00:00',
+    closes: '23:59',
+  },
   contactPoint,
   sameAs,
   areaServed: AREA_SERVED[locale],

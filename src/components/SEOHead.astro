@@ -9,8 +9,7 @@ const {
   title,
   description,
   locale = 'pt-BR',
-  // PLACEHOLDER: og-default.jpg does not exist yet — this image must be created and placed at
-  // public/robotersys/og-default.jpg (1200×630 px recommended) before the site goes live.
+  // Default social/AI preview card — dark brand wordmark card (1200×630).
   image = '/robotersys/og-default.jpg',
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
