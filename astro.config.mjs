@@ -18,6 +18,10 @@ export default defineConfig({
   output: 'static',
   adapter: vercel({ imageService: false }),
   trailingSlash: 'always',
+  // Friendly alias for the Keystatic CMS panel: /admin -> /keystatic. The panel is
+  // mounted at /keystatic by the integration and can't be relocated, so /admin
+  // redirects there (the URL bar ends on /keystatic).
+  redirects: { '/admin': '/keystatic' },
   i18n: {
     defaultLocale: 'pt',
     locales: ['pt', 'en', 'es', 'de'],

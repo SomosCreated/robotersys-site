@@ -6,5 +6,6 @@ Allow: /
 Disallow: /api/
 Disallow: /keystatic/
 Disallow: /api/keystatic/
+Disallow: /admin/
 
 Sitemap: https://robotersys.com/sitemap-index.xml
