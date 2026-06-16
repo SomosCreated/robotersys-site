@@ -53,8 +53,12 @@ const headingId = title ? `prose-${title.toLowerCase().replace(/\s+/g, '-').repl
   </div>
 </section>
 
-<style>
-  /* Prose typography — applies to all direct children in the slot */
+<!--
+  Slot content is authored in the PARENT component, so Astro's scoping would not
+  reach it (same gotcha as the blog prose). These rules are global, scoped by the
+  unique `.prose-content` class so they only style ProseSection content.
+-->
+<style is:global>
   .prose-content p {
     font-family: var(--font-sans, ui-sans-serif, system-ui);
     font-size: 0.875rem; /* text-sm */
@@ -73,6 +77,17 @@ const headingId = title ? `prose-${title.toLowerCase().replace(/\s+/g, '-').repl
     font-style: normal;
   }
 
+  .prose-content a {
+    color: rgb(var(--color-accent));
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 150ms;
+  }
+
+  .prose-content a:hover {
+    color: rgb(var(--color-strong));
+  }
+
   /* Inline subheadings inside prose slot */
   .prose-content h3 {
     font-size: 0.875rem;
@@ -84,11 +99,11 @@ const headingId = title ? `prose-${title.toLowerCase().replace(/\s+/g, '-').repl
     margin-bottom: 0.5rem;
   }
 
-  /* Lists */
+  /* Unordered lists */
   .prose-content ul {
     list-style: none;
     padding: 0;
-    space-y: 0.5rem;
+    margin-bottom: 1.25rem;
   }
 
   .prose-content ul li {
@@ -99,6 +114,7 @@ const headingId = title ? `prose-${title.toLowerCase().replace(/\s+/g, '-').repl
     font-size: 0.875rem;
     line-height: 1.75;
     color: rgb(var(--color-fg));
+    margin-bottom: 0.5rem;
   }
 
   .prose-content ul li::before {
@@ -106,5 +122,65 @@ const headingId = title ? `prose-${title.toLowerCase().replace(/\s+/g, '-').repl
     color: rgb(var(--color-accent));
     flex-shrink: 0;
     margin-top: 0.1em;
+  }
+
+  /* Ordered lists */
+  .prose-content ol {
+    counter-reset: list;
+    padding: 0;
+    margin-bottom: 1.25rem;
+  }
+
+  .prose-content ol li {
+    counter-increment: list;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.75;
+    color: rgb(var(--color-fg));
+    margin-bottom: 0.5rem;
+  }
+
+  .prose-content ol li::before {
+    content: counter(list) '.';
+    color: rgb(var(--color-accent));
+    flex-shrink: 0;
+    font-weight: 500;
+    min-width: 1.5rem;
+  }
+
+  /* Tables (e.g. the cookie inventory) */
+  .prose-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5rem 0 1.25rem;
+    font-size: 0.8125rem;
+  }
+
+  .prose-content th,
+  .prose-content td {
+    border: 1px solid rgb(var(--color-line));
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .prose-content th {
+    color: rgb(var(--color-strong));
+    background: rgb(var(--color-surface));
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.75rem;
+  }
+
+  .prose-content code {
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 0.8125rem;
+    background: rgb(var(--color-surface));
+    border: 1px solid rgb(var(--color-line));
+    padding: 0.1rem 0.35rem;
+    color: rgb(var(--color-accent));
   }
 </style>

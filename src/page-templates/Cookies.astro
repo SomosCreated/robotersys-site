@@ -1,28 +1,33 @@
 ---
 /**
- * Cookies page template — locale-aware
+ * Cookies page template — locale-aware shell.
  *
- * Content source: https://robotersys.com/politica-de-cookies/ (fetched 2026-06-12)
+ * Hero + meta vêm do i18n; o CORPO da política é um componente por idioma
+ * (src/page-templates/legal/cookies.<locale>.astro).
  *
- * // MINUTA — revisão jurídica necessária
- * Este documento é uma minuta sobre o uso de cookies conforme os requisitos gerais
- * da LGPD (Lei nº 13.709/2018) e do GDPR (Regulamento (UE) 2016/679).
- * Deve ser revisado por profissional jurídico antes de entrar em produção.
- *
- * Placeholders marcados com [PLACEHOLDER: ...] devem ser substituídos
- * pelos dados reais antes do lançamento.
+ * MINUTA — revisão jurídica recomendada. ÚNICO placeholder: o CNPJ.
  */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
-import ProseSection from '@/components/ProseSection.astro';
 import { t } from '@/i18n';
 import type { Locale } from '@/i18n/types';
 import { localizedPath } from '@/i18n/routes';
 
-interface Props {
-  locale: Locale;
-}
+import CookiesPt from '@/page-templates/legal/cookies.pt.astro';
+import CookiesEn from '@/page-templates/legal/cookies.en.astro';
+import CookiesEs from '@/page-templates/legal/cookies.es.astro';
+import CookiesDe from '@/page-templates/legal/cookies.de.astro';
+
+interface Props { locale: Locale; }
 const { locale } = Astro.props;
+
+const bodies: Record<Locale, typeof CookiesPt> = {
+  pt: CookiesPt,
+  en: CookiesEn,
+  es: CookiesEs,
+  de: CookiesDe,
+};
+const Body = bodies[locale] ?? CookiesPt;
 
 const crumbs = [
   { label: t(locale, 'legal.cookies_breadcrumb_home'), href: localizedPath('home', locale) },
@@ -36,176 +41,13 @@ const crumbs = [
   locale={locale}
   pageKey="cookies"
 >
-  <!-- Page Hero -->
   <PageHero
     kicker={t(locale, 'legal.cookies_hero_kicker')}
     title={t(locale, 'legal.cookies_hero_title')}
     crumbs={crumbs}
   />
 
-  {/* MINUTA — revisão jurídica necessária */}
-
-  {/* 1. O que são cookies */}
-  <ProseSection kicker="1. O que são cookies" title="O que são cookies">
-    <p>
-      Cookies são pequenos arquivos de texto que os websites colocam no seu dispositivo (computador,
-      tablet ou smartphone) quando você os visita. Esses arquivos permitem que o site reconheça
-      seu dispositivo em visitas futuras e armazene preferências e informações de navegação.
-    </p>
-    <p>
-      Além de cookies, podemos utilizar tecnologias similares, como <em>pixels</em>,
-      <em>web beacons</em> e <em>armazenamento local (localStorage)</em>, com propósitos equivalentes.
-      Todas essas tecnologias são abrangidas por esta Política.
-    </p>
-  </ProseSection>
-
-  {/* 2. Tipos de cookies */}
-  <ProseSection kicker="2. Tipos de cookies" title="Cookies que utilizamos">
-    <h3>Cookies Essenciais (Estritamente Necessários)</h3>
-    <p>
-      São cookies indispensáveis para o funcionamento básico do site. Sem eles, o site não
-      funcionaria corretamente. Não requerem consentimento, pois são necessários para a
-      prestação do serviço solicitado pelo utilizador.
-    </p>
-    <ul>
-      <li><strong>Segurança e integridade da sessão:</strong> garantem a transmissão segura dos formulários e protegem contra ataques CSRF.</li>
-      <li><strong>Preferências de sessão:</strong> armazenam preferências técnicas necessárias durante a navegação.</li>
-    </ul>
-
-    <h3>Cookies Analíticos (Desempenho)</h3>
-    <p>
-      Permitem-nos medir e analisar como os visitantes utilizam o site, identificando quais
-      páginas são mais visitadas e detectando eventuais erros. As informações são agregadas
-      e normalmente anônimas.
-    </p>
-    <ul>
-      <li>
-        <strong>[PLACEHOLDER: Google Analytics — confirmar se está em uso]:</strong> coleta dados
-        de audiência como páginas visitadas, duração da sessão e origem do tráfego. Os dados
-        podem ser transferidos para os EUA sob salvaguardas adequadas.
-        Retenção: <em>[PLACEHOLDER: ex. 26 meses]</em>.
-      </li>
-      <li>
-        <strong>[PLACEHOLDER: outros serviços de analytics — confirmar com o cliente]</strong>
-      </li>
-    </ul>
-    <p>
-      Cookies analíticos são utilizados somente com seu <strong>consentimento</strong>, salvo
-      quando configurados em modo de anonimização completa compatível com a isenção de
-      consentimento aplicável.
-    </p>
-
-    <h3>Cookies de Marketing / Publicidade</h3>
-    <p>
-      <em>[PLACEHOLDER: confirmar com o cliente se são utilizados cookies de marketing/publicidade,
-      como Google Ads, Meta Pixel, LinkedIn Insight Tag, etc. Se não houver, este item pode ser
-      removido da versão final.]</em>
-    </p>
-    <p>
-      Caso utilizados, cookies de marketing rastreiam sua atividade de navegação para apresentar
-      anúncios relevantes. Requerem consentimento explícito.
-    </p>
-  </ProseSection>
-
-  {/* 3. Tabela de cookies */}
-  <ProseSection kicker="3. Detalhamento" title="Relação de cookies por categoria">
-    <p>
-      A tabela a seguir detalha os cookies atualmente em uso neste website:
-    </p>
-    <h3>Cookies Essenciais</h3>
-    <ul>
-      <li>
-        <strong>Nome:</strong> <em>[PLACEHOLDER: nome do cookie]</em> |
-        <strong>Provedor:</strong> RoboterSys |
-        <strong>Finalidade:</strong> Segurança de sessão |
-        <strong>Duração:</strong> Sessão
-      </li>
-    </ul>
-    <h3>Cookies Analíticos</h3>
-    <ul>
-      <li>
-        <strong>Nome:</strong> <em>[PLACEHOLDER: ex. _ga, _gid]</em> |
-        <strong>Provedor:</strong> <em>[PLACEHOLDER: ex. Google Analytics]</em> |
-        <strong>Finalidade:</strong> Análise de audiência e comportamento |
-        <strong>Duração:</strong> <em>[PLACEHOLDER: ex. 2 anos / 24 horas]</em>
-      </li>
-    </ul>
-    <p>
-      <em>[PLACEHOLDER: preencher a tabela completa com os cookies reais após auditoria técnica
-      do site. Ferramentas como Cookiebot, OneTrust Cookie Scanner ou browser DevTools podem
-      ajudar a identificar todos os cookies.]</em>
-    </p>
-  </ProseSection>
-
-  {/* 4. Gestão de cookies */}
-  <ProseSection kicker="4. Gestão" title="Como gerir suas preferências de cookies">
-    <p>
-      Você pode gerir ou revogar seu consentimento para cookies não essenciais a qualquer momento
-      pelas seguintes formas:
-    </p>
-    <ul>
-      <li>
-        <strong>Configurações do navegador:</strong> A maioria dos navegadores permite que você
-        bloqueie ou exclua cookies. Consulte a ajuda do seu navegador para obter instruções:
-        Chrome, Firefox, Safari, Edge, Opera.
-      </li>
-      <li>
-        <strong>Ferramentas de opt-out de analytics:</strong> O Google Analytics oferece um
-        <a
-          href="https://tools.google.com/dlpage/gaoptout"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-accent hover:text-orange-400 underline underline-offset-2 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
-        >
-          complemento de desativação para navegadores
-        </a>.
-      </li>
-      <li>
-        <strong>[PLACEHOLDER: banner/CMP de cookies]:</strong> Caso implementemos uma ferramenta
-        de gestão de consentimento (CMP), você poderá alterar suas preferências diretamente no
-        banner de cookies do site.
-      </li>
-    </ul>
-    <p>
-      A desativação de cookies pode afetar algumas funcionalidades do site. Cookies essenciais
-      não podem ser desativados sem comprometer o funcionamento básico do site.
-    </p>
-  </ProseSection>
-
-  {/* 5. Transferências internacionais */}
-  <ProseSection kicker="5. Transferências" title="Transferências internacionais de dados">
-    <p>
-      Alguns dos provedores de cookies listados acima (ex.: Google Analytics) podem processar
-      dados em servidores localizados fora do Brasil ou da União Europeia, incluindo os EUA.
-      Nesses casos, nos certificamos de que existam salvaguardas adequadas, como
-      <em>Cláusulas Contratuais Padrão</em> aprovadas pela Comissão Europeia ou mecanismos
-      equivalentes reconhecidos pela ANPD.
-    </p>
-  </ProseSection>
-
-  {/* 6. Contato e DPO */}
-  <ProseSection kicker="6. Contato" title="Dúvidas e contato">
-    <p>
-      Para dúvidas sobre nossa Política de Cookies ou para exercer seus direitos de titular,
-      entre em contato com nosso Encarregado pelo Tratamento de Dados Pessoais (DPO):
-    </p>
-    <ul>
-      <li><strong>E-mail:</strong> <em>[PLACEHOLDER: inserir e-mail do DPO/encarregado]</em></li>
-      <li><strong>CNPJ:</strong> <em>[PLACEHOLDER: inserir CNPJ da empresa]</em></li>
-    </ul>
-    <p>
-      Para informações sobre o tratamento geral dos seus dados pessoais, consulte também nossa{' '}
-      <a
-        href={localizedPath('privacidade', locale)}
-        class="text-accent hover:text-orange-400 underline underline-offset-2 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
-      >
-        Política de Privacidade
-      </a>.
-    </p>
-    <p>
-      <strong>Última atualização:</strong> <em>[PLACEHOLDER: inserir data da última atualização]</em>
-    </p>
-  </ProseSection>
+  <Body locale={locale} />
 </BaseLayout>
 
 <script>

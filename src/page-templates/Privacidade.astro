@@ -1,28 +1,34 @@
 ---
 /**
- * Privacidade page template — locale-aware
+ * Privacidade page template — locale-aware shell.
  *
- * Content source: https://robotersys.com/politica-de-privacidade/ (fetched 2026-06-12)
+ * Hero + meta vêm do i18n; o CORPO da política é um componente por idioma
+ * (src/page-templates/legal/privacy.<locale>.astro), para cada língua ter um
+ * documento devidamente traduzido (não mais o corpo PT repetido em todas).
  *
- * // MINUTA — revisão jurídica necessária
- * Este documento é uma minuta baseada nos requisitos gerais da LGPD
- * (Lei nº 13.709/2018) e do GDPR (Regulamento (UE) 2016/679).
- * Deve ser revisado por profissional jurídico antes de entrar em produção.
- *
- * Placeholders marcados com [PLACEHOLDER: ...] devem ser substituídos
- * pelos dados reais antes do lançamento.
+ * MINUTA — revisão jurídica recomendada. ÚNICO placeholder: o CNPJ.
  */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
-import ProseSection from '@/components/ProseSection.astro';
 import { t } from '@/i18n';
 import type { Locale } from '@/i18n/types';
 import { localizedPath } from '@/i18n/routes';
 
-interface Props {
-  locale: Locale;
-}
+import PrivacyPt from '@/page-templates/legal/privacy.pt.astro';
+import PrivacyEn from '@/page-templates/legal/privacy.en.astro';
+import PrivacyEs from '@/page-templates/legal/privacy.es.astro';
+import PrivacyDe from '@/page-templates/legal/privacy.de.astro';
+
+interface Props { locale: Locale; }
 const { locale } = Astro.props;
+
+const bodies: Record<Locale, typeof PrivacyPt> = {
+  pt: PrivacyPt,
+  en: PrivacyEn,
+  es: PrivacyEs,
+  de: PrivacyDe,
+};
+const Body = bodies[locale] ?? PrivacyPt;
 
 const crumbs = [
   { label: t(locale, 'legal.privacy_breadcrumb_home'), href: localizedPath('home', locale) },
@@ -36,190 +42,13 @@ const crumbs = [
   locale={locale}
   pageKey="privacidade"
 >
-  <!-- Page Hero -->
   <PageHero
     kicker={t(locale, 'legal.privacy_hero_kicker')}
     title={t(locale, 'legal.privacy_hero_title')}
     crumbs={crumbs}
   />
 
-  {/* MINUTA — revisão jurídica necessária */}
-
-  {/* 1. Identificação do Controlador */}
-  <ProseSection kicker="1. Controlador de Dados" title="Identificação do Controlador">
-    <p>
-      A <strong>RoboterSys Serviços do Brasil Ltda</strong>, inscrita no CNPJ sob o nº
-      <em>[PLACEHOLDER: inserir CNPJ da empresa]</em>, sediada na R. Parati, 335C, Joinville/SC,
-      Brasil (doravante "<strong>RoboterSys</strong>", "<strong>nós</strong>" ou "<strong>controlador</strong>"),
-      é responsável pelo tratamento dos dados pessoais coletados por meio deste website
-      (<em>robotersys.com.br</em>) e demais canais digitais, nos termos da
-      <strong>Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018)</strong> e, quando
-      aplicável, do <strong>Regulamento Geral de Proteção de Dados da União Europeia
-      (GDPR — Regulamento (UE) 2016/679)</strong>.
-    </p>
-    <p>
-      Nosso <strong>Encarregado pelo Tratamento de Dados Pessoais (DPO)</strong> pode ser
-      contactado pelo endereço de e-mail: <em>[PLACEHOLDER: inserir e-mail do DPO/encarregado]</em>.
-    </p>
-  </ProseSection>
-
-  {/* 2. Dados Coletados */}
-  <ProseSection kicker="2. Dados Coletados" title="Quais dados coletamos">
-    <p>
-      Coletamos os seguintes dados pessoais, conforme o contexto de interação:
-    </p>
-    <ul>
-      <li><strong>Formulário de contato / orçamento:</strong> nome completo, endereço de e-mail, número de WhatsApp/telefone, empresa (opcional), mensagem e metadados de origem da visita (UTM, gclid).</li>
-      <li><strong>Formulário de candidatura:</strong> nome completo, endereço de e-mail, número de WhatsApp/telefone e mensagem/carta de apresentação.</li>
-      <li><strong>Dados de navegação (cookies):</strong> endereço IP, tipo e versão do navegador, páginas visitadas, duração da visita e dados de analytics (ver Política de Cookies). Esses dados podem ser coletados por ferramentas de terceiros (ex.: Google Analytics).</li>
-    </ul>
-    <p>
-      Não coletamos dados pessoais sensíveis (art. 5º, II, LGPD) como origem racial, saúde,
-      biometria ou dados de menores de 18 anos. Nosso site não é direcionado a menores de idade.
-    </p>
-  </ProseSection>
-
-  {/* 3. Finalidade e Base Legal */}
-  <ProseSection kicker="3. Finalidade e Base Legal" title="Para que e com qual base legal tratamos seus dados">
-    <ul>
-      <li>
-        <strong>Resposta a solicitações e orçamentos:</strong> tratamos nome, e-mail, WhatsApp e
-        mensagem para responder às suas dúvidas e elaborar propostas comerciais.
-        Base legal: <em>execução de contrato ou de procedimentos preliminares</em> (art. 7º, V, LGPD;
-        art. 6º, 1, b, GDPR).
-      </li>
-      <li>
-        <strong>Processo seletivo:</strong> tratamos dados do currículo para análise de candidaturas.
-        Base legal: <em>consentimento</em> (art. 7º, I, LGPD; art. 6º, 1, a, GDPR), fornecido ao
-        enviar o formulário de candidatura.
-      </li>
-      <li>
-        <strong>Registro no CRM (Ploomes):</strong> cadastramos os dados de contato no nosso sistema
-        de gestão de relacionamento para acompanhamento de oportunidades comerciais.
-        Base legal: <em>legítimo interesse do controlador</em> (art. 7º, IX, LGPD; art. 6º, 1, f, GDPR).
-      </li>
-      <li>
-        <strong>Analytics e melhoria do site:</strong> utilizamos dados de navegação para entender
-        o uso do site e melhorar nossos serviços.
-        Base legal: <em>legítimo interesse</em> (LGPD, art. 7º, IX) e/ou <em>consentimento</em> para
-        cookies analíticos não essenciais (ver Política de Cookies).
-      </li>
-      <li>
-        <strong>Comunicações de marketing:</strong> podemos enviar comunicações sobre nossos serviços
-        a contatos que expressamente consentiram.
-        Base legal: <em>consentimento</em> (art. 7º, I, LGPD).
-      </li>
-    </ul>
-  </ProseSection>
-
-  {/* 4. Compartilhamento de Dados */}
-  <ProseSection kicker="4. Compartilhamento" title="Com quem compartilhamos seus dados">
-    <p>
-      Podemos compartilhar seus dados pessoais com as seguintes categorias de destinatários,
-      somente na medida necessária e conforme as finalidades descritas acima:
-    </p>
-    <ul>
-      <li><strong>Resend (plataforma de e-mail transacional):</strong> para envio de notificações internas de leads. Os dados são processados nos servidores da Resend nos EUA, sob salvaguardas adequadas (Standard Contractual Clauses).</li>
-      <li><strong>Ploomes (CRM):</strong> para gestão de relacionamento com clientes. Plataforma brasileira sujeita à LGPD.</li>
-      <li><strong>Google Analytics / outras ferramentas de analytics</strong> (se aplicável — [PLACEHOLDER: confirmar ferramentas de analytics em uso]): dados de navegação anonimizados.</li>
-      <li><strong>Autoridades competentes:</strong> quando exigido por lei ou ordem judicial.</li>
-    </ul>
-    <p>
-      Não vendemos nem cedemos seus dados pessoais a terceiros para fins de marketing sem
-      seu consentimento explícito.
-    </p>
-  </ProseSection>
-
-  {/* 5. Retenção de Dados */}
-  <ProseSection kicker="5. Retenção" title="Por quanto tempo guardamos seus dados">
-    <ul>
-      <li><strong>Dados de formulário de contato/orçamento:</strong> retidos enquanto houver interesse comercial legítimo ativo, e por até <em>[PLACEHOLDER: ex. 24 meses]</em> após o último contato, salvo obrigação legal de retenção mais longa.</li>
-      <li><strong>Dados de candidatura:</strong> retidos por até <em>[PLACEHOLDER: ex. 12 meses]</em> após o encerramento do processo seletivo, salvo consentimento para banco de talentos.</li>
-      <li><strong>Dados de analytics/cookies:</strong> conforme configuração de cada ferramenta (ver Política de Cookies).</li>
-      <li><strong>Obrigações legais:</strong> dados fiscais e contábeis podem ser retidos por até 5 anos conforme legislação tributária brasileira.</li>
-    </ul>
-    <p>
-      Ao término do período de retenção, os dados são excluídos ou anonimizados de forma segura.
-    </p>
-  </ProseSection>
-
-  {/* 6. Direitos do Titular */}
-  <ProseSection kicker="6. Seus Direitos" title="Direitos do titular de dados">
-    <p>
-      Nos termos da LGPD e do GDPR, você tem os seguintes direitos em relação aos seus dados pessoais:
-    </p>
-    <ul>
-      <li><strong>Acesso:</strong> saber quais dados temos sobre você e obter uma cópia.</li>
-      <li><strong>Correção:</strong> corrigir dados incompletos, inexatos ou desatualizados.</li>
-      <li><strong>Exclusão:</strong> solicitar a eliminação dos dados, salvo obrigação legal de retenção.</li>
-      <li><strong>Portabilidade:</strong> receber seus dados em formato estruturado e legível por máquina.</li>
-      <li><strong>Oposição:</strong> opor-se ao tratamento baseado em legítimo interesse.</li>
-      <li><strong>Revogação do consentimento:</strong> retirar o consentimento a qualquer momento, sem afetar a licitude do tratamento anterior.</li>
-      <li><strong>Informação sobre compartilhamento:</strong> saber com quais terceiros seus dados foram compartilhados.</li>
-      <li><strong>Reclamação à autoridade:</strong> direito de peticionar à ANPD (Brasil) ou à autoridade de proteção de dados competente (UE).</li>
-    </ul>
-    <p>
-      Para exercer qualquer desses direitos, entre em contato com nosso encarregado pelo e-mail:
-      <em>[PLACEHOLDER: inserir e-mail do DPO/encarregado]</em>.
-      Responderemos no prazo de até 15 dias úteis.
-    </p>
-  </ProseSection>
-
-  {/* 7. Segurança */}
-  <ProseSection kicker="7. Segurança" title="Como protegemos seus dados">
-    <p>
-      Adotamos medidas técnicas e organizacionais adequadas para proteger seus dados pessoais
-      contra acesso não autorizado, destruição, alteração ou divulgação indevida. Isso inclui:
-    </p>
-    <ul>
-      <li>Transmissão via HTTPS (TLS) em todos os pontos de coleta.</li>
-      <li>Acesso restrito a dados pessoais somente por colaboradores e prestadores autorizados.</li>
-      <li>Uso de fornecedores de infraestrutura com certificações reconhecidas de segurança.</li>
-    </ul>
-    <p>
-      Em caso de incidente de segurança que possa afetar seus direitos e liberdades, notificaremos
-      a ANPD e os titulares afetados conforme os prazos legais.
-    </p>
-  </ProseSection>
-
-  {/* 8. Cookies */}
-  <ProseSection kicker="8. Cookies" title="Cookies e tecnologias similares">
-    <p>
-      Utilizamos cookies e tecnologias similares. Para informações detalhadas sobre os tipos de
-      cookies utilizados e como gerenciá-los, consulte nossa{' '}
-      <a
-        href={localizedPath('cookies', locale)}
-        class="text-accent hover:text-orange-400 underline underline-offset-2 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
-      >
-        Política de Cookies
-      </a>.
-    </p>
-  </ProseSection>
-
-  {/* 9. Alterações */}
-  <ProseSection kicker="9. Alterações" title="Atualizações desta política">
-    <p>
-      Esta Política de Privacidade pode ser atualizada periodicamente para refletir mudanças
-      em nossas práticas ou na legislação aplicável. A data da última atualização é indicada
-      ao final deste documento. Recomendamos que você a revise regularmente.
-    </p>
-    <p>
-      <strong>Última atualização:</strong> <em>[PLACEHOLDER: inserir data da última atualização]</em>
-    </p>
-  </ProseSection>
-
-  {/* 10. Contato */}
-  <ProseSection kicker="10. Contato" title="Fale conosco">
-    <p>
-      Para dúvidas sobre esta Política de Privacidade ou para exercer seus direitos, entre em
-      contato com nosso Encarregado pelo Tratamento de Dados Pessoais (DPO):
-    </p>
-    <ul>
-      <li><strong>E-mail:</strong> <em>[PLACEHOLDER: inserir e-mail do DPO/encarregado]</em></li>
-      <li><strong>Endereço:</strong> R. Parati, 335C — Joinville/SC, Brasil</li>
-      <li><strong>CNPJ:</strong> <em>[PLACEHOLDER: inserir CNPJ da empresa]</em></li>
-    </ul>
-  </ProseSection>
+  <Body locale={locale} />
 </BaseLayout>
 
 <script>

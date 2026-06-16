@@ -1,0 +1,147 @@
+---
+/**
+ * Política de Privacidade — corpo PT.
+ * Renderizado por Privacidade.astro quando locale === 'pt'.
+ *
+ * Dados reais da RoboterSys preenchidos em 2026-06-16.
+ * ÚNICO placeholder restante: o CNPJ ([CNPJ a informar]).
+ * MINUTA — revisão jurídica recomendada antes do go-live.
+ */
+import ProseSection from '@/components/ProseSection.astro';
+import { localizedPath } from '@/i18n/routes';
+import type { Locale } from '@/i18n/types';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+---
+
+<ProseSection kicker="1. Controlador de Dados" title="Identificação do Controlador">
+  <p>
+    A <strong>RoboterSys Serviços do Brasil Ltda</strong>, inscrita no CNPJ sob o nº
+    <em>[CNPJ a informar]</em>, com sede na R. Parati, 335, Galpão C, Bairro Nova Brasília,
+    Joinville/SC, CEP 89213-200, Brasil (doravante "<strong>RoboterSys</strong>",
+    "<strong>nós</strong>" ou "<strong>controlador</strong>"), é responsável pelo tratamento dos
+    dados pessoais coletados por meio dos sites <strong>robotersys.com</strong> e
+    <strong>robotersys.com.br</strong> e demais canais digitais, nos termos da
+    <strong>Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018)</strong> e, quando
+    aplicável, do <strong>Regulamento Geral de Proteção de Dados da União Europeia (GDPR —
+    Regulamento (UE) 2016/679)</strong>.
+  </p>
+  <p>
+    Para qualquer assunto relacionado à proteção de dados, nosso <strong>Encarregado pelo
+    Tratamento de Dados Pessoais (DPO)</strong> pode ser contactado pelo e-mail:
+    <strong>contato.site@robotersys.com.br</strong>.
+  </p>
+</ProseSection>
+
+<ProseSection kicker="2. Dados Coletados" title="Quais dados coletamos">
+  <p>Coletamos os seguintes dados pessoais, conforme o contexto de interação:</p>
+  <ul>
+    <li><strong>Formulário de contato / orçamento:</strong> nome completo, e-mail, número de WhatsApp/telefone, empresa (opcional), mensagem e metadados de origem da visita (UTM, gclid).</li>
+    <li><strong>Formulário de candidatura:</strong> nome completo, e-mail, número de WhatsApp/telefone e mensagem/carta de apresentação.</li>
+    <li><strong>Dados de navegação (cookies):</strong> endereço IP, tipo e versão do navegador, páginas visitadas, duração da visita e dados de analytics. Esses dados podem ser coletados por ferramentas de terceiros (Google Analytics 4 e Google Ads) — ver a <a href={localizedPath('cookies', locale)}>Política de Cookies</a>.</li>
+  </ul>
+  <p>
+    Não coletamos dados pessoais sensíveis (art. 5º, II, LGPD), como origem racial, saúde ou
+    biometria, nem dados de menores de 18 anos. Nosso site não é direcionado a menores de idade.
+  </p>
+</ProseSection>
+
+<ProseSection kicker="3. Finalidade e Base Legal" title="Para que e com qual base legal tratamos seus dados">
+  <ul>
+    <li><strong>Resposta a solicitações e orçamentos:</strong> tratamos nome, e-mail, WhatsApp e mensagem para responder às suas dúvidas e elaborar propostas comerciais. Base legal: <em>execução de contrato ou de procedimentos preliminares</em> (art. 7º, V, LGPD; art. 6º, 1, b, GDPR).</li>
+    <li><strong>Processo seletivo:</strong> tratamos os dados enviados no formulário de candidatura para análise de candidaturas. Base legal: <em>consentimento</em> (art. 7º, I, LGPD; art. 6º, 1, a, GDPR), fornecido ao enviar o formulário.</li>
+    <li><strong>Registro no CRM (Ploomes):</strong> cadastramos os dados de contato no nosso sistema de gestão de relacionamento para acompanhamento de oportunidades comerciais. Base legal: <em>legítimo interesse do controlador</em> (art. 7º, IX, LGPD; art. 6º, 1, f, GDPR).</li>
+    <li><strong>Analytics e melhoria do site:</strong> utilizamos o Google Analytics 4 para entender o uso do site. Base legal: <em>consentimento</em> para cookies analíticos não essenciais (ver Política de Cookies).</li>
+    <li><strong>Marketing e mensuração de anúncios:</strong> utilizamos o Google Ads para medir a eficácia de campanhas e atribuir conversões. Base legal: <em>consentimento</em> (art. 7º, I, LGPD).</li>
+  </ul>
+</ProseSection>
+
+<ProseSection kicker="4. Compartilhamento" title="Com quem compartilhamos seus dados">
+  <p>
+    Podemos compartilhar seus dados pessoais com as seguintes categorias de destinatários,
+    somente na medida necessária e conforme as finalidades descritas acima:
+  </p>
+  <ul>
+    <li><strong>Resend (e-mail transacional):</strong> envio das notificações internas de leads. Dados processados em servidores nos EUA, sob salvaguardas adequadas (Cláusulas Contratuais Padrão).</li>
+    <li><strong>Ploomes (CRM):</strong> gestão de relacionamento com clientes. Plataforma brasileira sujeita à LGPD.</li>
+    <li><strong>Google (Analytics 4 e Google Ads):</strong> mensuração de audiência e de campanhas. Dados de navegação podem ser transferidos para os EUA, sob salvaguardas adequadas.</li>
+    <li><strong>Autoridades competentes:</strong> quando exigido por lei ou ordem judicial.</li>
+  </ul>
+  <p>
+    Não vendemos nem cedemos seus dados pessoais a terceiros para fins de marketing sem o seu
+    consentimento explícito.
+  </p>
+</ProseSection>
+
+<ProseSection kicker="5. Retenção" title="Por quanto tempo guardamos seus dados">
+  <ul>
+    <li><strong>Dados de contato/orçamento:</strong> retidos enquanto houver interesse comercial legítimo ativo e por até <strong>24 meses</strong> após o último contato, salvo obrigação legal de retenção mais longa.</li>
+    <li><strong>Dados de candidatura:</strong> retidos por até <strong>12 meses</strong> após o encerramento do processo seletivo, salvo consentimento para banco de talentos.</li>
+    <li><strong>Dados de analytics/cookies:</strong> conforme a configuração de cada ferramenta (ver Política de Cookies).</li>
+    <li><strong>Obrigações legais:</strong> dados fiscais e contábeis podem ser retidos por até 5 anos, conforme a legislação tributária brasileira.</li>
+  </ul>
+  <p>Ao término do período de retenção, os dados são excluídos ou anonimizados de forma segura.</p>
+</ProseSection>
+
+<ProseSection kicker="6. Seus Direitos" title="Direitos do titular de dados">
+  <p>Nos termos da LGPD e do GDPR, você tem os seguintes direitos sobre seus dados pessoais:</p>
+  <ul>
+    <li><strong>Acesso:</strong> saber quais dados temos sobre você e obter uma cópia.</li>
+    <li><strong>Correção:</strong> corrigir dados incompletos, inexatos ou desatualizados.</li>
+    <li><strong>Exclusão:</strong> solicitar a eliminação dos dados, salvo obrigação legal de retenção.</li>
+    <li><strong>Portabilidade:</strong> receber seus dados em formato estruturado e legível por máquina.</li>
+    <li><strong>Oposição:</strong> opor-se ao tratamento baseado em legítimo interesse.</li>
+    <li><strong>Revogação do consentimento:</strong> retirar o consentimento a qualquer momento, sem afetar a licitude do tratamento anterior.</li>
+    <li><strong>Informação sobre compartilhamento:</strong> saber com quais terceiros seus dados foram compartilhados.</li>
+    <li><strong>Reclamação à autoridade:</strong> peticionar à ANPD (Brasil) ou à autoridade de proteção de dados competente (UE).</li>
+  </ul>
+  <p>
+    Para exercer qualquer desses direitos, entre em contato com nosso Encarregado pelo e-mail
+    <strong>contato.site@robotersys.com.br</strong>. Responderemos no prazo de até 15 dias.
+  </p>
+</ProseSection>
+
+<ProseSection kicker="7. Segurança" title="Como protegemos seus dados">
+  <p>
+    Adotamos medidas técnicas e organizacionais adequadas para proteger seus dados pessoais
+    contra acesso não autorizado, destruição, alteração ou divulgação indevida, incluindo:
+  </p>
+  <ul>
+    <li>Transmissão via HTTPS (TLS) em todos os pontos de coleta.</li>
+    <li>Acesso restrito a dados pessoais somente por colaboradores e prestadores autorizados.</li>
+    <li>Uso de fornecedores de infraestrutura com certificações reconhecidas de segurança.</li>
+  </ul>
+  <p>
+    Em caso de incidente de segurança que possa afetar seus direitos e liberdades, notificaremos
+    a ANPD e os titulares afetados conforme os prazos legais.
+  </p>
+</ProseSection>
+
+<ProseSection kicker="8. Cookies" title="Cookies e tecnologias similares">
+  <p>
+    Utilizamos cookies e tecnologias similares. Para informações detalhadas sobre os tipos de
+    cookies utilizados e como gerenciá-los, consulte nossa
+    <a href={localizedPath('cookies', locale)}>Política de Cookies</a>.
+  </p>
+</ProseSection>
+
+<ProseSection kicker="9. Alterações" title="Atualizações desta política">
+  <p>
+    Esta Política de Privacidade pode ser atualizada periodicamente para refletir mudanças em
+    nossas práticas ou na legislação aplicável. Recomendamos que você a revise regularmente.
+  </p>
+  <p><strong>Última atualização:</strong> 16 de junho de 2026.</p>
+</ProseSection>
+
+<ProseSection kicker="10. Contato" title="Fale conosco">
+  <p>
+    Para dúvidas sobre esta Política de Privacidade ou para exercer seus direitos, entre em
+    contato com nosso Encarregado pelo Tratamento de Dados Pessoais (DPO):
+  </p>
+  <ul>
+    <li><strong>E-mail:</strong> contato.site@robotersys.com.br</li>
+    <li><strong>Endereço:</strong> R. Parati, 335, Galpão C — Nova Brasília, Joinville/SC, CEP 89213-200, Brasil</li>
+    <li><strong>CNPJ:</strong> <em>[CNPJ a informar]</em></li>
+  </ul>
+</ProseSection>

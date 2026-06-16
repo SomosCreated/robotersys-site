@@ -1,0 +1,161 @@
+---
+/**
+ * Política de Cookies — corpo PT.
+ * Renderizado por Cookies.astro quando locale === 'pt'.
+ *
+ * Inventário de cookies/armazenamento auditado no código (2026-06-16):
+ *   localStorage: theme, rs-consent (essenciais)
+ *   cookie 1ª parte: rs_gclid (marketing, só após consentimento)
+ *   terceiros: _ga/_ga_* (GA4), _gcl_au (Google Ads) — só após consentimento
+ * ÚNICO placeholder restante: o CNPJ ([CNPJ a informar]).
+ * MINUTA — revisão jurídica recomendada antes do go-live.
+ */
+import ProseSection from '@/components/ProseSection.astro';
+import { localizedPath } from '@/i18n/routes';
+import type { Locale } from '@/i18n/types';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+---
+
+<ProseSection kicker="1. What cookies are" title="What cookies are">
+  <p>
+    Cookies are small text files that websites place on your device when you
+    visit them. They allow the site to recognize your device on future visits and store
+    preferences and browsing information.
+  </p>
+  <p>
+    In addition to cookies, we may use similar technologies, such as <strong>local storage
+    (localStorage)</strong>, for equivalent purposes. All of these technologies are covered
+    by this Policy.
+  </p>
+</ProseSection>
+
+<ProseSection kicker="2. Types of cookies" title="Cookies and storage we use">
+  <h3>Essential (Strictly Necessary)</h3>
+  <p>
+    Indispensable for the basic functioning of the site. In our case, they are stored via
+    <strong>localStorage</strong> (they are not tracking cookies) and do not require consent,
+    since they only store the user's own technical preferences:
+  </p>
+  <ul>
+    <li><strong>Theme preference:</strong> remembers whether you chose light or dark mode.</li>
+    <li><strong>Consent choice:</strong> stores your decision about cookies, so the notice is not shown repeatedly.</li>
+  </ul>
+
+  <h3>Analytics (Performance)</h3>
+  <p>
+    They allow us to measure and analyze how visitors use the site. We use
+    <strong>Google Analytics 4</strong>, which collects data such as pages visited, session
+    duration and traffic source, in an aggregated form. The data may be transferred to the USA
+    under appropriate safeguards. They are used <strong>only with your consent</strong>.
+  </p>
+
+  <h3>Marketing / Advertising</h3>
+  <p>
+    We use <strong>Google Ads</strong> to measure the effectiveness of our campaigns and attribute
+    conversions (for example, a form submission originating from an ad). These cookies
+    require your <strong>explicit consent</strong>.
+  </p>
+</ProseSection>
+
+<ProseSection kicker="3. Details" title="List of cookies and storage">
+  <p>The table below details what is used on this website:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Provider</th>
+        <th>Purpose</th>
+        <th>Duration</th>
+        <th>Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>theme</code></td>
+        <td>localStorage</td>
+        <td>RoboterSys</td>
+        <td>Remembers the chosen theme (light/dark)</td>
+        <td>Persistent</td>
+        <td>Essential</td>
+      </tr>
+      <tr>
+        <td><code>rs-consent</code></td>
+        <td>localStorage</td>
+        <td>RoboterSys</td>
+        <td>Stores your consent choice</td>
+        <td>Persistent</td>
+        <td>Essential</td>
+      </tr>
+      <tr>
+        <td><code>rs_gclid</code></td>
+        <td>Cookie (first-party)</td>
+        <td>RoboterSys</td>
+        <td>Campaign attribution (Google click-id)</td>
+        <td>90 days</td>
+        <td>Marketing</td>
+      </tr>
+      <tr>
+        <td><code>_ga</code>, <code>_ga_*</code></td>
+        <td>Cookie</td>
+        <td>Google Analytics 4</td>
+        <td>Measure audience and site usage</td>
+        <td>2 years</td>
+        <td>Analytics</td>
+      </tr>
+      <tr>
+        <td><code>_gcl_au</code></td>
+        <td>Cookie</td>
+        <td>Google Ads</td>
+        <td>Ad conversion attribution</td>
+        <td>90 days</td>
+        <td>Marketing</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    The analytics and marketing cookies (including <code>rs_gclid</code>) <strong>are only created
+    after you click "Accept"</strong>. By default, consent remains denied
+    (Google Consent Mode v2) and none of these identifiers are stored.
+  </p>
+</ProseSection>
+
+<ProseSection kicker="4. Management" title="How to manage your cookie preferences">
+  <p>You can manage or withdraw your consent for non-essential cookies at any time:</p>
+  <ul>
+    <li><strong>Preferences banner:</strong> use the <strong>"Preferences"</strong> link in the site footer to reopen the cookie notice and change your choice (Accept or Reject).</li>
+    <li><strong>Browser settings:</strong> most browsers (Chrome, Firefox, Safari, Edge) allow you to block or delete cookies. Consult your browser's help.</li>
+    <li><strong>Google Analytics opt-out:</strong> Google offers a <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">browser opt-out add-on</a>.</li>
+  </ul>
+  <p>
+    Rejecting non-essential cookies does not affect the basic functioning of the site; the essential items
+    (theme and consent preferences) cannot be disabled without compromising the experience.
+  </p>
+</ProseSection>
+
+<ProseSection kicker="5. Transfers" title="International data transfers">
+  <p>
+    The analytics and advertising providers used (Google Analytics 4 and Google Ads) may
+    process data on servers outside Brazil or the European Union, including the USA. In such
+    cases, we ensure that appropriate safeguards are in place, such as <em>Standard Contractual
+    Clauses</em> approved by the European Commission or equivalent mechanisms recognized by the ANPD.
+  </p>
+</ProseSection>
+
+<ProseSection kicker="6. Contact" title="Questions and contact">
+  <p>
+    For questions about our Cookie Policy or to exercise your data subject rights, get
+    in touch with our Data Protection Officer (DPO):
+  </p>
+  <ul>
+    <li><strong>E-mail:</strong> contato.site@robotersys.com.br</li>
+    <li><strong>CNPJ:</strong> <em>[CNPJ a informar]</em></li>
+  </ul>
+  <p>
+    For information about the general processing of your personal data, please also consult our
+    <a href={localizedPath('privacidade', locale)}>Privacy Policy</a>.
+  </p>
+  <p><strong>Last updated:</strong> June 16, 2026.</p>
+</ProseSection>

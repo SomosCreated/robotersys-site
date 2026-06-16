@@ -1,0 +1,166 @@
+---
+/**
+ * Política de Cookies — corpo PT.
+ * Renderizado por Cookies.astro quando locale === 'pt'.
+ *
+ * Inventário de cookies/armazenamento auditado no código (2026-06-16):
+ *   localStorage: theme, rs-consent (essenciais)
+ *   cookie 1ª parte: rs_gclid (marketing, só após consentimento)
+ *   terceiros: _ga/_ga_* (GA4), _gcl_au (Google Ads) — só após consentimento
+ * ÚNICO placeholder restante: o CNPJ ([CNPJ a informar]).
+ * MINUTA — revisão jurídica recomendada antes do go-live.
+ */
+import ProseSection from '@/components/ProseSection.astro';
+import { localizedPath } from '@/i18n/routes';
+import type { Locale } from '@/i18n/types';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+---
+
+<ProseSection kicker="1. Was sind Cookies" title="Was sind Cookies">
+  <p>
+    Cookies sind kleine Textdateien, die Websites auf Ihrem Gerät ablegen, wenn Sie diese besuchen.
+    Sie ermöglichen es der Website, Ihr Gerät bei künftigen Besuchen wiederzuerkennen und
+    Einstellungen sowie Navigationsinformationen zu speichern.
+  </p>
+  <p>
+    Neben Cookies können wir ähnliche Technologien einsetzen, wie etwa den <strong>lokalen Speicher
+    (localStorage)</strong>, zu gleichwertigen Zwecken. Alle diese Technologien werden von dieser
+    Richtlinie erfasst.
+  </p>
+</ProseSection>
+
+<ProseSection kicker="2. Arten von Cookies" title="Cookies und Speicher, die wir verwenden">
+  <h3>Notwendige (Unbedingt Erforderliche)</h3>
+  <p>
+    Unverzichtbar für die grundlegende Funktion der Website. In unserem Fall werden sie über
+    <strong>localStorage</strong> gespeichert (es handelt sich nicht um Tracking-Cookies) und sie
+    erfordern keine Einwilligung, da sie lediglich technische Einstellungen des Nutzers selbst
+    speichern:
+  </p>
+  <ul>
+    <li><strong>Themeneinstellung:</strong> merkt sich, ob Sie den hellen oder dunklen Modus gewählt haben.</li>
+    <li><strong>Einwilligungsentscheidung:</strong> speichert Ihre Entscheidung über Cookies, damit der Hinweis nicht wiederholt angezeigt wird.</li>
+  </ul>
+
+  <h3>Analyse (Leistung)</h3>
+  <p>
+    Ermöglichen es, zu messen und zu analysieren, wie Besucher die Website nutzen. Wir verwenden
+    <strong>Google Analytics 4</strong>, das Daten wie besuchte Seiten, Sitzungsdauer und
+    Herkunft des Datenverkehrs in aggregierter Form erhebt. Die Daten können unter angemessenen
+    Garantien in die USA übermittelt werden. Sie werden <strong>nur mit Ihrer Einwilligung</strong>
+    verwendet.
+  </p>
+
+  <h3>Marketing / Werbung</h3>
+  <p>
+    Wir verwenden <strong>Google Ads</strong>, um die Wirksamkeit unserer Kampagnen zu messen und
+    Conversions zuzuordnen (zum Beispiel das Absenden eines Formulars, das von einer Anzeige
+    ausgeht). Diese Cookies erfordern Ihre <strong>ausdrückliche Einwilligung</strong>.
+  </p>
+</ProseSection>
+
+<ProseSection kicker="3. Aufschlüsselung" title="Übersicht der Cookies und Speicher">
+  <p>Die nachstehende Tabelle führt im Einzelnen auf, was auf dieser Website verwendet wird:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Typ</th>
+        <th>Anbieter</th>
+        <th>Zweck</th>
+        <th>Dauer</th>
+        <th>Kategorie</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>theme</code></td>
+        <td>localStorage</td>
+        <td>RoboterSys</td>
+        <td>Merkt sich das gewählte Theme (hell/dunkel)</td>
+        <td>Dauerhaft</td>
+        <td>Notwendig</td>
+      </tr>
+      <tr>
+        <td><code>rs-consent</code></td>
+        <td>localStorage</td>
+        <td>RoboterSys</td>
+        <td>Speichert Ihre Einwilligungsentscheidung</td>
+        <td>Dauerhaft</td>
+        <td>Notwendig</td>
+      </tr>
+      <tr>
+        <td><code>rs_gclid</code></td>
+        <td>Cookie (Erstanbieter)</td>
+        <td>RoboterSys</td>
+        <td>Kampagnenzuordnung (Google Click-ID)</td>
+        <td>90 Tage</td>
+        <td>Marketing</td>
+      </tr>
+      <tr>
+        <td><code>_ga</code>, <code>_ga_*</code></td>
+        <td>Cookie</td>
+        <td>Google Analytics 4</td>
+        <td>Reichweite und Nutzung der Website messen</td>
+        <td>2 Jahre</td>
+        <td>Analyse</td>
+      </tr>
+      <tr>
+        <td><code>_gcl_au</code></td>
+        <td>Cookie</td>
+        <td>Google Ads</td>
+        <td>Zuordnung von Anzeigen-Conversions</td>
+        <td>90 Tage</td>
+        <td>Marketing</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    Die Analyse- und Marketing-Cookies (einschließlich <code>rs_gclid</code>) <strong>werden erst
+    erstellt, nachdem Sie auf „Akzeptieren" geklickt haben</strong>. Standardmäßig bleibt die
+    Einwilligung verweigert (Google Consent Mode v2) und keiner dieser Identifikatoren wird
+    gespeichert.
+  </p>
+</ProseSection>
+
+<ProseSection kicker="4. Verwaltung" title="Wie Sie Ihre Cookie-Einstellungen verwalten">
+  <p>Sie können Ihre Einwilligung für nicht notwendige Cookies jederzeit verwalten oder widerrufen:</p>
+  <ul>
+    <li><strong>Einstellungsbanner:</strong> Verwenden Sie den Link <strong>„Einstellungen"</strong> in der Fußzeile der Website, um den Cookie-Hinweis erneut zu öffnen und Ihre Wahl zu ändern (Akzeptieren oder Ablehnen).</li>
+    <li><strong>Browsereinstellungen:</strong> Die meisten Browser (Chrome, Firefox, Safari, Edge) ermöglichen es, Cookies zu blockieren oder zu löschen. Konsultieren Sie die Hilfe Ihres Browsers.</li>
+    <li><strong>Opt-out von Google Analytics:</strong> Google bietet ein <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Deaktivierungs-Add-on für Browser</a> an.</li>
+  </ul>
+  <p>
+    Das Ablehnen nicht notwendiger Cookies beeinträchtigt nicht die grundlegende Funktion der
+    Website; die notwendigen Elemente (Theme- und Einwilligungseinstellung) können nicht deaktiviert
+    werden, ohne das Nutzungserlebnis zu beeinträchtigen.
+  </p>
+</ProseSection>
+
+<ProseSection kicker="5. Übermittlungen" title="Internationale Datenübermittlungen">
+  <p>
+    Die verwendeten Analyse- und Werbeanbieter (Google Analytics 4 und Google Ads) können Daten auf
+    Servern außerhalb Brasiliens oder der Europäischen Union verarbeiten, einschließlich der USA. In
+    diesen Fällen stellen wir sicher, dass angemessene Garantien bestehen, wie etwa von der
+    Europäischen Kommission genehmigte <em>Standardvertragsklauseln</em> oder gleichwertige, von der
+    ANPD anerkannte Mechanismen.
+  </p>
+</ProseSection>
+
+<ProseSection kicker="6. Kontakt" title="Fragen und Kontakt">
+  <p>
+    Bei Fragen zu unserer Cookie-Richtlinie oder zur Ausübung Ihrer Betroffenenrechte wenden Sie
+    sich an unseren Datenschutzbeauftragten (DPO):
+  </p>
+  <ul>
+    <li><strong>E-Mail:</strong> contato.site@robotersys.com.br</li>
+    <li><strong>CNPJ:</strong> <em>[CNPJ a informar]</em></li>
+  </ul>
+  <p>
+    Für Informationen über die allgemeine Verarbeitung Ihrer personenbezogenen Daten konsultieren
+    Sie auch unsere <a href={localizedPath('privacidade', locale)}>Datenschutzrichtlinie</a>.
+  </p>
+  <p><strong>Zuletzt aktualisiert:</strong> 16. Juni 2026.</p>
+</ProseSection>
