@@ -18,10 +18,10 @@ export default defineConfig({
   output: 'static',
   adapter: vercel({ imageService: false }),
   trailingSlash: 'always',
-  // Friendly alias for the Keystatic CMS panel: /admin -> /keystatic. The panel is
-  // mounted at /keystatic by the integration and can't be relocated, so /admin
-  // redirects there (the URL bar ends on /keystatic).
-  redirects: { '/admin': '/keystatic' },
+  // Friendly alias for the Keystatic CMS panel -> /keystatic/. The integration's
+  // route only matches WITH a trailing slash (trailingSlash:'always'), so the
+  // target MUST keep it — a slash-less target (/keystatic) 404s.
+  redirects: { '/admin': '/keystatic/', '/admin/': '/keystatic/' },
   i18n: {
     defaultLocale: 'pt',
     locales: ['pt', 'en', 'es', 'de'],
