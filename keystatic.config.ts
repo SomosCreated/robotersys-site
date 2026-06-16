@@ -52,14 +52,14 @@ const REPO = 'SomosCreated/robotersys-site' as const;
 //         publishedAt, draft, seoDescription, content (MDX body)
 // ---------------------------------------------------------------------------
 export default config({
-  storage: import.meta.env.PROD
-    ? {
-        kind: 'github',
-        repo: REPO,
-      }
-    : {
-        kind: 'local',
-      },
+  // GitHub storage in production. Locally it's disk-based (edits write straight to
+  // src/content/blog) — EXCEPT when PUBLIC_KEYSTATIC_SETUP=true, which switches local
+  // dev to GitHub mode so you can run the one-time "Create GitHub App" wizard on
+  // localhost (it writes KEYSTATIC_GITHUB_* to .env). See deploy-runbook.
+  storage:
+    import.meta.env.PROD || import.meta.env.PUBLIC_KEYSTATIC_SETUP === 'true'
+      ? { kind: 'github', repo: REPO }
+      : { kind: 'local' },
 
   ui: {
     brand: { name: 'RoboterSys Blog' },
