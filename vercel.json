@@ -1,7 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "_comment": "RoboterSys — Phase 5 / M3. Merged by Vercel with the @astrojs/vercel Build Output. Redirects = old WordPress (root-domain, trailing-slash) URLs -> new Astro paths, all statusCode 301 (permanent, SEO-canonical; NOT 308). Source values carry the trailing slash because the site is trailingSlash:'always'. Headers apply site-wide.",
-  "_comment_csp": "The CSP below is shipped as Content-Security-Policy-Report-Only (NON-enforcing) on launch. A strict CSP can silently break GTM/GA4/Google Ads conversion tracking and the youtube-nocookie embed, and cannot be live-tested here. Observe violation reports on the Vercel PREVIEW deploy, then PROMOTE to enforcing by renaming the header key to 'Content-Security-Policy'. The /keystatic admin React island is unaffected while Report-Only. See docs/reference/security-perf-notes.md.",
   "redirects": [
     { "source": "/dimensionar-celula-paletizacao/", "destination": "/blog/dimensionar-celula-paletizacao/", "statusCode": 301 },
     { "source": "/paletizacao-robotizada-erros/", "destination": "/blog/paletizacao-robotizada-erros/", "statusCode": 301 },
