@@ -18,6 +18,7 @@ import SectionLabel from '@/components/SectionLabel.astro';
 import PartsGrid from '@/components/PartsGrid.astro';
 import FeatureCard from '@/components/FeatureCard.astro';
 import ContactForm from '@/components/ContactForm.astro';
+import FAQ from '@/components/FAQ.astro';
 import { t } from '@/i18n';
 import { brandHtml } from '@/lib/brand';
 import type { Locale } from '@/i18n/types';
@@ -166,6 +167,9 @@ const diferenciais = [
       </div>
     </div>
   </section>
+
+  <!-- FAQ -->
+  <FAQ locale={locale} faqKey="pecas" />
 
   <!-- 5. Contact Form -->
   <ContactForm variant="contato" locale={locale} />

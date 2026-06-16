@@ -18,6 +18,7 @@ import SectionLabel from '@/components/SectionLabel.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
 import FeatureCard from '@/components/FeatureCard.astro';
 import ContactForm from '@/components/ContactForm.astro';
+import FAQ from '@/components/FAQ.astro';
 import { t } from '@/i18n';
 import type { Locale } from '@/i18n/types';
 import { localizedPath } from '@/i18n/routes';
@@ -216,6 +217,9 @@ const supportItems = [
   </section>
 
   <!-- (Capacidades RoboterSys table moved up into the "// Especialização" section as its 2nd column.) -->
+
+  <!-- FAQ -->
+  <FAQ locale={locale} faqKey="servicos" />
 
   <!-- 5. Contact Form -->
   <ContactForm variant="contato" locale={locale} />

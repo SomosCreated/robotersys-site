@@ -21,6 +21,7 @@ import CellGallery from '@/components/CellGallery.astro';
 import ComparisonTable from '@/components/ComparisonTable.astro';
 import ClientsCarousel from '@/components/ClientsCarousel.astro';
 import ContactForm from '@/components/ContactForm.astro';
+import FAQ from '@/components/FAQ.astro';
 import { t } from '@/i18n';
 import { brandHtml } from '@/lib/brand';
 import type { Locale } from '@/i18n/types';
@@ -247,6 +248,9 @@ const capabilitiesRows = [
       </div>
     </div>
   </section>
+
+  <!-- FAQ -->
+  <FAQ locale={locale} faqKey="sistemas" />
 
   <!-- 5. Clients strip -->
   <section

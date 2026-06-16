@@ -17,6 +17,7 @@ import PageHero from '@/components/PageHero.astro';
 import SectionLabel from '@/components/SectionLabel.astro';
 import FeatureCard from '@/components/FeatureCard.astro';
 import ContactForm from '@/components/ContactForm.astro';
+import FAQ from '@/components/FAQ.astro';
 import YouTubeFacade from '@/components/YouTubeFacade.astro';
 import PushcorpGallery from '@/components/PushcorpGallery.astro';
 import { t } from '@/i18n';
@@ -323,6 +324,9 @@ const gallerySlides = [
       </div>
     </div>
   </section>
+
+  <!-- FAQ -->
+  <FAQ locale={locale} faqKey="pushcorp" />
 
   <!-- 6. Contact Form (produto variant — PushCorp inquiry) -->
   <ContactForm variant="produto" locale={locale} />
