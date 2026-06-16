@@ -166,7 +166,12 @@ const jsonLd = {
   )}
 </BaseLayout>
 
-<style>
+<!-- Reveal island: drives .sys-reveal → .sys-active via IntersectionObserver -->
+<script>
+  import '@/scripts/reveal';
+</script>
+
+<style is:global>
   /* Themed prose styles for MDX content — Ubuntu/HUD theme, WCAG AA */
   .prose-blog {
     font-family: var(--font-sans, ui-sans-serif, system-ui);

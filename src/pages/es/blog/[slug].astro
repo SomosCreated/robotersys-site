@@ -132,7 +132,12 @@ const jsonLd = {
   )}
 </BaseLayout>
 
-<style>
+<!-- Reveal island: drives .sys-reveal → .sys-active via IntersectionObserver -->
+<script>
+  import '@/scripts/reveal';
+</script>
+
+<style is:global>
   .prose-blog { font-family: var(--font-sans, ui-sans-serif, system-ui); font-size: 0.875rem; line-height: 1.75; color: rgb(var(--color-fg)); }
   .prose-blog p { margin-bottom: 1.25rem; max-width: 65ch; }
   .prose-blog h2 { font-size: 1rem; font-weight: 500; color: rgb(var(--color-strong)); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2.5rem; margin-bottom: 0.75rem; }
