@@ -81,6 +81,8 @@ function initConsent(): void {
     writeChoice('granted');
     hide();
     grantConsent();
+    // Let attribution.ts persist any gclid that was in the landing URL.
+    document.dispatchEvent(new CustomEvent('rs:consent-granted'));
   });
 
   banner.querySelector('[data-consent="reject"]')?.addEventListener('click', () => {

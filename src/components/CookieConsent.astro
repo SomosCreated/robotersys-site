@@ -74,6 +74,9 @@ const cookiesHref = localizedPath('cookies', locale);
 <script>
   import '@/scripts/consent.ts';
   import { initGlobalTracking } from '@/scripts/analytics';
+  import { initAttribution } from '@/scripts/attribution';
   // Attach document-level phone/whatsapp click tracking once per page.
   initGlobalTracking();
+  // Capture + persist gclid (consent-gated) and back-fill hidden form fields.
+  initAttribution();
 </script>
