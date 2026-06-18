@@ -192,6 +192,13 @@ const socialLinks = [
     </div>
   </div>
 
+  <!-- KUKA independence disclaimer — full-width paragraph below the nav menu -->
+  <div class="px-8 py-6 border-b border-line">
+    <p class="text-[11px] text-muted leading-relaxed normal-case max-w-4xl">
+      {t(locale, 'legal.footer_kuka_disclaimer')}
+    </p>
+  </div>
+
   <!-- bottom bar -->
   <div class="bg-surface px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-3 text-[10px] uppercase tracking-wider text-muted">
     <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
@@ -199,6 +206,9 @@ const socialLinks = [
       <!-- D-U-N-S number — all locales -->
       <span class="text-line hidden md:inline" aria-hidden="true">·</span>
       <span class="normal-case">{t(locale, 'legal.duns')}</span>
+      <!-- CNPJ — all locales -->
+      <span class="text-line hidden md:inline" aria-hidden="true">·</span>
+      <span class="normal-case">CNPJ: 34.412.533/0001-00</span>
       <!-- Legal links row -->
       <nav aria-label="Links legais" class="flex items-center gap-3">
         <span class="text-line hidden md:inline" aria-hidden="true">|</span>
@@ -225,9 +235,6 @@ const socialLinks = [
           {t(locale, 'consent.settings')}
         </button>
       </nav>
-    </div>
-    <div class="text-center md:text-right text-[10px] text-muted leading-relaxed max-w-md normal-case">
-      {t(locale, 'legal.footer_kuka_disclaimer')}
     </div>
   </div>
 
