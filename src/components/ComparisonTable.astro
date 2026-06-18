@@ -14,8 +14,10 @@
  *    the source graphics where the RoboterSys column is boxed in orange.
  *
  * Responsive: the table is w-full with NO min-width and break-words/hyphens on
- * every text cell, so it always fits the viewport on mobile — no horizontal
- * scroll. (overflow-x-auto is kept only as a safety net for extreme edge cases.)
+ * the text cells, so it always fits the viewport on mobile — no horizontal
+ * scroll. EXCEPTION: the highlighted brand header (RoboterSys) is whitespace-nowrap
+ * so the brand name is never hyphenated/broken across lines.
+ * (overflow-x-auto is kept as a safety net for extreme edge cases.)
  *
  * Theming: uses semantic tokens only (bg-surface / bg-elevated / text-strong /
  * text-muted / border-line / bg-accent / text-ok) so it reads correctly in BOTH
@@ -117,10 +119,10 @@ const iconSize = compact ? 18 : 24;
                 )}
                 <span
                   class:list={[
-                    'font-medium tracking-tight leading-tight break-words hyphens-auto',
+                    'font-medium tracking-tight leading-tight',
                     col.highlight
-                      ? 'text-accent text-base md:text-lg normal-case'
-                      : 'text-strong text-xs md:text-base uppercase',
+                      ? 'text-accent text-sm md:text-lg normal-case whitespace-nowrap'
+                      : 'text-strong text-xs md:text-base uppercase break-words hyphens-auto',
                   ]}
                 >
                   {col.label}
