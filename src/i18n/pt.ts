@@ -410,7 +410,7 @@ export default {
     // Footer links
     footer_privacy: 'Política de Privacidade',
     footer_cookies: 'Política de Cookies',
-    footer_kuka_disclaimer: 'A RoboterSys Serviços do Brasil ltda é uma empresa independente da KUKA Roboter do Brasil. A nossa especialização em robôs KUKA não implica uma parceria ou filiação com a KUKA Roboter do Brasil. A marca KUKA e suas submarcas são pertencentes a KUKA Roboter do Brasil.',
+    footer_kuka_disclaimer: 'A RoboterSys Serviços do Brasil ltda é uma empresa independente da KUKA Roboter do Brasil. A nossa especialização em robôs KUKA não implica uma parceria ou filiação com a KUKA Roboter do Brasil.\nA marca KUKA e suas submarcas são pertencentes a KUKA Roboter do Brasil.',
     duns: 'D-U-N-S® 125818621',
   },
 
